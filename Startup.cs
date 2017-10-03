@@ -7,14 +7,21 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using szakdoga.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace szakdoga
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private IConfigurationRoot _configurationRoot;
+
+        public Startup(IHostingEnvironment hostingEnvironment)
         {
-            Configuration = configuration;
+            _configurationRoot = new ConfigurationBuilder()
+                          .SetBasePath(hostingEnvironment.ContentRootPath)
+                          .AddJsonFile("appsettings.json")
+                          .Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -22,6 +29,9 @@ namespace szakdoga
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(_configurationRoot.GetConnectionString("DefaultConnection")));
+
+
             services.AddMvc();
         }
 
@@ -53,6 +63,7 @@ namespace szakdoga
                     name: "spa-fallback",
                     defaults: new { controller = "Home", action = "Index" });
             });
+            DbInitializer.Seed(app);
         }
     }
 }
