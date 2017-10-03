@@ -1,7 +1,10 @@
-﻿namespace szakdoga.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace szakdoga.Models
 {
     public class User
     {
+        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }

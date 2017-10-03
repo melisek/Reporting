@@ -1,7 +1,10 @@
-﻿namespace szakdoga.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace szakdoga.Models
 {
     public class RiportUserRel
     {
+        [Key]
         public int Id { get; set; }
         public Riport Riport { get; set; }
         public User User { get; set; }

@@ -1,10 +1,12 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace szakdoga.Models
 {
     public class Query
     {
+        [Key]
         public int Id { get; set; }
         public string SQL { get; set; }
 
