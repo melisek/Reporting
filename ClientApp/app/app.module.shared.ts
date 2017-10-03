@@ -1,8 +1,17 @@
+//import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+//import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+
+
+import {
+    MdButtonModule, MdCheckboxModule, MdInputModule, MdCardModule, MdMenuModule, MdButtonToggleModule, MdSidenavModule
+} from '@angular/material';
+
 
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
@@ -19,6 +28,8 @@ import { CounterComponent } from './components/counter/counter.component';
         HomeComponent
     ],
     imports: [
+        //BrowserModule,
+        BrowserAnimationsModule,    
         CommonModule,
         HttpModule,
         FormsModule,
@@ -28,7 +39,24 @@ import { CounterComponent } from './components/counter/counter.component';
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
             { path: '**', redirectTo: 'home' }
-        ])
+        ]),
+
+        MdButtonModule,
+        MdCheckboxModule,
+        MdInputModule,
+        MdCardModule,
+        MdButtonToggleModule,
+        MdMenuModule,
+        MdSidenavModule
+    ],
+    exports: [
+        MdButtonModule,
+        MdCheckboxModule,
+        MdInputModule,
+        MdCardModule,
+        MdButtonToggleModule,
+        MdMenuModule,
+        MdSidenavModule
     ]
 })
 export class AppModuleShared {
