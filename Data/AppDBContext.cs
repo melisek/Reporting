@@ -10,9 +10,9 @@ namespace szakdoga.Data
 
         public DbSet<Dashboard> Dashboards { get; set; }
         public DbSet<Query> Query { get; set; }
-        public DbSet<RiporDashboardRel> RiporDashboardRel { get; set; }
-        public DbSet<Riport> Riport { get; set; }
-        public DbSet<RiportUserRel> RiportUserRel { get; set; }
+        public DbSet<ReportDashboardRel> RiporDashboardRel { get; set; }
+        public DbSet<Report> Riport { get; set; }
+        public DbSet<ReportUserRel> RiportUserRel { get; set; }
         public DbSet<User> User { get; set; }
     }
 }
