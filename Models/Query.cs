@@ -8,6 +8,7 @@ namespace szakdoga.Models
     {
         [Key]
         public int Id { get; set; }
+
         public string SQL { get; set; }
 
         public int ResultTableName { get; set; }

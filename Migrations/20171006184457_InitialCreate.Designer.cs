@@ -11,7 +11,7 @@ using szakdoga.Data;
 namespace szakdoga.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20171006110725_InitialCreate")]
+    [Migration("20171006184457_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -107,7 +107,7 @@ namespace szakdoga.Migrations
 
                     b.HasIndex("ReportId");
 
-                    b.ToTable("ReporDashboardRel");
+                    b.ToTable("ReportDashboardRel");
                 });
 
             modelBuilder.Entity("szakdoga.Models.ReportUserRel", b =>

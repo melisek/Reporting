@@ -22,7 +22,7 @@ namespace szakdoga.Data
 
         public DbSet<Dashboard> Dashboards { get; set; }
         public DbSet<Query> Query { get; set; }
-        public DbSet<ReportDashboardRel> ReporDashboardRel { get; set; }
+        public DbSet<ReportDashboardRel> ReportDashboardRel { get; set; }
         public DbSet<Report> Report { get; set; }
         public DbSet<ReportUserRel> ReportUserRel { get; set; }
         public DbSet<User> User { get; set; }

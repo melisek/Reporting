@@ -81,7 +81,7 @@ namespace szakdoga.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ReporDashboardRel",
+                name: "ReportDashboardRel",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -92,15 +92,15 @@ namespace szakdoga.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ReporDashboardRel", x => x.Id);
+                    table.PrimaryKey("PK_ReportDashboardRel", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ReporDashboardRel_Dashboards_DashboardId",
+                        name: "FK_ReportDashboardRel_Dashboards_DashboardId",
                         column: x => x.DashboardId,
                         principalTable: "Dashboards",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ReporDashboardRel_Report_ReportId",
+                        name: "FK_ReportDashboardRel_Report_ReportId",
                         column: x => x.ReportId,
                         principalTable: "Report",
                         principalColumn: "Id",
@@ -135,19 +135,19 @@ namespace szakdoga.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ReporDashboardRel_DashboardId",
-                table: "ReporDashboardRel",
-                column: "DashboardId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ReporDashboardRel_ReportId",
-                table: "ReporDashboardRel",
-                column: "ReportId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Report_QueryId",
                 table: "Report",
                 column: "QueryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ReportDashboardRel_DashboardId",
+                table: "ReportDashboardRel",
+                column: "DashboardId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ReportDashboardRel_ReportId",
+                table: "ReportDashboardRel",
+                column: "ReportId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ReportUserRel_ReportId",
@@ -163,7 +163,7 @@ namespace szakdoga.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ReporDashboardRel");
+                name: "ReportDashboardRel");
 
             migrationBuilder.DropTable(
                 name: "ReportUserRel");

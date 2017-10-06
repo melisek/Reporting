@@ -6,6 +6,7 @@ namespace szakdoga.Models
     {
         [Key]
         public int Id { get; set; }
+
         public Report Report { get; set; }
         public User User { get; set; }
 

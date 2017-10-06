@@ -106,7 +106,7 @@ namespace szakdoga.Migrations
 
                     b.HasIndex("ReportId");
 
-                    b.ToTable("ReporDashboardRel");
+                    b.ToTable("ReportDashboardRel");
                 });
 
             modelBuilder.Entity("szakdoga.Models.ReportUserRel", b =>

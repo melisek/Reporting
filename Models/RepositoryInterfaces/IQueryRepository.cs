@@ -1,10 +1,6 @@
-﻿using System.Collections.Generic;
-
-namespace szakdoga.Models
+﻿namespace szakdoga.Models
 {
-    public interface IQueryRepository
+    public interface IQueryRepository : IBaseRepositoryInterface<Query>
     {
-        IEnumerable<Query> Queries { get; }
-        Query GetQueryById(int QueryId);
     }
 }
