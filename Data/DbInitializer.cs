@@ -21,6 +21,12 @@ namespace szakdoga.Data
                         new User { Name = "Admin", Password = "admin", EmailAddress = "asd@asd.hu" }
                         );
                 }
+                if (!context.Dashboards.Any())
+                {
+                    context.AddRange(
+                        new Dashboard { Name = "asd", Style="asdfgasdf" }
+                        );
+                }
                 context.SaveChanges();
             }
         }

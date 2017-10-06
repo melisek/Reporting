@@ -26,10 +26,12 @@ namespace szakdoga.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreationDate")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("getdate()");
 
                     b.Property<DateTime>("ModifyDate")
-                        .ValueGeneratedOnAddOrUpdate();
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasDefaultValueSql("getdate()");
 
                     b.Property<string>("Name");
 
@@ -66,12 +68,15 @@ namespace szakdoga.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreationDate")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("getdate()");
 
                     b.Property<DateTime>("ModifyDate")
-                        .ValueGeneratedOnAddOrUpdate();
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasDefaultValueSql("getdate()");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.Property<int?>("QueryId");
 
@@ -81,7 +86,7 @@ namespace szakdoga.Migrations
 
                     b.HasIndex("QueryId");
 
-                    b.ToTable("Riport");
+                    b.ToTable("Report");
                 });
 
             modelBuilder.Entity("szakdoga.Models.ReportDashboardRel", b =>
@@ -101,7 +106,7 @@ namespace szakdoga.Migrations
 
                     b.HasIndex("ReportId");
 
-                    b.ToTable("RiporDashboardRel");
+                    b.ToTable("ReporDashboardRel");
                 });
 
             modelBuilder.Entity("szakdoga.Models.ReportUserRel", b =>
@@ -121,7 +126,7 @@ namespace szakdoga.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("RiportUserRel");
+                    b.ToTable("ReportUserRel");
                 });
 
             modelBuilder.Entity("szakdoga.Models.User", b =>
@@ -131,9 +136,11 @@ namespace szakdoga.Migrations
 
                     b.Property<string>("EmailAddress");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
-                    b.Property<string>("Password");
+                    b.Property<string>("Password")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
