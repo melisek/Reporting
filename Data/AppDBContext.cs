@@ -26,5 +26,7 @@ namespace szakdoga.Data
         public DbSet<Report> Report { get; set; }
         public DbSet<ReportUserRel> ReportUserRel { get; set; }
         public DbSet<User> User { get; set; }
+
+        public DbSet<UserDashboardRel> UserDashboardRel { get; set; }
     }
 }
