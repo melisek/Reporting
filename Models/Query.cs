@@ -11,6 +11,8 @@ namespace szakdoga.Models
 
         public string SQL { get; set; }
 
+        public string Name { get; set; }
+
         public int ResultTableName { get; set; }
 
         public string TranslatedColumnNames { get; set; }

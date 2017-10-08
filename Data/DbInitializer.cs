@@ -19,9 +19,10 @@ namespace szakdoga.Data
                 CleanAllTables(context);
 
                 if (!context.User.Any())
-                {
                     context.User.AddRange(Users);
-                }
+                if (!context.Query.Any())
+                    context.Query.AddRange(Query1);
+
                 context.SaveChanges();
             }
         }
@@ -38,7 +39,7 @@ namespace szakdoga.Data
             }
         }
 
-        //static Query Query1 { get =>  new Query{SQL="select * from User",  }; }
+        static Query Query1 { get => new Query { SQL = "select * from User", Name = "xsd" }; }
 
 
 
