@@ -33,13 +33,13 @@ namespace szakdoga.Data
             {
                 return new List<User>
                 {
-                    new User{ Name="Admin", Password="admin", EmailAddress="asd@asd.com"},
-                    new User{ Name="Teszt", Password="teszt",EmailAddress="teszt@teszt.com"}
+                    new User{ Name="Admin", Password="admin", EmailAddress="asd@asd.com", GUID="123"},
+                    new User{ Name="Teszt", Password="teszt",EmailAddress="teszt@teszt.com",GUID="234"}
                 };
             }
         }
 
-        static Query Query1 { get => new Query { SQL = "select * from User", Name = "xsd" }; }
+        static Query Query1 { get => new Query { SQL = "select * from User", Name = "xsd", GUID="456" }; }
 
 
 
