@@ -4,15 +4,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace szakdoga.Models
 {
-    public class Report
+    public abstract class BaseEntity
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
+        [MaxLength(200)]
         public string Name { get; set; }
-
-        public Query Query { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime CreationDate { get; set; }
@@ -20,6 +19,7 @@ namespace szakdoga.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime ModifyDate { get; set; }
 
-        public string Style { get; set; }
+        [Required]
+        public string GUID { get; set; }
     }
 }

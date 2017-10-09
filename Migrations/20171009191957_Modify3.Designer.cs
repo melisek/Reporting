@@ -11,9 +11,10 @@ using szakdoga.Data;
 namespace szakdoga.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171009191957_Modify3")]
+    partial class Modify3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,16 +30,13 @@ namespace szakdoga.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("getdate()");
 
-                    b.Property<string>("GUID")
-                        .IsRequired();
+                    b.Property<string>("Guid");
 
                     b.Property<DateTime>("ModifyDate")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasDefaultValueSql("getdate()");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200);
+                    b.Property<string>("Name");
 
                     b.Property<string>("Style");
 
@@ -52,18 +50,7 @@ namespace szakdoga.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("CreationDate")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("GUID")
-                        .IsRequired();
-
-                    b.Property<DateTime>("ModifyDate")
-                        .ValueGeneratedOnAddOrUpdate();
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200);
+                    b.Property<string>("Name");
 
                     b.Property<DateTime>("NextUpdating");
 
@@ -89,16 +76,12 @@ namespace szakdoga.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("getdate()");
 
-                    b.Property<string>("GUID")
-                        .IsRequired();
-
                     b.Property<DateTime>("ModifyDate")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasDefaultValueSql("getdate()");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200);
+                        .IsRequired();
 
                     b.Property<int?>("QueryId");
 
@@ -156,20 +139,10 @@ namespace szakdoga.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("CreationDate")
-                        .ValueGeneratedOnAdd();
-
                     b.Property<string>("EmailAddress");
 
-                    b.Property<string>("GUID")
-                        .IsRequired();
-
-                    b.Property<DateTime>("ModifyDate")
-                        .ValueGeneratedOnAddOrUpdate();
-
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200);
+                        .IsRequired();
 
                     b.Property<string>("Password")
                         .IsRequired();

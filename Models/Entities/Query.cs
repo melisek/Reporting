@@ -1,17 +1,11 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace szakdoga.Models
 {
-    public class Query
+    public class Query : BaseEntity
     {
-        [Key]
-        public int Id { get; set; }
-
         public string SQL { get; set; }
-
-        public string Name { get; set; }
 
         public int ResultTableName { get; set; }
 

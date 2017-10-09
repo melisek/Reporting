@@ -12,6 +12,7 @@ namespace szakdoga.Models.Repositories
         {
             _context = context;
         }
+
         public void Add(UserDashboardRel entity)
         {
             if (entity != null)
