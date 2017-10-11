@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
 
 
 import {
-    MdButtonModule, MdCheckboxModule, MdInputModule, MdCardModule, MdMenuModule, MdButtonToggleModule, MdSidenavModule
+    MdButtonModule, MdCheckboxModule, MdInputModule, MdCardModule, MdMenuModule, MdButtonToggleModule, MdSidenavModule, MdSortModule, MdTableModule, MdPaginatorModule
 } from '@angular/material';
 
 
@@ -47,7 +47,10 @@ import { CounterComponent } from './components/counter/counter.component';
         MdCardModule,
         MdButtonToggleModule,
         MdMenuModule,
-        MdSidenavModule
+        MdSidenavModule,
+        MdSortModule,
+        MdTableModule,
+        MdPaginatorModule
     ],
     exports: [
         MdButtonModule,
@@ -56,7 +59,10 @@ import { CounterComponent } from './components/counter/counter.component';
         MdCardModule,
         MdButtonToggleModule,
         MdMenuModule,
-        MdSidenavModule
+        MdSidenavModule,
+        MdSortModule,
+        MdTableModule,
+        MdPaginatorModule
     ]
 })
 export class AppModuleShared {
