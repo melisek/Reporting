@@ -11,9 +11,10 @@ using szakdoga.Data;
 namespace szakdoga.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171015085526_Modify5")]
+    partial class Modify5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,8 +68,7 @@ namespace szakdoga.Migrations
 
                     b.Property<DateTime>("NextUpdating");
 
-                    b.Property<string>("ResultTableName")
-                        .HasMaxLength(200);
+                    b.Property<string>("ResultTableName");
 
                     b.Property<string>("SQL");
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace szakdoga.Models
@@ -6,8 +7,8 @@ namespace szakdoga.Models
     public class Query : BaseEntity
     {
         public string SQL { get; set; }
-
-        public int ResultTableName { get; set; }
+        [MaxLength(200)]
+        public string ResultTableName { get; set; }
 
         public string TranslatedColumnNames { get; set; }
 

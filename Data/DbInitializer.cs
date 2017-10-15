@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using szakdoga.Models;
@@ -39,7 +40,7 @@ namespace szakdoga.Data
             }
         }
 
-        static Query Query1 { get => new Query { SQL = "select * from User", Name = "xsd", GUID="456" }; }
+        static Query Query1 { get => new Query { SQL = "select * from CustomerStockOut", Name = "Számlák", GUID = "456", NextUpdating = System.DateTime.Now, UpdatePeriod = new TimeSpan(1, 0, 0, 0) }; }
 
 
 
