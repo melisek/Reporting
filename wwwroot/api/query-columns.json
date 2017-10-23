@@ -1,0 +1,4 @@
+﻿{
+  "queryId": 1,
+  "columns": [ "ProductId", "Name", "ProductCode", "Category", "Price", "Stock", "Sale" ]
+}

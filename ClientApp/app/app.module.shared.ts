@@ -21,6 +21,8 @@ import {
     MatPaginatorModule,
     MatTooltipModule,
     MatDialogModule,
+    MatSelectModule,
+    MatListModule
 } from '@angular/material';
 
 
@@ -28,13 +30,14 @@ import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
 import { ShareDialogComponent } from './components/shared/share-dialog.component';
-
+import { ReportComponent } from './components/report/report-list.component';
+import { ReportEditComponent } from './components/report/report-edit.component';
 //import { ReportModule } from './components/report/report.module';
 
 import { TableHttpExample } from './components/table/table-http-example';
 
-import { MATERIAL_COMPATIBILITY_MODE } from '@angular/material';
-import { ReportComponent } from './components/report/report-list.component';
+import { MATERIAL_COMPATIBILITY_MODE, MAT_PLACEHOLDER_GLOBAL_OPTIONS } from '@angular/material';
+
 
 
 
@@ -46,7 +49,7 @@ import { ReportComponent } from './components/report/report-list.component';
         TableHttpExample,
         ShareDialogComponent,
         ReportComponent,
-        
+        ReportEditComponent
     ],
     entryComponents: [ShareDialogComponent],
     imports: [
@@ -62,6 +65,10 @@ import { ReportComponent } from './components/report/report-list.component';
             {
                 path: 'reports',
                 component: ReportComponent
+            },
+            {
+                path: 'report',
+                component: ReportEditComponent
             },
             { path: 'table', component: TableHttpExample },
             { path: '**', redirectTo: 'home' }
@@ -81,7 +88,8 @@ import { ReportComponent } from './components/report/report-list.component';
         MatPaginatorModule,
         MatTooltipModule,
         MatDialogModule,
-        
+        MatSelectModule,
+        MatListModule
     ],
     exports: [
         MatButtonModule,
@@ -95,10 +103,13 @@ import { ReportComponent } from './components/report/report-list.component';
         MatTableModule,
         MatPaginatorModule,
         MatTooltipModule,
-        MatDialogModule
+        MatDialogModule,
+        MatSelectModule,
+        MatListModule
     ],
     providers: [
         { provide: MATERIAL_COMPATIBILITY_MODE, useValue: true },
+        { provide: MAT_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'always' } }
     ]
 })
 export class AppModuleShared {
