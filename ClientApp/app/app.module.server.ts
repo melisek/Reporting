@@ -6,6 +6,7 @@ import { NoopAnimationsModule, ɵAnimationRendererFactory } from '@angular/platf
 
 import { AppModuleShared } from './app.module.shared';
 import { AppComponent } from './components/app/app.component';
+//import { ReportModule } from './components/report/report.module';
 
 // declarations
 export function instantiateServerRendererFactory(
@@ -41,8 +42,10 @@ export const SERVER_RENDER_PROVIDERS = [
     bootstrap: [ AppComponent ],
     imports: [
         ServerModule,
-        NoopAnimationsModule,
-        AppModuleShared
+        NoopAnimationsModule,      
+        AppModuleShared,
+        //ReportModule,
+        //AppRoutingModule
     ],
     providers: [
         SERVER_RENDER_PROVIDERS

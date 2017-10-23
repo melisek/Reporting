@@ -1,0 +1,82 @@
+﻿{
+  "totalCount": 4,
+  "reports": [
+    {
+      "id": 1,
+      "name": "Report 1",
+      "query": {
+        "id": 1,
+        "name": "Lekérdezés 1"
+      },
+      "createdAt": "2017-04-17 00:00:00",
+      "createdBy": {
+        "id": 1,
+        "name": "Zs"
+      },
+      "modifiedAt": "2017-04-17 10:00:00",
+      "modifiedBy": {
+        "id": 1,
+        "name": "Zs"
+      },
+      "style": "abc"
+    },
+    {
+      "id": 2,
+      "name": "Report 2",
+      "query": {
+        "id": 2,
+        "name": "Lekérdezés 2"
+      },
+      "createdAt": "2017-02-17 00:00:00",
+      "createdBy": {
+        "id": 2,
+        "name": "M"
+      },
+      "modifiedAt": "2017-02-17 10:00:00",
+      "modifiedBy": {
+        "id": 2,
+        "name": "M"
+      },
+      "style": "abc"
+    },
+    {
+      "id": 3,
+      "name": "Report 3",
+      "query": {
+        "id": 1,
+        "name": "Lekérdezés 3"
+      },
+      "createdAt": "2017-04-17 00:00:00",
+      "createdBy": {
+        "id": 1,
+        "name": "Zs"
+      },
+      "modifiedAt": "2017-04-17 10:00:00",
+      "modifiedBy": {
+        "id": 1,
+        "name": "Zs"
+      },
+      "style": "abc"
+    },
+    {
+      "id": 4,
+      "name": "Report 4",
+      "query": {
+        "id": 4,
+        "name": "Lekérdezés 4"
+      },
+      "createdAt": "2017-01-17 00:00:00",
+      "createdBy": {
+        "id": 2,
+        "name": "M"
+      },
+      "modifiedAt": "2017-01-17 10:00:00",
+      "modifiedBy": {
+        "id": 2,
+        "name": "M"
+      },
+      "style": "abc"
+    }
+
+  ]
+}
