@@ -6,6 +6,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
     templateUrl: 'share-dialog.component.html',
 })
 export class ShareDialogComponent {
+    email: string;
+    selectedPermission: number;
 
     constructor(
         public dialogRef: MatDialogRef<ShareDialogComponent>,
@@ -13,6 +15,13 @@ export class ShareDialogComponent {
 
     onNoClick(): void {
         this.dialogRef.close();
+    }
+
+    onShareClick() {
+        this.dialogRef.close(<any>{
+            email: this.data.email,
+            permission: this.selectedPermission
+        });
     }
 
 }

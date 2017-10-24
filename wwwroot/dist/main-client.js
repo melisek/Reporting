@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "6cb5fbe7403c82d19a1e"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b8c796618885fc27d783"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -11764,6 +11764,12 @@ var ShareDialogComponent = /** @class */ (function () {
     }
     ShareDialogComponent.prototype.onNoClick = function () {
         this.dialogRef.close();
+    };
+    ShareDialogComponent.prototype.onShareClick = function () {
+        this.dialogRef.close({
+            email: this.data.email,
+            permission: this.selectedPermission
+        });
     };
     ShareDialogComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
@@ -44108,14 +44114,24 @@ var ReportComponent = /** @class */ (function () {
         //    });
     };
     ReportComponent.prototype.openShareDialog = function (id, name) {
+        this.sharePermissions = [
+            {
+                id: 1,
+                name: "Szerkesztés és megosztás"
+            },
+            {
+                id: 2,
+                name: "Szerkesztés"
+            }
+        ];
         var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_12__shared_share_dialog_component__["a" /* ShareDialogComponent */], {
-            width: '250px',
-            data: { reportId: id, name: name, email: null }
+            width: '400px',
+            data: { reportId: id, name: name, email: null, permissions: this.sharePermissions }
         });
         dialogRef.afterClosed().subscribe(function (result) {
             console.log('The dialog was closed');
             if (result != undefined) {
-                console.log('result:' + result);
+                console.log("email:" + result.email + ";permission:" + result.permission);
                 //this.animal = result;
             }
         });
@@ -44756,7 +44772,7 @@ module.exports = "<!--<div class='main-nav'>\r\n    <div class='navbar navbar-in
 /* 115 */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<h1>Edit Report</h1>\r\n\r\n<div class=\"row\">\r\n    <div class=\"col-md-2\">\r\n\r\n        <form>\r\n            <mat-select placeholder=\"Query\" [(ngModel)]=\"selectedValue\" (ngModelChange)=\"queryChange()\" name=\"query\">\r\n                <mat-option *ngFor=\"let query of queries\" [value]=\"query.id\">\r\n                    {{query.name}}\r\n                </mat-option>\r\n            </mat-select>\r\n        </form>\r\n\r\n        <mat-selection-list *ngIf=\"queryColumns\">\r\n            <mat-list-option *ngFor=\"let column of queryColumns.columns\">\r\n                {{column}}\r\n            </mat-list-option>\r\n        </mat-selection-list>\r\n\r\n    </div>\r\n    <div class=\"col-md-10\">\r\n        <div class=\"clearfix\">\r\n            <mat-form-field class=\"pull-right\" floatPlaceholder=\"never\">\r\n                <input matInput #filter placeholder=\"Filter reports\">\r\n            </mat-form-field>\r\n        </div>\r\n\r\n        <!--<mat-table #table [dataSource]=\"dataSource\" matSort matSortActive=\"id\" matSortDisableClear matSortDirection=\"asc\">\r\n            <ng-container matColumnDef=\"id\">\r\n                <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>\r\n                <mat-cell *matCellDef=\"let row\"> {{row.id}} </mat-cell>\r\n            </ng-container>\r\n            <ng-container matColumnDef=\"name\">\r\n                <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>\r\n                <mat-cell *matCellDef=\"let row\"> {{row.name}} </mat-cell>\r\n            </ng-container>\r\n            <ng-container matColumnDef=\"query\">\r\n                <mat-header-cell *matHeaderCellDef mat-sort-header> Query </mat-header-cell>\r\n                <mat-cell *matCellDef=\"let row\"> {{row.query.name}} </mat-cell>\r\n            </ng-container>\r\n            <ng-container matColumnDef=\"createdBy\">\r\n                <mat-header-cell *matHeaderCellDef mat-sort-header> Created by </mat-header-cell>\r\n                <mat-cell *matCellDef=\"let row\"> {{row.createdBy.name}} </mat-cell>\r\n            </ng-container>\r\n            <ng-container matColumnDef=\"createdAt\">\r\n                <mat-header-cell *matHeaderCellDef mat-sort-header> Created </mat-header-cell>\r\n                <mat-cell *matCellDef=\"let row\"> {{row.createdAt}} </mat-cell>\r\n            </ng-container>\r\n            <ng-container matColumnDef=\"modifiedBy\">\r\n                <mat-header-cell *matHeaderCellDef mat-sort-header> Modified by </mat-header-cell>\r\n                <mat-cell *matCellDef=\"let row\"> {{row.modifiedBy.name}} </mat-cell>\r\n            </ng-container>\r\n            <ng-container matColumnDef=\"modifiedAt\">\r\n                <mat-header-cell *matHeaderCellDef mat-sort-header> Modified </mat-header-cell>\r\n                <mat-cell *matCellDef=\"let row\"> {{row.modifiedAt}} </mat-cell>\r\n            </ng-container>\r\n            <ng-container matColumnDef=\"actions\">\r\n                <mat-header-cell *matHeaderCellDef></mat-header-cell>\r\n                <mat-cell *matCellDef=\"let row\">\r\n                    <button mat-icon-button matTooltip=\"Edit report\" matTooltipPosition=\"above\"><i class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></i></button>\r\n                    <button mat-icon-button matTooltip=\"Delete report\" matTooltipPosition=\"above\" (click)=\"deleteReport(row.id)\"><i class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></i></button>\r\n                    <button mat-icon-button matTooltip=\"Share report\" matTooltipPosition=\"above\" (click)=\"openShareDialog(row.id, row.name)\"><i class=\"glyphicon glyphicon-share-alt\" aria-hidden=\"true\"></i></button>\r\n                </mat-cell>\r\n            </ng-container>\r\n            <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\r\n            <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\r\n        </mat-table>\r\n\r\n        <mat-paginator #paginator\r\n                       [length]=\"dataSource.totalCount\"\r\n                       [pageSize]=\"25\">\r\n        </mat-paginator>-->\r\n    </div>\r\n</div>\r\n";
+module.exports = "\r\n<h1>Edit Report</h1>\r\n\r\n<div class=\"row\">\r\n    <div class=\"col-md-2\">\r\n\r\n        <form>\r\n            <mat-select placeholder=\"Query\" [(ngModel)]=\"selectedValue\" (ngModelChange)=\"queryChange()\" name=\"query\">\r\n                <mat-option *ngFor=\"let query of queries\" [value]=\"query.id\">\r\n                    {{query.name}}\r\n                </mat-option>\r\n            </mat-select>\r\n        </form>\r\n\r\n        <mat-selection-list *ngIf=\"queryColumns\">\r\n            <mat-list-option *ngFor=\"let column of queryColumns.columns\">\r\n                {{column}}\r\n            </mat-list-option>\r\n        </mat-selection-list>\r\n\r\n    </div>\r\n    <div class=\"col-md-10\">\r\n        <!--<div class=\"clearfix\">\r\n            <mat-form-field class=\"pull-right\" floatPlaceholder=\"never\">\r\n                <input matInput #filter placeholder=\"Filter reports\">\r\n            </mat-form-field>\r\n        </div>\r\n\r\n        <mat-table #table [dataSource]=\"dataSource\" matSort matSortActive=\"id\" matSortDisableClear matSortDirection=\"asc\">\r\n            <ng-container matColumnDef=\"id\">\r\n                <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>\r\n                <mat-cell *matCellDef=\"let row\"> {{row.id}} </mat-cell>\r\n            </ng-container>\r\n            <ng-container matColumnDef=\"name\">\r\n                <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>\r\n                <mat-cell *matCellDef=\"let row\"> {{row.name}} </mat-cell>\r\n            </ng-container>\r\n            <ng-container matColumnDef=\"query\">\r\n                <mat-header-cell *matHeaderCellDef mat-sort-header> Query </mat-header-cell>\r\n                <mat-cell *matCellDef=\"let row\"> {{row.query.name}} </mat-cell>\r\n            </ng-container>\r\n            <ng-container matColumnDef=\"createdBy\">\r\n                <mat-header-cell *matHeaderCellDef mat-sort-header> Created by </mat-header-cell>\r\n                <mat-cell *matCellDef=\"let row\"> {{row.createdBy.name}} </mat-cell>\r\n            </ng-container>\r\n            <ng-container matColumnDef=\"createdAt\">\r\n                <mat-header-cell *matHeaderCellDef mat-sort-header> Created </mat-header-cell>\r\n                <mat-cell *matCellDef=\"let row\"> {{row.createdAt}} </mat-cell>\r\n            </ng-container>\r\n            <ng-container matColumnDef=\"modifiedBy\">\r\n                <mat-header-cell *matHeaderCellDef mat-sort-header> Modified by </mat-header-cell>\r\n                <mat-cell *matCellDef=\"let row\"> {{row.modifiedBy.name}} </mat-cell>\r\n            </ng-container>\r\n            <ng-container matColumnDef=\"modifiedAt\">\r\n                <mat-header-cell *matHeaderCellDef mat-sort-header> Modified </mat-header-cell>\r\n                <mat-cell *matCellDef=\"let row\"> {{row.modifiedAt}} </mat-cell>\r\n            </ng-container>\r\n            <ng-container matColumnDef=\"actions\">\r\n                <mat-header-cell *matHeaderCellDef></mat-header-cell>\r\n                <mat-cell *matCellDef=\"let row\">\r\n                    <button mat-icon-button matTooltip=\"Edit report\" matTooltipPosition=\"above\"><i class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></i></button>\r\n                    <button mat-icon-button matTooltip=\"Delete report\" matTooltipPosition=\"above\" (click)=\"deleteReport(row.id)\"><i class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></i></button>\r\n                    <button mat-icon-button matTooltip=\"Share report\" matTooltipPosition=\"above\" (click)=\"openShareDialog(row.id, row.name)\"><i class=\"glyphicon glyphicon-share-alt\" aria-hidden=\"true\"></i></button>\r\n                </mat-cell>\r\n            </ng-container>\r\n            <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\r\n            <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\r\n        </mat-table>\r\n\r\n        <mat-paginator #paginator\r\n                       [length]=\"dataSource.totalCount\"\r\n                       [pageSize]=\"25\">\r\n        </mat-paginator>-->\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 /* 116 */
@@ -44768,7 +44784,7 @@ module.exports = "\r\n<h1>Reports</h1>\r\n\r\n<div class=\"add-button-fixed\">\r
 /* 117 */
 /***/ (function(module, exports) {
 
-module.exports = "<h1 mat-dialog-title>Share: {{data.name}}</h1>\r\n<div mat-dialog-content>\r\n    <mat-form-field floatPlaceholder=\"never\">\r\n        <input matInput placeholder=\"Email\" [(ngModel)]=\"data.email\">\r\n    </mat-form-field>\r\n</div>\r\n<div mat-dialog-actions>\r\n    <button mat-raised-button color=\"primary\" [mat-dialog-close]=\"data.email\" tabindex=\"2\">Share</button>\r\n    <button mat-button (click)=\"onNoClick()\" tabindex=\"-1\">Cancel</button>\r\n</div>";
+module.exports = "<h1 mat-dialog-title>Share: {{data.name}}</h1>\r\n<div mat-dialog-content>\r\n    <mat-form-field floatPlaceholder=\"never\">\r\n        <input matInput placeholder=\"Email\" [(ngModel)]=\"data.email\">\r\n    </mat-form-field>\r\n    <form>\r\n        <mat-select placeholder=\"Permission\" [(ngModel)]=\"selectedPermission\" name=\"permission\">\r\n            <mat-option *ngFor=\"let permission of data.permissions\" [value]=\"permission.id\">\r\n                {{permission.name}}\r\n            </mat-option>\r\n        </mat-select>\r\n    </form>\r\n</div>\r\n<div mat-dialog-actions>\r\n    <button mat-raised-button color=\"primary\" (click)=\"onShareClick()\" tabindex=\"2\">Share</button>\r\n    <button mat-button (click)=\"onNoClick()\" tabindex=\"-1\">Cancel</button>\r\n</div>";
 
 /***/ }),
 /* 118 */

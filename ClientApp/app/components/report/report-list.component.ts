@@ -16,7 +16,7 @@ import 'rxjs/add/observable/fromEvent';*/
 import { ReportService } from "./report.service";
 import { IReport } from "./report";
 import { ShareDialogComponent } from '../shared/share-dialog.component';
-import { IResponseResult } from '../shared/shared-interfaces';
+import { IResponseResult, IEntityWithIdName } from '../shared/shared-interfaces';
 
 
 @Component({
@@ -28,6 +28,8 @@ export class ReportComponent implements OnInit {
     displayedColumns = ['id', 'name', 'query', 'createdBy', 'createdAt', 'modifiedBy', 'modifiedAt', 'actions'];
     service: ReportService | null;
     dataSource: ExampleDataSource | null;
+
+    sharePermissions: IEntityWithIdName[];
 
     constructor(private http: Http, private dialog: MatDialog) { }
 
@@ -62,15 +64,25 @@ export class ReportComponent implements OnInit {
     }
 
     openShareDialog(id: number, name: string): void {
+        this.sharePermissions = [
+            {
+                id: 1,
+                name: "Szerkesztés és megosztás"
+            },
+            {
+                id: 2,
+                name: "Szerkesztés"
+            }];
+
         let dialogRef = this.dialog.open(ShareDialogComponent, {
-            width: '250px',
-            data: { reportId: id, name: name, email: null }
+            width: '400px',
+            data: { reportId: id, name: name, email: null, permissions: this.sharePermissions }
         });
 
         dialogRef.afterClosed().subscribe(result => {
             console.log('The dialog was closed');
             if (result != undefined) {
-                console.log('result:' + result);
+                console.log(`email:${result.email};permission:${result.permission}`);
             //this.animal = result;
             }
         });
