@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ReportService } from '../report/report.service';
+import { MatSidenavContainer } from '@angular/material'
 
 @Component({
     selector: 'app',

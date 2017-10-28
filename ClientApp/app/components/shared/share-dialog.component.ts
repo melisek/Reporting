@@ -19,6 +19,8 @@ export class ShareDialogComponent {
 
     onShareClick() {
         this.dialogRef.close(<any>{
+            reportId: this.data.id,
+            reportName: this.data.name,
             email: this.data.email,
             permission: this.selectedPermission
         });

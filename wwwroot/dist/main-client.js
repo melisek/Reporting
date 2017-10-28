@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b8c796618885fc27d783"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "d848be4750748ee543fa"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -724,14 +724,14 @@ module.exports = vendor_8fc68ba9963ff0a39e85;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return AnimationCurves; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return AnimationDurations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return AnimationCurves; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return AnimationDurations; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return MdCommonModule; });
 /* unused harmony export MATERIAL_SANITY_CHECKS */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return mixinDisabled; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return mixinColor; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return mixinDisableRipple; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return mixinTabIndex; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return mixinDisabled; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return mixinColor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return mixinDisableRipple; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return mixinTabIndex; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MATERIAL_COMPATIBILITY_MODE; });
 /* unused harmony export getMdCompatibilityInvalidPrefixError */
 /* unused harmony export MAT_ELEMENTS_SELECTOR */
@@ -751,33 +751,33 @@ module.exports = vendor_8fc68ba9963ff0a39e85;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "X", function() { return MD_DATE_FORMATS; });
 /* unused harmony export NativeDateAdapter */
 /* unused harmony export MD_NATIVE_DATE_FORMATS */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "C", function() { return MD_ERROR_GLOBAL_OPTIONS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "B", function() { return defaultErrorStateMatcher; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "E", function() { return MD_ERROR_GLOBAL_OPTIONS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "D", function() { return defaultErrorStateMatcher; });
 /* unused harmony export showOnDirtyErrorStateMatcher */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "R", function() { return GestureConfig; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return MdLine; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return MdLineSetter; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "z", function() { return MdLineModule; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return MdOptionModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "x", function() { return MdLine; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "w", function() { return MdLineSetter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "B", function() { return MdLineModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return MdOptionModule; });
 /* unused harmony export MdOptionSelectionChange */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return MdOption; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return MdOption; });
 /* unused harmony export MdOptgroupBase */
 /* unused harmony export _MdOptgroupMixinBase */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return MdOptgroup; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return MD_PLACEHOLDER_GLOBAL_OPTIONS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "E", function() { return PortalInjector; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return MdOptgroup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return MD_PLACEHOLDER_GLOBAL_OPTIONS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return PortalInjector; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "G", function() { return MdRipple; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "K", function() { return MD_RIPPLE_GLOBAL_OPTIONS; });
 /* unused harmony export RippleRef */
 /* unused harmony export RippleState */
 /* unused harmony export RIPPLE_FADE_IN_DURATION */
 /* unused harmony export RIPPLE_FADE_OUT_DURATION */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return MdRippleModule; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "A", function() { return MdPseudoCheckboxModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return MdRippleModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "C", function() { return MdPseudoCheckboxModule; });
 /* unused harmony export MdPseudoCheckbox */
 /* unused harmony export StyleModule */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "S", function() { return applyCssTransform; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "F", function() { return extendObject; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return extendObject; });
 /* unused harmony export MAT_DATE_FORMATS */
 /* unused harmony export MAT_RIPPLE_GLOBAL_OPTIONS */
 /* unused harmony export MAT_NATIVE_DATE_FORMATS */
@@ -833,16 +833,16 @@ module.exports = vendor_8fc68ba9963ff0a39e85;
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Q", function() { return __WEBPACK_IMPORTED_MODULE_2__angular_cdk_bidi__["b"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "_0", function() { return __WEBPACK_IMPORTED_MODULE_7__angular_cdk_keycodes__["c"]; });
 /* unused harmony reexport DOWN_ARROW */
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return __WEBPACK_IMPORTED_MODULE_7__angular_cdk_keycodes__["m"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return __WEBPACK_IMPORTED_MODULE_7__angular_cdk_keycodes__["n"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return __WEBPACK_IMPORTED_MODULE_7__angular_cdk_keycodes__["m"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return __WEBPACK_IMPORTED_MODULE_7__angular_cdk_keycodes__["n"]; });
 /* unused harmony reexport PAGE_UP */
 /* unused harmony reexport PAGE_DOWN */
 /* unused harmony reexport HOME */
 /* unused harmony reexport END */
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "U", function() { return __WEBPACK_IMPORTED_MODULE_7__angular_cdk_keycodes__["i"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "y", function() { return __WEBPACK_IMPORTED_MODULE_7__angular_cdk_keycodes__["j"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "A", function() { return __WEBPACK_IMPORTED_MODULE_7__angular_cdk_keycodes__["j"]; });
 /* unused harmony reexport TAB */
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_7__angular_cdk_keycodes__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_7__angular_cdk_keycodes__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Z", function() { return __WEBPACK_IMPORTED_MODULE_7__angular_cdk_keycodes__["q"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Y", function() { return __WEBPACK_IMPORTED_MODULE_7__angular_cdk_keycodes__["r"]; });
 /* unused harmony reexport A */
@@ -870,7 +870,7 @@ module.exports = vendor_8fc68ba9963ff0a39e85;
 /* unused harmony reexport CloseScrollStrategy */
 /* unused harmony reexport NoopScrollStrategy */
 /* unused harmony reexport BlockScrollStrategy */
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "D", function() { return __WEBPACK_IMPORTED_MODULE_10__angular_cdk_platform__["b"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "F", function() { return __WEBPACK_IMPORTED_MODULE_10__angular_cdk_platform__["b"]; });
 /* unused harmony reexport Platform */
 /* unused harmony reexport getSupportedInputTypes */
 /* unused harmony reexport Portal */
@@ -881,7 +881,7 @@ module.exports = vendor_8fc68ba9963ff0a39e85;
 /* unused harmony reexport TemplatePortalDirective */
 /* unused harmony reexport PortalHostDirective */
 /* unused harmony reexport PortalModule */
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "w", function() { return __WEBPACK_IMPORTED_MODULE_13__angular_cdk_rxjs__["b"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "y", function() { return __WEBPACK_IMPORTED_MODULE_13__angular_cdk_rxjs__["b"]; });
 /* unused harmony reexport FinallyBrand */
 /* unused harmony reexport CatchBrand */
 /* unused harmony reexport DoBrand */
@@ -900,12 +900,12 @@ module.exports = vendor_8fc68ba9963ff0a39e85;
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "M", function() { return __WEBPACK_IMPORTED_MODULE_13__angular_cdk_rxjs__["f"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "T", function() { return __WEBPACK_IMPORTED_MODULE_13__angular_cdk_rxjs__["e"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "P", function() { return __WEBPACK_IMPORTED_MODULE_13__angular_cdk_rxjs__["m"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_13__angular_cdk_rxjs__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "x", function() { return __WEBPACK_IMPORTED_MODULE_13__angular_cdk_rxjs__["i"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_13__angular_cdk_rxjs__["g"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_13__angular_cdk_rxjs__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "z", function() { return __WEBPACK_IMPORTED_MODULE_13__angular_cdk_rxjs__["i"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_13__angular_cdk_rxjs__["g"]; });
 /* unused harmony reexport debounceTime */
 /* unused harmony reexport auditTime */
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_13__angular_cdk_rxjs__["h"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_13__angular_cdk_rxjs__["h"]; });
 /* unused harmony reexport CdkMonitorFocus */
 /* unused harmony reexport FocusMonitor */
 /* unused harmony reexport FOCUS_MONITOR_PROVIDER */
@@ -3300,20 +3300,20 @@ module.exports = (__webpack_require__(1))(0);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AriaDescriber; });
 /* unused harmony export ARIA_DESCRIBER_PROVIDER_FACTORY */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return ARIA_DESCRIBER_PROVIDER; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return isFakeMousedownFromScreenReader; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return FocusKeyManager; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return isFakeMousedownFromScreenReader; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return FocusKeyManager; });
 /* unused harmony export FocusTrap */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return FocusTrapFactory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return FocusTrapFactory; });
 /* unused harmony export FocusTrapDeprecatedDirective */
 /* unused harmony export FocusTrapDirective */
 /* unused harmony export InteractivityChecker */
 /* unused harmony export ListKeyManager */
 /* unused harmony export LIVE_ANNOUNCER_ELEMENT_TOKEN */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return LiveAnnouncer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return LiveAnnouncer; });
 /* unused harmony export LIVE_ANNOUNCER_PROVIDER_FACTORY */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return LIVE_ANNOUNCER_PROVIDER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return LIVE_ANNOUNCER_PROVIDER; });
 /* unused harmony export TOUCH_BUFFER_MS */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return FocusMonitor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return FocusMonitor; });
 /* unused harmony export CdkMonitorFocus */
 /* unused harmony export FOCUS_MONITOR_PROVIDER_FACTORY */
 /* unused harmony export FOCUS_MONITOR_PROVIDER */
@@ -5045,7 +5045,7 @@ module.exports = (__webpack_require__(1))(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_operator_catch__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_operator_do__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_operator_do___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_operator_do__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operator_map__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operator_map__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operator_filter__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operator_filter__);
@@ -8511,7 +8511,7 @@ module.exports = (__webpack_require__(1))(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_material_chips__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_material_core__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_material_datepicker__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_material_dialog__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_material_dialog__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_material_expansion__ = __webpack_require__(76);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_material_form_field__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_material_grid_list__ = __webpack_require__(77);
@@ -8523,7 +8523,7 @@ module.exports = (__webpack_require__(1))(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__angular_material_progress_bar__ = __webpack_require__(82);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__angular_material_progress_spinner__ = __webpack_require__(83);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__angular_material_radio__ = __webpack_require__(84);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__angular_material_select__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__angular_material_select__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__angular_material_sidenav__ = __webpack_require__(85);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__angular_material_slide_toggle__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__angular_material_slider__ = __webpack_require__(87);
@@ -8533,7 +8533,7 @@ module.exports = (__webpack_require__(1))(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__angular_material_table__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__angular_material_tabs__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__angular_material_toolbar__ = __webpack_require__(93);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__angular_material_tooltip__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__angular_material_tooltip__ = __webpack_require__(47);
 /* unused harmony reexport MdAutocompleteSelectedEvent */
 /* unused harmony reexport MdAutocomplete */
 /* unused harmony reexport MdAutocompleteModule */
@@ -8665,7 +8665,7 @@ module.exports = (__webpack_require__(1))(72);
 /* unused harmony reexport mixinColor */
 /* unused harmony reexport mixinDisableRipple */
 /* unused harmony reexport mixinTabIndex */
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return __WEBPACK_IMPORTED_MODULE_7__angular_material_core__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return __WEBPACK_IMPORTED_MODULE_7__angular_material_core__["a"]; });
 /* unused harmony reexport getMdCompatibilityInvalidPrefixError */
 /* unused harmony reexport MAT_ELEMENTS_SELECTOR */
 /* unused harmony reexport MD_ELEMENTS_SELECTOR */
@@ -8792,7 +8792,7 @@ module.exports = (__webpack_require__(1))(72);
 /* unused harmony reexport MAT_DATE_FORMATS */
 /* unused harmony reexport MAT_RIPPLE_GLOBAL_OPTIONS */
 /* unused harmony reexport MAT_NATIVE_DATE_FORMATS */
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return __WEBPACK_IMPORTED_MODULE_7__angular_material_core__["b"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return __WEBPACK_IMPORTED_MODULE_7__angular_material_core__["b"]; });
 /* unused harmony reexport MAT_ERROR_GLOBAL_OPTIONS */
 /* unused harmony reexport MatCommonModule */
 /* unused harmony reexport MatLine */
@@ -8869,18 +8869,18 @@ module.exports = (__webpack_require__(1))(72);
 /* unused harmony reexport MdDialogActions */
 /* unused harmony reexport MdDialogConfig */
 /* unused harmony reexport MdDialogRef */
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return __WEBPACK_IMPORTED_MODULE_9__angular_material_dialog__["e"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "x", function() { return __WEBPACK_IMPORTED_MODULE_9__angular_material_dialog__["e"]; });
 /* unused harmony reexport MAT_DIALOG_SCROLL_STRATEGY */
 /* unused harmony reexport MAT_DIALOG_SCROLL_STRATEGY_PROVIDER */
 /* unused harmony reexport MAT_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY */
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return __WEBPACK_IMPORTED_MODULE_9__angular_material_dialog__["d"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return __WEBPACK_IMPORTED_MODULE_9__angular_material_dialog__["d"]; });
 /* unused harmony reexport MatDialogActions */
 /* unused harmony reexport MatDialogClose */
 /* unused harmony reexport MatDialogConfig */
 /* unused harmony reexport MatDialogContainer */
 /* unused harmony reexport MatDialogContent */
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_9__angular_material_dialog__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return __WEBPACK_IMPORTED_MODULE_9__angular_material_dialog__["f"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "y", function() { return __WEBPACK_IMPORTED_MODULE_9__angular_material_dialog__["f"]; });
 /* unused harmony reexport MatDialogTitle */
 /* unused harmony reexport CdkAccordion */
 /* unused harmony reexport MdAccordion */
@@ -8978,7 +8978,7 @@ module.exports = (__webpack_require__(1))(72);
 /* unused harmony reexport MatListOptionBase */
 /* unused harmony reexport MatListSubheaderCssMatStyler */
 /* unused harmony reexport MatNavListCssMatStyler */
-/* unused harmony reexport MatSelectionList */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return __WEBPACK_IMPORTED_MODULE_15__angular_material_list__["b"]; });
 /* unused harmony reexport MatSelectionListBase */
 /* unused harmony reexport MD_MENU_SCROLL_STRATEGY */
 /* unused harmony reexport fadeInItems */
@@ -8997,7 +8997,7 @@ module.exports = (__webpack_require__(1))(72);
 /* unused harmony reexport PageEvent */
 /* unused harmony reexport MdPaginator */
 /* unused harmony reexport MdPaginatorIntl */
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return __WEBPACK_IMPORTED_MODULE_17__angular_material_paginator__["b"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return __WEBPACK_IMPORTED_MODULE_17__angular_material_paginator__["b"]; });
 /* unused harmony reexport MatPaginatorIntl */
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_17__angular_material_paginator__["a"]; });
 /* unused harmony reexport MdProgressBarModule */
@@ -9107,16 +9107,16 @@ module.exports = (__webpack_require__(1))(72);
 /* unused harmony reexport MdSnackBarRef */
 /* unused harmony reexport SimpleSnackBar */
 /* unused harmony reexport MAT_SNACK_BAR_DATA */
-/* unused harmony reexport MatSnackBar */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "w", function() { return __WEBPACK_IMPORTED_MODULE_25__angular_material_snack_bar__["b"]; });
 /* unused harmony reexport MatSnackBarConfig */
 /* unused harmony reexport MatSnackBarContainer */
-/* unused harmony reexport MatSnackBarModule */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return __WEBPACK_IMPORTED_MODULE_25__angular_material_snack_bar__["a"]; });
 /* unused harmony reexport MatSnackBarRef */
 /* unused harmony reexport MdSortModule */
 /* unused harmony reexport MdSortHeader */
 /* unused harmony reexport MdSortHeaderIntl */
 /* unused harmony reexport MdSort */
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return __WEBPACK_IMPORTED_MODULE_26__angular_material_sort__["b"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return __WEBPACK_IMPORTED_MODULE_26__angular_material_sort__["b"]; });
 /* unused harmony reexport MatSortHeader */
 /* unused harmony reexport MatSortHeaderIntl */
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_26__angular_material_sort__["a"]; });
@@ -9207,7 +9207,7 @@ module.exports = (__webpack_require__(1))(72);
 /* unused harmony reexport MdToolbar */
 /* unused harmony reexport MatToolbar */
 /* unused harmony reexport MatToolbarBase */
-/* unused harmony reexport MatToolbarModule */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return __WEBPACK_IMPORTED_MODULE_30__angular_material_toolbar__["a"]; });
 /* unused harmony reexport MatToolbarRow */
 /* unused harmony reexport MdTooltipModule */
 /* unused harmony reexport TOUCHEND_HIDE_DELAY */
@@ -9281,7 +9281,7 @@ var VERSION = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["Version"]('2.0.0-
 "use strict";
 
 var Observable_1 = __webpack_require__(6);
-var map_1 = __webpack_require__(41);
+var map_1 = __webpack_require__(42);
 Observable_1.Observable.prototype.map = map_1.map;
 //# sourceMappingURL=map.js.map
 
@@ -9817,7 +9817,7 @@ MdFormField.decorators = [
 MdFormField.ctorParameters = function () { return [
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], },
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"], },
-    { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Optional"] }, { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"], args: [__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["n" /* MD_PLACEHOLDER_GLOBAL_OPTIONS */],] },] },
+    { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Optional"] }, { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"], args: [__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["p" /* MD_PLACEHOLDER_GLOBAL_OPTIONS */],] },] },
 ]; };
 MdFormField.propDecorators = {
     'color': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"] },],
@@ -9852,7 +9852,7 @@ MdFormFieldModule.decorators = [
                 ],
                 imports: [
                     __WEBPACK_IMPORTED_MODULE_6__angular_common__["CommonModule"],
-                    __WEBPACK_IMPORTED_MODULE_4__angular_material_core__["D" /* PlatformModule */],
+                    __WEBPACK_IMPORTED_MODULE_4__angular_material_core__["F" /* PlatformModule */],
                 ],
                 exports: [
                     MdError,
@@ -10467,7 +10467,7 @@ var MdButtonBase = (function () {
     }
     return MdButtonBase;
 }());
-var _MdButtonMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["k" /* mixinColor */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["l" /* mixinDisabled */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["q" /* mixinDisableRipple */])(MdButtonBase)));
+var _MdButtonMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["d" /* mixinColor */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["n" /* mixinDisabled */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["s" /* mixinDisableRipple */])(MdButtonBase)));
 /**
  * Material design button.
  */
@@ -10565,7 +10565,7 @@ MdButton.ctorParameters = function () { return [
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Renderer2"], },
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ElementRef"], },
     { type: __WEBPACK_IMPORTED_MODULE_5__angular_cdk_platform__["a" /* Platform */], },
-    { type: __WEBPACK_IMPORTED_MODULE_4__angular_cdk_a11y__["f" /* FocusMonitor */], },
+    { type: __WEBPACK_IMPORTED_MODULE_4__angular_cdk_a11y__["h" /* FocusMonitor */], },
 ]; };
 /**
  * Raised Material design button.
@@ -10615,7 +10615,7 @@ MdAnchor.decorators = [
  */
 MdAnchor.ctorParameters = function () { return [
     { type: __WEBPACK_IMPORTED_MODULE_5__angular_cdk_platform__["a" /* Platform */], },
-    { type: __WEBPACK_IMPORTED_MODULE_4__angular_cdk_a11y__["f" /* FocusMonitor */], },
+    { type: __WEBPACK_IMPORTED_MODULE_4__angular_cdk_a11y__["h" /* FocusMonitor */], },
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ElementRef"], },
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Renderer2"], },
 ]; };
@@ -10628,7 +10628,7 @@ MdButtonModule.decorators = [
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"], args: [{
                 imports: [
                     __WEBPACK_IMPORTED_MODULE_2__angular_common__["CommonModule"],
-                    __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["r" /* MdRippleModule */],
+                    __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["t" /* MdRippleModule */],
                     __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["c" /* MdCommonModule */],
                     __WEBPACK_IMPORTED_MODULE_4__angular_cdk_a11y__["b" /* A11yModule */],
                 ],
@@ -11197,7 +11197,7 @@ var MdIconRegistry = (function () {
         if (cachedIcon) {
             return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7_rxjs_observable_of__["of"])(cloneSvg(cachedIcon));
         }
-        return __WEBPACK_IMPORTED_MODULE_2__angular_material_core__["w" /* RxChain */].from(this._loadSvgIconFromConfig(new SvgIconConfig(url)))
+        return __WEBPACK_IMPORTED_MODULE_2__angular_material_core__["y" /* RxChain */].from(this._loadSvgIconFromConfig(new SvgIconConfig(url)))
             .call(__WEBPACK_IMPORTED_MODULE_2__angular_material_core__["L" /* doOperator */], function (svg) { return _this._cachedIconsByUrl.set(/** @type {?} */ ((url)), svg); })
             .call(__WEBPACK_IMPORTED_MODULE_2__angular_material_core__["M" /* map */], function (svg) { return cloneSvg(svg); })
             .result();
@@ -11238,7 +11238,7 @@ var MdIconRegistry = (function () {
         }
         else {
             // Fetch the icon from the config's URL, cache it, and return a copy.
-            return __WEBPACK_IMPORTED_MODULE_2__angular_material_core__["w" /* RxChain */].from(this._loadSvgIconFromConfig(config))
+            return __WEBPACK_IMPORTED_MODULE_2__angular_material_core__["y" /* RxChain */].from(this._loadSvgIconFromConfig(config))
                 .call(__WEBPACK_IMPORTED_MODULE_2__angular_material_core__["L" /* doOperator */], function (svg) { return config.svgElement = svg; })
                 .call(__WEBPACK_IMPORTED_MODULE_2__angular_material_core__["M" /* map */], function (svg) { return cloneSvg(svg); })
                 .result();
@@ -11271,7 +11271,7 @@ var MdIconRegistry = (function () {
         var /** @type {?} */ iconSetFetchRequests = iconSetConfigs
             .filter(function (iconSetConfig) { return !iconSetConfig.svgElement; })
             .map(function (iconSetConfig) {
-            return __WEBPACK_IMPORTED_MODULE_2__angular_material_core__["w" /* RxChain */].from(_this._loadSvgIconSetFromConfig(iconSetConfig))
+            return __WEBPACK_IMPORTED_MODULE_2__angular_material_core__["y" /* RxChain */].from(_this._loadSvgIconSetFromConfig(iconSetConfig))
                 .call(__WEBPACK_IMPORTED_MODULE_2__angular_material_core__["N" /* catchOperator */], function (err) {
                 var /** @type {?} */ url = _this._sanitizer.sanitize(__WEBPACK_IMPORTED_MODULE_1__angular_core__["SecurityContext"].RESOURCE_URL, iconSetConfig.url);
                 // Swallow errors fetching individual URLs so the combined Observable won't
@@ -11453,7 +11453,7 @@ var MdIconRegistry = (function () {
         }
         // TODO(jelbourn): for some reason, the `finally` operator "loses" the generic type on the
         // Observable. Figure out why and fix it.
-        var /** @type {?} */ req = __WEBPACK_IMPORTED_MODULE_2__angular_material_core__["w" /* RxChain */].from(this._http.get(url))
+        var /** @type {?} */ req = __WEBPACK_IMPORTED_MODULE_2__angular_material_core__["y" /* RxChain */].from(this._http.get(url))
             .call(__WEBPACK_IMPORTED_MODULE_2__angular_material_core__["M" /* map */], function (response) { return response.text(); })
             .call(__WEBPACK_IMPORTED_MODULE_2__angular_material_core__["O" /* finallyOperator */], function () { return _this._inProgressUrlFetches.delete(url); })
             .call(__WEBPACK_IMPORTED_MODULE_2__angular_material_core__["P" /* share */])
@@ -11523,7 +11523,7 @@ var MdIconBase = (function () {
     }
     return MdIconBase;
 }());
-var _MdIconMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_material_core__["k" /* mixinColor */])(MdIconBase);
+var _MdIconMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_material_core__["d" /* mixinColor */])(MdIconBase);
 /**
  * Component to display an icon. It can be used in the following ways:
  *
@@ -11605,7 +11605,7 @@ var MdIcon = (function (_super) {
         if (changes.svgIcon) {
             if (this.svgIcon) {
                 var _a = this._splitIconName(this.svgIcon), namespace = _a[0], iconName = _a[1];
-                __WEBPACK_IMPORTED_MODULE_2__angular_material_core__["f" /* first */].call(this._mdIconRegistry.getNamedSvgIcon(iconName, namespace)).subscribe(function (svg) { return _this._setSvgElement(svg); }, function (err) { return console.log("Error retrieving icon: " + err.message); });
+                __WEBPACK_IMPORTED_MODULE_2__angular_material_core__["i" /* first */].call(this._mdIconRegistry.getNamedSvgIcon(iconName, namespace)).subscribe(function (svg) { return _this._setSvgElement(svg); }, function (err) { return console.log("Error retrieving icon: " + err.message); });
             }
             else {
                 this._clearSvgElement();
@@ -11740,6 +11740,71 @@ MdIconModule.ctorParameters = function () { return []; };
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ReportService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_throw__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_throw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_throw__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_do__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_do___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_do__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var ReportService = /** @class */ (function () {
+    function ReportService(_http) {
+        this._http = _http;
+        this._reportsUrl = './api/reports.json';
+        this._deleteUrl = './api/delete/';
+    }
+    ReportService.prototype.getReports = function (sort, order, page) {
+        return this._http.get(this._reportsUrl)
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log("Reports: " + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
+    ReportService.prototype.deleteReport = function (id) {
+        return this._http.get(this._deleteUrl + id)
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log("Delete report: " + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
+    ReportService.prototype.handleError = function (err) {
+        console.log(err.message);
+        return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].throw(err.message);
+    };
+    ReportService = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]])
+    ], ReportService);
+    return ReportService;
+}());
+
+
+
+/***/ }),
+/* 39 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ShareDialogComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__(23);
@@ -11767,6 +11832,8 @@ var ShareDialogComponent = /** @class */ (function () {
     };
     ShareDialogComponent.prototype.onShareClick = function () {
         this.dialogRef.close({
+            reportId: this.data.id,
+            reportName: this.data.name,
             email: this.data.email,
             permission: this.selectedPermission
         });
@@ -11776,8 +11843,8 @@ var ShareDialogComponent = /** @class */ (function () {
             selector: 'share-dialog',
             template: __webpack_require__(117),
         }),
-        __param(1, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"])(__WEBPACK_IMPORTED_MODULE_1__angular_material__["t" /* MAT_DIALOG_DATA */])),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["u" /* MatDialogRef */], Object])
+        __param(1, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"])(__WEBPACK_IMPORTED_MODULE_1__angular_material__["x" /* MAT_DIALOG_DATA */])),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["y" /* MatDialogRef */], Object])
     ], ShareDialogComponent);
     return ShareDialogComponent;
 }());
@@ -11785,31 +11852,31 @@ var ShareDialogComponent = /** @class */ (function () {
 
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(1))(10);
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(1))(12);
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(1))(28);
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(1))(60);
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11835,7 +11902,7 @@ module.exports = (__webpack_require__(1))(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operator_takeUntil__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operator_takeUntil___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_operator_takeUntil__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_BehaviorSubject__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_BehaviorSubject__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_BehaviorSubject__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Subject__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_Subject__);
@@ -12616,7 +12683,7 @@ CdkTableModule.ctorParameters = function () { return []; };
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12921,7 +12988,7 @@ MdDialogContainer.decorators = [
  */
 MdDialogContainer.ctorParameters = function () { return [
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ElementRef"], },
-    { type: __WEBPACK_IMPORTED_MODULE_5__angular_cdk_a11y__["d" /* FocusTrapFactory */], },
+    { type: __WEBPACK_IMPORTED_MODULE_5__angular_cdk_a11y__["f" /* FocusTrapFactory */], },
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ChangeDetectorRef"], },
     { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Optional"] }, { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Inject"], args: [__WEBPACK_IMPORTED_MODULE_12__angular_platform_browser__["DOCUMENT"],] },] },
 ]; };
@@ -13309,7 +13376,7 @@ var MdDialog = (function () {
         injectionTokens.set(MdDialogRef, dialogRef);
         injectionTokens.set(MdDialogContainer, dialogContainer);
         injectionTokens.set(MD_DIALOG_DATA, config.data);
-        return new __WEBPACK_IMPORTED_MODULE_6__angular_material_core__["E" /* PortalInjector */](userInjector || this._injector, injectionTokens);
+        return new __WEBPACK_IMPORTED_MODULE_6__angular_material_core__["g" /* PortalInjector */](userInjector || this._injector, injectionTokens);
     };
     /**
      * Removes a dialog from the array of open dialogs.
@@ -13361,7 +13428,7 @@ MdDialog.ctorParameters = function () { return [
  * @return {?} The new configuration object.
  */
 function _applyConfigDefaults(config) {
-    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__angular_material_core__["F" /* extendObject */])(new MdDialogConfig(), config);
+    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__angular_material_core__["h" /* extendObject */])(new MdDialogConfig(), config);
 }
 /**
  * Counter used to generate unique IDs for dialog elements.
@@ -13542,7 +13609,7 @@ MdDialogModule.ctorParameters = function () { return []; };
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13810,7 +13877,7 @@ var MdSelectBase = (function () {
     }
     return MdSelectBase;
 }());
-var _MdSelectMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_12__angular_material_core__["j" /* mixinTabIndex */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_12__angular_material_core__["k" /* mixinColor */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_12__angular_material_core__["l" /* mixinDisabled */])(MdSelectBase), 'primary'));
+var _MdSelectMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_12__angular_material_core__["m" /* mixinTabIndex */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_12__angular_material_core__["d" /* mixinColor */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_12__angular_material_core__["n" /* mixinDisabled */])(MdSelectBase), 'primary'));
 /**
  * Allows the user to customize the trigger that is displayed when the select has a value.
  */
@@ -14482,7 +14549,7 @@ var MdSelect = (function (_super) {
      */
     MdSelect.prototype._initKeyManager = function () {
         var _this = this;
-        this._keyManager = new __WEBPACK_IMPORTED_MODULE_3__angular_cdk_a11y__["e" /* FocusKeyManager */](this.options).withTypeAhead();
+        this._keyManager = new __WEBPACK_IMPORTED_MODULE_3__angular_cdk_a11y__["g" /* FocusKeyManager */](this.options).withTypeAhead();
         this._tabSubscription = this._keyManager.tabOut.subscribe(function () { return _this.close(); });
     };
     /**
@@ -14659,7 +14726,7 @@ var MdSelect = (function (_super) {
         var /** @type {?} */ maxScroll = scrollContainerHeight - panelHeight;
         if (this._hasValue()) {
             var /** @type {?} */ selectedOptionOffset = ((this._getOptionIndex(this._selectionModel.selected[0])));
-            selectedOptionOffset += __WEBPACK_IMPORTED_MODULE_12__angular_material_core__["m" /* MdOption */].countGroupLabelsBeforeOption(selectedOptionOffset, this.options, this.optionGroups);
+            selectedOptionOffset += __WEBPACK_IMPORTED_MODULE_12__angular_material_core__["o" /* MdOption */].countGroupLabelsBeforeOption(selectedOptionOffset, this.options, this.optionGroups);
             // We must maintain a scroll buffer so the selected option will be scrolled to the
             // center of the overlay panel rather than the top.
             var /** @type {?} */ scrollBuffer = panelHeight / 2;
@@ -14671,7 +14738,7 @@ var MdSelect = (function (_super) {
             // we must only adjust for the height difference between the option element
             // and the trigger element, then multiply it by -1 to ensure the panel moves
             // in the correct direction up the page.
-            var /** @type {?} */ groupLabels = __WEBPACK_IMPORTED_MODULE_12__angular_material_core__["m" /* MdOption */].countGroupLabelsBeforeOption(0, this.options, this.optionGroups);
+            var /** @type {?} */ groupLabels = __WEBPACK_IMPORTED_MODULE_12__angular_material_core__["o" /* MdOption */].countGroupLabelsBeforeOption(0, this.options, this.optionGroups);
             this._offsetY = (SELECT_ITEM_HEIGHT - SELECT_TRIGGER_HEIGHT) / 2 * -1 -
                 (groupLabels * SELECT_ITEM_HEIGHT);
         }
@@ -14977,14 +15044,14 @@ MdSelect.ctorParameters = function () { return [
     { type: __WEBPACK_IMPORTED_MODULE_11__angular_forms__["FormGroupDirective"], decorators: [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Optional"] },] },
     { type: __WEBPACK_IMPORTED_MODULE_11__angular_forms__["NgControl"], decorators: [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Self"] }, { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Optional"] },] },
     { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Attribute"], args: ['tabindex',] },] },
-    { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Optional"] }, { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Inject"], args: [__WEBPACK_IMPORTED_MODULE_12__angular_material_core__["n" /* MD_PLACEHOLDER_GLOBAL_OPTIONS */],] },] },
+    { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Optional"] }, { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Inject"], args: [__WEBPACK_IMPORTED_MODULE_12__angular_material_core__["p" /* MD_PLACEHOLDER_GLOBAL_OPTIONS */],] },] },
     { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Inject"], args: [MD_SELECT_SCROLL_STRATEGY,] },] },
 ]; };
 MdSelect.propDecorators = {
     'trigger': [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ViewChild"], args: ['trigger',] },],
     'overlayDir': [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ViewChild"], args: [__WEBPACK_IMPORTED_MODULE_8__angular_cdk_overlay__["e" /* ConnectedOverlayDirective */],] },],
-    'options': [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ContentChildren"], args: [__WEBPACK_IMPORTED_MODULE_12__angular_material_core__["m" /* MdOption */], { descendants: true },] },],
-    'optionGroups': [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ContentChildren"], args: [__WEBPACK_IMPORTED_MODULE_12__angular_material_core__["o" /* MdOptgroup */],] },],
+    'options': [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ContentChildren"], args: [__WEBPACK_IMPORTED_MODULE_12__angular_material_core__["o" /* MdOption */], { descendants: true },] },],
+    'optionGroups': [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ContentChildren"], args: [__WEBPACK_IMPORTED_MODULE_12__angular_material_core__["q" /* MdOptgroup */],] },],
     'panelClass': [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Input"] },],
     'customTrigger': [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ContentChild"], args: [MdSelectTrigger,] },],
     'placeholder': [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Input"] },],
@@ -15021,10 +15088,10 @@ MdSelectModule.decorators = [
                 imports: [
                     __WEBPACK_IMPORTED_MODULE_2__angular_common__["CommonModule"],
                     __WEBPACK_IMPORTED_MODULE_8__angular_cdk_overlay__["c" /* OverlayModule */],
-                    __WEBPACK_IMPORTED_MODULE_12__angular_material_core__["p" /* MdOptionModule */],
+                    __WEBPACK_IMPORTED_MODULE_12__angular_material_core__["r" /* MdOptionModule */],
                     __WEBPACK_IMPORTED_MODULE_12__angular_material_core__["c" /* MdCommonModule */],
                 ],
-                exports: [MdSelect, MdSelectTrigger, __WEBPACK_IMPORTED_MODULE_12__angular_material_core__["p" /* MdOptionModule */], __WEBPACK_IMPORTED_MODULE_12__angular_material_core__["c" /* MdCommonModule */]],
+                exports: [MdSelect, MdSelectTrigger, __WEBPACK_IMPORTED_MODULE_12__angular_material_core__["r" /* MdOptionModule */], __WEBPACK_IMPORTED_MODULE_12__angular_material_core__["c" /* MdCommonModule */]],
                 declarations: [MdSelect, MdSelectTrigger],
                 providers: [MD_SELECT_SCROLL_STRATEGY_PROVIDER]
             },] },
@@ -15041,7 +15108,7 @@ MdSelectModule.ctorParameters = function () { return []; };
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15837,13 +15904,13 @@ MdTooltipModule.ctorParameters = function () { return []; };
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__report_report_service__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__report_report_service__ = __webpack_require__(38);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -15864,71 +15931,6 @@ var AppComponent = /** @class */ (function () {
         })
     ], AppComponent);
     return AppComponent;
-}());
-
-
-
-/***/ }),
-/* 48 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ReportService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_throw__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_throw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_throw__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_do__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_do___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_do__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map__);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-var ReportService = /** @class */ (function () {
-    function ReportService(_http) {
-        this._http = _http;
-        this._reportsUrl = './api/reports.json';
-        this._deleteUrl = './api/delete/';
-    }
-    ReportService.prototype.getReports = function (sort, order, page) {
-        return this._http.get(this._reportsUrl)
-            .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log("Reports: " + JSON.stringify(data)); })
-            .catch(this.handleError);
-    };
-    ReportService.prototype.deleteReport = function (id) {
-        return this._http.get(this._deleteUrl + id)
-            .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log("Delete report: " + JSON.stringify(data)); })
-            .catch(this.handleError);
-    };
-    ReportService.prototype.handleError = function (err) {
-        console.log(err.message);
-        return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].throw(err.message);
-    };
-    ReportService = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]])
-    ], ReportService);
-    return ReportService;
 }());
 
 
@@ -16454,8 +16456,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var OuterSubscriber_1 = __webpack_require__(39);
-var subscribeToResult_1 = __webpack_require__(40);
+var OuterSubscriber_1 = __webpack_require__(40);
+var subscribeToResult_1 = __webpack_require__(41);
 /* tslint:enable:max-line-length */
 /**
  * Projects each source value to an Observable which is merged in the output
@@ -16600,8 +16602,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var OuterSubscriber_1 = __webpack_require__(39);
-var subscribeToResult_1 = __webpack_require__(40);
+var OuterSubscriber_1 = __webpack_require__(40);
+var subscribeToResult_1 = __webpack_require__(41);
 /**
  * Emits the values emitted by the source Observable until a `notifier`
  * Observable emits a value.
@@ -22795,7 +22797,7 @@ CdkStepperModule.ctorParameters = function () { return []; };
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operator_concatMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_operator_concatMap__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operator_filter__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operator_filter__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operator_map__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operator_map__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_Observable__ = __webpack_require__(6);
@@ -25127,8 +25129,8 @@ MdAutocomplete.ctorParameters = function () { return [
 MdAutocomplete.propDecorators = {
     'template': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"], args: [__WEBPACK_IMPORTED_MODULE_0__angular_core__["TemplateRef"],] },],
     'panel': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"], args: ['panel',] },],
-    'options': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChildren"], args: [__WEBPACK_IMPORTED_MODULE_1__angular_material_core__["m" /* MdOption */], { descendants: true },] },],
-    'optionGroups': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChildren"], args: [__WEBPACK_IMPORTED_MODULE_1__angular_material_core__["o" /* MdOptgroup */],] },],
+    'options': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChildren"], args: [__WEBPACK_IMPORTED_MODULE_1__angular_material_core__["o" /* MdOption */], { descendants: true },] },],
+    'optionGroups': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChildren"], args: [__WEBPACK_IMPORTED_MODULE_1__angular_material_core__["q" /* MdOptgroup */],] },],
     'displayWith': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"] },],
     'optionSelected': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"] },],
 };
@@ -25461,7 +25463,7 @@ var MdAutocompleteTrigger = (function () {
      */
     MdAutocompleteTrigger.prototype._scrollToOption = function () {
         var /** @type {?} */ activeOptionIndex = this.autocomplete._keyManager.activeItemIndex || 0;
-        var /** @type {?} */ labelCount = __WEBPACK_IMPORTED_MODULE_1__angular_material_core__["m" /* MdOption */].countGroupLabelsBeforeOption(activeOptionIndex, this.autocomplete.options, this.autocomplete.optionGroups);
+        var /** @type {?} */ labelCount = __WEBPACK_IMPORTED_MODULE_1__angular_material_core__["o" /* MdOption */].countGroupLabelsBeforeOption(activeOptionIndex, this.autocomplete.options, this.autocomplete.optionGroups);
         var /** @type {?} */ optionOffset = (activeOptionIndex + labelCount) * AUTOCOMPLETE_OPTION_HEIGHT;
         var /** @type {?} */ panelTop = this.autocomplete._getScrollTop();
         if (optionOffset < panelTop) {
@@ -25661,8 +25663,8 @@ var MdAutocompleteModule = (function () {
 }());
 MdAutocompleteModule.decorators = [
     { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"], args: [{
-                imports: [__WEBPACK_IMPORTED_MODULE_1__angular_material_core__["p" /* MdOptionModule */], __WEBPACK_IMPORTED_MODULE_4__angular_cdk_overlay__["c" /* OverlayModule */], __WEBPACK_IMPORTED_MODULE_1__angular_material_core__["c" /* MdCommonModule */], __WEBPACK_IMPORTED_MODULE_3__angular_common__["CommonModule"]],
-                exports: [MdAutocomplete, __WEBPACK_IMPORTED_MODULE_1__angular_material_core__["p" /* MdOptionModule */], MdAutocompleteTrigger, __WEBPACK_IMPORTED_MODULE_1__angular_material_core__["c" /* MdCommonModule */]],
+                imports: [__WEBPACK_IMPORTED_MODULE_1__angular_material_core__["r" /* MdOptionModule */], __WEBPACK_IMPORTED_MODULE_4__angular_cdk_overlay__["c" /* OverlayModule */], __WEBPACK_IMPORTED_MODULE_1__angular_material_core__["c" /* MdCommonModule */], __WEBPACK_IMPORTED_MODULE_3__angular_common__["CommonModule"]],
+                exports: [MdAutocomplete, __WEBPACK_IMPORTED_MODULE_1__angular_material_core__["r" /* MdOptionModule */], MdAutocompleteTrigger, __WEBPACK_IMPORTED_MODULE_1__angular_material_core__["c" /* MdCommonModule */]],
                 declarations: [MdAutocomplete, MdAutocompleteTrigger],
                 providers: [MD_AUTOCOMPLETE_SCROLL_STRATEGY_PROVIDER],
             },] },
@@ -25725,7 +25727,7 @@ var MdButtonToggleGroupBase = (function () {
     }
     return MdButtonToggleGroupBase;
 }());
-var _MdButtonToggleGroupMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["l" /* mixinDisabled */])(MdButtonToggleGroupBase);
+var _MdButtonToggleGroupMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["n" /* mixinDisabled */])(MdButtonToggleGroupBase);
 /**
  * Provider Expression that allows md-button-toggle-group to register as a ControlValueAccessor.
  * This allows it to support [(ngModel)].
@@ -26283,7 +26285,7 @@ MdButtonToggle.ctorParameters = function () { return [
     { type: __WEBPACK_IMPORTED_MODULE_4__angular_material_core__["H" /* UniqueSelectionDispatcher */], },
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Renderer2"], },
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ElementRef"], },
-    { type: __WEBPACK_IMPORTED_MODULE_5__angular_cdk_a11y__["f" /* FocusMonitor */], },
+    { type: __WEBPACK_IMPORTED_MODULE_5__angular_cdk_a11y__["h" /* FocusMonitor */], },
 ]; };
 MdButtonToggle.propDecorators = {
     'ariaLabel': [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Input"], args: ['aria-label',] },],
@@ -26801,7 +26803,7 @@ var MdCheckboxBase = (function () {
     }
     return MdCheckboxBase;
 }());
-var _MdCheckboxMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["k" /* mixinColor */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["q" /* mixinDisableRipple */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["l" /* mixinDisabled */])(MdCheckboxBase)), 'accent');
+var _MdCheckboxMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["d" /* mixinColor */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["s" /* mixinDisableRipple */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["n" /* mixinDisabled */])(MdCheckboxBase)), 'accent');
 /**
  * A material design checkbox component. Supports all of the functionality of an HTML5 checkbox,
  * and exposes a similar API. A MdCheckbox can be either checked, unchecked, indeterminate, or
@@ -27208,7 +27210,7 @@ MdCheckbox.ctorParameters = function () { return [
     { type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["Renderer2"], },
     { type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["ElementRef"], },
     { type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["ChangeDetectorRef"], },
-    { type: __WEBPACK_IMPORTED_MODULE_5__angular_cdk_a11y__["f" /* FocusMonitor */], },
+    { type: __WEBPACK_IMPORTED_MODULE_5__angular_cdk_a11y__["h" /* FocusMonitor */], },
 ]; };
 MdCheckbox.propDecorators = {
     'ariaLabel': [{ type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["Input"], args: ['aria-label',] },],
@@ -27263,7 +27265,7 @@ var MdCheckboxModule = (function () {
 }());
 MdCheckboxModule.decorators = [
     { type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["NgModule"], args: [{
-                imports: [__WEBPACK_IMPORTED_MODULE_6__angular_common__["CommonModule"], __WEBPACK_IMPORTED_MODULE_4__angular_material_core__["r" /* MdRippleModule */], __WEBPACK_IMPORTED_MODULE_4__angular_material_core__["c" /* MdCommonModule */], __WEBPACK_IMPORTED_MODULE_7__angular_cdk_observers__["a" /* ObserversModule */], __WEBPACK_IMPORTED_MODULE_5__angular_cdk_a11y__["b" /* A11yModule */]],
+                imports: [__WEBPACK_IMPORTED_MODULE_6__angular_common__["CommonModule"], __WEBPACK_IMPORTED_MODULE_4__angular_material_core__["t" /* MdRippleModule */], __WEBPACK_IMPORTED_MODULE_4__angular_material_core__["c" /* MdCommonModule */], __WEBPACK_IMPORTED_MODULE_7__angular_cdk_observers__["a" /* ObserversModule */], __WEBPACK_IMPORTED_MODULE_5__angular_cdk_a11y__["b" /* A11yModule */]],
                 exports: [MdCheckbox, MdCheckboxRequiredValidator, __WEBPACK_IMPORTED_MODULE_4__angular_material_core__["c" /* MdCommonModule */]],
                 declarations: [MdCheckbox, MdCheckboxRequiredValidator],
             },] },
@@ -27367,7 +27369,7 @@ var MdChipBase = (function () {
     }
     return MdChipBase;
 }());
-var _MdChipMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7__angular_material_core__["k" /* mixinColor */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7__angular_material_core__["l" /* mixinDisabled */])(MdChipBase), 'primary');
+var _MdChipMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7__angular_material_core__["d" /* mixinColor */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7__angular_material_core__["n" /* mixinDisabled */])(MdChipBase), 'primary');
 /**
  * Dummy directive to add CSS class to basic chips.
  * \@docs-private
@@ -27625,7 +27627,7 @@ var MdChip = (function (_super) {
                 // Always prevent so page navigation does not occur
                 event.preventDefault();
                 break;
-            case __WEBPACK_IMPORTED_MODULE_7__angular_material_core__["y" /* SPACE */]:
+            case __WEBPACK_IMPORTED_MODULE_7__angular_material_core__["A" /* SPACE */]:
                 // If we are selectable, toggle the focused chip
                 if (this.selectable) {
                     this.toggleSelected(true);
@@ -28090,7 +28092,7 @@ var MdChipList = (function () {
      */
     MdChipList.prototype.ngAfterContentInit = function () {
         var _this = this;
-        this._keyManager = new __WEBPACK_IMPORTED_MODULE_2__angular_cdk_a11y__["e" /* FocusKeyManager */](this.chips).withWrap();
+        this._keyManager = new __WEBPACK_IMPORTED_MODULE_2__angular_cdk_a11y__["g" /* FocusKeyManager */](this.chips).withWrap();
         // Prevents the chip list from capturing focus and redirecting
         // it back to the first chip when the user tabs out.
         this._tabOutSubscription = this._keyManager.tabOut.subscribe(function () {
@@ -28209,8 +28211,8 @@ var MdChipList = (function () {
         var /** @type {?} */ target = (event.target);
         var /** @type {?} */ isInputEmpty = this._isInputEmpty(target);
         var /** @type {?} */ isRtl = this._dir && this._dir.value == 'rtl';
-        var /** @type {?} */ isPrevKey = (code === (isRtl ? __WEBPACK_IMPORTED_MODULE_7__angular_material_core__["t" /* RIGHT_ARROW */] : __WEBPACK_IMPORTED_MODULE_7__angular_material_core__["s" /* LEFT_ARROW */]));
-        var /** @type {?} */ isNextKey = (code === (isRtl ? __WEBPACK_IMPORTED_MODULE_7__angular_material_core__["s" /* LEFT_ARROW */] : __WEBPACK_IMPORTED_MODULE_7__angular_material_core__["t" /* RIGHT_ARROW */]));
+        var /** @type {?} */ isPrevKey = (code === (isRtl ? __WEBPACK_IMPORTED_MODULE_7__angular_material_core__["v" /* RIGHT_ARROW */] : __WEBPACK_IMPORTED_MODULE_7__angular_material_core__["u" /* LEFT_ARROW */]));
+        var /** @type {?} */ isNextKey = (code === (isRtl ? __WEBPACK_IMPORTED_MODULE_7__angular_material_core__["u" /* LEFT_ARROW */] : __WEBPACK_IMPORTED_MODULE_7__angular_material_core__["v" /* RIGHT_ARROW */]));
         var /** @type {?} */ isBackKey = (code === __WEBPACK_IMPORTED_MODULE_7__angular_material_core__["Z" /* BACKSPACE */] || code == __WEBPACK_IMPORTED_MODULE_7__angular_material_core__["Y" /* DELETE */] || code == __WEBPACK_IMPORTED_MODULE_7__angular_material_core__["_0" /* UP_ARROW */] || isPrevKey);
         // If they are on an empty input and hit backspace/delete/left arrow, focus the last chip
         if (isInputEmpty && isBackKey) {
@@ -28830,7 +28832,7 @@ MdChipsModule.ctorParameters = function () { return []; };
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_material_button__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_material_dialog__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_material_dialog__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_material_icon__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_cdk_keycodes__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_material_core__ = __webpack_require__(2);
@@ -31078,7 +31080,7 @@ var MdExpansionPanelBase = (function (_super) {
     }
     return MdExpansionPanelBase;
 }(AccordionItem));
-var _MdExpansionPanelMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["l" /* mixinDisabled */])(MdExpansionPanelBase);
+var _MdExpansionPanelMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["n" /* mixinDisabled */])(MdExpansionPanelBase);
 /**
  * Time and timing curve for expansion panel animations.
  */
@@ -31279,7 +31281,7 @@ var MdExpansionPanelHeader = (function () {
     MdExpansionPanelHeader.prototype._keyup = function (event) {
         switch (event.keyCode) {
             // Toggle for space and enter keys.
-            case __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["y" /* SPACE */]:
+            case __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["A" /* SPACE */]:
             case __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["U" /* ENTER */]:
                 event.preventDefault();
                 this._toggle();
@@ -31345,7 +31347,7 @@ MdExpansionPanelHeader.ctorParameters = function () { return [
     { type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["Renderer2"], },
     { type: MdExpansionPanel, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["Host"] },] },
     { type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["ElementRef"], },
-    { type: __WEBPACK_IMPORTED_MODULE_4__angular_cdk_a11y__["f" /* FocusMonitor */], },
+    { type: __WEBPACK_IMPORTED_MODULE_4__angular_cdk_a11y__["h" /* FocusMonitor */], },
     { type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["ChangeDetectorRef"], },
 ]; };
 MdExpansionPanelHeader.propDecorators = {
@@ -31571,7 +31573,7 @@ var MdGridTileText = (function () {
      * @return {?}
      */
     MdGridTileText.prototype.ngAfterContentInit = function () {
-        this._lineSetter = new __WEBPACK_IMPORTED_MODULE_2__angular_material_core__["u" /* MdLineSetter */](this._lines, this._renderer, this._element);
+        this._lineSetter = new __WEBPACK_IMPORTED_MODULE_2__angular_material_core__["w" /* MdLineSetter */](this._lines, this._renderer, this._element);
     };
     return MdGridTileText;
 }());
@@ -31591,7 +31593,7 @@ MdGridTileText.ctorParameters = function () { return [
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ElementRef"], },
 ]; };
 MdGridTileText.propDecorators = {
-    '_lines': [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ContentChildren"], args: [__WEBPACK_IMPORTED_MODULE_2__angular_material_core__["v" /* MdLine */],] },],
+    '_lines': [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ContentChildren"], args: [__WEBPACK_IMPORTED_MODULE_2__angular_material_core__["x" /* MdLine */],] },],
 };
 /**
  * Directive whose purpose is to add the mat- CSS styling to this selector.
@@ -32302,12 +32304,12 @@ var MdGridListModule = (function () {
 }());
 MdGridListModule.decorators = [
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"], args: [{
-                imports: [__WEBPACK_IMPORTED_MODULE_2__angular_material_core__["z" /* MdLineModule */], __WEBPACK_IMPORTED_MODULE_2__angular_material_core__["c" /* MdCommonModule */]],
+                imports: [__WEBPACK_IMPORTED_MODULE_2__angular_material_core__["B" /* MdLineModule */], __WEBPACK_IMPORTED_MODULE_2__angular_material_core__["c" /* MdCommonModule */]],
                 exports: [
                     MdGridList,
                     MdGridTile,
                     MdGridTileText,
-                    __WEBPACK_IMPORTED_MODULE_2__angular_material_core__["z" /* MdLineModule */],
+                    __WEBPACK_IMPORTED_MODULE_2__angular_material_core__["B" /* MdLineModule */],
                     __WEBPACK_IMPORTED_MODULE_2__angular_material_core__["c" /* MdCommonModule */],
                     MdGridTileHeaderCssMatStyler,
                     MdGridTileFooterCssMatStyler,
@@ -32448,7 +32450,7 @@ var MdInput = (function () {
         // Force setter to be called in case id was not specified.
         this.id = this.id;
         this._errorOptions = errorOptions ? errorOptions : {};
-        this.errorStateMatcher = this._errorOptions.errorStateMatcher || __WEBPACK_IMPORTED_MODULE_4__angular_material_core__["B" /* defaultErrorStateMatcher */];
+        this.errorStateMatcher = this._errorOptions.errorStateMatcher || __WEBPACK_IMPORTED_MODULE_4__angular_material_core__["D" /* defaultErrorStateMatcher */];
         // On some versions of iOS the caret gets stuck in the wrong place when holding down the delete
         // key. In order to get around this we need to "jiggle" the caret loose. Since this bug only
         // exists on iOS, we only bother to install the listener on iOS.
@@ -32718,7 +32720,7 @@ MdInput.ctorParameters = function () { return [
     { type: __WEBPACK_IMPORTED_MODULE_2__angular_forms__["NgControl"], decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Optional"] }, { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Self"] },] },
     { type: __WEBPACK_IMPORTED_MODULE_2__angular_forms__["NgForm"], decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Optional"] },] },
     { type: __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormGroupDirective"], decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Optional"] },] },
-    { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Optional"] }, { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"], args: [__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["C" /* MD_ERROR_GLOBAL_OPTIONS */],] },] },
+    { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Optional"] }, { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"], args: [__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["E" /* MD_ERROR_GLOBAL_OPTIONS */],] },] },
 ]; };
 MdInput.propDecorators = {
     'disabled': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"] },],
@@ -32941,7 +32943,7 @@ MdInputModule.decorators = [
                 imports: [
                     __WEBPACK_IMPORTED_MODULE_7__angular_common__["CommonModule"],
                     __WEBPACK_IMPORTED_MODULE_6__angular_material_form_field__["b" /* MdFormFieldModule */],
-                    __WEBPACK_IMPORTED_MODULE_4__angular_material_core__["D" /* PlatformModule */],
+                    __WEBPACK_IMPORTED_MODULE_4__angular_material_core__["F" /* PlatformModule */],
                 ],
                 exports: [
                     // We re-export the `MdFormFieldModule` since `MdInput` will almost always be used together with
@@ -33002,7 +33004,7 @@ MdInputModule.ctorParameters = function () { return []; };
 /* unused harmony export MatListOptionBase */
 /* unused harmony export MatListSubheaderCssMatStyler */
 /* unused harmony export MatNavListCssMatStyler */
-/* unused harmony export MatSelectionList */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return MdSelectionList; });
 /* unused harmony export MatSelectionListBase */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(4);
@@ -33039,7 +33041,7 @@ var MdListBase = (function () {
     }
     return MdListBase;
 }());
-var _MdListMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["q" /* mixinDisableRipple */])(MdListBase);
+var _MdListMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["s" /* mixinDisableRipple */])(MdListBase);
 /**
  * \@docs-private
  */
@@ -33048,7 +33050,7 @@ var MdListItemBase = (function () {
     }
     return MdListItemBase;
 }());
-var _MdListItemMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["q" /* mixinDisableRipple */])(MdListItemBase);
+var _MdListItemMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["s" /* mixinDisableRipple */])(MdListItemBase);
 /**
  * Divider between items within a list.
  */
@@ -33249,7 +33251,7 @@ var MdListItem = (function (_super) {
      * @return {?}
      */
     MdListItem.prototype.ngAfterContentInit = function () {
-        this._lineSetter = new __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["u" /* MdLineSetter */](this._lines, this._renderer, this._element);
+        this._lineSetter = new __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["w" /* MdLineSetter */](this._lines, this._renderer, this._element);
     };
     /**
      * Whether this list item should show a ripple effect when clicked.
@@ -33305,7 +33307,7 @@ MdListItem.ctorParameters = function () { return [
     { type: MdNavListCssMatStyler, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["Optional"] },] },
 ]; };
 MdListItem.propDecorators = {
-    '_lines': [{ type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["ContentChildren"], args: [__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["v" /* MdLine */],] },],
+    '_lines': [{ type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["ContentChildren"], args: [__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["x" /* MdLine */],] },],
     '_hasAvatar': [{ type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["ContentChild"], args: [MdListAvatarCssMatStyler,] },],
 };
 /**
@@ -33316,7 +33318,7 @@ var MdSelectionListBase = (function () {
     }
     return MdSelectionListBase;
 }());
-var _MdSelectionListMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["q" /* mixinDisableRipple */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["l" /* mixinDisabled */])(MdSelectionListBase));
+var _MdSelectionListMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["s" /* mixinDisableRipple */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["n" /* mixinDisabled */])(MdSelectionListBase));
 /**
  * \@docs-private
  */
@@ -33325,7 +33327,7 @@ var MdListOptionBase = (function () {
     }
     return MdListOptionBase;
 }());
-var _MdListOptionMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["q" /* mixinDisableRipple */])(MdListOptionBase);
+var _MdListOptionMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["s" /* mixinDisableRipple */])(MdListOptionBase);
 var FOCUSED_STYLE = 'mat-list-item-focus';
 /**
  * Component for list-options of selection-list. Each list-option can automatically
@@ -33406,7 +33408,7 @@ var MdListOption = (function (_super) {
      * @return {?}
      */
     MdListOption.prototype.ngAfterContentInit = function () {
-        this._lineSetter = new __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["u" /* MdLineSetter */](this._lines, this._renderer, this._element);
+        this._lineSetter = new __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["w" /* MdLineSetter */](this._lines, this._renderer, this._element);
         if (this.selectionList.disabled) {
             this.disabled = true;
         }
@@ -33502,7 +33504,7 @@ MdListOption.ctorParameters = function () { return [
     { type: MdSelectionList, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["Optional"] }, { type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["Inject"], args: [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["forwardRef"])(function () { return MdSelectionList; }),] },] },
 ]; };
 MdListOption.propDecorators = {
-    '_lines': [{ type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["ContentChildren"], args: [__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["v" /* MdLine */],] },],
+    '_lines': [{ type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["ContentChildren"], args: [__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["x" /* MdLine */],] },],
     'checkboxPosition': [{ type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["Input"] },],
     'value': [{ type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["Input"] },],
     'disabled': [{ type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["Input"] },],
@@ -33544,7 +33546,7 @@ var MdSelectionList = (function (_super) {
      * @return {?}
      */
     MdSelectionList.prototype.ngAfterContentInit = function () {
-        this._keyManager = new __WEBPACK_IMPORTED_MODULE_4__angular_cdk_a11y__["e" /* FocusKeyManager */](this.options).withWrap();
+        this._keyManager = new __WEBPACK_IMPORTED_MODULE_4__angular_cdk_a11y__["g" /* FocusKeyManager */](this.options).withWrap();
         if (this.disabled) {
             this._tabIndex = -1;
         }
@@ -33593,9 +33595,9 @@ var MdSelectionList = (function (_super) {
      */
     MdSelectionList.prototype._onDestroySubscription = function () {
         var _this = this;
-        return __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["w" /* RxChain */].from(this.options.changes)
-            .call(__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["h" /* startWith */], this.options)
-            .call(__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["x" /* switchMap */], function (options) {
+        return __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["y" /* RxChain */].from(this.options.changes)
+            .call(__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["k" /* startWith */], this.options)
+            .call(__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["z" /* switchMap */], function (options) {
             return __WEBPACK_IMPORTED_MODULE_7_rxjs_observable_merge__["merge"].apply(void 0, options.map(function (option) { return option.destroyed; }));
         }).subscribe(function (e) {
             var /** @type {?} */ optionIndex = _this.options.toArray().indexOf(e.option);
@@ -33617,9 +33619,9 @@ var MdSelectionList = (function (_super) {
      */
     MdSelectionList.prototype._onFocusSubscription = function () {
         var _this = this;
-        return __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["w" /* RxChain */].from(this.options.changes)
-            .call(__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["h" /* startWith */], this.options)
-            .call(__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["x" /* switchMap */], function (options) {
+        return __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["y" /* RxChain */].from(this.options.changes)
+            .call(__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["k" /* startWith */], this.options)
+            .call(__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["z" /* switchMap */], function (options) {
             return __WEBPACK_IMPORTED_MODULE_7_rxjs_observable_merge__["merge"].apply(void 0, options.map(function (option) { return option.onFocus; }));
         }).subscribe(function (e) {
             var /** @type {?} */ optionIndex = _this.options.toArray().indexOf(e.option);
@@ -33633,7 +33635,7 @@ var MdSelectionList = (function (_super) {
      */
     MdSelectionList.prototype._keydown = function (event) {
         switch (event.keyCode) {
-            case __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["y" /* SPACE */]:
+            case __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["A" /* SPACE */]:
                 this._toggleSelectOnFocusedOption();
                 // Always prevent space from scrolling the page since the list has focus
                 event.preventDefault();
@@ -33700,20 +33702,20 @@ var MdListModule = (function () {
 }());
 MdListModule.decorators = [
     { type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["NgModule"], args: [{
-                imports: [__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["z" /* MdLineModule */], __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["r" /* MdRippleModule */], __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["c" /* MdCommonModule */], __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["A" /* MdPseudoCheckboxModule */], __WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"]],
+                imports: [__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["B" /* MdLineModule */], __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["t" /* MdRippleModule */], __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["c" /* MdCommonModule */], __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["C" /* MdPseudoCheckboxModule */], __WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"]],
                 exports: [
                     MdList,
                     MdListItem,
                     MdListDivider,
                     MdListAvatarCssMatStyler,
-                    __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["z" /* MdLineModule */],
+                    __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["B" /* MdLineModule */],
                     __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["c" /* MdCommonModule */],
                     MdListIconCssMatStyler,
                     MdListCssMatStyler,
                     MdNavListCssMatStyler,
                     MdDividerCssMatStyler,
                     MdListSubheaderCssMatStyler,
-                    __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["A" /* MdPseudoCheckboxModule */],
+                    __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["C" /* MdPseudoCheckboxModule */],
                     MdSelectionList,
                     MdListOption
                 ],
@@ -33840,7 +33842,7 @@ var MdMenuItemBase = (function () {
     }
     return MdMenuItemBase;
 }());
-var _MdMenuItemMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["l" /* mixinDisabled */])(MdMenuItemBase);
+var _MdMenuItemMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_material_core__["n" /* mixinDisabled */])(MdMenuItemBase);
 /**
  * This directive is intended to be used inside an md-menu tag.
  * It exists mostly to set the role attribute.
@@ -34093,7 +34095,7 @@ var MdMenu = (function () {
      */
     MdMenu.prototype.ngAfterContentInit = function () {
         var _this = this;
-        this._keyManager = new __WEBPACK_IMPORTED_MODULE_6__angular_cdk_a11y__["e" /* FocusKeyManager */](this.items).withWrap();
+        this._keyManager = new __WEBPACK_IMPORTED_MODULE_6__angular_cdk_a11y__["g" /* FocusKeyManager */](this.items).withWrap();
         this._tabSubscription = this._keyManager.tabOut.subscribe(function () { return _this.close.emit('keydown'); });
     };
     /**
@@ -34121,16 +34123,16 @@ var MdMenu = (function () {
      */
     MdMenu.prototype._handleKeydown = function (event) {
         switch (event.keyCode) {
-            case __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["g" /* ESCAPE */]:
+            case __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["j" /* ESCAPE */]:
                 this.close.emit('keydown');
                 event.stopPropagation();
                 break;
-            case __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["s" /* LEFT_ARROW */]:
+            case __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["u" /* LEFT_ARROW */]:
                 if (this.parentMenu && this.direction === 'ltr') {
                     this.close.emit('keydown');
                 }
                 break;
-            case __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["t" /* RIGHT_ARROW */]:
+            case __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["v" /* RIGHT_ARROW */]:
                 if (this.parentMenu && this.direction === 'rtl') {
                     this.close.emit('keydown');
                 }
@@ -34629,7 +34631,7 @@ var MdMenuTrigger = (function () {
      * @return {?}
      */
     MdMenuTrigger.prototype._handleMousedown = function (event) {
-        if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__angular_cdk_a11y__["g" /* isFakeMousedownFromScreenReader */])(event)) {
+        if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__angular_cdk_a11y__["i" /* isFakeMousedownFromScreenReader */])(event)) {
             this._openedByMouse = true;
             // Since clicking on the trigger won't close the menu if it opens a sub-menu,
             // we should prevent focus from moving onto it via click to avoid the
@@ -34710,7 +34712,7 @@ MdMenuModule.decorators = [
                 imports: [
                     __WEBPACK_IMPORTED_MODULE_4__angular_cdk_overlay__["c" /* OverlayModule */],
                     __WEBPACK_IMPORTED_MODULE_2__angular_common__["CommonModule"],
-                    __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["r" /* MdRippleModule */],
+                    __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["t" /* MdRippleModule */],
                     __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["c" /* MdCommonModule */],
                 ],
                 exports: [MdMenu, MdMenuItem, MdMenuTrigger, __WEBPACK_IMPORTED_MODULE_3__angular_material_core__["c" /* MdCommonModule */]],
@@ -34754,8 +34756,8 @@ MdMenuModule.ctorParameters = function () { return []; };
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_material_button__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_material_select__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_material_tooltip__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_material_select__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_material_tooltip__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_material_core__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Subject__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_Subject__);
@@ -35336,7 +35338,7 @@ var MdProgressSpinnerBase = (function () {
     }
     return MdProgressSpinnerBase;
 }());
-var _MdProgressSpinnerMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_material_core__["k" /* mixinColor */])(MdProgressSpinnerBase, 'primary');
+var _MdProgressSpinnerMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_material_core__["d" /* mixinColor */])(MdProgressSpinnerBase, 'primary');
 /**
  * <md-progress-spinner> component.
  */
@@ -35809,7 +35811,7 @@ var MdRadioGroupBase = (function () {
     }
     return MdRadioGroupBase;
 }());
-var _MdRadioGroupMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["l" /* mixinDisabled */])(MdRadioGroupBase);
+var _MdRadioGroupMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["n" /* mixinDisabled */])(MdRadioGroupBase);
 /**
  * A group of radio buttons. May contain one or more `<md-radio-button>` elements.
  */
@@ -36159,7 +36161,7 @@ var MdRadioButtonBase = (function () {
 }());
 // As per Material design specifications the selection control radio should use the accent color
 // palette by default. https://material.io/guidelines/components/selection-controls.html
-var _MdRadioButtonMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["k" /* mixinColor */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["q" /* mixinDisableRipple */])(MdRadioButtonBase), 'accent');
+var _MdRadioButtonMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["d" /* mixinColor */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["s" /* mixinDisableRipple */])(MdRadioButtonBase), 'accent');
 /**
  * A radio-button. May be inside of
  */
@@ -36505,7 +36507,7 @@ MdRadioButton.ctorParameters = function () { return [
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ElementRef"], },
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Renderer2"], },
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ChangeDetectorRef"], },
-    { type: __WEBPACK_IMPORTED_MODULE_7__angular_cdk_a11y__["f" /* FocusMonitor */], },
+    { type: __WEBPACK_IMPORTED_MODULE_7__angular_cdk_a11y__["h" /* FocusMonitor */], },
     { type: __WEBPACK_IMPORTED_MODULE_4__angular_material_core__["H" /* UniqueSelectionDispatcher */], },
 ]; };
 MdRadioButton.propDecorators = {
@@ -36530,7 +36532,7 @@ var MdRadioModule = (function () {
 }());
 MdRadioModule.decorators = [
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"], args: [{
-                imports: [__WEBPACK_IMPORTED_MODULE_2__angular_common__["CommonModule"], __WEBPACK_IMPORTED_MODULE_4__angular_material_core__["r" /* MdRippleModule */], __WEBPACK_IMPORTED_MODULE_4__angular_material_core__["c" /* MdCommonModule */], __WEBPACK_IMPORTED_MODULE_7__angular_cdk_a11y__["b" /* A11yModule */]],
+                imports: [__WEBPACK_IMPORTED_MODULE_2__angular_common__["CommonModule"], __WEBPACK_IMPORTED_MODULE_4__angular_material_core__["t" /* MdRippleModule */], __WEBPACK_IMPORTED_MODULE_4__angular_material_core__["c" /* MdCommonModule */], __WEBPACK_IMPORTED_MODULE_7__angular_cdk_a11y__["b" /* A11yModule */]],
                 exports: [MdRadioGroup, MdRadioButton, __WEBPACK_IMPORTED_MODULE_4__angular_material_core__["c" /* MdCommonModule */]],
                 providers: [__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["I" /* UNIQUE_SELECTION_DISPATCHER_PROVIDER */], __WEBPACK_IMPORTED_MODULE_3__angular_cdk_overlay__["f" /* VIEWPORT_RULER_PROVIDER */]],
                 declarations: [MdRadioGroup, MdRadioButton],
@@ -36834,7 +36836,7 @@ var MdDrawer = (function () {
                 this._animationState = 'void';
             }
             this._currentTogglePromise = new Promise(function (resolve) {
-                __WEBPACK_IMPORTED_MODULE_5__angular_material_core__["f" /* first */].call(isOpen ? _this.onOpen : _this.onClose).subscribe(resolve);
+                __WEBPACK_IMPORTED_MODULE_5__angular_material_core__["i" /* first */].call(isOpen ? _this.onOpen : _this.onClose).subscribe(resolve);
             });
             if (this._focusTrap) {
                 this._focusTrap.enabled = this.isFocusTrapEnabled;
@@ -36851,7 +36853,7 @@ var MdDrawer = (function () {
      * @return {?}
      */
     MdDrawer.prototype.handleKeydown = function (event) {
-        if (event.keyCode === __WEBPACK_IMPORTED_MODULE_5__angular_material_core__["g" /* ESCAPE */] && !this.disableClose) {
+        if (event.keyCode === __WEBPACK_IMPORTED_MODULE_5__angular_material_core__["j" /* ESCAPE */] && !this.disableClose) {
             this.close();
             event.stopPropagation();
         }
@@ -36936,7 +36938,7 @@ MdDrawer.decorators = [
  */
 MdDrawer.ctorParameters = function () { return [
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ElementRef"], },
-    { type: __WEBPACK_IMPORTED_MODULE_3__angular_cdk_a11y__["d" /* FocusTrapFactory */], },
+    { type: __WEBPACK_IMPORTED_MODULE_3__angular_cdk_a11y__["f" /* FocusTrapFactory */], },
     { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Optional"] }, { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Inject"], args: [__WEBPACK_IMPORTED_MODULE_9__angular_platform_browser__["DOCUMENT"],] },] },
 ]; };
 MdDrawer.propDecorators = {
@@ -37008,7 +37010,7 @@ var MdDrawerContainer = (function () {
      */
     MdDrawerContainer.prototype.ngAfterContentInit = function () {
         var _this = this;
-        __WEBPACK_IMPORTED_MODULE_5__angular_material_core__["h" /* startWith */].call(this._drawers.changes, null).subscribe(function () {
+        __WEBPACK_IMPORTED_MODULE_5__angular_material_core__["k" /* startWith */].call(this._drawers.changes, null).subscribe(function () {
             _this._validateDrawers();
             _this._drawers.forEach(function (drawer) {
                 _this._watchDrawerToggle(drawer);
@@ -37045,7 +37047,7 @@ var MdDrawerContainer = (function () {
      */
     MdDrawerContainer.prototype._watchDrawerToggle = function (drawer) {
         var _this = this;
-        __WEBPACK_IMPORTED_MODULE_5__angular_material_core__["i" /* takeUntil */].call(drawer._animationStarted, this._drawers.changes).subscribe(function () {
+        __WEBPACK_IMPORTED_MODULE_5__angular_material_core__["l" /* takeUntil */].call(drawer._animationStarted, this._drawers.changes).subscribe(function () {
             // Set the transition class on the container so that the animations occur. This should not
             // be set initially because animations should only be triggered via a change in state.
             _this._renderer.addClass(_this._element.nativeElement, 'mat-drawer-transition');
@@ -37053,7 +37055,7 @@ var MdDrawerContainer = (function () {
             _this._changeDetectorRef.markForCheck();
         });
         if (drawer.mode !== 'side') {
-            __WEBPACK_IMPORTED_MODULE_5__angular_material_core__["i" /* takeUntil */].call(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_10_rxjs_observable_merge__["merge"])(drawer.onOpen, drawer.onClose), this._drawers.changes).subscribe(function () { return _this._setContainerClass(drawer.opened); });
+            __WEBPACK_IMPORTED_MODULE_5__angular_material_core__["l" /* takeUntil */].call(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_10_rxjs_observable_merge__["merge"])(drawer.onOpen, drawer.onClose), this._drawers.changes).subscribe(function () { return _this._setContainerClass(drawer.opened); });
         }
     };
     /**
@@ -37069,8 +37071,8 @@ var MdDrawerContainer = (function () {
         }
         // NOTE: We need to wait for the microtask queue to be empty before validating,
         // since both drawers may be swapping positions at the same time.
-        __WEBPACK_IMPORTED_MODULE_5__angular_material_core__["i" /* takeUntil */].call(drawer.onPositionChanged, this._drawers.changes).subscribe(function () {
-            __WEBPACK_IMPORTED_MODULE_5__angular_material_core__["f" /* first */].call(_this._ngZone.onMicrotaskEmpty.asObservable()).subscribe(function () {
+        __WEBPACK_IMPORTED_MODULE_5__angular_material_core__["l" /* takeUntil */].call(drawer.onPositionChanged, this._drawers.changes).subscribe(function () {
+            __WEBPACK_IMPORTED_MODULE_5__angular_material_core__["i" /* first */].call(_this._ngZone.onMicrotaskEmpty.asObservable()).subscribe(function () {
                 _this._validateDrawers();
             });
         });
@@ -37370,7 +37372,7 @@ var MdSlideToggleBase = (function () {
     }
     return MdSlideToggleBase;
 }());
-var _MdSlideToggleMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["j" /* mixinTabIndex */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["k" /* mixinColor */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["q" /* mixinDisableRipple */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["l" /* mixinDisabled */])(MdSlideToggleBase)), 'accent'));
+var _MdSlideToggleMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["m" /* mixinTabIndex */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["d" /* mixinColor */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["s" /* mixinDisableRipple */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["n" /* mixinDisabled */])(MdSlideToggleBase)), 'accent'));
 /**
  * Represents a slidable "switch" toggle that can be moved between on and off.
  */
@@ -37662,7 +37664,7 @@ MdSlideToggle.ctorParameters = function () { return [
     { type: __WEBPACK_IMPORTED_MODULE_3__angular_core__["ElementRef"], },
     { type: __WEBPACK_IMPORTED_MODULE_3__angular_core__["Renderer2"], },
     { type: __WEBPACK_IMPORTED_MODULE_2__angular_cdk_platform__["a" /* Platform */], },
-    { type: __WEBPACK_IMPORTED_MODULE_6__angular_cdk_a11y__["f" /* FocusMonitor */], },
+    { type: __WEBPACK_IMPORTED_MODULE_6__angular_cdk_a11y__["h" /* FocusMonitor */], },
     { type: __WEBPACK_IMPORTED_MODULE_3__angular_core__["ChangeDetectorRef"], },
     { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_3__angular_core__["Attribute"], args: ['tabindex',] },] },
 ]; };
@@ -37759,7 +37761,7 @@ var MdSlideToggleModule = (function () {
 }());
 MdSlideToggleModule.decorators = [
     { type: __WEBPACK_IMPORTED_MODULE_3__angular_core__["NgModule"], args: [{
-                imports: [__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["r" /* MdRippleModule */], __WEBPACK_IMPORTED_MODULE_4__angular_material_core__["c" /* MdCommonModule */], __WEBPACK_IMPORTED_MODULE_2__angular_cdk_platform__["b" /* PlatformModule */], __WEBPACK_IMPORTED_MODULE_1__angular_cdk_observers__["a" /* ObserversModule */], __WEBPACK_IMPORTED_MODULE_6__angular_cdk_a11y__["b" /* A11yModule */]],
+                imports: [__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["t" /* MdRippleModule */], __WEBPACK_IMPORTED_MODULE_4__angular_material_core__["c" /* MdCommonModule */], __WEBPACK_IMPORTED_MODULE_2__angular_cdk_platform__["b" /* PlatformModule */], __WEBPACK_IMPORTED_MODULE_1__angular_cdk_observers__["a" /* ObserversModule */], __WEBPACK_IMPORTED_MODULE_6__angular_cdk_a11y__["b" /* A11yModule */]],
                 exports: [MdSlideToggle, __WEBPACK_IMPORTED_MODULE_4__angular_material_core__["c" /* MdCommonModule */]],
                 declarations: [MdSlideToggle],
                 providers: [
@@ -37872,7 +37874,7 @@ var MdSliderBase = (function () {
     }
     return MdSliderBase;
 }());
-var _MdSliderMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["k" /* mixinColor */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["l" /* mixinDisabled */])(MdSliderBase), 'accent');
+var _MdSliderMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["d" /* mixinColor */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_material_core__["n" /* mixinDisabled */])(MdSliderBase), 'accent');
 /**
  * Allows users to select from a range of values by moving the slider thumb. It is similar in
  * behavior to the native `<input type="range">` element.
@@ -38697,7 +38699,7 @@ MdSlider.decorators = [
 MdSlider.ctorParameters = function () { return [
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Renderer2"], },
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ElementRef"], },
-    { type: __WEBPACK_IMPORTED_MODULE_9__angular_cdk_a11y__["f" /* FocusMonitor */], },
+    { type: __WEBPACK_IMPORTED_MODULE_9__angular_cdk_a11y__["h" /* FocusMonitor */], },
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ChangeDetectorRef"], },
     { type: __WEBPACK_IMPORTED_MODULE_5__angular_cdk_bidi__["a" /* Directionality */], decorators: [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Optional"] },] },
 ]; };
@@ -38755,10 +38757,10 @@ MdSliderModule.ctorParameters = function () { return []; };
 /* unused harmony export MdSnackBarRef */
 /* unused harmony export SimpleSnackBar */
 /* unused harmony export MAT_SNACK_BAR_DATA */
-/* unused harmony export MatSnackBar */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return MdSnackBar; });
 /* unused harmony export MatSnackBarConfig */
 /* unused harmony export MatSnackBarContainer */
-/* unused harmony export MatSnackBarModule */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MdSnackBarModule; });
 /* unused harmony export MatSnackBarRef */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
@@ -39342,7 +39344,7 @@ var MdSnackBar = (function () {
         var /** @type {?} */ injectionTokens = new WeakMap();
         injectionTokens.set(MdSnackBarRef, snackBarRef);
         injectionTokens.set(MD_SNACK_BAR_DATA, config.data);
-        return new __WEBPACK_IMPORTED_MODULE_6__angular_material_core__["E" /* PortalInjector */](userInjector || this._injector, injectionTokens);
+        return new __WEBPACK_IMPORTED_MODULE_6__angular_material_core__["g" /* PortalInjector */](userInjector || this._injector, injectionTokens);
     };
     return MdSnackBar;
 }());
@@ -39354,7 +39356,7 @@ MdSnackBar.decorators = [
  */
 MdSnackBar.ctorParameters = function () { return [
     { type: __WEBPACK_IMPORTED_MODULE_3__angular_cdk_overlay__["a" /* Overlay */], },
-    { type: __WEBPACK_IMPORTED_MODULE_5__angular_cdk_a11y__["h" /* LiveAnnouncer */], },
+    { type: __WEBPACK_IMPORTED_MODULE_5__angular_cdk_a11y__["d" /* LiveAnnouncer */], },
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injector"], },
     { type: MdSnackBar, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Optional"] }, { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["SkipSelf"] },] },
 ]; };
@@ -39364,7 +39366,7 @@ MdSnackBar.ctorParameters = function () { return [
  * @return {?} The new configuration object with defaults applied.
  */
 function _applyConfigDefaults(config) {
-    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__angular_material_core__["F" /* extendObject */])(new MdSnackBarConfig(), config);
+    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__angular_material_core__["h" /* extendObject */])(new MdSnackBarConfig(), config);
 }
 var MdSnackBarModule = (function () {
     function MdSnackBarModule() {
@@ -39382,7 +39384,7 @@ MdSnackBarModule.decorators = [
                 exports: [MdSnackBarContainer, __WEBPACK_IMPORTED_MODULE_6__angular_material_core__["c" /* MdCommonModule */]],
                 declarations: [MdSnackBarContainer, SimpleSnackBar],
                 entryComponents: [MdSnackBarContainer, SimpleSnackBar],
-                providers: [MdSnackBar, __WEBPACK_IMPORTED_MODULE_5__angular_cdk_a11y__["i" /* LIVE_ANNOUNCER_PROVIDER */]]
+                providers: [MdSnackBar, __WEBPACK_IMPORTED_MODULE_5__angular_cdk_a11y__["e" /* LIVE_ANNOUNCER_PROVIDER */]]
             },] },
 ];
 /**
@@ -39412,7 +39414,7 @@ MdSnackBarModule.ctorParameters = function () { return []; };
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_cdk_coercion__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_animations__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_cdk_table__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_cdk_table__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_observable_merge__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_observable_merge___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_observable_merge__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Subject__ = __webpack_require__(8);
@@ -39684,7 +39686,7 @@ MdSortHeaderIntl.decorators = [
  * @nocollapse
  */
 MdSortHeaderIntl.ctorParameters = function () { return []; };
-var SORT_ANIMATION_TRANSITION = __WEBPACK_IMPORTED_MODULE_6__angular_material_core__["d" /* AnimationDurations */].ENTERING + ' ' + __WEBPACK_IMPORTED_MODULE_6__angular_material_core__["e" /* AnimationCurves */].STANDARD_CURVE;
+var SORT_ANIMATION_TRANSITION = __WEBPACK_IMPORTED_MODULE_6__angular_material_core__["e" /* AnimationDurations */].ENTERING + ' ' + __WEBPACK_IMPORTED_MODULE_6__angular_material_core__["f" /* AnimationCurves */].STANDARD_CURVE;
 /**
  * Applies sorting behavior (click to change sort) and styles to an element, including an
  * arrow to display the current sort direction.
@@ -40055,7 +40057,7 @@ var MdStep = (function (_super) {
             _this._originalErrorStateMatcher = errorOptions.errorStateMatcher;
         }
         else {
-            _this._originalErrorStateMatcher = __WEBPACK_IMPORTED_MODULE_6__angular_material_core__["B" /* defaultErrorStateMatcher */];
+            _this._originalErrorStateMatcher = __WEBPACK_IMPORTED_MODULE_6__angular_material_core__["D" /* defaultErrorStateMatcher */];
         }
         return _this;
     }
@@ -40064,7 +40066,7 @@ var MdStep = (function (_super) {
 MdStep.decorators = [
     { type: __WEBPACK_IMPORTED_MODULE_4__angular_core__["Component"], args: [{ selector: 'md-step, mat-step',
                 template: "<ng-template><ng-content></ng-content></ng-template>",
-                providers: [{ provide: __WEBPACK_IMPORTED_MODULE_6__angular_material_core__["C" /* MD_ERROR_GLOBAL_OPTIONS */], useExisting: MdStep }],
+                providers: [{ provide: __WEBPACK_IMPORTED_MODULE_6__angular_material_core__["E" /* MD_ERROR_GLOBAL_OPTIONS */], useExisting: MdStep }],
                 encapsulation: __WEBPACK_IMPORTED_MODULE_4__angular_core__["ViewEncapsulation"].None,
                 preserveWhitespaces: false,
             },] },
@@ -40074,7 +40076,7 @@ MdStep.decorators = [
  */
 MdStep.ctorParameters = function () { return [
     { type: MdStepper, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_4__angular_core__["Inject"], args: [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__angular_core__["forwardRef"])(function () { return MdStepper; }),] },] },
-    { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_4__angular_core__["Optional"] }, { type: __WEBPACK_IMPORTED_MODULE_4__angular_core__["SkipSelf"] }, { type: __WEBPACK_IMPORTED_MODULE_4__angular_core__["Inject"], args: [__WEBPACK_IMPORTED_MODULE_6__angular_material_core__["C" /* MD_ERROR_GLOBAL_OPTIONS */],] },] },
+    { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_4__angular_core__["Optional"] }, { type: __WEBPACK_IMPORTED_MODULE_4__angular_core__["SkipSelf"] }, { type: __WEBPACK_IMPORTED_MODULE_4__angular_core__["Inject"], args: [__WEBPACK_IMPORTED_MODULE_6__angular_material_core__["E" /* MD_ERROR_GLOBAL_OPTIONS */],] },] },
 ]; };
 MdStep.propDecorators = {
     'stepLabel': [{ type: __WEBPACK_IMPORTED_MODULE_4__angular_core__["ContentChild"], args: [MdStepLabel,] },],
@@ -40294,7 +40296,7 @@ MdStepperModule.ctorParameters = function () { return []; };
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MdTableModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_cdk_table__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_cdk_table__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_material_core__ = __webpack_require__(2);
 
@@ -40871,7 +40873,7 @@ var MdTabBase = (function () {
     }
     return MdTabBase;
 }());
-var _MdTabMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__angular_material_core__["l" /* mixinDisabled */])(MdTabBase);
+var _MdTabMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__angular_material_core__["n" /* mixinDisabled */])(MdTabBase);
 var MdTab = (function (_super) {
     __WEBPACK_IMPORTED_MODULE_0_tslib__["__extends"](MdTab, _super);
     /**
@@ -41163,7 +41165,7 @@ var MdTabGroupBase = (function () {
     }
     return MdTabGroupBase;
 }());
-var _MdTabGroupMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__angular_material_core__["k" /* mixinColor */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__angular_material_core__["q" /* mixinDisableRipple */])(MdTabGroupBase), 'primary');
+var _MdTabGroupMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__angular_material_core__["d" /* mixinColor */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__angular_material_core__["s" /* mixinDisableRipple */])(MdTabGroupBase), 'primary');
 /**
  * Material design tab-group component.  Supports basic tab pairs (label + content) and includes
  * animated ink-bar, keyboard navigation, and screen reader.
@@ -41471,7 +41473,7 @@ var MdTabLabelWrapperBase = (function () {
     }
     return MdTabLabelWrapperBase;
 }());
-var _MdTabLabelWrapperMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__angular_material_core__["l" /* mixinDisabled */])(MdTabLabelWrapperBase);
+var _MdTabLabelWrapperMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__angular_material_core__["n" /* mixinDisabled */])(MdTabLabelWrapperBase);
 /**
  * Used in the `md-tab-group` view to display tab labels.
  * \@docs-private
@@ -41535,7 +41537,7 @@ var MdTabHeaderBase = (function () {
     }
     return MdTabHeaderBase;
 }());
-var _MdTabHeaderMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__angular_material_core__["q" /* mixinDisableRipple */])(MdTabHeaderBase);
+var _MdTabHeaderMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__angular_material_core__["s" /* mixinDisableRipple */])(MdTabHeaderBase);
 /**
  * The header of the tab group which displays a list of all the tabs in the tab group. Includes
  * an ink bar that follows the currently selected tab. When the tabs list's width exceeds the
@@ -41984,7 +41986,7 @@ var MdTabNavBase = (function () {
     }
     return MdTabNavBase;
 }());
-var _MdTabNavMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__angular_material_core__["q" /* mixinDisableRipple */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__angular_material_core__["k" /* mixinColor */])(MdTabNavBase, 'primary'));
+var _MdTabNavMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__angular_material_core__["s" /* mixinDisableRipple */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__angular_material_core__["d" /* mixinColor */])(MdTabNavBase, 'primary'));
 /**
  * Navigation component matching the styles of the tab group header.
  * Provides anchored navigation with animated ink bar.
@@ -42146,7 +42148,7 @@ var MdTabLinkBase = (function () {
     }
     return MdTabLinkBase;
 }());
-var _MdTabLinkMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__angular_material_core__["l" /* mixinDisabled */])(MdTabLinkBase);
+var _MdTabLinkMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__angular_material_core__["n" /* mixinDisabled */])(MdTabLinkBase);
 /**
  * Link inside of a `md-tab-nav-bar`.
  */
@@ -42272,7 +42274,7 @@ MdTabsModule.decorators = [
                     __WEBPACK_IMPORTED_MODULE_4__angular_common__["CommonModule"],
                     __WEBPACK_IMPORTED_MODULE_6__angular_material_core__["c" /* MdCommonModule */],
                     __WEBPACK_IMPORTED_MODULE_2__angular_cdk_portal__["d" /* PortalModule */],
-                    __WEBPACK_IMPORTED_MODULE_6__angular_material_core__["r" /* MdRippleModule */],
+                    __WEBPACK_IMPORTED_MODULE_6__angular_material_core__["t" /* MdRippleModule */],
                     __WEBPACK_IMPORTED_MODULE_1__angular_cdk_observers__["a" /* ObserversModule */],
                     __WEBPACK_IMPORTED_MODULE_3__angular_cdk_scrolling__["c" /* ScrollDispatchModule */],
                 ],
@@ -42322,7 +42324,7 @@ MdTabsModule.ctorParameters = function () { return []; };
 /* unused harmony export MdToolbar */
 /* unused harmony export MatToolbar */
 /* unused harmony export MatToolbarBase */
-/* unused harmony export MatToolbarModule */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MdToolbarModule; });
 /* unused harmony export MatToolbarRow */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
@@ -42366,7 +42368,7 @@ var MdToolbarBase = (function () {
     }
     return MdToolbarBase;
 }());
-var _MdToolbarMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_material_core__["k" /* mixinColor */])(MdToolbarBase);
+var _MdToolbarMixinBase = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_material_core__["d" /* mixinColor */])(MdToolbarBase);
 var MdToolbar = (function (_super) {
     __WEBPACK_IMPORTED_MODULE_0_tslib__["__extends"](MdToolbar, _super);
     /**
@@ -43392,7 +43394,7 @@ module.exports = function () {
 /* unused harmony export getBaseUrl */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module_shared__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_app_app_component__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_app_app_component__ = __webpack_require__(48);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -43438,10 +43440,10 @@ function getBaseUrl() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__(150);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common_http__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_material__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_app_app_component__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_app_app_component__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_navmenu_navmenu_component__ = __webpack_require__(100);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_home_home_component__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_shared_share_dialog_component__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_shared_share_dialog_component__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_report_report_list_component__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_report_report_edit_component__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_table_table_http_example__ = __webpack_require__(104);
@@ -43520,7 +43522,9 @@ var AppModuleShared = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_7__angular_material__["k" /* MatTooltipModule */],
                 __WEBPACK_IMPORTED_MODULE_7__angular_material__["l" /* MatDialogModule */],
                 __WEBPACK_IMPORTED_MODULE_7__angular_material__["m" /* MatSelectModule */],
-                __WEBPACK_IMPORTED_MODULE_7__angular_material__["n" /* MatListModule */]
+                __WEBPACK_IMPORTED_MODULE_7__angular_material__["n" /* MatListModule */],
+                __WEBPACK_IMPORTED_MODULE_7__angular_material__["o" /* MatSnackBarModule */],
+                __WEBPACK_IMPORTED_MODULE_7__angular_material__["p" /* MatToolbarModule */]
             ],
             exports: [
                 __WEBPACK_IMPORTED_MODULE_7__angular_material__["a" /* MatButtonModule */],
@@ -43536,11 +43540,13 @@ var AppModuleShared = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_7__angular_material__["k" /* MatTooltipModule */],
                 __WEBPACK_IMPORTED_MODULE_7__angular_material__["l" /* MatDialogModule */],
                 __WEBPACK_IMPORTED_MODULE_7__angular_material__["m" /* MatSelectModule */],
-                __WEBPACK_IMPORTED_MODULE_7__angular_material__["n" /* MatListModule */]
+                __WEBPACK_IMPORTED_MODULE_7__angular_material__["n" /* MatListModule */],
+                __WEBPACK_IMPORTED_MODULE_7__angular_material__["o" /* MatSnackBarModule */],
+                __WEBPACK_IMPORTED_MODULE_7__angular_material__["p" /* MatToolbarModule */]
             ],
             providers: [
-                { provide: __WEBPACK_IMPORTED_MODULE_7__angular_material__["o" /* MATERIAL_COMPATIBILITY_MODE */], useValue: true },
-                { provide: __WEBPACK_IMPORTED_MODULE_7__angular_material__["p" /* MAT_PLACEHOLDER_GLOBAL_OPTIONS */], useValue: { float: 'always' } }
+                { provide: __WEBPACK_IMPORTED_MODULE_7__angular_material__["q" /* MATERIAL_COMPATIBILITY_MODE */], useValue: true },
+                { provide: __WEBPACK_IMPORTED_MODULE_7__angular_material__["r" /* MAT_PLACEHOLDER_GLOBAL_OPTIONS */], useValue: { float: 'always' } }
             ]
         })
     ], AppModuleShared);
@@ -43635,12 +43641,12 @@ var HomeComponent = /** @class */ (function () {
             });*/
     };
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_3__angular_material__["q" /* MatSort */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__angular_material__["q" /* MatSort */])
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_3__angular_material__["s" /* MatSort */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__angular_material__["s" /* MatSort */])
     ], HomeComponent.prototype, "sort", void 0);
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_3__angular_material__["r" /* MatPaginator */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__angular_material__["r" /* MatPaginator */])
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_3__angular_material__["t" /* MatPaginator */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__angular_material__["t" /* MatPaginator */])
     ], HomeComponent.prototype, "paginator", void 0);
     HomeComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
@@ -43802,7 +43808,7 @@ var QueryService = /** @class */ (function () {
     function QueryService(_http) {
         this._http = _http;
         this._idNameUrl = './api/queries-idname.json';
-        this._columnUrl = './api/query-columns.json';
+        this._columnUrl = './api/query-columns-report.json';
     }
     QueryService.prototype.getQueriesIdName = function () {
         return this._http.get(this._idNameUrl)
@@ -43841,7 +43847,7 @@ var QueryService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_cdk_collections__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_material__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_BehaviorSubject__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_BehaviorSubject__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_BehaviorSubject__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__);
@@ -43858,7 +43864,8 @@ var QueryService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_rxjs_add_observable_fromEvent__ = __webpack_require__(124);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_rxjs_add_observable_fromEvent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_rxjs_add_observable_fromEvent__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__query_query_service__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__shared_share_dialog_component__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__shared_share_dialog_component__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__report_service__ = __webpack_require__(38);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -43892,17 +43899,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ReportEditComponent = /** @class */ (function () {
     function ReportEditComponent(http, dialog) {
         this.http = http;
         this.dialog = dialog;
-        this.displayedColumns = ['id', 'name', 'query', 'createdBy', 'createdAt', 'modifiedBy', 'modifiedAt', 'actions'];
+        this.columnNames = [
+            { columnDef: 'id', header: 'ID', cell: function (row) { return "" + row.id; } },
+            { columnDef: 'name', header: 'Name', cell: function (row) { return "" + row.name; } }
+        ];
+        /** Column definitions in order */
+        this.displayedColumns = this.columnNames.map(function (x) { return x.columnDef; });
     }
     ReportEditComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.queryService = new __WEBPACK_IMPORTED_MODULE_12__query_query_service__["a" /* QueryService */](this.http);
         this.queryService.getQueriesIdName()
             .subscribe(function (queries) { return _this.queries = queries; });
+        this.showDataTable = false;
+        this.service = new __WEBPACK_IMPORTED_MODULE_14__report_service__["a" /* ReportService */](this.http);
+        this.dataSource = new ExampleDataSource(this.service, this.sort, this.paginator);
         /*this.queryService.getQueryColumns(Number(this.selectedValue))
             .subscribe(data => this.queryColumns = data);*/
         /*.map(data => {
@@ -43911,7 +43927,6 @@ var ReportEditComponent = /** @class */ (function () {
         .catch(() => {
             return Observable.of([]);
         });*/
-        //this.dataSource = new ExampleDataSource(this.service!, this.sort, this.paginator);
         /*Observable.fromEvent(this.querySelect.nativeElement, 'change')
             .distinctUntilChanged()
             .subscribe(() => {
@@ -43923,6 +43938,15 @@ var ReportEditComponent = /** @class */ (function () {
         if (this.queryService != null)
             this.queryService.getQueryColumns(Number(this.selectedValue))
                 .subscribe(function (data) { return _this.queryColumns = data; });
+    };
+    ReportEditComponent.prototype.onUpdateClick = function () {
+        var _this = this;
+        this.columnNames = [];
+        this.columns.selectedOptions.selected.forEach(function (x) {
+            _this.columnNames.push({ columnDef: x.value, header: x.value, cell: function (row) { return "" + row[x.value]; } });
+        });
+        this.displayedColumns = this.columnNames.map(function (x) { return x.columnDef; });
+        this.showDataTable = true;
     };
     ReportEditComponent.prototype.deleteReport = function (id) {
         console.log("okker:" + id);
@@ -43949,22 +43973,26 @@ var ReportEditComponent = /** @class */ (function () {
         });
     };
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_3__angular_material__["q" /* MatSort */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__angular_material__["q" /* MatSort */])
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_3__angular_material__["s" /* MatSort */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__angular_material__["s" /* MatSort */])
     ], ReportEditComponent.prototype, "sort", void 0);
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_3__angular_material__["r" /* MatPaginator */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__angular_material__["r" /* MatPaginator */])
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_3__angular_material__["t" /* MatPaginator */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__angular_material__["t" /* MatPaginator */])
     ], ReportEditComponent.prototype, "paginator", void 0);
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('filter'),
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"])
     ], ReportEditComponent.prototype, "filter", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('columns'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__angular_material__["u" /* MatSelectionList */])
+    ], ReportEditComponent.prototype, "columns", void 0);
     ReportEditComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             template: __webpack_require__(115),
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"], __WEBPACK_IMPORTED_MODULE_3__angular_material__["s" /* MatDialog */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"], __WEBPACK_IMPORTED_MODULE_3__angular_material__["v" /* MatDialog */]])
     ], ReportEditComponent);
     return ReportEditComponent;
 }());
@@ -44034,7 +44062,7 @@ var ExampleDataSource = /** @class */ (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_cdk_collections__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_material__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_BehaviorSubject__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_BehaviorSubject__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_BehaviorSubject__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__);
@@ -44048,8 +44076,8 @@ var ExampleDataSource = /** @class */ (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_switchMap__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_switchMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_switchMap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__report_service__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__shared_share_dialog_component__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__report_service__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__shared_share_dialog_component__ = __webpack_require__(39);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -44086,9 +44114,10 @@ import 'rxjs/add/observable/fromEvent';*/
 
 
 var ReportComponent = /** @class */ (function () {
-    function ReportComponent(http, dialog) {
+    function ReportComponent(http, dialog, snackbar) {
         this.http = http;
         this.dialog = dialog;
+        this.snackbar = snackbar;
         this.displayedColumns = ['id', 'name', 'query', 'createdBy', 'createdAt', 'modifiedBy', 'modifiedAt', 'actions'];
     }
     ReportComponent.prototype.ngOnInit = function () {
@@ -44114,6 +44143,7 @@ var ReportComponent = /** @class */ (function () {
         //    });
     };
     ReportComponent.prototype.openShareDialog = function (id, name) {
+        var _this = this;
         this.sharePermissions = [
             {
                 id: 1,
@@ -44132,17 +44162,20 @@ var ReportComponent = /** @class */ (function () {
             console.log('The dialog was closed');
             if (result != undefined) {
                 console.log("email:" + result.email + ";permission:" + result.permission);
+                _this.snackbar.open(result.reportName + " shared with " + result.email + ".", 'OK', {
+                    duration: 5000
+                });
                 //this.animal = result;
             }
         });
     };
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_3__angular_material__["q" /* MatSort */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__angular_material__["q" /* MatSort */])
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_3__angular_material__["s" /* MatSort */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__angular_material__["s" /* MatSort */])
     ], ReportComponent.prototype, "sort", void 0);
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_3__angular_material__["r" /* MatPaginator */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__angular_material__["r" /* MatPaginator */])
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_3__angular_material__["t" /* MatPaginator */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__angular_material__["t" /* MatPaginator */])
     ], ReportComponent.prototype, "paginator", void 0);
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('filter'),
@@ -44154,7 +44187,7 @@ var ReportComponent = /** @class */ (function () {
             template: __webpack_require__(116),
             styles: [__webpack_require__(138)]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"], __WEBPACK_IMPORTED_MODULE_3__angular_material__["s" /* MatDialog */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"], __WEBPACK_IMPORTED_MODULE_3__angular_material__["v" /* MatDialog */], __WEBPACK_IMPORTED_MODULE_3__angular_material__["w" /* MatSnackBar */]])
     ], ReportComponent);
     return ReportComponent;
 }());
@@ -44282,12 +44315,12 @@ var TableHttpExample = /** @class */ (function () {
         this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
     };
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_3__angular_material__["r" /* MatPaginator */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__angular_material__["r" /* MatPaginator */])
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_3__angular_material__["t" /* MatPaginator */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__angular_material__["t" /* MatPaginator */])
     ], TableHttpExample.prototype, "paginator", void 0);
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_3__angular_material__["q" /* MatSort */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__angular_material__["q" /* MatSort */])
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_3__angular_material__["s" /* MatSort */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3__angular_material__["s" /* MatSort */])
     ], TableHttpExample.prototype, "sort", void 0);
     TableHttpExample = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
@@ -44391,7 +44424,7 @@ exports = module.exports = __webpack_require__(29)(undefined);
 
 
 // module
-exports.push([module.i, "/*li .glyphicon {\r\n    margin-right: 10px;\r\n}\r\n\r\n\r\nli.link-active a,\r\nli.link-active a:hover,\r\nli.link-active a:focus {\r\n    background-color: #4189C7;\r\n    color: white;\r\n}\r\n\r\n.main-nav {\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    right: 0;\r\n    z-index: 1;\r\n}\r\n\r\n@media (min-width: 768px) {\r\n\r\n    .main-nav {\r\n        height: 100%;\r\n        width: calc(25% - 20px);\r\n    }\r\n    .navbar {\r\n        border-radius: 0px;\r\n        border-width: 0px;\r\n        height: 100%;\r\n    }\r\n    .navbar-header {\r\n        float: none;\r\n    }\r\n    .navbar-collapse {\r\n        border-top: 1px solid #444;\r\n        padding: 0px;\r\n    }\r\n    .navbar ul {\r\n        float: none;\r\n    }\r\n    .navbar li {\r\n        float: none;\r\n        font-size: 15px;\r\n        margin: 6px;\r\n    }\r\n    .navbar li a {\r\n        padding: 10px 16px;\r\n        border-radius: 4px;\r\n    }\r\n    .navbar a {\r\n        width: 100%;\r\n        white-space: nowrap;\r\n        overflow: hidden;\r\n        text-overflow: ellipsis;\r\n    }\r\n}*/\r\n", ""]);
+exports.push([module.i, ".app-toolbar-filler {\r\n    flex: 1 1 auto;\r\n}\r\n\r\n\r\n/*li .glyphicon {\r\n    margin-right: 10px;\r\n}\r\n\r\n\r\nli.link-active a,\r\nli.link-active a:hover,\r\nli.link-active a:focus {\r\n    background-color: #4189C7;\r\n    color: white;\r\n}\r\n\r\n.main-nav {\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    right: 0;\r\n    z-index: 1;\r\n}\r\n\r\n@media (min-width: 768px) {\r\n\r\n    .main-nav {\r\n        height: 100%;\r\n        width: calc(25% - 20px);\r\n    }\r\n    .navbar {\r\n        border-radius: 0px;\r\n        border-width: 0px;\r\n        height: 100%;\r\n    }\r\n    .navbar-header {\r\n        float: none;\r\n    }\r\n    .navbar-collapse {\r\n        border-top: 1px solid #444;\r\n        padding: 0px;\r\n    }\r\n    .navbar ul {\r\n        float: none;\r\n    }\r\n    .navbar li {\r\n        float: none;\r\n        font-size: 15px;\r\n        margin: 6px;\r\n    }\r\n    .navbar li a {\r\n        padding: 10px 16px;\r\n        border-radius: 4px;\r\n    }\r\n    .navbar a {\r\n        width: 100%;\r\n        white-space: nowrap;\r\n        overflow: hidden;\r\n        text-overflow: ellipsis;\r\n    }\r\n}*/\r\n", ""]);
 
 // exports
 
@@ -44754,7 +44787,7 @@ module.exports = XmlEntities;
 /* 112 */
 /***/ (function(module, exports) {
 
-module.exports = "<nav-menu></nav-menu>\r\n<div class='container-fluid'>\r\n    <div class='row'>\r\n        <div class='col-md-10 col-md-offset-1 body-content'>\r\n            <router-outlet></router-outlet>\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "<mat-sidenav-container>\r\n    <nav-menu></nav-menu>\r\n    <div class='container-fluid'>\r\n        <div class='row'>\r\n            <div class='col-md-10 col-md-offset-1 body-content'>\r\n                <router-outlet></router-outlet>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</mat-sidenav-container>";
 
 /***/ }),
 /* 113 */
@@ -44766,19 +44799,19 @@ module.exports = "<!--<button md-button [mdMenuTriggerFor]=\"menu\">Menu</button
 /* 114 */
 /***/ (function(module, exports) {
 
-module.exports = "<!--<div class='main-nav'>\r\n    <div class='navbar navbar-inverse'>\r\n        <div class='navbar-header'>\r\n            <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>\r\n                <span class='sr-only'>Toggle navigation</span>\r\n                <span class='icon-bar'></span>\r\n                <span class='icon-bar'></span>\r\n                <span class='icon-bar'></span>\r\n            </button>\r\n            <a class='navbar-brand' [routerLink]=\"['/home']\">szakdoga</a>\r\n        </div>\r\n        <div class='clearfix'></div>\r\n        <div class='navbar-collapse collapse'>\r\n            <ul class='nav navbar-nav'>\r\n                <li [routerLinkActive]=\"['link-active']\">\r\n                    <a [routerLink]=\"['/home']\">\r\n                        <span class='glyphicon glyphicon-home'></span> Home\r\n                    </a>\r\n                </li>\r\n                <li [routerLinkActive]=\"['link-active']\">\r\n                    <a [routerLink]=\"['/counter']\">\r\n                        <span class='glyphicon glyphicon-education'></span> Counter\r\n                    </a>\r\n                </li>\r\n                <li [routerLinkActive]=\"['link-active']\">\r\n                    <a [routerLink]=\"['/fetch-data']\">\r\n                        <span class='glyphicon glyphicon-th-list'></span> Fetch data\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</div>-->\r\n\r\n<nav class=\"navbar navbar-default navbar-static-top\">\r\n    <div class=\"container-fluid\">\r\n        <div class=\"navbar-header\">\r\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\" aria-controls=\"navbar\">\r\n                <span class=\"sr-only\">Toggle navigation</span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n            </button>\r\n            <a class=\"navbar-brand\" href=\"#\" style=\"background:#3670c1;color:#fff\"><i class=\"glyphicon glyphicon-signal\" aria-hidden=\"true\"></i></a>\r\n        </div>\r\n        <div id=\"navbar\" class=\"navbar-collapse collapse\">\r\n            <ul class='nav navbar-nav'>\r\n                <li [routerLinkActive]=\"['link-active']\">\r\n                    <a [routerLink]=\"['/reports']\">\r\n                        Reports\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n            <ul class=\"nav navbar-nav navbar-right\">\r\n                <li class=\"dropdown\">\r\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"true\">Username <span class=\"caret\"></span></a>\r\n                    <ul class=\"dropdown-menu\">\r\n                        <li><a href=\"#\">Settings</a></li>\r\n                        <li><a href=\"#\">Log out</a></li>\r\n                    </ul>\r\n                </li>\r\n            </ul>\r\n        </div><!--/.nav-collapse -->\r\n    </div>\r\n</nav>\r\n";
+module.exports = "<!--<div class='main-nav'>\r\n    <div class='navbar navbar-inverse'>\r\n        <div class='navbar-header'>\r\n            <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>\r\n                <span class='sr-only'>Toggle navigation</span>\r\n                <span class='icon-bar'></span>\r\n                <span class='icon-bar'></span>\r\n                <span class='icon-bar'></span>\r\n            </button>\r\n            <a class='navbar-brand' [routerLink]=\"['/home']\">szakdoga</a>\r\n        </div>\r\n        <div class='clearfix'></div>\r\n        <div class='navbar-collapse collapse'>\r\n            <ul class='nav navbar-nav'>\r\n                <li [routerLinkActive]=\"['link-active']\">\r\n                    <a [routerLink]=\"['/home']\">\r\n                        <span class='glyphicon glyphicon-home'></span> Home\r\n                    </a>\r\n                </li>\r\n                <li [routerLinkActive]=\"['link-active']\">\r\n                    <a [routerLink]=\"['/counter']\">\r\n                        <span class='glyphicon glyphicon-education'></span> Counter\r\n                    </a>\r\n                </li>\r\n                <li [routerLinkActive]=\"['link-active']\">\r\n                    <a [routerLink]=\"['/fetch-data']\">\r\n                        <span class='glyphicon glyphicon-th-list'></span> Fetch data\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</div>-->\r\n\r\n<!--<nav class=\"navbar navbar-default navbar-static-top\">\r\n    <div class=\"container-fluid\">\r\n        <div class=\"navbar-header\">\r\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\" aria-controls=\"navbar\">\r\n                <span class=\"sr-only\">Toggle navigation</span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n            </button>\r\n            <a class=\"navbar-brand\" href=\"#\" style=\"background:#3670c1;color:#fff\"><i class=\"glyphicon glyphicon-signal\" aria-hidden=\"true\"></i></a>\r\n        </div>\r\n        <div id=\"navbar\" class=\"navbar-collapse collapse\">\r\n            <ul class='nav navbar-nav'>\r\n                <li [routerLinkActive]=\"['link-active']\">\r\n                    <a [routerLink]=\"['/reports']\">\r\n                        Reports\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n            <ul class=\"nav navbar-nav navbar-right\">\r\n                <li class=\"dropdown\">\r\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"true\">Username <span class=\"caret\"></span></a>\r\n                    <ul class=\"dropdown-menu\">\r\n                        <li><a href=\"#\">Settings</a></li>\r\n                        <li><a href=\"#\">Log out</a></li>\r\n                    </ul>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</nav>-->\r\n\r\n\r\n<mat-sidenav #sidenav mode=\"push\" class=\"app-sidenav\">\r\n    <mat-toolbar color=\"primary\">\r\n        <!--future svg to go here-->\r\n        <span class=\"toolbar-filler\"></span>\r\n        <button mat-icon-button (click)=\"sidenav.toggle()\" class=\"md-icon-button sidenav-toggle-button\" [hidden]=\"!sidenav.opened\">\r\n            x\r\n        </button>\r\n    </mat-toolbar>\r\n    <mat-nav-list>\r\n        <a mat-list-item class=\"sidenav-link\" [routerLink]=\"['/reports']\" (click)=\"sidenav.toggle()\">\r\n            <span class=\"title\" mat-line>Reports</span>\r\n        </a>\r\n        <a mat-list-item class=\"sidenav-link\" [routerLink]=\"['/reports']\" (click)=\"sidenav.toggle()\">\r\n            <span class=\"title\" mat-line>Dashboard</span>\r\n        </a>\r\n    </mat-nav-list>\r\n</mat-sidenav>\r\n\r\n<mat-toolbar color=\"primary\">\r\n    <i class=\"glyphicon glyphicon-signal\" aria-hidden=\"true\"></i> &nbsp; \r\n    Reporting\r\n    <button class=\"app-icon-button\" (click)=\"sidenav.toggle()\">\r\n    menu\r\n</button>\r\n\r\n    <span class=\"app-toolbar-filler\"></span>\r\n</mat-toolbar>\r\n\r\n";
 
 /***/ }),
 /* 115 */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<h1>Edit Report</h1>\r\n\r\n<div class=\"row\">\r\n    <div class=\"col-md-2\">\r\n\r\n        <form>\r\n            <mat-select placeholder=\"Query\" [(ngModel)]=\"selectedValue\" (ngModelChange)=\"queryChange()\" name=\"query\">\r\n                <mat-option *ngFor=\"let query of queries\" [value]=\"query.id\">\r\n                    {{query.name}}\r\n                </mat-option>\r\n            </mat-select>\r\n        </form>\r\n\r\n        <mat-selection-list *ngIf=\"queryColumns\">\r\n            <mat-list-option *ngFor=\"let column of queryColumns.columns\">\r\n                {{column}}\r\n            </mat-list-option>\r\n        </mat-selection-list>\r\n\r\n    </div>\r\n    <div class=\"col-md-10\">\r\n        <!--<div class=\"clearfix\">\r\n            <mat-form-field class=\"pull-right\" floatPlaceholder=\"never\">\r\n                <input matInput #filter placeholder=\"Filter reports\">\r\n            </mat-form-field>\r\n        </div>\r\n\r\n        <mat-table #table [dataSource]=\"dataSource\" matSort matSortActive=\"id\" matSortDisableClear matSortDirection=\"asc\">\r\n            <ng-container matColumnDef=\"id\">\r\n                <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>\r\n                <mat-cell *matCellDef=\"let row\"> {{row.id}} </mat-cell>\r\n            </ng-container>\r\n            <ng-container matColumnDef=\"name\">\r\n                <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>\r\n                <mat-cell *matCellDef=\"let row\"> {{row.name}} </mat-cell>\r\n            </ng-container>\r\n            <ng-container matColumnDef=\"query\">\r\n                <mat-header-cell *matHeaderCellDef mat-sort-header> Query </mat-header-cell>\r\n                <mat-cell *matCellDef=\"let row\"> {{row.query.name}} </mat-cell>\r\n            </ng-container>\r\n            <ng-container matColumnDef=\"createdBy\">\r\n                <mat-header-cell *matHeaderCellDef mat-sort-header> Created by </mat-header-cell>\r\n                <mat-cell *matCellDef=\"let row\"> {{row.createdBy.name}} </mat-cell>\r\n            </ng-container>\r\n            <ng-container matColumnDef=\"createdAt\">\r\n                <mat-header-cell *matHeaderCellDef mat-sort-header> Created </mat-header-cell>\r\n                <mat-cell *matCellDef=\"let row\"> {{row.createdAt}} </mat-cell>\r\n            </ng-container>\r\n            <ng-container matColumnDef=\"modifiedBy\">\r\n                <mat-header-cell *matHeaderCellDef mat-sort-header> Modified by </mat-header-cell>\r\n                <mat-cell *matCellDef=\"let row\"> {{row.modifiedBy.name}} </mat-cell>\r\n            </ng-container>\r\n            <ng-container matColumnDef=\"modifiedAt\">\r\n                <mat-header-cell *matHeaderCellDef mat-sort-header> Modified </mat-header-cell>\r\n                <mat-cell *matCellDef=\"let row\"> {{row.modifiedAt}} </mat-cell>\r\n            </ng-container>\r\n            <ng-container matColumnDef=\"actions\">\r\n                <mat-header-cell *matHeaderCellDef></mat-header-cell>\r\n                <mat-cell *matCellDef=\"let row\">\r\n                    <button mat-icon-button matTooltip=\"Edit report\" matTooltipPosition=\"above\"><i class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></i></button>\r\n                    <button mat-icon-button matTooltip=\"Delete report\" matTooltipPosition=\"above\" (click)=\"deleteReport(row.id)\"><i class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></i></button>\r\n                    <button mat-icon-button matTooltip=\"Share report\" matTooltipPosition=\"above\" (click)=\"openShareDialog(row.id, row.name)\"><i class=\"glyphicon glyphicon-share-alt\" aria-hidden=\"true\"></i></button>\r\n                </mat-cell>\r\n            </ng-container>\r\n            <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\r\n            <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\r\n        </mat-table>\r\n\r\n        <mat-paginator #paginator\r\n                       [length]=\"dataSource.totalCount\"\r\n                       [pageSize]=\"25\">\r\n        </mat-paginator>-->\r\n    </div>\r\n</div>\r\n";
+module.exports = "\r\n<h1>Edit Report</h1>\r\n\r\n<div class=\"row\">\r\n    <div class=\"col-md-2\">\r\n\r\n        <form>\r\n            <mat-select placeholder=\"Query\" [(ngModel)]=\"selectedValue\" (ngModelChange)=\"queryChange()\" name=\"query\">\r\n                <mat-option *ngFor=\"let query of queries\" [value]=\"query.id\">\r\n                    {{query.name}}\r\n                </mat-option>\r\n            </mat-select>\r\n        </form>\r\n\r\n        <mat-selection-list #columns *ngIf=\"queryColumns\" >\r\n            <mat-list-option *ngFor=\"let column of queryColumns.columns\" value=\"{{column}}\">\r\n                {{column}}\r\n            </mat-list-option>\r\n        </mat-selection-list>\r\n\r\n        <button mat-raised-button color=\"primary\" (click)=\"onUpdateClick()\" [disabled]=\"columns && columns.selectedOptions.selected.length == 0\">Update</button>\r\n    </div>\r\n    <div class=\"col-md-10\">\r\n        <div class=\"clearfix\">\r\n            <mat-form-field class=\"pull-right\" floatPlaceholder=\"never\">\r\n                <input matInput #filter placeholder=\"Filter reports\">\r\n            </mat-form-field>\r\n        </div>\r\n\r\n        <div [style.display]=\"showDataTable ? 'block' : 'none'\">\r\n            <mat-table #table [dataSource]=\"dataSource\" matSort matSortActive=\"id\" matSortDisableClear matSortDirection=\"asc\">\r\n                <ng-container *ngFor=\"let column of columnNames\" [matColumnDef]=\"column.columnDef\">\r\n                    <mat-header-cell *matHeaderCellDef>{{ column.header }}</mat-header-cell>\r\n                    <mat-cell *matCellDef=\"let row\">{{ column.cell(row) }}</mat-cell>\r\n                </ng-container>\r\n\r\n                <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\r\n                <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\r\n\r\n            </mat-table>\r\n\r\n            <mat-paginator #paginator\r\n                           [length]=\"dataSource.totalCount\"\r\n                           [pageSize]=\"2\">\r\n            </mat-paginator>\r\n        </div>\r\n        \r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 /* 116 */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<h1>Reports</h1>\r\n\r\n<div class=\"add-button-fixed\">\r\n    <button mat-fab color=\"primary\" matTooltip=\"New report\" matTooltipPosition=\"left\"><i class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></i></button>\r\n</div>\r\n\r\n<div class=\"clearfix\">\r\n    <mat-form-field class=\"pull-right\" floatPlaceholder=\"never\">\r\n        <input matInput #filter placeholder=\"Filter reports\">\r\n    </mat-form-field>\r\n</div>\r\n\r\n<mat-table #table [dataSource]=\"dataSource\" matSort matSortActive=\"id\" matSortDisableClear matSortDirection=\"asc\">\r\n    <ng-container matColumnDef=\"id\">\r\n        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\"> {{row.id}} </mat-cell>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"name\">\r\n        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\"> {{row.name}} </mat-cell>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"query\">\r\n        <mat-header-cell *matHeaderCellDef mat-sort-header> Query </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\"> {{row.query.name}} </mat-cell>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"createdBy\">\r\n        <mat-header-cell *matHeaderCellDef mat-sort-header> Created by </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\"> {{row.createdBy.name}} </mat-cell>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"createdAt\">\r\n        <mat-header-cell *matHeaderCellDef mat-sort-header> Created </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\"> {{row.createdAt}} </mat-cell>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"modifiedBy\">\r\n        <mat-header-cell *matHeaderCellDef mat-sort-header> Modified by </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\"> {{row.modifiedBy.name}} </mat-cell>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"modifiedAt\">\r\n        <mat-header-cell *matHeaderCellDef mat-sort-header> Modified </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\"> {{row.modifiedAt}} </mat-cell>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"actions\">\r\n        <mat-header-cell *matHeaderCellDef></mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\">\r\n            <button mat-icon-button matTooltip=\"Edit report\" matTooltipPosition=\"above\" ><i class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></i></button>\r\n            <button mat-icon-button matTooltip=\"Delete report\" matTooltipPosition=\"above\" (click)=\"deleteReport(row.id)\"><i class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></i></button>\r\n            <button mat-icon-button matTooltip=\"Share report\" matTooltipPosition=\"above\" (click)=\"openShareDialog(row.id, row.name)\"><i class=\"glyphicon glyphicon-share-alt\" aria-hidden=\"true\"></i></button>\r\n        </mat-cell>\r\n    </ng-container>\r\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\r\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\r\n</mat-table>\r\n\r\n<mat-paginator #paginator\r\n              [length]=\"dataSource.totalCount\"\r\n              [pageSize]=\"25\">\r\n</mat-paginator>";
+module.exports = "\r\n<h1>Reports</h1>\r\n\r\n<div class=\"add-button-fixed\">\r\n    <button [routerLink]=\"['/report']\" mat-fab color=\"primary\" matTooltip=\"New report\" matTooltipPosition=\"left\"><i class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></i></button>\r\n</div>\r\n\r\n<div class=\"clearfix\">\r\n    <mat-form-field class=\"pull-right\" floatPlaceholder=\"never\">\r\n        <input matInput #filter placeholder=\"Filter reports\">\r\n    </mat-form-field>\r\n</div>\r\n\r\n<mat-table #table [dataSource]=\"dataSource\" matSort matSortActive=\"id\" matSortDisableClear matSortDirection=\"asc\">\r\n    <ng-container matColumnDef=\"id\">\r\n        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\"> {{row.id}} </mat-cell>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"name\">\r\n        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\"> {{row.name}} </mat-cell>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"query\">\r\n        <mat-header-cell *matHeaderCellDef mat-sort-header> Query </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\"> {{row.query.name}} </mat-cell>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"createdBy\">\r\n        <mat-header-cell *matHeaderCellDef mat-sort-header> Created by </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\"> {{row.createdBy.name}} </mat-cell>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"createdAt\">\r\n        <mat-header-cell *matHeaderCellDef mat-sort-header> Created </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\"> {{row.createdAt}} </mat-cell>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"modifiedBy\">\r\n        <mat-header-cell *matHeaderCellDef mat-sort-header> Modified by </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\"> {{row.modifiedBy.name}} </mat-cell>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"modifiedAt\">\r\n        <mat-header-cell *matHeaderCellDef mat-sort-header> Modified </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\"> {{row.modifiedAt}} </mat-cell>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"actions\">\r\n        <mat-header-cell *matHeaderCellDef></mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\">\r\n            <button mat-icon-button matTooltip=\"Edit report\" matTooltipPosition=\"above\" ><i class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></i></button>\r\n            <button mat-icon-button matTooltip=\"Delete report\" matTooltipPosition=\"above\" (click)=\"deleteReport(row.id)\"><i class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></i></button>\r\n            <button mat-icon-button matTooltip=\"Share report\" matTooltipPosition=\"above\" (click)=\"openShareDialog(row.id, row.name)\"><i class=\"glyphicon glyphicon-share-alt\" aria-hidden=\"true\"></i></button>\r\n        </mat-cell>\r\n    </ng-container>\r\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\r\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\r\n</mat-table>\r\n\r\n<mat-paginator #paginator\r\n              [length]=\"dataSource.totalCount\"\r\n              [pageSize]=\"25\">\r\n</mat-paginator>";
 
 /***/ }),
 /* 117 */
@@ -46195,8 +46228,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Observable_1 = __webpack_require__(6);
-var subscribeToResult_1 = __webpack_require__(40);
-var OuterSubscriber_1 = __webpack_require__(39);
+var subscribeToResult_1 = __webpack_require__(41);
+var OuterSubscriber_1 = __webpack_require__(40);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}

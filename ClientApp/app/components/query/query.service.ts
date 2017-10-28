@@ -13,7 +13,7 @@ import { IQueryColumns } from "./query";
 @Injectable()
 export class QueryService {
     private _idNameUrl = './api/queries-idname.json';
-    private _columnUrl = './api/query-columns.json';
+    private _columnUrl = './api/query-columns-report.json';
 
     constructor(private _http: Http) { }
 

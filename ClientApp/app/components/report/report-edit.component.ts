@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Http } from '@angular/http';
 import { DataSource } from '@angular/cdk/collections';
-import { MatSort, MatPaginator, MatDialog } from '@angular/material';
+import { MatSort, MatPaginator, MatDialog, MatSelectionList } from '@angular/material';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
@@ -24,19 +24,31 @@ import { IQueryColumns } from '../query/query';
     //styleUrls: [ './report-edit.component.css' ]
 })
 export class ReportEditComponent implements OnInit {
-    displayedColumns = ['id', 'name', 'query', 'createdBy', 'createdAt', 'modifiedBy', 'modifiedAt', 'actions'];
+
+    columnNames = [
+        { columnDef: 'id', header: 'ID', cell: (row: IReport) => `${row.id}` },
+        { columnDef: 'name', header: 'Name', cell: (row: IReport) => `${row.name}` }
+    ];
+
+    /** Column definitions in order */
+    displayedColumns = this.columnNames.map(x => x.columnDef);
+    //displayedColumns = ['id', 'name', 'query', 'createdBy', 'createdAt', 'modifiedBy', 'modifiedAt', 'actions'];
     queryService: QueryService | null;
+    service: ReportService | null;
     dataSource: ExampleDataSource | null;
     selectedValue: string;
+    showDataTable: boolean;
 
     queries: IEntityWithIdName[];
     queryColumns: IQueryColumns;
+
 
     constructor(private http: Http, private dialog: MatDialog) { }
 
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild('filter') filter: ElementRef;
+    @ViewChild('columns') columns: MatSelectionList;
 
 
     ngOnInit() {
@@ -44,6 +56,9 @@ export class ReportEditComponent implements OnInit {
         this.queryService.getQueriesIdName()
             .subscribe(queries => this.queries = queries);
 
+        this.showDataTable = false;
+        this.service = new ReportService(this.http);
+        this.dataSource = new ExampleDataSource(this.service!, this.sort, this.paginator);
         /*this.queryService.getQueryColumns(Number(this.selectedValue))
             .subscribe(data => this.queryColumns = data);*/
             /*.map(data => {
@@ -52,8 +67,7 @@ export class ReportEditComponent implements OnInit {
             .catch(() => {
                 return Observable.of([]);
             });*/
-
-        //this.dataSource = new ExampleDataSource(this.service!, this.sort, this.paginator);
+        
         /*Observable.fromEvent(this.querySelect.nativeElement, 'change')
             .distinctUntilChanged()
             .subscribe(() => {
@@ -67,6 +81,16 @@ export class ReportEditComponent implements OnInit {
                 .subscribe(data => this.queryColumns = data);
     }
 
+    onUpdateClick(): void {
+
+        this.columnNames = [];
+        this.columns.selectedOptions.selected.forEach(x => {
+            this.columnNames.push({ columnDef: x.value, header: x.value, cell: (row: IReport) => `${(<any>row)[x.value]}` });
+        });
+
+        this.displayedColumns = this.columnNames.map(x => x.columnDef);
+        this.showDataTable = true;
+    }
 
     deleteReport(id: number): boolean {
         console.log("okker:"+ id);

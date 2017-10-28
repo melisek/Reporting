@@ -22,7 +22,10 @@ import {
     MatTooltipModule,
     MatDialogModule,
     MatSelectModule,
-    MatListModule
+    MatListModule,
+    MatSnackBarModule,
+    //MatSidenav,
+    MatToolbarModule
 } from '@angular/material';
 
 
@@ -89,7 +92,9 @@ import { MATERIAL_COMPATIBILITY_MODE, MAT_PLACEHOLDER_GLOBAL_OPTIONS } from '@an
         MatTooltipModule,
         MatDialogModule,
         MatSelectModule,
-        MatListModule
+        MatListModule,
+        MatSnackBarModule,
+        MatToolbarModule
     ],
     exports: [
         MatButtonModule,
@@ -105,7 +110,9 @@ import { MATERIAL_COMPATIBILITY_MODE, MAT_PLACEHOLDER_GLOBAL_OPTIONS } from '@an
         MatTooltipModule,
         MatDialogModule,
         MatSelectModule,
-        MatListModule
+        MatListModule,
+        MatSnackBarModule,
+        MatToolbarModule
     ],
     providers: [
         { provide: MATERIAL_COMPATIBILITY_MODE, useValue: true },

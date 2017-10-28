@@ -1,3 +1,8 @@
+.app-toolbar-filler {
+    flex: 1 1 auto;
+}
+
+
 /*li .glyphicon {
     margin-right: 10px;
 }

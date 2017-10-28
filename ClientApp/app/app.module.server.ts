@@ -6,6 +6,7 @@ import { NoopAnimationsModule, ɵAnimationRendererFactory } from '@angular/platf
 
 import { AppModuleShared } from './app.module.shared';
 import { AppComponent } from './components/app/app.component';
+import { MatSidenavContainer } from '@angular/material'
 //import { ReportModule } from './components/report/report.module';
 
 // declarations
@@ -43,7 +44,7 @@ export const SERVER_RENDER_PROVIDERS = [
     imports: [
         ServerModule,
         NoopAnimationsModule,      
-        AppModuleShared,
+        AppModuleShared
         //ReportModule,
         //AppRoutingModule
     ],

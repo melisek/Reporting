@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Http } from '@angular/http';
 import { DataSource } from '@angular/cdk/collections';
-import { MatSort, MatPaginator, MatDialog } from '@angular/material';
+import { MatSort, MatPaginator, MatDialog, MatSnackBar } from '@angular/material';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
@@ -31,7 +31,7 @@ export class ReportComponent implements OnInit {
 
     sharePermissions: IEntityWithIdName[];
 
-    constructor(private http: Http, private dialog: MatDialog) { }
+    constructor(private http: Http, private dialog: MatDialog, private snackbar: MatSnackBar) { }
 
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -83,6 +83,9 @@ export class ReportComponent implements OnInit {
             console.log('The dialog was closed');
             if (result != undefined) {
                 console.log(`email:${result.email};permission:${result.permission}`);
+                this.snackbar.open(`${result.reportName} shared with ${result.email}.`, 'OK', {
+                    duration: 5000
+                });
             //this.animal = result;
             }
         });
