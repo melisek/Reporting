@@ -34,7 +34,7 @@ export class ReportEditComponent implements OnInit {
     displayedColumns = this.columnNames.map(x => x.columnDef);
     //displayedColumns = ['id', 'name', 'query', 'createdBy', 'createdAt', 'modifiedBy', 'modifiedAt', 'actions'];
     queryService: QueryService | null;
-    service: ReportService | null;
+    reportService: ReportService | null;
     dataSource: ExampleDataSource | null;
     selectedValue: string;
     showDataTable: boolean;
@@ -57,8 +57,8 @@ export class ReportEditComponent implements OnInit {
             .subscribe(queries => this.queries = queries);
 
         this.showDataTable = false;
-        this.service = new ReportService(this.http);
-        this.dataSource = new ExampleDataSource(this.service!, this.sort, this.paginator);
+        this.reportService = new ReportService(this.http);
+        this.dataSource = new ExampleDataSource(this.reportService!, this.sort, this.paginator);
         /*this.queryService.getQueryColumns(Number(this.selectedValue))
             .subscribe(data => this.queryColumns = data);*/
             /*.map(data => {
@@ -90,6 +90,16 @@ export class ReportEditComponent implements OnInit {
 
         this.displayedColumns = this.columnNames.map(x => x.columnDef);
         this.showDataTable = true;
+    }
+
+    onSaveClick(): void {
+        /*let report: IReport;
+
+        if (this.reportService != null)
+            if(this.reportService.addReport(report)
+                .subscribe())*/
+
+        
     }
 
     deleteReport(id: number): boolean {

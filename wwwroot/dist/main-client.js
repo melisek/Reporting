@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "c8a9399140c6ea82b5a5"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "da2714a44711f27f2bca"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -11772,13 +11772,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var ReportService = /** @class */ (function () {
     function ReportService(_http) {
         this._http = _http;
-        this._reportsUrl = './api/reports.json';
+        this._listUrl = './api/reports.json';
+        this._addUrl = './api/reports.json';
         this._deleteUrl = './api/delete/';
     }
     ReportService.prototype.getReports = function (sort, order, page) {
-        return this._http.get(this._reportsUrl)
+        return this._http.get(this._listUrl)
             .map(function (response) { return response.json(); })
             .do(function (data) { return console.log("Reports: " + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
+    ReportService.prototype.addReport = function (report) {
+        return this._http.post(this._addUrl, report)
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log("Add report: " + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     ReportService.prototype.deleteReport = function (id) {
@@ -43917,8 +43924,8 @@ var ReportEditComponent = /** @class */ (function () {
         this.queryService.getQueriesIdName()
             .subscribe(function (queries) { return _this.queries = queries; });
         this.showDataTable = false;
-        this.service = new __WEBPACK_IMPORTED_MODULE_14__report_service__["a" /* ReportService */](this.http);
-        this.dataSource = new ExampleDataSource(this.service, this.sort, this.paginator);
+        this.reportService = new __WEBPACK_IMPORTED_MODULE_14__report_service__["a" /* ReportService */](this.http);
+        this.dataSource = new ExampleDataSource(this.reportService, this.sort, this.paginator);
         /*this.queryService.getQueryColumns(Number(this.selectedValue))
             .subscribe(data => this.queryColumns = data);*/
         /*.map(data => {
@@ -43947,6 +43954,13 @@ var ReportEditComponent = /** @class */ (function () {
         });
         this.displayedColumns = this.columnNames.map(function (x) { return x.columnDef; });
         this.showDataTable = true;
+    };
+    ReportEditComponent.prototype.onSaveClick = function () {
+        /*let report: IReport;
+
+        if (this.reportService != null)
+            if(this.reportService.addReport(report)
+                .subscribe())*/
     };
     ReportEditComponent.prototype.deleteReport = function (id) {
         console.log("okker:" + id);
@@ -44439,7 +44453,7 @@ exports = module.exports = __webpack_require__(26)(undefined);
 
 
 // module
-exports.push([module.i, ".margintop20 {\r\n    margin-top:20px;\r\n}", ""]);
+exports.push([module.i, ".margintop20 {\r\n    margin-top:20px;\r\n}\r\n\r\n#name {\r\n    font-size: 36px;\r\n    width: 400px\r\n}", ""]);
 
 // exports
 
@@ -44820,7 +44834,7 @@ module.exports = "<!--<div class='main-nav'>\r\n    <div class='navbar navbar-in
 /* 116 */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<h1>Edit Report</h1>\r\n\r\n<div class=\"row\">\r\n    <div class=\"col-md-2\">\r\n\r\n        <form>\r\n            <mat-select placeholder=\"Query\" [(ngModel)]=\"selectedValue\" (ngModelChange)=\"queryChange()\" name=\"query\" class=\"margintop20\">\r\n                <mat-option *ngFor=\"let query of queries\" [value]=\"query.id\">\r\n                    {{query.name}}\r\n                </mat-option>\r\n            </mat-select>\r\n        </form>\r\n\r\n        <mat-selection-list #columns *ngIf=\"queryColumns\" class=\"margintop20\">\r\n            <mat-list-option *ngFor=\"let column of queryColumns.columns\" value=\"{{column}}\">\r\n                {{column}}\r\n            </mat-list-option>\r\n        </mat-selection-list>\r\n\r\n        <button mat-raised-button color=\"primary\" (click)=\"onUpdateClick()\" [disabled]=\"columns && columns.selectedOptions.selected.length == 0\" class=\"margintop20\">Update</button>\r\n    </div>\r\n    <div class=\"col-md-10\">\r\n        <div class=\"clearfix\">\r\n            <mat-form-field class=\"pull-right\" floatPlaceholder=\"never\">\r\n                <input matInput #filter placeholder=\"Filter reports\">\r\n            </mat-form-field>\r\n        </div>\r\n\r\n        <div [style.display]=\"showDataTable ? 'block' : 'none'\">\r\n            <mat-table #table [dataSource]=\"dataSource\" matSort matSortActive=\"id\" matSortDisableClear matSortDirection=\"asc\">\r\n                <ng-container *ngFor=\"let column of columnNames\" [matColumnDef]=\"column.columnDef\">\r\n                    <mat-header-cell *matHeaderCellDef>{{ column.header }}</mat-header-cell>\r\n                    <mat-cell *matCellDef=\"let row\">{{ column.cell(row) }}</mat-cell>\r\n                </ng-container>\r\n\r\n                <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\r\n                <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\r\n\r\n            </mat-table>\r\n\r\n            <mat-paginator #paginator\r\n                           [length]=\"dataSource.totalCount\"\r\n                           [pageSize]=\"2\">\r\n            </mat-paginator>\r\n        </div>\r\n        \r\n    </div>\r\n</div>\r\n";
+module.exports = "\r\n<div class=\"clearfix\">\r\n    <mat-form-field floatPlaceholder=\"never\">\r\n        <input matInput #name id=\"name\" placeholder=\"Report name\" >\r\n    </mat-form-field>\r\n</div>\r\n\r\n<div class=\"row\">\r\n    <div class=\"col-md-2\">\r\n\r\n        <form>\r\n            <mat-select placeholder=\"Query\" #query [(ngModel)]=\"selectedValue\" (ngModelChange)=\"queryChange()\" name=\"query\" class=\"margintop20\">\r\n                <mat-option *ngFor=\"let query of queries\" [value]=\"query.id\">\r\n                    {{query.name}}\r\n                </mat-option>\r\n            </mat-select>\r\n        </form>\r\n\r\n        <mat-selection-list #columns *ngIf=\"queryColumns\" class=\"margintop20\">\r\n            <mat-list-option *ngFor=\"let column of queryColumns.columns\" value=\"{{column}}\">\r\n                {{column}}\r\n            </mat-list-option>\r\n        </mat-selection-list>\r\n\r\n        <button mat-raised-button color=\"primary\" (click)=\"onSaveClick()\" [disabled]=\"query && columns && columns.selectedOptions.selected.length == 0\" class=\"margintop20\">Save</button>\r\n        <button mat-raised-button color=\"accent\" (click)=\"onUpdateClick()\" [disabled]=\"query && columns && columns.selectedOptions.selected.length == 0\" class=\"margintop20\">Update</button>\r\n    </div>\r\n    <div class=\"col-md-10\">\r\n        <div class=\"clearfix\">\r\n            <mat-form-field class=\"pull-right\" floatPlaceholder=\"never\">\r\n                <input matInput #filter placeholder=\"Filter reports\">\r\n            </mat-form-field>\r\n        </div>\r\n\r\n        <div [style.display]=\"showDataTable ? 'block' : 'none'\">\r\n            <mat-table #table [dataSource]=\"dataSource\" matSort matSortActive=\"id\" matSortDisableClear matSortDirection=\"asc\">\r\n                <ng-container *ngFor=\"let column of columnNames\" [matColumnDef]=\"column.columnDef\">\r\n                    <mat-header-cell *matHeaderCellDef>{{ column.header }}</mat-header-cell>\r\n                    <mat-cell *matCellDef=\"let row\">{{ column.cell(row) }}</mat-cell>\r\n                </ng-container>\r\n\r\n                <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\r\n                <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\r\n\r\n            </mat-table>\r\n\r\n            <mat-paginator #paginator\r\n                           [length]=\"dataSource.totalCount\"\r\n                           [pageSize]=\"2\">\r\n            </mat-paginator>\r\n        </div>\r\n        \r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 /* 117 */

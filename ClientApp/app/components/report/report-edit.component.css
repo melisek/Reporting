@@ -1,3 +1,8 @@
 ﻿.margintop20 {
     margin-top:20px;
 }
+
+#name {
+    font-size: 36px;
+    width: 400px
+}

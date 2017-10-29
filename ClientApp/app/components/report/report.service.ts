@@ -7,21 +7,29 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 
-import { IReportList } from "./report";
+import { IReportList, IReport } from "./report";
 import { IResponseResult } from "../shared/shared-interfaces";
 
 @Injectable()
 export class ReportService {
-    private _reportsUrl = './api/reports.json';
+    private _listUrl = './api/reports.json';
+    private _addUrl = './api/reports.json';
     private _deleteUrl = './api/delete/';
 
 
     constructor(private _http: Http) { }
 
     getReports(sort: string, order: string, page: number): Observable<IReportList> {
-        return this._http.get(this._reportsUrl)
+        return this._http.get(this._listUrl)
             .map(response => response.json() as IReportList)
             .do(data => console.log("Reports: " + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    addReport(report: IReport): Observable<IResponseResult> {
+        return this._http.post(this._addUrl, report)
+            .map(response => response.json() as IResponseResult)
+            .do(data => console.log("Add report: " + JSON.stringify(data)))
             .catch(this.handleError);
     }
 

@@ -5,4 +5,5 @@
 
 export interface IResponseResult {
     result: boolean;
+    error: string;
 }
