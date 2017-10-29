@@ -1,47 +1,63 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+//import { Component, ElementRef, ViewChild } from '@angular/core';
+//import { DataSource } from '@angular/cdk/collections';
+//import { MdSort, MdPaginator } from '@angular/material';
+//import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+//import { Observable } from 'rxjs/Observable';
+//import 'rxjs/add/operator/startWith';
+//import 'rxjs/add/observable/merge';
+//import 'rxjs/add/operator/map';
+//import 'rxjs/add/operator/debounceTime';
+//import 'rxjs/add/operator/distinctUntilChanged';
+//import 'rxjs/add/observable/fromEvent';
+
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Http } from '@angular/http';
 import { DataSource } from '@angular/cdk/collections';
-import { MdSort, MdPaginator } from '@angular/material';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { MatPaginator, MatSort } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
     selector: 'home',
     templateUrl: './home.component.html'
 })
-export class HomeComponent {
-    displayedColumns = ['userId', 'userName', 'progress', 'color'];
-    exampleDatabase = new ExampleDatabase();
+export class HomeComponent implements OnInit {
+    displayedColumns = ['created_at', 'state', 'number', 'title'];
+    exampleDatabase: ExampleDatabase | null;
     dataSource: ExampleDataSource | null;
 
-    @ViewChild(MdSort) sort: MdSort;
-    @ViewChild(MdPaginator) paginator: MdPaginator;
-    @ViewChild('filter') filter: ElementRef;
-    
+    @ViewChild(MatSort) sort: MatSort;
+    @ViewChild(MatPaginator) paginator: MatPaginator;
+    //@ViewChild('filter') filter: ElementRef;
+
+    constructor(private http: Http) { }
 
     ngOnInit() {
-        this.dataSource = new ExampleDataSource(this.exampleDatabase, this.sort, this.paginator);
+        this.exampleDatabase = new ExampleDatabase(this.http);
+        this.dataSource = new ExampleDataSource(
+            this.exampleDatabase!, this.paginator, this.sort);
+        /*this.dataSource = new ExampleDataSource(this.exampleDatabase, this.sort, this.paginator);
         Observable.fromEvent(this.filter.nativeElement, 'keyup')
             .debounceTime(150)
             .distinctUntilChanged()
             .subscribe(() => {
                 if (!this.dataSource) { return; }
                 this.dataSource.filter = this.filter.nativeElement.value;
-            });
+            });*/
     }
 }
 
 /** Constants used to fill up our data base. */
-const COLORS = ['maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple',
-    'fuchsia', 'lime', 'teal', 'aqua', 'blue', 'navy', 'black', 'gray'];
-const NAMES = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
-    'Charlotte', 'Theodore', 'Isla', 'Oliver', 'Isabella', 'Jasper',
-    'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'];
+//const COLORS = ['maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple',
+//    'fuchsia', 'lime', 'teal', 'aqua', 'blue', 'navy', 'black', 'gray'];
+//const NAMES = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
+//    'Charlotte', 'Theodore', 'Isla', 'Oliver', 'Isabella', 'Jasper',
+//    'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'];
 
 export interface UserData {
     id: string;
@@ -50,36 +66,30 @@ export interface UserData {
     color: string;
 }
 
+export interface GithubApi {
+    items: GithubIssue[];
+    total_count: number;
+}
+
+export interface GithubIssue {
+    created_at: string;
+    number: string;
+    state: string;
+    title: string;
+}
+
 /** An example database that the data source uses to retrieve data for the table. */
 export class ExampleDatabase {
     /** Stream that emits whenever the data has been modified. */
-    dataChange: BehaviorSubject<UserData[]> = new BehaviorSubject<UserData[]>([]);
-    get data(): UserData[] { return this.dataChange.value; }
+    constructor(private http: Http) { }
 
-    constructor() {
-        // Fill up the database with 100 users.
-        for (let i = 0; i < 100; i++) { this.addUser(); }
-    }
+    getRepoIssues(sort: string, order: string, page: number): Observable<GithubApi> {
+        const href = 'https://api.github.com/search/issues';
+        const requestUrl =
+            `${href}?q=repo:angular/material2&sort=${sort}&order=${order}&page=${page + 1}`;
 
-    /** Adds a new user to the database. */
-    addUser() {
-        const copiedData = this.data.slice();
-        copiedData.push(this.createNewUser());
-        this.dataChange.next(copiedData);
-    }
-
-    /** Builds and returns a new User. */
-    private createNewUser() {
-        const name =
-            NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-            NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-        return {
-            id: (this.data.length + 1).toString(),
-            name: name,
-            progress: Math.round(Math.random() * 100).toString(),
-            color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-        };
+        return this.http.get(requestUrl)
+            .map(response => response.json() as GithubApi);
     }
 }
 
@@ -91,42 +101,69 @@ export class ExampleDatabase {
  * should be rendered.
  */
 export class ExampleDataSource extends DataSource<any> {
+    resultsLength = 0;
+    isLoadingResults = false;
+    isRateLimitReached = false;
+    //_filterChange = new BehaviorSubject('');
+    //get filter(): string { return this._filterChange.value; }
+    //set filter(filter: string) { this._filterChange.next(filter); }
 
-    _filterChange = new BehaviorSubject('');
-    get filter(): string { return this._filterChange.value; }
-    set filter(filter: string) { this._filterChange.next(filter); }
-
-    constructor(private _exampleDatabase: ExampleDatabase, private _sort: MdSort, private _paginator: MdPaginator) {
+    constructor(private exampleDatabase: ExampleDatabase, private paginator: MatPaginator, private sort: MatSort ) {
         super();
     }
    
     /** Connect function called by the table to retrieve one stream containing the data to render. */
-    connect(): Observable<UserData[]> {
+    connect(): Observable<GithubIssue[]> {
         const displayDataChanges = [
-            this._exampleDatabase.dataChange,
-            this._sort.sortChange,
-            this._filterChange,
-            this._paginator.page,
+            //this._exampleDatabase.dataChange,
+            this.sort.sortChange,
+            //this._filterChange,
+            this.paginator.page,
         ];
+
+
+        this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+
+        return Observable.merge(...displayDataChanges)
+            .startWith(null)
+            .switchMap(() => {
+                this.isLoadingResults = true;
+                return this.exampleDatabase.getRepoIssues(
+                    this.sort.active, this.sort.direction, this.paginator.pageIndex);
+            })
+            .map(data => {
+                // Flip flag to show that loading has finished.
+                this.isLoadingResults = false;
+                this.isRateLimitReached = false;
+                this.resultsLength = data.total_count;
+
+                return data.items;
+            })
+            .catch(() => {
+                this.isLoadingResults = false;
+                // Catch if the GitHub API has reached its rate limit. Return empty data.
+                this.isRateLimitReached = true;
+                return Observable.of([]);
+            });
 
         /*return Observable.merge(...displayDataChanges).map(() => {
             return ;
         });*/
 
-        return Observable.merge(...displayDataChanges).map(() => {
+        /*return Observable.merge(...displayDataChanges).map(() => {
 
             const data = this.getSortedData();
 
             // Grab the page's slice of data.
             const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
             return data.splice(startIndex, this._paginator.pageSize);
-        });
+        });*/
     }
 
     disconnect() { }
 
     /** Returns a sorted copy of the database data. */
-    getSortedData(): UserData[] {
+    /*getSortedData(): UserData[] {
         const data = this._exampleDatabase.data.slice().filter((item: UserData) => {
             let searchStr = (item.name + item.color).toLowerCase();
             return searchStr.indexOf(this.filter.toLowerCase()) != -1;
@@ -150,5 +187,5 @@ export class ExampleDataSource extends DataSource<any> {
 
             return (valueA < valueB ? -1 : 1) * (this._sort.direction == 'asc' ? 1 : -1);
         });
-    }
+    }*/
 }

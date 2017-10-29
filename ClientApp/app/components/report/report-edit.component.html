@@ -1,0 +1,54 @@
+
+<div class="clearfix">
+    <mat-form-field floatPlaceholder="never">
+        <input matInput #name id="name" placeholder="Report name" >
+    </mat-form-field>
+</div>
+
+<div class="row">
+    <div class="col-md-2">
+
+        <form>
+            <mat-select placeholder="Query" #query [(ngModel)]="selectedValue" (ngModelChange)="queryChange()" name="query" class="margintop20">
+                <mat-option *ngFor="let query of queries" [value]="query.id">
+                    {{query.name}}
+                </mat-option>
+            </mat-select>
+        </form>
+
+        <mat-selection-list #columns *ngIf="queryColumns" class="margintop20">
+            <mat-list-option *ngFor="let column of queryColumns.columns" value="{{column}}">
+                {{column}}
+            </mat-list-option>
+        </mat-selection-list>
+
+        <button mat-raised-button color="primary" (click)="onSaveClick()" [disabled]="query && columns && columns.selectedOptions.selected.length == 0" class="margintop20">Save</button>
+        <button mat-raised-button color="accent" (click)="onUpdateClick()" [disabled]="query && columns && columns.selectedOptions.selected.length == 0" class="margintop20">Update</button>
+    </div>
+    <div class="col-md-10">
+        <div class="clearfix">
+            <mat-form-field class="pull-right" floatPlaceholder="never">
+                <input matInput #filter placeholder="Filter reports">
+            </mat-form-field>
+        </div>
+
+        <div [style.display]="showDataTable ? 'block' : 'none'">
+            <mat-table #table [dataSource]="dataSource" matSort matSortActive="id" matSortDisableClear matSortDirection="asc">
+                <ng-container *ngFor="let column of columnNames" [matColumnDef]="column.columnDef">
+                    <mat-header-cell *matHeaderCellDef>{{ column.header }}</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ column.cell(row) }}</mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+            </mat-table>
+
+            <mat-paginator #paginator
+                           [length]="dataSource.totalCount"
+                           [pageSize]="2">
+            </mat-paginator>
+        </div>
+        
+    </div>
+</div>

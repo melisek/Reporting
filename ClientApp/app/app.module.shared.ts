@@ -6,63 +6,117 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-
+import { HttpClientModule } from '@angular/common/http';
 
 import {
-    MdButtonModule, MdCheckboxModule, MdInputModule, MdCardModule, MdMenuModule, MdButtonToggleModule, MdSidenavModule, MdSortModule, MdTableModule, MdPaginatorModule
+    MatButtonModule,
+    MatCheckboxModule,
+    MatInputModule,
+    MatCardModule,
+    MatButtonToggleModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatSortModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatTooltipModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatListModule,
+    MatSnackBarModule,
+    //MatSidenav,
+    MatToolbarModule
 } from '@angular/material';
 
 
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
-import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
-import { CounterComponent } from './components/counter/counter.component';
+import { ShareDialogComponent } from './components/shared/share-dialog.component';
+import { ReportComponent } from './components/report/report-list.component';
+import { ReportEditComponent } from './components/report/report-edit.component';
+//import { ReportModule } from './components/report/report.module';
+
+import { TableHttpExample } from './components/table/table-http-example';
+
+import { MATERIAL_COMPATIBILITY_MODE, MAT_PLACEHOLDER_GLOBAL_OPTIONS } from '@angular/material';
+
+
+
 
 @NgModule({
     declarations: [
         AppComponent,
         NavMenuComponent,
-        CounterComponent,
-        FetchDataComponent,
-        HomeComponent
+        HomeComponent,
+        TableHttpExample,
+        ShareDialogComponent,
+        ReportComponent,
+        ReportEditComponent
     ],
+    entryComponents: [ShareDialogComponent],
     imports: [
         //BrowserModule,
         BrowserAnimationsModule,    
         CommonModule,
         HttpModule,
+        HttpClientModule,
         FormsModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
-            { path: 'counter', component: CounterComponent },
-            { path: 'fetch-data', component: FetchDataComponent },
+            {
+                path: 'reports',
+                component: ReportComponent
+            },
+            {
+                path: 'report',
+                component: ReportEditComponent
+            },
+            { path: 'table', component: TableHttpExample },
             { path: '**', redirectTo: 'home' }
         ]),
 
-        MdButtonModule,
-        MdCheckboxModule,
-        MdInputModule,
-        MdCardModule,
-        MdButtonToggleModule,
-        MdMenuModule,
-        MdSidenavModule,
-        MdSortModule,
-        MdTableModule,
-        MdPaginatorModule
+        //ReportModule,
+
+        MatButtonModule,
+        MatCheckboxModule,
+        MatInputModule,
+        MatCardModule,
+        MatButtonToggleModule,
+        MatMenuModule,
+        MatSidenavModule,
+        MatSortModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatTooltipModule,
+        MatDialogModule,
+        MatSelectModule,
+        MatListModule,
+        MatSnackBarModule,
+        MatToolbarModule
     ],
     exports: [
-        MdButtonModule,
-        MdCheckboxModule,
-        MdInputModule,
-        MdCardModule,
-        MdButtonToggleModule,
-        MdMenuModule,
-        MdSidenavModule,
-        MdSortModule,
-        MdTableModule,
-        MdPaginatorModule
+        MatButtonModule,
+        MatCheckboxModule,
+        MatInputModule,
+        MatCardModule,
+        MatButtonToggleModule,
+        MatMenuModule,
+        MatSidenavModule,
+        MatSortModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatTooltipModule,
+        MatDialogModule,
+        MatSelectModule,
+        MatListModule,
+        MatSnackBarModule,
+        MatToolbarModule
+    ],
+    providers: [
+        { provide: MATERIAL_COMPATIBILITY_MODE, useValue: true },
+        { provide: MAT_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'always' } }
     ]
 })
 export class AppModuleShared {

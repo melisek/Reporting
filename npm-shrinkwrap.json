@@ -9,7 +9,7 @@
     },
     "@angular/cdk": {
       "version": "2.0.0-beta.11",
-      "from": "@angular/cdk@latest",
+      "from": "https://registry.npmjs.org/@angular/cdk/-/cdk-2.0.0-beta.11.tgz",
       "resolved": "https://registry.npmjs.org/@angular/cdk/-/cdk-2.0.0-beta.11.tgz"
     },
     "@angular/common": {
@@ -51,7 +51,7 @@
     },
     "@angular/material": {
       "version": "2.0.0-beta.11",
-      "from": "@angular/material@latest",
+      "from": "https://registry.npmjs.org/@angular/material/-/material-2.0.0-beta.11.tgz",
       "resolved": "https://registry.npmjs.org/@angular/material/-/material-2.0.0-beta.11.tgz"
     },
     "@angular/platform-browser": {

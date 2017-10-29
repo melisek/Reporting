@@ -24,7 +24,26 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\components\report\report.module.ts" />
+    <None Remove="ClientApp\app\components\report\report.service.ts" />
+    <None Remove="ClientApp\app\components\shared\share-dialog.component.ts" />
+    <None Remove="ClientApp\app\components\shared\shared-interfaces.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="BusinessLogic\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\query\query.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\query\query.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\report\report-edit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\report\report-list.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\report\report.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\report\report.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\report\report.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\shared\share-dialog.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\shared\shared-interfaces.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
