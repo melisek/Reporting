@@ -21,7 +21,7 @@ import { IQueryColumns } from '../query/query';
 
 @Component({
     templateUrl: './report-edit.component.html',
-    //styleUrls: [ './report-edit.component.css' ]
+    styleUrls: [ './report-edit.component.css' ]
 })
 export class ReportEditComponent implements OnInit {
 

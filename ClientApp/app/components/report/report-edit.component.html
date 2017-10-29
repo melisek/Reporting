@@ -5,20 +5,20 @@
     <div class="col-md-2">
 
         <form>
-            <mat-select placeholder="Query" [(ngModel)]="selectedValue" (ngModelChange)="queryChange()" name="query">
+            <mat-select placeholder="Query" [(ngModel)]="selectedValue" (ngModelChange)="queryChange()" name="query" class="margintop20">
                 <mat-option *ngFor="let query of queries" [value]="query.id">
                     {{query.name}}
                 </mat-option>
             </mat-select>
         </form>
 
-        <mat-selection-list #columns *ngIf="queryColumns" >
+        <mat-selection-list #columns *ngIf="queryColumns" class="margintop20">
             <mat-list-option *ngFor="let column of queryColumns.columns" value="{{column}}">
                 {{column}}
             </mat-list-option>
         </mat-selection-list>
 
-        <button mat-raised-button color="primary" (click)="onUpdateClick()" [disabled]="columns && columns.selectedOptions.selected.length == 0">Update</button>
+        <button mat-raised-button color="primary" (click)="onUpdateClick()" [disabled]="columns && columns.selectedOptions.selected.length == 0" class="margintop20">Update</button>
     </div>
     <div class="col-md-10">
         <div class="clearfix">

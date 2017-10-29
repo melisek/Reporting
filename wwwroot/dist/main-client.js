@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d848be4750748ee543fa"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "c8a9399140c6ea82b5a5"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -704,7 +704,7 @@
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire(159)(__webpack_require__.s = 159);
+/******/ 	return hotCreateRequire(161)(__webpack_require__.s = 161);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -820,7 +820,7 @@ module.exports = vendor_8fc68ba9963ff0a39e85;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_Subject__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_cdk_keycodes__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_common__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_cdk_scrolling__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_cdk_scrolling__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_cdk_platform__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_cdk_overlay__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_cdk_portal__ = __webpack_require__(17);
@@ -5039,7 +5039,7 @@ module.exports = (__webpack_require__(1))(11);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return debounceTime$1; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return auditTime$1; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return takeUntil$1; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_operator_finally__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_operator_finally__ = __webpack_require__(132);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_operator_finally___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_operator_finally__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_catch__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_operator_catch__);
@@ -5049,7 +5049,7 @@ module.exports = (__webpack_require__(1))(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operator_filter__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operator_filter__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operator_share__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operator_share__ = __webpack_require__(159);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operator_share___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operator_share__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_operator_first__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_operator_first___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_operator_first__);
@@ -5057,7 +5057,7 @@ module.exports = (__webpack_require__(1))(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_operator_switchMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_rxjs_operator_switchMap__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_operator_startWith__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_operator_startWith___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_rxjs_operator_startWith__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_operator_debounceTime__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_operator_debounceTime__ = __webpack_require__(131);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_operator_debounceTime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs_operator_debounceTime__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_auditTime__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_auditTime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_rxjs_operator_auditTime__);
@@ -5512,7 +5512,7 @@ module.exports = (__webpack_require__(1))(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_cdk_portal__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Subject__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Subject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_cdk_scrolling__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_cdk_scrolling__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_cdk_bidi__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_cdk_coercion__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_cdk_keycodes__ = __webpack_require__(13);
@@ -8504,7 +8504,7 @@ module.exports = (__webpack_require__(1))(72);
 /* unused harmony export VERSION */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material_autocomplete__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_material_button__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_material_button__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_material_button_toggle__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_material_card__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_material_checkbox__ = __webpack_require__(73);
@@ -9314,7 +9314,7 @@ Observable_1.Observable.prototype.map = map_1.map;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_cdk_coercion__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_cdk_rxjs__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_material_core__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_observable_fromEvent__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_observable_fromEvent__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_observable_fromEvent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_observable_fromEvent__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common__ = __webpack_require__(4);
 /**
@@ -9877,16 +9877,98 @@ MdFormFieldModule.ctorParameters = function () { return []; };
 
 /***/ }),
 /* 26 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var FromEventObservable_1 = __webpack_require__(127);
+var FromEventObservable_1 = __webpack_require__(128);
 exports.fromEvent = FromEventObservable_1.FromEventObservable.create;
 //# sourceMappingURL=fromEvent.js.map
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9905,7 +9987,7 @@ exports.fromEvent = FromEventObservable_1.FromEventObservable.create;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Subscription__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Subscription___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Subscription__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_observable_fromEvent__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_observable_fromEvent__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_observable_fromEvent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_observable_fromEvent__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_observable_merge__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_observable_merge___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_observable_merge__);
@@ -10292,7 +10374,7 @@ ScrollDispatchModule.ctorParameters = function () { return []; };
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10665,88 +10747,6 @@ MdButtonModule.ctorParameters = function () { return []; };
 
 
 /***/ }),
-/* 29 */
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function(useSourceMap) {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if(item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
-
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
-		});
-
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
-
-	return [content].join('\n');
-}
-
-// Adapted from convert-source-map (MIT)
-function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-
-	return '/*# ' + data + ' */';
-}
-
-
-/***/ }),
 /* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10981,7 +10981,7 @@ ObserversModule.ctorParameters = function () { return []; };
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_observable_forkJoin__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_observable_forkJoin__ = __webpack_require__(156);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_observable_forkJoin___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_forkJoin__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_observable_of__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_observable_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_rxjs_observable_of__);
@@ -11841,7 +11841,7 @@ var ShareDialogComponent = /** @class */ (function () {
     ShareDialogComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'share-dialog',
-            template: __webpack_require__(117),
+            template: __webpack_require__(118),
         }),
         __param(1, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"])(__WEBPACK_IMPORTED_MODULE_1__angular_material__["x" /* MAT_DIALOG_DATA */])),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["y" /* MatDialogRef */], Object])
@@ -12723,7 +12723,7 @@ CdkTableModule.ctorParameters = function () { return []; };
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_material_core__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_cdk_keycodes__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_cdk_rxjs__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_observable_defer__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_observable_defer__ = __webpack_require__(129);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_observable_defer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs_observable_defer__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_Subject__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_rxjs_Subject__);
@@ -15139,7 +15139,7 @@ MdSelectModule.ctorParameters = function () { return []; };
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_cdk_keycodes__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_cdk_portal__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_cdk_rxjs__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_cdk_scrolling__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_cdk_scrolling__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_rxjs_Subject__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_rxjs_Subject__);
 /**
@@ -15925,8 +15925,8 @@ var AppComponent = /** @class */ (function () {
     AppComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app',
-            template: __webpack_require__(112),
-            styles: [__webpack_require__(136)],
+            template: __webpack_require__(113),
+            styles: [__webpack_require__(137)],
             providers: [__WEBPACK_IMPORTED_MODULE_1__report_report_service__["a" /* ReportService */]]
         })
     ], AppComponent);
@@ -16160,7 +16160,7 @@ Observable_1.Observable.prototype._do = do_1._do;
 
 "use strict";
 
-var ErrorObservable_1 = __webpack_require__(126);
+var ErrorObservable_1 = __webpack_require__(127);
 exports._throw = ErrorObservable_1.ErrorObservable.create;
 //# sourceMappingURL=throw.js.map
 
@@ -16400,9 +16400,9 @@ var DoSubscriber = (function (_super) {
 "use strict";
 
 var ArrayObservable_1 = __webpack_require__(59);
-var ScalarObservable_1 = __webpack_require__(146);
-var EmptyObservable_1 = __webpack_require__(143);
-var concat_1 = __webpack_require__(129);
+var ScalarObservable_1 = __webpack_require__(148);
+var EmptyObservable_1 = __webpack_require__(145);
+var concat_1 = __webpack_require__(130);
 var isScheduler_1 = __webpack_require__(60);
 /* tslint:enable:max-line-length */
 /**
@@ -16678,8 +16678,8 @@ var TakeUntilSubscriber = (function (_super) {
 
 "use strict";
 
-var AsyncAction_1 = __webpack_require__(133);
-var AsyncScheduler_1 = __webpack_require__(134);
+var AsyncAction_1 = __webpack_require__(134);
+var AsyncScheduler_1 = __webpack_require__(135);
 /**
  *
  * Async Scheduler
@@ -16761,14 +16761,14 @@ module.exports = (__webpack_require__(1))(78);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_reflect_metadata__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_reflect_metadata__ = __webpack_require__(123);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_reflect_metadata___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_reflect_metadata__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_zone_js__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_zone_js__ = __webpack_require__(154);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_zone_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_zone_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap__ = __webpack_require__(153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_bootstrap__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser_dynamic__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser_dynamic__ = __webpack_require__(151);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_app_module_browser__ = __webpack_require__(97);
 
 
@@ -16811,7 +16811,7 @@ var options = {
   name: ''
 };
 if (true) {
-  var querystring = __webpack_require__(121);
+  var querystring = __webpack_require__(122);
   var overrides = querystring.parse(__resourceQuery.slice(1));
   if (overrides.path) options.path = overrides.path;
   if (overrides.timeout) options.timeout = overrides.timeout;
@@ -16931,11 +16931,11 @@ if (typeof window !== 'undefined') {
 }
 
 function createReporter() {
-  var strip = __webpack_require__(135);
+  var strip = __webpack_require__(136);
 
   var overlay;
   if (typeof document !== 'undefined' && options.overlay) {
-    overlay = __webpack_require__(140);
+    overlay = __webpack_require__(142);
   }
 
   var styles = {
@@ -16988,7 +16988,7 @@ function createReporter() {
   };
 }
 
-var processUpdate = __webpack_require__(141);
+var processUpdate = __webpack_require__(143);
 
 var customHandler;
 var subscribeAllHandler;
@@ -17053,7 +17053,7 @@ if (module) {
   };
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, "?path=__webpack_hmr&dynamicPublicPath=true", __webpack_require__(142)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, "?path=__webpack_hmr&dynamicPublicPath=true", __webpack_require__(144)(module)))
 
 /***/ }),
 /* 66 */
@@ -22793,7 +22793,7 @@ CdkStepperModule.ctorParameters = function () { return []; };
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operator_concatMap__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operator_concatMap__ = __webpack_require__(157);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operator_concatMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_operator_concatMap__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operator_filter__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operator_filter__);
@@ -24981,7 +24981,7 @@ HttpClientJsonpModule.ctorParameters = function () { return []; };
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_forms__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_material_form_field__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_platform_browser__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_observable_fromEvent__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_observable_fromEvent__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_observable_fromEvent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_rxjs_observable_fromEvent__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_rxjs_observable_merge__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_rxjs_observable_merge___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_rxjs_observable_merge__);
@@ -28831,7 +28831,7 @@ MdChipsModule.ctorParameters = function () { return []; };
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_cdk_overlay__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_material_button__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_material_button__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_material_dialog__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_material_icon__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_cdk_keycodes__ = __webpack_require__(13);
@@ -34755,7 +34755,7 @@ MdMenuModule.ctorParameters = function () { return []; };
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MdPaginatorModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_material_button__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_material_button__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_material_select__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_material_tooltip__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_material_core__ = __webpack_require__(2);
@@ -39874,7 +39874,7 @@ MdSortModule.ctorParameters = function () { return []; };
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_cdk_stepper__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_material_button__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_material_button__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_material_core__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_material_icon__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_cdk_coercion__ = __webpack_require__(5);
@@ -40714,7 +40714,7 @@ MdTableModule.ctorParameters = function () { return []; };
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_cdk_observers__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_cdk_portal__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_cdk_scrolling__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_cdk_scrolling__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_material_core__ = __webpack_require__(2);
@@ -40729,7 +40729,7 @@ MdTableModule.ctorParameters = function () { return []; };
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_observable_merge___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_rxjs_observable_merge__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_cdk_keycodes__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__angular_cdk_rxjs__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_rxjs_observable_fromEvent__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_rxjs_observable_fromEvent__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_rxjs_observable_fromEvent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_rxjs_observable_fromEvent__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_rxjs_observable_of__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_rxjs_observable_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16_rxjs_observable_of__);
@@ -43437,7 +43437,7 @@ function getBaseUrl() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common_http__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_material__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_app_app_component__ = __webpack_require__(48);
@@ -43651,7 +43651,7 @@ var HomeComponent = /** @class */ (function () {
     HomeComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'home',
-            template: __webpack_require__(113)
+            template: __webpack_require__(114)
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]])
     ], HomeComponent);
@@ -43761,8 +43761,8 @@ var NavMenuComponent = /** @class */ (function () {
     NavMenuComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'nav-menu',
-            template: __webpack_require__(114),
-            styles: [__webpack_require__(137)]
+            template: __webpack_require__(115),
+            styles: [__webpack_require__(138)]
         })
     ], NavMenuComponent);
     return NavMenuComponent;
@@ -43861,7 +43861,7 @@ var QueryService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_switchMap__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_switchMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_switchMap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_rxjs_add_observable_fromEvent__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_rxjs_add_observable_fromEvent__ = __webpack_require__(125);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_rxjs_add_observable_fromEvent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_rxjs_add_observable_fromEvent__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__query_query_service__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__shared_share_dialog_component__ = __webpack_require__(39);
@@ -43990,7 +43990,8 @@ var ReportEditComponent = /** @class */ (function () {
     ], ReportEditComponent.prototype, "columns", void 0);
     ReportEditComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            template: __webpack_require__(115),
+            template: __webpack_require__(116),
+            styles: [__webpack_require__(139)]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"], __WEBPACK_IMPORTED_MODULE_3__angular_material__["v" /* MatDialog */]])
     ], ReportEditComponent);
@@ -44184,8 +44185,8 @@ var ReportComponent = /** @class */ (function () {
     ReportComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'report',
-            template: __webpack_require__(116),
-            styles: [__webpack_require__(138)]
+            template: __webpack_require__(117),
+            styles: [__webpack_require__(140)]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"], __WEBPACK_IMPORTED_MODULE_3__angular_material__["v" /* MatDialog */], __WEBPACK_IMPORTED_MODULE_3__angular_material__["w" /* MatSnackBar */]])
     ], ReportComponent);
@@ -44325,8 +44326,8 @@ var TableHttpExample = /** @class */ (function () {
     TableHttpExample = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'table-http-example',
-            styles: [__webpack_require__(139)],
-            template: __webpack_require__(118),
+            styles: [__webpack_require__(141)],
+            template: __webpack_require__(119),
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]])
     ], TableHttpExample);
@@ -44405,12 +44406,12 @@ var ExampleDataSource = /** @class */ (function (_super) {
 /* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(29)(undefined);
+exports = module.exports = __webpack_require__(26)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "body {\r\n    background-color: #fafafa;\r\n}\r\n", ""]);
 
 // exports
 
@@ -44419,12 +44420,12 @@ exports.push([module.i, "", ""]);
 /* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(29)(undefined);
+exports = module.exports = __webpack_require__(26)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, ".app-toolbar-filler {\r\n    flex: 1 1 auto;\r\n}\r\n\r\n\r\n/*li .glyphicon {\r\n    margin-right: 10px;\r\n}\r\n\r\n\r\nli.link-active a,\r\nli.link-active a:hover,\r\nli.link-active a:focus {\r\n    background-color: #4189C7;\r\n    color: white;\r\n}\r\n\r\n.main-nav {\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    right: 0;\r\n    z-index: 1;\r\n}\r\n\r\n@media (min-width: 768px) {\r\n\r\n    .main-nav {\r\n        height: 100%;\r\n        width: calc(25% - 20px);\r\n    }\r\n    .navbar {\r\n        border-radius: 0px;\r\n        border-width: 0px;\r\n        height: 100%;\r\n    }\r\n    .navbar-header {\r\n        float: none;\r\n    }\r\n    .navbar-collapse {\r\n        border-top: 1px solid #444;\r\n        padding: 0px;\r\n    }\r\n    .navbar ul {\r\n        float: none;\r\n    }\r\n    .navbar li {\r\n        float: none;\r\n        font-size: 15px;\r\n        margin: 6px;\r\n    }\r\n    .navbar li a {\r\n        padding: 10px 16px;\r\n        border-radius: 4px;\r\n    }\r\n    .navbar a {\r\n        width: 100%;\r\n        white-space: nowrap;\r\n        overflow: hidden;\r\n        text-overflow: ellipsis;\r\n    }\r\n}*/\r\n", ""]);
+exports.push([module.i, ".logo {\r\n    padding:0 50px 0 10px;\r\n }\r\n\r\n.app-toolbar-filler {\r\n    flex: 1 1 auto;\r\n}\r\n\r\nmat-toolbar a {\r\n    color: #fff;\r\n    text-decoration:none;\r\n    font-size: 15px\r\n}\r\n\r\n/*li .glyphicon {\r\n    margin-right: 10px;\r\n}\r\n\r\n\r\nli.link-active a,\r\nli.link-active a:hover,\r\nli.link-active a:focus {\r\n    background-color: #4189C7;\r\n    color: white;\r\n}\r\n\r\n.main-nav {\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    right: 0;\r\n    z-index: 1;\r\n}\r\n\r\n@media (min-width: 768px) {\r\n\r\n    .main-nav {\r\n        height: 100%;\r\n        width: calc(25% - 20px);\r\n    }\r\n    .navbar {\r\n        border-radius: 0px;\r\n        border-width: 0px;\r\n        height: 100%;\r\n    }\r\n    .navbar-header {\r\n        float: none;\r\n    }\r\n    .navbar-collapse {\r\n        border-top: 1px solid #444;\r\n        padding: 0px;\r\n    }\r\n    .navbar ul {\r\n        float: none;\r\n    }\r\n    .navbar li {\r\n        float: none;\r\n        font-size: 15px;\r\n        margin: 6px;\r\n    }\r\n    .navbar li a {\r\n        padding: 10px 16px;\r\n        border-radius: 4px;\r\n    }\r\n    .navbar a {\r\n        width: 100%;\r\n        white-space: nowrap;\r\n        overflow: hidden;\r\n        text-overflow: ellipsis;\r\n    }\r\n}*/\r\n", ""]);
 
 // exports
 
@@ -44433,12 +44434,12 @@ exports.push([module.i, ".app-toolbar-filler {\r\n    flex: 1 1 auto;\r\n}\r\n\r
 /* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(29)(undefined);
+exports = module.exports = __webpack_require__(26)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, ".add-button-fixed {\r\n    position:fixed;\r\n    bottom: 24px;\r\n    right: 24px;\r\n}\r\n", ""]);
+exports.push([module.i, ".margintop20 {\r\n    margin-top:20px;\r\n}", ""]);
 
 // exports
 
@@ -44447,7 +44448,21 @@ exports.push([module.i, ".add-button-fixed {\r\n    position:fixed;\r\n    botto
 /* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(29)(undefined);
+exports = module.exports = __webpack_require__(26)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".add-button-fixed {\r\n    position:fixed;\r\n    bottom: 24px;\r\n    right: 24px;\r\n}", ""]);
+
+// exports
+
+
+/***/ }),
+/* 109 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(26)(undefined);
 // imports
 
 
@@ -44458,19 +44473,19 @@ exports.push([module.i, "/* Structure */\n.example-container {\n  display: flex;
 
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
-  XmlEntities: __webpack_require__(111),
-  Html4Entities: __webpack_require__(110),
+  XmlEntities: __webpack_require__(112),
+  Html4Entities: __webpack_require__(111),
   Html5Entities: __webpack_require__(49),
   AllHtmlEntities: __webpack_require__(49)
 };
 
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports) {
 
 var HTML_ALPHA = ['apos', 'nbsp', 'iexcl', 'cent', 'pound', 'curren', 'yen', 'brvbar', 'sect', 'uml', 'copy', 'ordf', 'laquo', 'not', 'shy', 'reg', 'macr', 'deg', 'plusmn', 'sup2', 'sup3', 'acute', 'micro', 'para', 'middot', 'cedil', 'sup1', 'ordm', 'raquo', 'frac14', 'frac12', 'frac34', 'iquest', 'Agrave', 'Aacute', 'Acirc', 'Atilde', 'Auml', 'Aring', 'Aelig', 'Ccedil', 'Egrave', 'Eacute', 'Ecirc', 'Euml', 'Igrave', 'Iacute', 'Icirc', 'Iuml', 'ETH', 'Ntilde', 'Ograve', 'Oacute', 'Ocirc', 'Otilde', 'Ouml', 'times', 'Oslash', 'Ugrave', 'Uacute', 'Ucirc', 'Uuml', 'Yacute', 'THORN', 'szlig', 'agrave', 'aacute', 'acirc', 'atilde', 'auml', 'aring', 'aelig', 'ccedil', 'egrave', 'eacute', 'ecirc', 'euml', 'igrave', 'iacute', 'icirc', 'iuml', 'eth', 'ntilde', 'ograve', 'oacute', 'ocirc', 'otilde', 'ouml', 'divide', 'oslash', 'ugrave', 'uacute', 'ucirc', 'uuml', 'yacute', 'thorn', 'yuml', 'quot', 'amp', 'lt', 'gt', 'OElig', 'oelig', 'Scaron', 'scaron', 'Yuml', 'circ', 'tilde', 'ensp', 'emsp', 'thinsp', 'zwnj', 'zwj', 'lrm', 'rlm', 'ndash', 'mdash', 'lsquo', 'rsquo', 'sbquo', 'ldquo', 'rdquo', 'bdquo', 'dagger', 'Dagger', 'permil', 'lsaquo', 'rsaquo', 'euro', 'fnof', 'Alpha', 'Beta', 'Gamma', 'Delta', 'Epsilon', 'Zeta', 'Eta', 'Theta', 'Iota', 'Kappa', 'Lambda', 'Mu', 'Nu', 'Xi', 'Omicron', 'Pi', 'Rho', 'Sigma', 'Tau', 'Upsilon', 'Phi', 'Chi', 'Psi', 'Omega', 'alpha', 'beta', 'gamma', 'delta', 'epsilon', 'zeta', 'eta', 'theta', 'iota', 'kappa', 'lambda', 'mu', 'nu', 'xi', 'omicron', 'pi', 'rho', 'sigmaf', 'sigma', 'tau', 'upsilon', 'phi', 'chi', 'psi', 'omega', 'thetasym', 'upsih', 'piv', 'bull', 'hellip', 'prime', 'Prime', 'oline', 'frasl', 'weierp', 'image', 'real', 'trade', 'alefsym', 'larr', 'uarr', 'rarr', 'darr', 'harr', 'crarr', 'lArr', 'uArr', 'rArr', 'dArr', 'hArr', 'forall', 'part', 'exist', 'empty', 'nabla', 'isin', 'notin', 'ni', 'prod', 'sum', 'minus', 'lowast', 'radic', 'prop', 'infin', 'ang', 'and', 'or', 'cap', 'cup', 'int', 'there4', 'sim', 'cong', 'asymp', 'ne', 'equiv', 'le', 'ge', 'sub', 'sup', 'nsub', 'sube', 'supe', 'oplus', 'otimes', 'perp', 'sdot', 'lceil', 'rceil', 'lfloor', 'rfloor', 'lang', 'rang', 'loz', 'spades', 'clubs', 'hearts', 'diams'];
@@ -44623,7 +44638,7 @@ module.exports = Html4Entities;
 
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports) {
 
 var ALPHA_INDEX = {
@@ -44784,49 +44799,49 @@ module.exports = XmlEntities;
 
 
 /***/ }),
-/* 112 */
+/* 113 */
 /***/ (function(module, exports) {
 
 module.exports = "<mat-sidenav-container>\r\n    <nav-menu></nav-menu>\r\n    <div class='container-fluid'>\r\n        <div class='row'>\r\n            <div class='col-md-10 col-md-offset-1 body-content'>\r\n                <router-outlet></router-outlet>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</mat-sidenav-container>";
 
 /***/ }),
-/* 113 */
+/* 114 */
 /***/ (function(module, exports) {
 
 module.exports = "<!--<button md-button [mdMenuTriggerFor]=\"menu\">Menu</button>\r\n<md-menu #menu=\"mdMenu\">\r\n    <button md-menu-item>Item 1</button>\r\n    <button md-menu-item>Item 2</button>\r\n</md-menu>\r\n\r\n    <h1>Hello, world!</h1>\r\n    <form class=\"example-form\">\r\n        <md-form-field class=\"example-full-width\">\r\n            <input mdInput placeholder=\"Favorite food\" value=\"Sushi\">\r\n        </md-form-field>\r\n    </form>\r\n    <md-checkbox></md-checkbox>\r\n\r\n<md-sidenav-container class=\"example-container\">\r\n    <md-sidenav #sidenav class=\"example-sidenav\">\r\n        Jolly good!\r\n    </md-sidenav>\r\n\r\n    <div class=\"example-sidenav-content\">\r\n        <button type=\"button\" md-button (click)=\"sidenav.open()\">\r\n            Open sidenav\r\n        </button>\r\n    </div>\r\n\r\n</md-sidenav-container>-->\r\n\r\n<!--<md-form-field floatPlaceholder=\"never\">\r\n    <input mdInput #filter placeholder=\"Filter users\">\r\n</md-form-field>\r\n\r\n<md-table #table [dataSource]=\"dataSource\" mdSort>\r\n    <ng-container mdColumnDef=\"userId\">\r\n        <md-header-cell *mdHeaderCellDef md-sort-header> ID </md-header-cell>\r\n        <md-cell *mdCellDef=\"let row\"> {{row.id}} </md-cell>\r\n    </ng-container>\r\n    <ng-container mdColumnDef=\"progress\">\r\n        <md-header-cell *mdHeaderCellDef md-sort-header> Progress </md-header-cell>\r\n        <md-cell *mdCellDef=\"let row\"> {{row.progress}}% </md-cell>\r\n    </ng-container>\r\n    <ng-container mdColumnDef=\"userName\">\r\n        <md-header-cell *mdHeaderCellDef md-sort-header> Name </md-header-cell>\r\n        <md-cell *mdCellDef=\"let row\"> {{row.name}} </md-cell>\r\n    </ng-container>\r\n    <ng-container mdColumnDef=\"color\">\r\n        <md-header-cell *mdHeaderCellDef md-sort-header> Color </md-header-cell>\r\n        <md-cell *mdCellDef=\"let row\" [style.color]=\"row.color\"> {{row.color}} </md-cell>\r\n    </ng-container>\r\n    <md-header-row *mdHeaderRowDef=\"displayedColumns\"></md-header-row>\r\n    <md-row *mdRowDef=\"let row; columns: displayedColumns;\"></md-row>\r\n</md-table>\r\n\r\n<md-paginator #paginator\r\n              [length]=\"exampleDatabase.data.length\"\r\n              [pageIndex]=\"0\"\r\n              [pageSize]=\"25\"\r\n              [pageSizeOptions]=\"[5, 10, 25, 100]\">\r\n</md-paginator>-->\r\n\r\n\r\n<div class=\"example-container mat-elevation-z8\">\r\n    <div class=\"example-loading-shade\"\r\n         *ngIf=\"dataSource.isLoadingResults || dataSource.isRateLimitReached\">\r\n        <mat-spinner *ngIf=\"dataSource.isLoadingResults\"></mat-spinner>\r\n        <div class=\"example-rate-limit-reached\" *ngIf=\"dataSource.isRateLimitReached\">\r\n            GitHub's API rate limit has been reached. It will be reset in one minute.\r\n        </div>\r\n    </div>\r\n    <mat-table #table [dataSource]=\"dataSource\" class=\"example-table\"\r\n               matSort matSortActive=\"created_at\" matSortDisableClear matSortDirection=\"asc\">\r\n        <!--- Note that these columns can be defined in any order.\r\n              The actual rendered columns are set as a property on the row definition\" -->\r\n        <!-- Number Column -->\r\n        <ng-container matColumnDef=\"number\">\r\n            <mat-header-cell *matHeaderCellDef>#</mat-header-cell>\r\n            <mat-cell *matCellDef=\"let row\">{{ row.number }}</mat-cell>\r\n        </ng-container>\r\n        <!-- Title Column -->\r\n        <ng-container matColumnDef=\"title\">\r\n            <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>\r\n            <mat-cell *matCellDef=\"let row\">{{ row.title }}</mat-cell>\r\n        </ng-container>\r\n        <!-- State Column -->\r\n        <ng-container matColumnDef=\"state\">\r\n            <mat-header-cell *matHeaderCellDef>State</mat-header-cell>\r\n            <mat-cell *matCellDef=\"let row\">{{ row.state }}</mat-cell>\r\n        </ng-container>\r\n        <!-- Created Column -->\r\n        <ng-container matColumnDef=\"created_at\">\r\n            <mat-header-cell *matHeaderCellDef\r\n                             mat-sort-header\r\n                             disableClear=\"true\">\r\n                Created\r\n            </mat-header-cell>\r\n            <mat-cell *matCellDef=\"let row\">{{ row.created_at | date }}</mat-cell>\r\n        </ng-container>\r\n        <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\r\n        <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\r\n    </mat-table>\r\n    <mat-paginator [length]=\"dataSource.resultsLength\"\r\n                   [pageSize]=\"30\">\r\n    </mat-paginator>\r\n</div>\r\n";
 
 /***/ }),
-/* 114 */
-/***/ (function(module, exports) {
-
-module.exports = "<!--<div class='main-nav'>\r\n    <div class='navbar navbar-inverse'>\r\n        <div class='navbar-header'>\r\n            <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>\r\n                <span class='sr-only'>Toggle navigation</span>\r\n                <span class='icon-bar'></span>\r\n                <span class='icon-bar'></span>\r\n                <span class='icon-bar'></span>\r\n            </button>\r\n            <a class='navbar-brand' [routerLink]=\"['/home']\">szakdoga</a>\r\n        </div>\r\n        <div class='clearfix'></div>\r\n        <div class='navbar-collapse collapse'>\r\n            <ul class='nav navbar-nav'>\r\n                <li [routerLinkActive]=\"['link-active']\">\r\n                    <a [routerLink]=\"['/home']\">\r\n                        <span class='glyphicon glyphicon-home'></span> Home\r\n                    </a>\r\n                </li>\r\n                <li [routerLinkActive]=\"['link-active']\">\r\n                    <a [routerLink]=\"['/counter']\">\r\n                        <span class='glyphicon glyphicon-education'></span> Counter\r\n                    </a>\r\n                </li>\r\n                <li [routerLinkActive]=\"['link-active']\">\r\n                    <a [routerLink]=\"['/fetch-data']\">\r\n                        <span class='glyphicon glyphicon-th-list'></span> Fetch data\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</div>-->\r\n\r\n<!--<nav class=\"navbar navbar-default navbar-static-top\">\r\n    <div class=\"container-fluid\">\r\n        <div class=\"navbar-header\">\r\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\" aria-controls=\"navbar\">\r\n                <span class=\"sr-only\">Toggle navigation</span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n            </button>\r\n            <a class=\"navbar-brand\" href=\"#\" style=\"background:#3670c1;color:#fff\"><i class=\"glyphicon glyphicon-signal\" aria-hidden=\"true\"></i></a>\r\n        </div>\r\n        <div id=\"navbar\" class=\"navbar-collapse collapse\">\r\n            <ul class='nav navbar-nav'>\r\n                <li [routerLinkActive]=\"['link-active']\">\r\n                    <a [routerLink]=\"['/reports']\">\r\n                        Reports\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n            <ul class=\"nav navbar-nav navbar-right\">\r\n                <li class=\"dropdown\">\r\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"true\">Username <span class=\"caret\"></span></a>\r\n                    <ul class=\"dropdown-menu\">\r\n                        <li><a href=\"#\">Settings</a></li>\r\n                        <li><a href=\"#\">Log out</a></li>\r\n                    </ul>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</nav>-->\r\n\r\n\r\n<mat-sidenav #sidenav mode=\"push\" class=\"app-sidenav\">\r\n    <mat-toolbar color=\"primary\">\r\n        <!--future svg to go here-->\r\n        <span class=\"toolbar-filler\"></span>\r\n        <button mat-icon-button (click)=\"sidenav.toggle()\" class=\"md-icon-button sidenav-toggle-button\" [hidden]=\"!sidenav.opened\">\r\n            x\r\n        </button>\r\n    </mat-toolbar>\r\n    <mat-nav-list>\r\n        <a mat-list-item class=\"sidenav-link\" [routerLink]=\"['/reports']\" (click)=\"sidenav.toggle()\">\r\n            <span class=\"title\" mat-line>Reports</span>\r\n        </a>\r\n        <a mat-list-item class=\"sidenav-link\" [routerLink]=\"['/reports']\" (click)=\"sidenav.toggle()\">\r\n            <span class=\"title\" mat-line>Dashboard</span>\r\n        </a>\r\n    </mat-nav-list>\r\n</mat-sidenav>\r\n\r\n<mat-toolbar color=\"primary\">\r\n    <i class=\"glyphicon glyphicon-signal\" aria-hidden=\"true\"></i> &nbsp; \r\n    Reporting\r\n    <button class=\"app-icon-button\" (click)=\"sidenav.toggle()\">\r\n    menu\r\n</button>\r\n\r\n    <span class=\"app-toolbar-filler\"></span>\r\n</mat-toolbar>\r\n\r\n";
-
-/***/ }),
 /* 115 */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<h1>Edit Report</h1>\r\n\r\n<div class=\"row\">\r\n    <div class=\"col-md-2\">\r\n\r\n        <form>\r\n            <mat-select placeholder=\"Query\" [(ngModel)]=\"selectedValue\" (ngModelChange)=\"queryChange()\" name=\"query\">\r\n                <mat-option *ngFor=\"let query of queries\" [value]=\"query.id\">\r\n                    {{query.name}}\r\n                </mat-option>\r\n            </mat-select>\r\n        </form>\r\n\r\n        <mat-selection-list #columns *ngIf=\"queryColumns\" >\r\n            <mat-list-option *ngFor=\"let column of queryColumns.columns\" value=\"{{column}}\">\r\n                {{column}}\r\n            </mat-list-option>\r\n        </mat-selection-list>\r\n\r\n        <button mat-raised-button color=\"primary\" (click)=\"onUpdateClick()\" [disabled]=\"columns && columns.selectedOptions.selected.length == 0\">Update</button>\r\n    </div>\r\n    <div class=\"col-md-10\">\r\n        <div class=\"clearfix\">\r\n            <mat-form-field class=\"pull-right\" floatPlaceholder=\"never\">\r\n                <input matInput #filter placeholder=\"Filter reports\">\r\n            </mat-form-field>\r\n        </div>\r\n\r\n        <div [style.display]=\"showDataTable ? 'block' : 'none'\">\r\n            <mat-table #table [dataSource]=\"dataSource\" matSort matSortActive=\"id\" matSortDisableClear matSortDirection=\"asc\">\r\n                <ng-container *ngFor=\"let column of columnNames\" [matColumnDef]=\"column.columnDef\">\r\n                    <mat-header-cell *matHeaderCellDef>{{ column.header }}</mat-header-cell>\r\n                    <mat-cell *matCellDef=\"let row\">{{ column.cell(row) }}</mat-cell>\r\n                </ng-container>\r\n\r\n                <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\r\n                <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\r\n\r\n            </mat-table>\r\n\r\n            <mat-paginator #paginator\r\n                           [length]=\"dataSource.totalCount\"\r\n                           [pageSize]=\"2\">\r\n            </mat-paginator>\r\n        </div>\r\n        \r\n    </div>\r\n</div>\r\n";
+module.exports = "<!--<div class='main-nav'>\r\n    <div class='navbar navbar-inverse'>\r\n        <div class='navbar-header'>\r\n            <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>\r\n                <span class='sr-only'>Toggle navigation</span>\r\n                <span class='icon-bar'></span>\r\n                <span class='icon-bar'></span>\r\n                <span class='icon-bar'></span>\r\n            </button>\r\n            <a class='navbar-brand' [routerLink]=\"['/home']\">szakdoga</a>\r\n        </div>\r\n        <div class='clearfix'></div>\r\n        <div class='navbar-collapse collapse'>\r\n            <ul class='nav navbar-nav'>\r\n                <li [routerLinkActive]=\"['link-active']\">\r\n                    <a [routerLink]=\"['/home']\">\r\n                        <span class='glyphicon glyphicon-home'></span> Home\r\n                    </a>\r\n                </li>\r\n                <li [routerLinkActive]=\"['link-active']\">\r\n                    <a [routerLink]=\"['/counter']\">\r\n                        <span class='glyphicon glyphicon-education'></span> Counter\r\n                    </a>\r\n                </li>\r\n                <li [routerLinkActive]=\"['link-active']\">\r\n                    <a [routerLink]=\"['/fetch-data']\">\r\n                        <span class='glyphicon glyphicon-th-list'></span> Fetch data\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</div>-->\r\n\r\n<!--<nav class=\"navbar navbar-default navbar-static-top\">\r\n    <div class=\"container-fluid\">\r\n        <div class=\"navbar-header\">\r\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\" aria-controls=\"navbar\">\r\n                <span class=\"sr-only\">Toggle navigation</span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n            </button>\r\n            <a class=\"navbar-brand\" href=\"#\" style=\"background:#3670c1;color:#fff\"><i class=\"glyphicon glyphicon-signal\" aria-hidden=\"true\"></i></a>\r\n        </div>\r\n        <div id=\"navbar\" class=\"navbar-collapse collapse\">\r\n            <ul class='nav navbar-nav'>\r\n                <li [routerLinkActive]=\"['link-active']\">\r\n                    <a [routerLink]=\"['/reports']\">\r\n                        Reports\r\n                    </a>\r\n                </li>\r\n            </ul>\r\n            <ul class=\"nav navbar-nav navbar-right\">\r\n                <li class=\"dropdown\">\r\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"true\">Username <span class=\"caret\"></span></a>\r\n                    <ul class=\"dropdown-menu\">\r\n                        <li><a href=\"#\">Settings</a></li>\r\n                        <li><a href=\"#\">Log out</a></li>\r\n                    </ul>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</nav>-->\r\n\r\n\r\n<mat-sidenav #sidenav mode=\"push\" class=\"app-sidenav\">\r\n    <mat-toolbar color=\"primary\">\r\n        <!--future svg to go here-->\r\n        <span class=\"toolbar-filler\"></span>\r\n        <button mat-icon-button (click)=\"sidenav.toggle()\" class=\"md-icon-button sidenav-toggle-button\" [hidden]=\"!sidenav.opened\">\r\n            x\r\n        </button>\r\n    </mat-toolbar>\r\n    <mat-nav-list>\r\n        <a mat-list-item class=\"sidenav-link\" [routerLink]=\"['/reports']\" (click)=\"sidenav.toggle()\">\r\n            <span class=\"title\" mat-line>Reports</span>\r\n        </a>\r\n        <a mat-list-item class=\"sidenav-link\" [routerLink]=\"['/reports']\" (click)=\"sidenav.toggle()\">\r\n            <span class=\"title\" mat-line>Dashboard</span>\r\n        </a>\r\n    </mat-nav-list>\r\n</mat-sidenav>\r\n\r\n<mat-toolbar color=\"primary\">\r\n\r\n    <i class=\"glyphicon glyphicon-signal logo\" aria-hidden=\"true\"></i>\r\n\r\n        \r\n        <!--<button class=\"app-icon-button\" (click)=\"sidenav.toggle()\">\r\n        menu\r\n    </button>-->\r\n        &nbsp;\r\n        <a [routerLink]=\"['/reports']\">\r\n            Reports\r\n        </a>\r\n\r\n        <span class=\"app-toolbar-filler\"></span>\r\n\r\n        <a [routerLink]=\"['/reports']\">\r\n            Username\r\n        </a>\r\n    \r\n</mat-toolbar>\r\n\r\n";
 
 /***/ }),
 /* 116 */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<h1>Reports</h1>\r\n\r\n<div class=\"add-button-fixed\">\r\n    <button [routerLink]=\"['/report']\" mat-fab color=\"primary\" matTooltip=\"New report\" matTooltipPosition=\"left\"><i class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></i></button>\r\n</div>\r\n\r\n<div class=\"clearfix\">\r\n    <mat-form-field class=\"pull-right\" floatPlaceholder=\"never\">\r\n        <input matInput #filter placeholder=\"Filter reports\">\r\n    </mat-form-field>\r\n</div>\r\n\r\n<mat-table #table [dataSource]=\"dataSource\" matSort matSortActive=\"id\" matSortDisableClear matSortDirection=\"asc\">\r\n    <ng-container matColumnDef=\"id\">\r\n        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\"> {{row.id}} </mat-cell>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"name\">\r\n        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\"> {{row.name}} </mat-cell>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"query\">\r\n        <mat-header-cell *matHeaderCellDef mat-sort-header> Query </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\"> {{row.query.name}} </mat-cell>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"createdBy\">\r\n        <mat-header-cell *matHeaderCellDef mat-sort-header> Created by </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\"> {{row.createdBy.name}} </mat-cell>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"createdAt\">\r\n        <mat-header-cell *matHeaderCellDef mat-sort-header> Created </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\"> {{row.createdAt}} </mat-cell>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"modifiedBy\">\r\n        <mat-header-cell *matHeaderCellDef mat-sort-header> Modified by </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\"> {{row.modifiedBy.name}} </mat-cell>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"modifiedAt\">\r\n        <mat-header-cell *matHeaderCellDef mat-sort-header> Modified </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\"> {{row.modifiedAt}} </mat-cell>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"actions\">\r\n        <mat-header-cell *matHeaderCellDef></mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\">\r\n            <button mat-icon-button matTooltip=\"Edit report\" matTooltipPosition=\"above\" ><i class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></i></button>\r\n            <button mat-icon-button matTooltip=\"Delete report\" matTooltipPosition=\"above\" (click)=\"deleteReport(row.id)\"><i class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></i></button>\r\n            <button mat-icon-button matTooltip=\"Share report\" matTooltipPosition=\"above\" (click)=\"openShareDialog(row.id, row.name)\"><i class=\"glyphicon glyphicon-share-alt\" aria-hidden=\"true\"></i></button>\r\n        </mat-cell>\r\n    </ng-container>\r\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\r\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\r\n</mat-table>\r\n\r\n<mat-paginator #paginator\r\n              [length]=\"dataSource.totalCount\"\r\n              [pageSize]=\"25\">\r\n</mat-paginator>";
+module.exports = "\r\n<h1>Edit Report</h1>\r\n\r\n<div class=\"row\">\r\n    <div class=\"col-md-2\">\r\n\r\n        <form>\r\n            <mat-select placeholder=\"Query\" [(ngModel)]=\"selectedValue\" (ngModelChange)=\"queryChange()\" name=\"query\" class=\"margintop20\">\r\n                <mat-option *ngFor=\"let query of queries\" [value]=\"query.id\">\r\n                    {{query.name}}\r\n                </mat-option>\r\n            </mat-select>\r\n        </form>\r\n\r\n        <mat-selection-list #columns *ngIf=\"queryColumns\" class=\"margintop20\">\r\n            <mat-list-option *ngFor=\"let column of queryColumns.columns\" value=\"{{column}}\">\r\n                {{column}}\r\n            </mat-list-option>\r\n        </mat-selection-list>\r\n\r\n        <button mat-raised-button color=\"primary\" (click)=\"onUpdateClick()\" [disabled]=\"columns && columns.selectedOptions.selected.length == 0\" class=\"margintop20\">Update</button>\r\n    </div>\r\n    <div class=\"col-md-10\">\r\n        <div class=\"clearfix\">\r\n            <mat-form-field class=\"pull-right\" floatPlaceholder=\"never\">\r\n                <input matInput #filter placeholder=\"Filter reports\">\r\n            </mat-form-field>\r\n        </div>\r\n\r\n        <div [style.display]=\"showDataTable ? 'block' : 'none'\">\r\n            <mat-table #table [dataSource]=\"dataSource\" matSort matSortActive=\"id\" matSortDisableClear matSortDirection=\"asc\">\r\n                <ng-container *ngFor=\"let column of columnNames\" [matColumnDef]=\"column.columnDef\">\r\n                    <mat-header-cell *matHeaderCellDef>{{ column.header }}</mat-header-cell>\r\n                    <mat-cell *matCellDef=\"let row\">{{ column.cell(row) }}</mat-cell>\r\n                </ng-container>\r\n\r\n                <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\r\n                <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\r\n\r\n            </mat-table>\r\n\r\n            <mat-paginator #paginator\r\n                           [length]=\"dataSource.totalCount\"\r\n                           [pageSize]=\"2\">\r\n            </mat-paginator>\r\n        </div>\r\n        \r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 /* 117 */
 /***/ (function(module, exports) {
 
-module.exports = "<h1 mat-dialog-title>Share: {{data.name}}</h1>\r\n<div mat-dialog-content>\r\n    <mat-form-field floatPlaceholder=\"never\">\r\n        <input matInput placeholder=\"Email\" [(ngModel)]=\"data.email\">\r\n    </mat-form-field>\r\n    <form>\r\n        <mat-select placeholder=\"Permission\" [(ngModel)]=\"selectedPermission\" name=\"permission\">\r\n            <mat-option *ngFor=\"let permission of data.permissions\" [value]=\"permission.id\">\r\n                {{permission.name}}\r\n            </mat-option>\r\n        </mat-select>\r\n    </form>\r\n</div>\r\n<div mat-dialog-actions>\r\n    <button mat-raised-button color=\"primary\" (click)=\"onShareClick()\" tabindex=\"2\">Share</button>\r\n    <button mat-button (click)=\"onNoClick()\" tabindex=\"-1\">Cancel</button>\r\n</div>";
+module.exports = "\r\n<h1>Reports</h1>\r\n\r\n<div class=\"add-button-fixed\">\r\n    <button [routerLink]=\"['/report']\" mat-fab color=\"primary\" matTooltip=\"New report\" matTooltipPosition=\"left\"><i class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></i></button>\r\n</div>\r\n\r\n<div class=\"clearfix\">\r\n    <mat-form-field class=\"pull-right\" floatPlaceholder=\"never\">\r\n        <input matInput #filter placeholder=\"Filter reports\">\r\n    </mat-form-field>\r\n</div>\r\n\r\n<mat-table #table [dataSource]=\"dataSource\" matSort matSortActive=\"id\" matSortDisableClear matSortDirection=\"asc\">\r\n    <ng-container matColumnDef=\"id\">\r\n        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\"> {{row.id}} </mat-cell>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"name\">\r\n        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\"> {{row.name}} </mat-cell>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"query\">\r\n        <mat-header-cell *matHeaderCellDef mat-sort-header> Query </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\"> {{row.query.name}} </mat-cell>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"createdBy\">\r\n        <mat-header-cell *matHeaderCellDef mat-sort-header> Created by </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\"> {{row.createdBy.name}} </mat-cell>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"createdAt\">\r\n        <mat-header-cell *matHeaderCellDef mat-sort-header> Created </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\"> {{row.createdAt}} </mat-cell>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"modifiedBy\">\r\n        <mat-header-cell *matHeaderCellDef mat-sort-header> Modified by </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\"> {{row.modifiedBy.name}} </mat-cell>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"modifiedAt\">\r\n        <mat-header-cell *matHeaderCellDef mat-sort-header> Modified </mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\"> {{row.modifiedAt}} </mat-cell>\r\n    </ng-container>\r\n    <ng-container matColumnDef=\"actions\">\r\n        <mat-header-cell *matHeaderCellDef></mat-header-cell>\r\n        <mat-cell *matCellDef=\"let row\">\r\n            <button mat-icon-button matTooltip=\"Edit report\" matTooltipPosition=\"above\" ><i class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></i></button>\r\n            <button mat-icon-button matTooltip=\"Delete report\" matTooltipPosition=\"above\" (click)=\"deleteReport(row.id)\"><i class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></i></button>\r\n            <button mat-icon-button matTooltip=\"Share report\" matTooltipPosition=\"above\" (click)=\"openShareDialog(row.id, row.name)\"><i class=\"glyphicon glyphicon-share-alt\" aria-hidden=\"true\"></i></button>\r\n        </mat-cell>\r\n    </ng-container>\r\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\r\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\r\n</mat-table>\r\n\r\n<mat-paginator #paginator\r\n              [length]=\"dataSource.totalCount\"\r\n              [pageSize]=\"25\">\r\n</mat-paginator>";
 
 /***/ }),
 /* 118 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"example-container mat-elevation-z8\">\n  <div class=\"example-loading-shade\"\n       *ngIf=\"dataSource.isLoadingResults || dataSource.isRateLimitReached\">\n    <mat-spinner *ngIf=\"dataSource.isLoadingResults\"></mat-spinner>\n    <div class=\"example-rate-limit-reached\" *ngIf=\"dataSource.isRateLimitReached\">\n      GitHub's API rate limit has been reached. It will be reset in one minute.\n    </div>\n  </div>\n\n  <mat-table #table [dataSource]=\"dataSource\" class=\"example-table\"\n            matSort matSortActive=\"created_at\" matSortDisableClear matSortDirection=\"asc\">\n\n    <!--- Note that these columns can be defined in any order.\n          The actual rendered columns are set as a property on the row definition\" -->\n\n    <!-- Number Column -->\n    <ng-container matColumnDef=\"number\">\n      <mat-header-cell *matHeaderCellDef>#</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\">{{ row.number }}</mat-cell>\n    </ng-container>\n\n    <!-- Title Column -->\n    <ng-container matColumnDef=\"title\">\n      <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\">{{ row.title }}</mat-cell>\n    </ng-container>\n\n    <!-- State Column -->\n    <ng-container matColumnDef=\"state\">\n      <mat-header-cell *matHeaderCellDef>State</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\">{{ row.state }}</mat-cell>\n    </ng-container>\n\n    <!-- Created Column -->\n    <ng-container matColumnDef=\"created_at\">\n      <mat-header-cell *matHeaderCellDef\n                      mat-sort-header\n                      disableClear=\"true\">\n        Created\n      </mat-header-cell>\n      <mat-cell *matCellDef=\"let row\">{{ row.created_at | date }}</mat-cell>\n    </ng-container>\n\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\n  </mat-table>\n\n  <mat-paginator [length]=\"dataSource.resultsLength\"\n                [pageSize]=\"30\">\n  </mat-paginator>\n</div>\n";
+module.exports = "<h1 mat-dialog-title>Share: {{data.name}}</h1>\r\n<div mat-dialog-content>\r\n    <mat-form-field floatPlaceholder=\"never\">\r\n        <input matInput placeholder=\"Email\" [(ngModel)]=\"data.email\">\r\n    </mat-form-field>\r\n    <form>\r\n        <mat-select placeholder=\"Permission\" [(ngModel)]=\"selectedPermission\" name=\"permission\">\r\n            <mat-option *ngFor=\"let permission of data.permissions\" [value]=\"permission.id\">\r\n                {{permission.name}}\r\n            </mat-option>\r\n        </mat-select>\r\n    </form>\r\n</div>\r\n<div mat-dialog-actions>\r\n    <button mat-raised-button color=\"primary\" (click)=\"onShareClick()\" tabindex=\"2\">Share</button>\r\n    <button mat-button (click)=\"onNoClick()\" tabindex=\"-1\">Cancel</button>\r\n</div>";
 
 /***/ }),
 /* 119 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"example-container mat-elevation-z8\">\n  <div class=\"example-loading-shade\"\n       *ngIf=\"dataSource.isLoadingResults || dataSource.isRateLimitReached\">\n    <mat-spinner *ngIf=\"dataSource.isLoadingResults\"></mat-spinner>\n    <div class=\"example-rate-limit-reached\" *ngIf=\"dataSource.isRateLimitReached\">\n      GitHub's API rate limit has been reached. It will be reset in one minute.\n    </div>\n  </div>\n\n  <mat-table #table [dataSource]=\"dataSource\" class=\"example-table\"\n            matSort matSortActive=\"created_at\" matSortDisableClear matSortDirection=\"asc\">\n\n    <!--- Note that these columns can be defined in any order.\n          The actual rendered columns are set as a property on the row definition\" -->\n\n    <!-- Number Column -->\n    <ng-container matColumnDef=\"number\">\n      <mat-header-cell *matHeaderCellDef>#</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\">{{ row.number }}</mat-cell>\n    </ng-container>\n\n    <!-- Title Column -->\n    <ng-container matColumnDef=\"title\">\n      <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\">{{ row.title }}</mat-cell>\n    </ng-container>\n\n    <!-- State Column -->\n    <ng-container matColumnDef=\"state\">\n      <mat-header-cell *matHeaderCellDef>State</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\">{{ row.state }}</mat-cell>\n    </ng-container>\n\n    <!-- Created Column -->\n    <ng-container matColumnDef=\"created_at\">\n      <mat-header-cell *matHeaderCellDef\n                      mat-sort-header\n                      disableClear=\"true\">\n        Created\n      </mat-header-cell>\n      <mat-cell *matCellDef=\"let row\">{{ row.created_at | date }}</mat-cell>\n    </ng-container>\n\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\n  </mat-table>\n\n  <mat-paginator [length]=\"dataSource.resultsLength\"\n                [pageSize]=\"30\">\n  </mat-paginator>\n</div>\n";
+
+/***/ }),
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44917,7 +44932,7 @@ var isArray = Array.isArray || function (xs) {
 
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45009,18 +45024,18 @@ var objectKeys = Object.keys || function (obj) {
 
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-exports.decode = exports.parse = __webpack_require__(119);
-exports.encode = exports.stringify = __webpack_require__(120);
+exports.decode = exports.parse = __webpack_require__(120);
+exports.encode = exports.stringify = __webpack_require__(121);
 
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process, global) {/*! *****************************************************************************
@@ -46148,10 +46163,10 @@ var Reflect;
             Function("return this;")());
 })(Reflect || (Reflect = {}));
 //# sourceMappingURL=Reflect.js.map
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(145), __webpack_require__(156)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(147), __webpack_require__(158)))
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46206,18 +46221,18 @@ exports.Scheduler = Scheduler;
 //# sourceMappingURL=Scheduler.js.map
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(6);
-var fromEvent_1 = __webpack_require__(26);
+var fromEvent_1 = __webpack_require__(27);
 Observable_1.Observable.fromEvent = fromEvent_1.fromEvent;
 //# sourceMappingURL=fromEvent.js.map
 
 /***/ }),
-/* 125 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46322,7 +46337,7 @@ var DeferSubscriber = (function (_super) {
 //# sourceMappingURL=DeferObservable.js.map
 
 /***/ }),
-/* 126 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46411,7 +46426,7 @@ exports.ErrorObservable = ErrorObservable;
 //# sourceMappingURL=ErrorObservable.js.map
 
 /***/ }),
-/* 127 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46422,9 +46437,9 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Observable_1 = __webpack_require__(6);
-var tryCatch_1 = __webpack_require__(158);
-var isFunction_1 = __webpack_require__(148);
-var errorObject_1 = __webpack_require__(147);
+var tryCatch_1 = __webpack_require__(160);
+var isFunction_1 = __webpack_require__(150);
+var errorObject_1 = __webpack_require__(149);
 var Subscription_1 = __webpack_require__(9);
 var toString = Object.prototype.toString;
 function isNodeStyleEventEmitter(sourceObj) {
@@ -46557,17 +46572,17 @@ exports.FromEventObservable = FromEventObservable;
 //# sourceMappingURL=FromEventObservable.js.map
 
 /***/ }),
-/* 128 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var DeferObservable_1 = __webpack_require__(125);
+var DeferObservable_1 = __webpack_require__(126);
 exports.defer = DeferObservable_1.DeferObservable.create;
 //# sourceMappingURL=defer.js.map
 
 /***/ }),
-/* 129 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46575,7 +46590,7 @@ exports.defer = DeferObservable_1.DeferObservable.create;
 var Observable_1 = __webpack_require__(6);
 var isScheduler_1 = __webpack_require__(60);
 var ArrayObservable_1 = __webpack_require__(59);
-var mergeAll_1 = __webpack_require__(144);
+var mergeAll_1 = __webpack_require__(146);
 /* tslint:enable:max-line-length */
 /**
  * Creates an output Observable which sequentially emits all values from every
@@ -46747,7 +46762,7 @@ exports.concatStatic = concatStatic;
 //# sourceMappingURL=concat.js.map
 
 /***/ }),
-/* 130 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46869,7 +46884,7 @@ function dispatchNext(subscriber) {
 //# sourceMappingURL=debounceTime.js.map
 
 /***/ }),
-/* 131 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46918,7 +46933,7 @@ var FinallySubscriber = (function (_super) {
 //# sourceMappingURL=finally.js.map
 
 /***/ }),
-/* 132 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46968,7 +46983,7 @@ exports.Action = Action;
 //# sourceMappingURL=Action.js.map
 
 /***/ }),
-/* 133 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46978,8 +46993,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var root_1 = __webpack_require__(153);
-var Action_1 = __webpack_require__(132);
+var root_1 = __webpack_require__(155);
+var Action_1 = __webpack_require__(133);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @ignore
@@ -47116,7 +47131,7 @@ exports.AsyncAction = AsyncAction;
 //# sourceMappingURL=AsyncAction.js.map
 
 /***/ }),
-/* 134 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47126,7 +47141,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Scheduler_1 = __webpack_require__(123);
+var Scheduler_1 = __webpack_require__(124);
 var AsyncScheduler = (function (_super) {
     __extends(AsyncScheduler, _super);
     function AsyncScheduler() {
@@ -47173,7 +47188,7 @@ exports.AsyncScheduler = AsyncScheduler;
 //# sourceMappingURL=AsyncScheduler.js.map
 
 /***/ }),
-/* 135 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47186,7 +47201,7 @@ module.exports = function (str) {
 
 
 /***/ }),
-/* 136 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -47200,7 +47215,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 137 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -47214,7 +47229,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 138 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -47228,7 +47243,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 139 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -47242,7 +47257,21 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 140 */
+/* 141 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__(109);
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ }),
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*eslint-env browser*/
@@ -47286,7 +47315,7 @@ var colors = {
 };
 ansiHTML.setColors(colors);
 
-var Entities = __webpack_require__(109).AllHtmlEntities;
+var Entities = __webpack_require__(110).AllHtmlEntities;
 var entities = new Entities();
 
 exports.showProblems =
@@ -47327,7 +47356,7 @@ function problemType (type) {
 
 
 /***/ }),
-/* 141 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -47465,7 +47494,7 @@ module.exports = function(hash, moduleMap, options) {
 
 
 /***/ }),
-/* 142 */
+/* 144 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -47493,103 +47522,103 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 143 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(1))(14);
 
 /***/ }),
-/* 144 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(1))(15);
 
 /***/ }),
-/* 145 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(1))(23);
 
 /***/ }),
-/* 146 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(1))(26);
 
 /***/ }),
-/* 147 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(1))(31);
 
 /***/ }),
-/* 148 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(1))(33);
 
 /***/ }),
-/* 149 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(1))(40);
 
 /***/ }),
-/* 150 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(1))(41);
 
 /***/ }),
-/* 151 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(1))(42);
 
 /***/ }),
-/* 152 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(1))(47);
 
 /***/ }),
-/* 153 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(1))(5);
 
 /***/ }),
-/* 154 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(1))(69);
 
 /***/ }),
-/* 155 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(1))(75);
 
 /***/ }),
-/* 156 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(1))(8);
 
 /***/ }),
-/* 157 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(1))(84);
 
 /***/ }),
-/* 158 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(1))(87);
 
 /***/ }),
-/* 159 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(66);

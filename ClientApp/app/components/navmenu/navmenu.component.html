@@ -84,12 +84,23 @@
 </mat-sidenav>
 
 <mat-toolbar color="primary">
-    <i class="glyphicon glyphicon-signal" aria-hidden="true"></i> &nbsp; 
-    Reporting
-    <button class="app-icon-button" (click)="sidenav.toggle()">
-    menu
-</button>
 
-    <span class="app-toolbar-filler"></span>
+    <i class="glyphicon glyphicon-signal logo" aria-hidden="true"></i>
+
+        
+        <!--<button class="app-icon-button" (click)="sidenav.toggle()">
+        menu
+    </button>-->
+        &nbsp;
+        <a [routerLink]="['/reports']">
+            Reports
+        </a>
+
+        <span class="app-toolbar-filler"></span>
+
+        <a [routerLink]="['/reports']">
+            Username
+        </a>
+    
 </mat-toolbar>
 
