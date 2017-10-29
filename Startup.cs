@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using szakdoga.Data;
+using szakdoga.Models;
+using szakdoga.Models.Repositories;
 
 namespace szakdoga
 {
@@ -27,6 +29,7 @@ namespace szakdoga
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(_configurationRoot.GetConnectionString("DefaultConnection")));
 
+            services.AddScoped<IQueryRepository, QueryRepository>();
 
             services.AddMvc();
         }
@@ -53,7 +56,7 @@ namespace szakdoga
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                   template: "{controller=Home}/{action=Index}/{id?}");
 
                 routes.MapSpaFallbackRoute(
                     name: "spa-fallback",
