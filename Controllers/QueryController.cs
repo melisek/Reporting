@@ -5,7 +5,7 @@ using szakdoga.Models;
 
 namespace szakdoga.Controllers
 {
-   // [Route("api/queries")]
+    [Route("api/queries")]
     public class QueryController : Controller
     {
         private IQueryRepository _queryRepository;
@@ -14,14 +14,11 @@ namespace szakdoga.Controllers
         {
             _queryRepository = queryRepository;
         }
-        [HttpGet("api/query")]
-        public JsonResult GetQueries()
+        [HttpGet()]
+        public IActionResult GetQueries()
         {
-            //var queryIdsAndNames = _queryRepository.GetAll().Select(x => new { x.Name, x.Id });
-            return new JsonResult(new List<object>()
-            {
-                new { id=1, Name="asd"}
-            });
+            List<QueryDto> asd = _queryRepository.GetAll().Select(x => new QueryDto { Name= x.Name, QueryGUID= x.GUID }).ToList();
+            return Ok(asd);
         }
 
     }

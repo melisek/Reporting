@@ -30,6 +30,13 @@ namespace szakdoga
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(_configurationRoot.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IQueryRepository, QueryRepository>();
+            services.AddScoped<IReportRepository, ReportRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IDashboardRepository, DashboardRepository>();
+            services.AddScoped<IReportDashboardRelRepository, ReportDashboardRelRepository>();
+            services.AddScoped<IReportUserRelRepository, ReportUserRelRepository>();
+            services.AddScoped<IUserDashboardRelRepository, UserDashboardRelRepository>();
+
 
             services.AddMvc();
         }

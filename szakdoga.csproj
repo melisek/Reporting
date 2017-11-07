@@ -32,7 +32,6 @@
 
   <ItemGroup>
     <Folder Include="BusinessLogic\" />
-    <Folder Include="Models\Dtos\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -4,9 +4,9 @@ using szakdoga.Data;
 
 namespace szakdoga.Models.Repositories
 {
-    public class ReportDashboardRepository : IReportDashboardRelRepository
+    public class ReportDashboardRelRepository : IReportDashboardRelRepository
     {
-        public ReportDashboardRepository(AppDbContext context)
+        public ReportDashboardRelRepository(AppDbContext context)
         {
             _context = context;
         }
