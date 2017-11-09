@@ -24,6 +24,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\components\chart\chart-horizontal-bar.component.ts" />
+    <None Remove="ClientApp\app\components\chart\chart-item.ts" />
+    <None Remove="ClientApp\app\components\chart\chart.directive.ts" />
+    <None Remove="ClientApp\app\components\chart\chart.service.ts" />
+    <None Remove="ClientApp\app\components\chart\chart.ts" />
     <None Remove="ClientApp\app\components\report\report.module.ts" />
     <None Remove="ClientApp\app\components\report\report.service.ts" />
     <None Remove="ClientApp\app\components\shared\share-dialog.component.ts" />
@@ -35,6 +40,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\chart\chart-pie.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\chart\chart-vertical-bar.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\chart\chart-base.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\chart\chart-horizontal-bar.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\chart\chart-item.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\chart\chart.directive.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\chart\chart.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\chart\chart.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\query\query.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\query\query.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\report\report-edit.component.ts" />

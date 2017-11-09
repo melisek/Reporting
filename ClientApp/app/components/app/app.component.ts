@@ -5,8 +5,7 @@ import { MatSidenavContainer } from '@angular/material'
 @Component({
     selector: 'app',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css'],
+    styleUrls: ['./app.component.css', '../shared/shared-styles.css'],
     providers: [ ReportService ]
 })
-export class AppComponent {
-}
+export class AppComponent { }

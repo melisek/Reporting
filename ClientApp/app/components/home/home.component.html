@@ -57,6 +57,20 @@
               [pageSizeOptions]="[5, 10, 25, 100]">
 </md-paginator>-->
 
+<ngx-charts-bar-vertical [view]="view"
+                         [scheme]="colorScheme"
+                         [results]="single"
+                         [gradient]="gradient"
+                         [xAxis]="showXAxis"
+                         [yAxis]="showYAxis"
+                         [legend]="showLegend"
+                         [showXAxisLabel]="showXAxisLabel"
+                         [showYAxisLabel]="showYAxisLabel"
+                         [xAxisLabel]="xAxisLabel"
+                         [yAxisLabel]="yAxisLabel"
+                         >
+</ngx-charts-bar-vertical>
+
 
 <div class="example-container mat-elevation-z8">
     <div class="example-loading-shade"

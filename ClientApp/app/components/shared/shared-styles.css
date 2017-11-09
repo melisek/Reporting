@@ -1,0 +1,24 @@
+﻿.mat-sidenav-container {
+    height:100%!important;
+}
+.margin-top-20 {
+    margin-top: 20px;
+}
+.mat-card, .mat-expansion-panel, .margin-bottom-20 {
+    margin-bottom: 20px;
+}
+.fit-container {
+    width: 100%
+}
+.padding-left-3 {
+    padding-left:3px
+}
+.padding-right-3 {
+    padding-right: 3px
+}
+.material-icons.md-18 {
+    font-size: 18px;
+    width:18px;
+    height:18px;
+    margin-right: 5px;
+}
