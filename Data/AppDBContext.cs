@@ -18,6 +18,12 @@ namespace szakdoga.Data
             modelBuilder.Entity<Report>().Property(b => b.ModifyDate).HasDefaultValueSql("getdate()");
             modelBuilder.Entity<Dashboard>().Property(b => b.CreationDate).HasDefaultValueSql("getdate()");
             modelBuilder.Entity<Dashboard>().Property(b => b.ModifyDate).HasDefaultValueSql("getdate()");
+
+            //Sajnos ha BaseEntity-t adok meg, akkor megpróbálja létrehozni rá a táblát
+            modelBuilder.Entity<Dashboard>().Property(b => b.Deleted).HasDefaultValue(false);
+            modelBuilder.Entity<Query>().Property(b => b.Deleted).HasDefaultValue(false);
+            modelBuilder.Entity<Report>().Property(b => b.Deleted).HasDefaultValue(false);
+            modelBuilder.Entity<User>().Property(b => b.Deleted).HasDefaultValue(false);
         }
 
         public DbSet<Dashboard> Dashboards { get; set; }

@@ -11,9 +11,10 @@ using szakdoga.Data;
 namespace szakdoga.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171109084207_Modify7")]
+    partial class Modify7
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,8 +95,6 @@ namespace szakdoga.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Columns");
-
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("getdate()");
@@ -103,8 +102,6 @@ namespace szakdoga.Migrations
                     b.Property<bool>("Deleted")
                         .ValueGeneratedOnAdd()
                         .HasDefaultValue(false);
-
-                    b.Property<string>("Filter");
 
                     b.Property<string>("GUID")
                         .IsRequired();
@@ -118,8 +115,6 @@ namespace szakdoga.Migrations
                         .HasMaxLength(200);
 
                     b.Property<int?>("QueryId");
-
-                    b.Property<string>("Sort");
 
                     b.Property<string>("Style");
 
