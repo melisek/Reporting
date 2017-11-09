@@ -21,5 +21,6 @@ namespace szakdoga.Models
 
         [Required]
         public string GUID { get; set; }
+        public bool Deleted { get; set; }
     }
 }

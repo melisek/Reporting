@@ -198,8 +198,8 @@ namespace szakdoga.Data
                                         { name: ""Table_95_Field_79"", text: ""Végső termék"", hidden: false }
                                         { name: ""Table_95_Field_81"", text: ""Végső terméknév"", hidden: false }
                                         { name: ""Table_95_Field_83"", text: ""Lockolt"", hidden: false }
-                                        { name: ""Table_95_Field_85"", text: ""Áfa nélkül, hidden: true }
-                                        { name: ""Table_95_Field_87"", text: ""Nyelv, hidden: true }
+                                        { name: ""Table_95_Field_85"", text: ""Áfa nélkül"", hidden: true }
+                                        { name: ""Table_95_Field_87"", text: ""Nyelv"", hidden: true }
                                         { name: ""Table_95_Field_89"", text: ""Kiegyenlítés dátuma"", hidden: true }
                                         { name: ""Table_95_Field_91"", text: ""ReportDesign"", hidden: true }
                                         { name: ""Table_95_Field_93"", text: ""IntrastatTransactionCode"", hidden: false }

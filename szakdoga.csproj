@@ -31,10 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BusinessLogic\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\query\query.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\query\query.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\report\report-edit.component.ts" />
