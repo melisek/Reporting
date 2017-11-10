@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Linq;
 using szakdoga.Models;
 using szakdoga.Models.Dtos;
@@ -25,7 +26,7 @@ namespace szakdoga.BusinessLogic
             if (report == null)
                 return null;
 
-            return new ReportDto { GUID = report.GUID, Style = report.Style };
+            return Mapper.Map<ReportDto>(report);
         }
 
         public string CreateReport(CreateReportDto report)
@@ -75,7 +76,7 @@ namespace szakdoga.BusinessLogic
             var reportEntity = new Report
             {
                 Name = report.Name,
-                GUID = report.ReportGUID,
+                GUID = report.GUID,
                 Query = _reportRepository.GetQuery(report.QueryGUID),
                 Columns = StringArraySerializer(report.Columns),
                 Filter = report.Filter,

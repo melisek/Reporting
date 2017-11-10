@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using szakdoga.Data;
 using szakdoga.Models;
+using szakdoga.Models.Dtos.DashboardDto;
 using szakdoga.Models.Repositories;
 
 namespace szakdoga
@@ -47,6 +48,7 @@ namespace szakdoga
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
                 app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
                 {
                     HotModuleReplacement = true
@@ -70,7 +72,13 @@ namespace szakdoga
                          defaults: new { controller = "Home", action = "Index" });
                  });
             //új db-migration elõtt kikapcsolni, mivel futtatásnál már próbál beírni a nem létezõ táblákba
-            DbInitializer.Seed(app);
+            //DbInitializer.Seed(app);
+
+            AutoMapper.Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<Dashboard, DashboardDto>();
+                cfg.CreateMap<Report, ReportDto>();
+            });
         }
     }
 }
