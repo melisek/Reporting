@@ -60,15 +60,15 @@ namespace szakdoga
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                   template: "{controller=Home}/{action=Index}/{id?}");
+                 {
+                     routes.MapRoute(
+                         name: "default",
+                        template: "{controller=Home}/{action=Index}/{id?}");
 
-                routes.MapSpaFallbackRoute(
-                    name: "spa-fallback",
-                    defaults: new { controller = "Home", action = "Index" });
-            });
+                     routes.MapSpaFallbackRoute(
+                         name: "spa-fallback",
+                         defaults: new { controller = "Home", action = "Index" });
+                 });
             //új db-migration elõtt kikapcsolni, mivel futtatásnál már próbál beírni a nem létezõ táblákba
             DbInitializer.Seed(app);
         }

@@ -27,6 +27,11 @@ namespace szakdoga.Models.Repositories
             return _context.Query.SingleOrDefault(x => x.Id == id);
         }
 
+        public Query Get(string GUID)
+        {
+            return _context.Query.SingleOrDefault(x => x.GUID == GUID);
+        }
+
         public IEnumerable<Query> GetAll()
         {
             return _context.Query.ToList();

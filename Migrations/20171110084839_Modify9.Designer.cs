@@ -11,9 +11,10 @@ using szakdoga.Data;
 namespace szakdoga.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171110084839_Modify9")]
+    partial class Modify9
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,8 +38,7 @@ namespace szakdoga.Migrations
                         .IsRequired();
 
                     b.Property<DateTime>("ModifyDate")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("getdate()");
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -116,8 +116,7 @@ namespace szakdoga.Migrations
                         .IsRequired();
 
                     b.Property<DateTime>("ModifyDate")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("getdate()");
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name")
                         .IsRequired()

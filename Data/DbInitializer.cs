@@ -56,8 +56,8 @@ namespace szakdoga.Data
             {
                 if (users == null)
                     users = new List<User>{
-                        new User{ Name="Admin", Password="admin", EmailAddress="asd@asd.com", GUID=CreateGUID.GetGUID()},
-                        new User{ Name="Teszt", Password="teszt",EmailAddress="teszt@teszt.com",GUID=CreateGUID.GetGUID()}
+                        new User{ Name="Admin", Password="admin", EmailAddress="asd@asd.com", GUID="674a8382-dfb0-41d9-a349-a85599cc0de6"},
+                        new User{ Name="Teszt", Password="teszt",EmailAddress="teszt@teszt.com",GUID="b12b3382-a250-48ca-9523-cf99b1826600"}
                     };
                 return users;
             }
@@ -118,8 +118,8 @@ namespace szakdoga.Data
                 if (dashboards == null)
                 {
                     dashboards = new List<Dashboard> {
-                               new Dashboard{ Name = "Dashboard1", GUID = CreateGUID.GetGUID(), Style = "style" },
-                               new Dashboard{ Name = "Dashboard2", GUID = CreateGUID.GetGUID(), Style = "style" } };
+                               new Dashboard{ Name = "Dashboard1", GUID = "9b4ea50f-8a05-4025-ab01-0072894691e6", Style = "style" },
+                               new Dashboard{ Name = "Dashboard2", GUID = "2adccadc-7a05-419d-b8c3-9578db9a81dc", Style = "style" } };
                 }
                 return dashboards;
             }
@@ -134,8 +134,8 @@ namespace szakdoga.Data
                 if (reports == null)
                 {
                     reports = new List<Report> {
-                            new Report{Name = "Riport1", Query = Queries.FirstOrDefault(x=>x.Name.Equals("Számlák")), Style = "style json", GUID=CreateGUID.GetGUID() },
-                            new Report{Name = "Riport2", Query = Queries.FirstOrDefault(x=>x.Name.Equals("Számlák")), Style = "style json", GUID=CreateGUID.GetGUID() } };
+                            new Report{Name = "Riport1", Query = Queries.FirstOrDefault(x=>x.Name.Equals("Számlák")), Style = "style json", GUID="b2fc0e93-4260-47bb-9757-e682f077dd27" },
+                            new Report{Name = "Riport2", Query = Queries.FirstOrDefault(x=>x.Name.Equals("Számlák")), Style = "style json", GUID="51adb95f-161b-4473-95ff-e0d6392f5caa" } };
                 }
                 return reports;
             }
@@ -150,7 +150,7 @@ namespace szakdoga.Data
                 if (queries == null)
                 {
                     queries = new List<Query> {
-                            new Query{  SQL = sql1, Name = "Számlák",TranslatedColumnNames=columns, GUID = CreateGUID.GetGUID(), NextUpdating = System.DateTime.Now, UpdatePeriod = new TimeSpan(1, 0, 0, 0) } };
+                            new Query{  SQL = sql1, Name = "Számlák",TranslatedColumnNames=columns, GUID = "3066e94b-ff9e-454c-ab58-6a88436e4b52", NextUpdating = System.DateTime.Now, UpdatePeriod = new TimeSpan(1, 0, 0, 0) } };
                 }
                 return queries;
             }

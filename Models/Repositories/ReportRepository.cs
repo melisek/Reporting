@@ -17,6 +17,7 @@ namespace szakdoga.Models.Repositories
         {
             if (entity != null)
             {
+                entity.ModifyDate = System.DateTime.Now;
                 _context.Report.Add(entity);
                 _context.SaveChanges();
             }
@@ -37,7 +38,6 @@ namespace szakdoga.Models.Repositories
             var entity = Get(id);
             if (entity != null)
             {
-                //_context.Report.Remove(entity);
                 entity.Deleted = true;
                 _context.Update(entity);
                 _context.SaveChanges();
@@ -50,9 +50,42 @@ namespace szakdoga.Models.Repositories
         {
             if (entity != null)
             {
-                _context.Report.Update(entity);
+                var origReport = Get(entity.GUID);
+                origReport.Columns = entity.Columns;
+                origReport.Filter = entity.Filter;
+                origReport.Name = entity.Name;
+                origReport.Query = entity.Query;
+                origReport.Sort = entity.Sort;
+                origReport.Rows = entity.Rows;
+                //origReport.Style = origReport.Style;
+                origReport.ModifyDate = System.DateTime.Now;
+
+                _context.Report.Update(origReport);
                 _context.SaveChanges();
             }
+        }
+
+        public Report Get(string GUID)
+        {
+            return _context.Report.SingleOrDefault(x => x.GUID == GUID);
+        }
+
+        public Query GetQuery(string QueryGUID)
+        {
+            return _context.Query.SingleOrDefault(x => x.GUID == QueryGUID);
+        }
+
+        public bool Remove(string ReportGUID)
+        {
+            var entity = Get(ReportGUID);
+            if (entity != null)
+            {
+                entity.Deleted = true;
+                _context.Update(entity);
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
         }
     }
 }

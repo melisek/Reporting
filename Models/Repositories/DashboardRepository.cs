@@ -28,6 +28,11 @@ namespace szakdoga.Models.Repositories
             return _context.Dashboards.SingleOrDefault(x => x.Id == id);
         }
 
+        public Dashboard Get(string GUID)
+        {
+            return _context.Dashboards.SingleOrDefault(x => x.GUID == GUID);
+        }
+
         public IEnumerable<Dashboard> GetAll()
         {
             return _context.Dashboards.ToList();

@@ -5,7 +5,7 @@ namespace szakdoga
 {
     public class ReportDto
     {
-        [Required]
+        [Required(ErrorMessage = "Yout should provide GUID.")]
         public string GUID { get; set; }
         public Query Query { get; set; }
 

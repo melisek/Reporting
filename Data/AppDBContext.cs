@@ -24,6 +24,12 @@ namespace szakdoga.Data
             modelBuilder.Entity<Query>().Property(b => b.Deleted).HasDefaultValue(false);
             modelBuilder.Entity<Report>().Property(b => b.Deleted).HasDefaultValue(false);
             modelBuilder.Entity<User>().Property(b => b.Deleted).HasDefaultValue(false);
+
+            //Így lehet csak megvalósítani a unique constrain-t
+            modelBuilder.Entity<Dashboard>().HasAlternateKey(x => x.GUID).HasName("AlternateKey_DashBoard_GUID");
+            modelBuilder.Entity<Query>().HasAlternateKey(x => x.GUID).HasName("AlternateKey_Query_GUID");
+            modelBuilder.Entity<Report>().HasAlternateKey(x => x.GUID).HasName("AlternateKey_Report_GUID");
+            modelBuilder.Entity<User>().HasAlternateKey(x => x.GUID).HasName("AlternateKey_User_GUID");
         }
 
         public DbSet<Dashboard> Dashboards { get; set; }
