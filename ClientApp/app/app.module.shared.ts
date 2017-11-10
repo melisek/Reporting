@@ -25,9 +25,13 @@ import {
     MatListModule,
     MatSnackBarModule,
     //MatSidenav,
-    MatToolbarModule
+    MatToolbarModule,
+    MatTabsModule,
+    MatIconModule,
+    MatExpansionModule
 } from '@angular/material';
 
+import { NgxChartsModule } from '@swimlane/ngx-charts'
 
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
@@ -35,12 +39,17 @@ import { HomeComponent } from './components/home/home.component';
 import { ShareDialogComponent } from './components/shared/share-dialog.component';
 import { ReportComponent } from './components/report/report-list.component';
 import { ReportEditComponent } from './components/report/report-edit.component';
+import { ChartEditComponent } from './components/chart/chart-edit.component';
 //import { ReportModule } from './components/report/report.module';
 
 import { TableHttpExample } from './components/table/table-http-example';
 
 import { MATERIAL_COMPATIBILITY_MODE, MAT_PLACEHOLDER_GLOBAL_OPTIONS } from '@angular/material';
-
+import { ChartService } from './components/chart/chart.service';
+import { ChartDirective } from './components/chart/chart.directive';
+import { HorizontalBarChartComponent } from './components/chart/chart-horizontal-bar.component';
+import { VerticalBarChartComponent } from './components/chart/chart-vertical-bar.component';
+import { PieChartComponent } from './components/chart/chart-pie.component';
 
 
 
@@ -52,9 +61,14 @@ import { MATERIAL_COMPATIBILITY_MODE, MAT_PLACEHOLDER_GLOBAL_OPTIONS } from '@an
         TableHttpExample,
         ShareDialogComponent,
         ReportComponent,
-        ReportEditComponent
+        ReportEditComponent,
+        ChartEditComponent,
+        HorizontalBarChartComponent,
+        VerticalBarChartComponent,
+        PieChartComponent,
+        ChartDirective
     ],
-    entryComponents: [ShareDialogComponent],
+    entryComponents: [ShareDialogComponent, HorizontalBarChartComponent, VerticalBarChartComponent, PieChartComponent],
     imports: [
         //BrowserModule,
         BrowserAnimationsModule,    
@@ -72,6 +86,10 @@ import { MATERIAL_COMPATIBILITY_MODE, MAT_PLACEHOLDER_GLOBAL_OPTIONS } from '@an
             {
                 path: 'report',
                 component: ReportEditComponent
+            },
+            {
+                path: 'chart',
+                component: ChartEditComponent
             },
             { path: 'table', component: TableHttpExample },
             { path: '**', redirectTo: 'home' }
@@ -94,7 +112,11 @@ import { MATERIAL_COMPATIBILITY_MODE, MAT_PLACEHOLDER_GLOBAL_OPTIONS } from '@an
         MatSelectModule,
         MatListModule,
         MatSnackBarModule,
-        MatToolbarModule
+        MatToolbarModule,
+        MatExpansionModule,
+        MatTabsModule,
+        MatIconModule,
+        NgxChartsModule
     ],
     exports: [
         MatButtonModule,
@@ -112,9 +134,14 @@ import { MATERIAL_COMPATIBILITY_MODE, MAT_PLACEHOLDER_GLOBAL_OPTIONS } from '@an
         MatSelectModule,
         MatListModule,
         MatSnackBarModule,
-        MatToolbarModule
+        MatToolbarModule,
+        MatExpansionModule,
+        MatTabsModule,
+        MatIconModule,
+        NgxChartsModule
     ],
     providers: [
+        ChartService,
         { provide: MATERIAL_COMPATIBILITY_MODE, useValue: true },
         { provide: MAT_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'always' } }
     ]

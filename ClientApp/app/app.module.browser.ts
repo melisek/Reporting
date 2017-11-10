@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { AppModuleShared } from './app.module.shared';
 import { AppComponent } from './components/app/app.component';
+import { HorizontalBarChartComponent } from './components/chart/chart-horizontal-bar.component';
+import { ChartDirective } from './components/chart/chart.directive';
 
 @NgModule({
-    bootstrap: [ AppComponent ],
+    bootstrap: [AppComponent],
     imports: [
         AppModuleShared
     ],
+    //declarations: [HorizontalBarChartComponent, ChartDirective],
+   // entryComponents: [HorizontalBarChartComponent],
     providers: [
         { provide: 'BASE_URL', useFactory: getBaseUrl }
     ]

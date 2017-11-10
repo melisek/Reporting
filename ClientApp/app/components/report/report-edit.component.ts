@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+﻿import { Component, OnInit, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Http } from '@angular/http';
 import { DataSource } from '@angular/cdk/collections';
 import { MatSort, MatPaginator, MatDialog, MatSelectionList } from '@angular/material';
@@ -21,7 +21,7 @@ import { IQueryColumns } from '../query/query';
 
 @Component({
     templateUrl: './report-edit.component.html',
-    styleUrls: [ './report-edit.component.css' ]
+    styleUrls: [ './report-edit.component.css', '../shared/shared-styles.css' ]
 })
 export class ReportEditComponent implements OnInit {
 
@@ -43,7 +43,7 @@ export class ReportEditComponent implements OnInit {
     queryColumns: IQueryColumns;
 
 
-    constructor(private http: Http, private dialog: MatDialog) { }
+    constructor(private http: Http, private dialog: MatDialog, private _cdr: ChangeDetectorRef) { }
 
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -59,6 +59,7 @@ export class ReportEditComponent implements OnInit {
         this.showDataTable = false;
         this.reportService = new ReportService(this.http);
         this.dataSource = new ExampleDataSource(this.reportService!, this.sort, this.paginator);
+        this._cdr.detectChanges();
         /*this.queryService.getQueryColumns(Number(this.selectedValue))
             .subscribe(data => this.queryColumns = data);*/
             /*.map(data => {
@@ -79,6 +80,7 @@ export class ReportEditComponent implements OnInit {
         if (this.queryService != null)
             this.queryService.getQueryColumns(Number(this.selectedValue))
                 .subscribe(data => this.queryColumns = data);
+        
     }
 
     onUpdateClick(): void {
@@ -90,6 +92,7 @@ export class ReportEditComponent implements OnInit {
 
         this.displayedColumns = this.columnNames.map(x => x.columnDef);
         this.showDataTable = true;
+        
     }
 
     onSaveClick(): void {
@@ -145,7 +148,8 @@ export class ExampleDataSource extends DataSource<any> {
     get filter(): string { return this._filterChange.value; }
     set filter(filter: string) { this._filterChange.next(filter); }
 
-    constructor(private _reportService: ReportService, private _sort: MatSort, private _paginator: MatPaginator) {
+    constructor(private _reportService: ReportService,
+        private _sort: MatSort, private _paginator: MatPaginator) {
         super();
     }
 

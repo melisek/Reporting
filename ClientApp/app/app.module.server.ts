@@ -6,7 +6,10 @@ import { NoopAnimationsModule, ɵAnimationRendererFactory } from '@angular/platf
 
 import { AppModuleShared } from './app.module.shared';
 import { AppComponent } from './components/app/app.component';
+
+
 import { MatSidenavContainer } from '@angular/material'
+import { HorizontalBarChartComponent } from './components/chart/chart-horizontal-bar.component';
 //import { ReportModule } from './components/report/report.module';
 
 // declarations
@@ -40,11 +43,12 @@ export const SERVER_RENDER_PROVIDERS = [
 ];
 
 @NgModule({
-    bootstrap: [ AppComponent ],
+    bootstrap: [AppComponent],
+    //entryComponents: [HorizontalBarChartComponent],
     imports: [
         ServerModule,
         NoopAnimationsModule,      
-        AppModuleShared
+        AppModuleShared,
         //ReportModule,
         //AppRoutingModule
     ],

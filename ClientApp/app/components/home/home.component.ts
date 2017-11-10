@@ -22,11 +22,35 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/switchMap';
 
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+
 @Component({
     selector: 'home',
     templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
+    single: any[];
+    multi: any[];
+
+    view: any[] = [700, 400];
+
+    // options
+    showXAxis = true;
+    showYAxis = true;
+    gradient = false;
+    showLegend = true;
+    showXAxisLabel = true;
+    xAxisLabel = 'Country';
+    showYAxisLabel = true;
+    yAxisLabel = 'Population';
+
+    colorScheme = {
+        domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    };
+
+
+
+
     displayedColumns = ['created_at', 'state', 'number', 'title'];
     exampleDatabase: ExampleDatabase | null;
     dataSource: ExampleDataSource | null;
@@ -35,7 +59,13 @@ export class HomeComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     //@ViewChild('filter') filter: ElementRef;
 
-    constructor(private http: Http) { }
+    constructor(private http: Http) {
+        Object.assign(this, { single }) 
+    }
+
+    /*onSelect(event) {
+        console.log(event);
+    }*/
 
     ngOnInit() {
         this.exampleDatabase = new ExampleDatabase(this.http);
@@ -51,6 +81,21 @@ export class HomeComponent implements OnInit {
             });*/
     }
 }
+
+export var single = [
+    {
+        "name": "Germany",
+        "value": 8940000
+    },
+    {
+        "name": "USA",
+        "value": 5000000
+    },
+    {
+        "name": "France",
+        "value": 7200000
+    }
+];
 
 /** Constants used to fill up our data base. */
 //const COLORS = ['maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple',
