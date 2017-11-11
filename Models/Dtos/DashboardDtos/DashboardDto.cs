@@ -7,6 +7,7 @@ namespace szakdoga.Models.Dtos.DashboardDtos
         [Required(ErrorMessage = "Yout should provide DashboardGUID!")]
         [MaxLength(50, ErrorMessage = "Maximum GUID length is 50 characters.")]
         public string DashboardGUID { get; set; }
+
         public string Style { get; set; }
     }
 }

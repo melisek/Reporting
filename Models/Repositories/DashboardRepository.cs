@@ -64,6 +64,7 @@ namespace szakdoga.Models.Repositories
                 _context.SaveChanges();
             }
         }
+
         public bool Remove(string dashGUID)
         {
             var entity = Get(dashGUID);

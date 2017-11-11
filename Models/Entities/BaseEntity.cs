@@ -19,6 +19,7 @@ namespace szakdoga.Models
         //[DatabaseGenerated(DatabaseGeneratedOption.Computed)] -sajnos nem működik
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] //így insertnél létrejön a kezdőérték, update-el frissítem
         public DateTime ModifyDate { get; set; }
+
         public bool Deleted { get; set; }
     }
 }

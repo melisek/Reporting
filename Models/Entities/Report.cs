@@ -7,6 +7,7 @@ namespace szakdoga.Models
         [Required]
         [StringLength(50)]
         public string ReportGUID { get; set; }
+
         public Query Query { get; set; }
 
         /// <summary>
@@ -18,9 +19,9 @@ namespace szakdoga.Models
         /// :-vel tagolt string "tömb"
         /// </summary>
         public string Columns { get; set; }
+
         public string Filter { get; set; }
         public string Sort { get; set; }
         public int Rows { get; set; }
-
     }
 }

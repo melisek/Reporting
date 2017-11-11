@@ -30,7 +30,6 @@ namespace szakdoga.BusinessLogic
                 return null;
             else
                 return Mapper.Map<DashboardDto>(db);
-
         }
 
         public string CreateDashboard(CreateDashboardDto dbDto)
@@ -64,7 +63,6 @@ namespace szakdoga.BusinessLogic
             };
 
             _dashboardRepository.Update(dashboardEntity);
-
 
             foreach (var rel in _reportDashboardRel.GetDashboardReports(origDashboard.Id))
             {

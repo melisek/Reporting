@@ -9,6 +9,7 @@ namespace szakdoga.BusinessLogic
     public class ReportManager : IDisposable
     {
         private IReportRepository _reportRepository;
+
         public ReportManager(IReportRepository reportRepository)
         {
             _reportRepository = reportRepository;

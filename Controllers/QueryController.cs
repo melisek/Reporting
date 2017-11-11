@@ -14,6 +14,7 @@ namespace szakdoga.Controllers
         {
             _queryRepository = queryRepository;
         }
+
         [HttpGet()]
         public IActionResult GetQueries()
         {
@@ -25,6 +26,5 @@ namespace szakdoga.Controllers
              * businesslogisban van a validáticó
              */
         }
-
     }
 }

@@ -48,7 +48,6 @@ namespace szakdoga.Controllers
                     return BadRequest("Could not save.");
                 //Created()//lehetne még createatute()-akkor megadná h hogy tudja elérni tehát: GetReport/ReportGUID
             }
-
         }
 
         [HttpPut("Update/{reportGUID}")]
@@ -78,9 +77,7 @@ namespace szakdoga.Controllers
                     return NoContent();
                 else
                     return BadRequest();
-
             }
-
         }
     }
 }

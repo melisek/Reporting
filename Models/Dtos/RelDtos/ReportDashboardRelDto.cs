@@ -7,7 +7,7 @@ namespace szakdoga.Models.Dtos.QueryDtos
         [Required(ErrorMessage = "You should provide reportGUID!")]
         [MaxLength(50, ErrorMessage = "Maximum GUID length is 50 characters.")]
         public string ReportGUID { get; set; }
-        public string Position { get; set; }
 
+        public string Position { get; set; }
     }
 }

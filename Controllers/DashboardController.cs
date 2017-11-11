@@ -49,7 +49,6 @@ namespace szakdoga.Controllers
                 else
                     return BadRequest("Could not save.");
             }
-
         }
 
         [HttpPut("Update/{dashboardGUID}")]
@@ -66,6 +65,7 @@ namespace szakdoga.Controllers
                     return BadRequest("Report GUID is not valid.");
             }
         }
+
         [HttpDelete("Delete/{dashboardGUID}")]
         public IActionResult DeleteReport(string dashboardGUID)
         {
@@ -78,9 +78,7 @@ namespace szakdoga.Controllers
                     return NoContent();
                 else
                     return BadRequest();
-
             }
-
         }
     }
 }
