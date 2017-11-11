@@ -52,5 +52,10 @@ namespace szakdoga.Models.Repositories
                 _context.SaveChanges();
             }
         }
+
+        public IEnumerable<ReportDashboardRel> GetDashboardReports(int dashId)
+        {
+            return _context.ReportDashboardRel.Where(x => x.Dashboard.Id == dashId).ToList();
+        }
     }
 }

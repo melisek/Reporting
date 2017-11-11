@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using szakdoga.BusinessLogic;
 using szakdoga.Models;
+using szakdoga.Models.Dtos.DashboardDtos;
 
 namespace szakdoga.Controllers
 {
@@ -8,19 +9,22 @@ namespace szakdoga.Controllers
     public class DashboardController : Controller
     {
         private IDashboardRepository _dashboardRepository;
+        private IReportDashboardRelRepository _reportDashboardRel;
+        private IReportRepository _reportRepository;
 
-        public DashboardController(IDashboardRepository dashboardRepository)
+        public DashboardController(IDashboardRepository dashboardRepository, IReportDashboardRelRepository repDashRel, IReportRepository reportRepository)
         {
             _dashboardRepository = dashboardRepository;
-
+            _reportDashboardRel = repDashRel;
+            _reportRepository = reportRepository;
         }
 
-        [HttpGet("GetDashboardStyle/{dashboardGUID}")]
+        [HttpGet("GetStyle/{dashboardGUID}")]
         public IActionResult GetDashBoardStyle(string dashboardGUID)
         {
             if (string.IsNullOrEmpty(dashboardGUID))
-                return BadRequest();
-            using (var dashboardManager = new DashboardManager(_dashboardRepository))
+                return BadRequest("Empty GUID!");
+            using (var dashboardManager = new DashboardManager(_dashboardRepository, _reportDashboardRel, _reportRepository))
             {
                 var dashboardDto = dashboardManager.GetDashBoardStyle(dashboardGUID);
 
@@ -29,6 +33,54 @@ namespace szakdoga.Controllers
                 else
                     return Ok(dashboardDto);
             }
+        }
+
+        [HttpPost("Create")]
+        public IActionResult CreateDashboard([FromBody] CreateDashboardDto dbDto)
+        {
+            if (dbDto == null) return BadRequest("Invalid Dto");
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            using (var dashboardManager = new DashboardManager(_dashboardRepository, _reportDashboardRel, _reportRepository))
+            {
+                var guid = dashboardManager.CreateDashboard(dbDto);
+                if (!string.IsNullOrEmpty(guid))
+                    return Created(string.Empty, guid);
+                else
+                    return BadRequest("Could not save.");
+            }
+
+        }
+
+        [HttpPut("Update/{dashboardGUID}")]
+        public IActionResult UpdateReport([FromBody] UpdateDashboardDto dashboard, string dashboardGUID)
+        {
+            if (dashboard == null) return BadRequest("Invalid Dto");
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            using (var dashboardManager = new DashboardManager(_dashboardRepository, _reportDashboardRel, _reportRepository))
+            {
+                if (dashboardManager.UpdateDashboard(dashboard, dashboardGUID))
+                    return NoContent();
+                else
+                    return BadRequest("Report GUID is not valid.");
+            }
+        }
+        [HttpDelete("Delete/{dashboardGUID}")]
+        public IActionResult DeleteReport(string dashboardGUID)
+        {
+            if (string.IsNullOrEmpty(dashboardGUID))
+                return BadRequest("Empty GUID!");
+
+            using (var dashboardManager = new DashboardManager(_dashboardRepository, _reportDashboardRel, _reportRepository))
+            {
+                if (dashboardManager.DeleteDashboard(dashboardGUID))
+                    return NoContent();
+                else
+                    return BadRequest();
+
+            }
+
         }
     }
 }

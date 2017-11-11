@@ -1,9 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace szakdoga.Models
 {
     public class Report : BaseEntity
     {
+        [Required]
+        [StringLength(50)]
+        public string ReportGUID { get; set; }
         public Query Query { get; set; }
 
         /// <summary>
@@ -18,7 +21,6 @@ namespace szakdoga.Models
         public string Filter { get; set; }
         public string Sort { get; set; }
         public int Rows { get; set; }
-        [NotMapped]
-        public string QueryGUID { get => Query.GUID; }
+
     }
 }

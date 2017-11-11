@@ -50,7 +50,7 @@ namespace szakdoga.Models.Repositories
         {
             if (entity != null)
             {
-                var origReport = Get(entity.GUID);
+                var origReport = Get(entity.ReportGUID);
                 origReport.Columns = entity.Columns;
                 origReport.Filter = entity.Filter;
                 origReport.Name = entity.Name;
@@ -65,14 +65,14 @@ namespace szakdoga.Models.Repositories
             }
         }
 
-        public Report Get(string GUID)
+        public Report Get(string reportGUID)
         {
-            return _context.Report.SingleOrDefault(x => x.GUID == GUID);
+            return _context.Report.SingleOrDefault(x => x.ReportGUID == reportGUID);
         }
 
         public Query GetQuery(string QueryGUID)
         {
-            return _context.Query.SingleOrDefault(x => x.GUID == QueryGUID);
+            return _context.Query.SingleOrDefault(x => x.QueryGUID == QueryGUID);
         }
 
         public bool Remove(string ReportGUID)

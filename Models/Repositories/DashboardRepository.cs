@@ -28,9 +28,9 @@ namespace szakdoga.Models.Repositories
             return _context.Dashboards.SingleOrDefault(x => x.Id == id);
         }
 
-        public Dashboard Get(string GUID)
+        public Dashboard Get(string dashGUID)
         {
-            return _context.Dashboards.SingleOrDefault(x => x.GUID == GUID);
+            return _context.Dashboards.SingleOrDefault(x => x.DashBoardGUID == dashGUID);
         }
 
         public IEnumerable<Dashboard> GetAll()
@@ -56,9 +56,25 @@ namespace szakdoga.Models.Repositories
         {
             if (entity != null)
             {
-                _context.Dashboards.Update(entity);
+                var origDash = Get(entity.DashBoardGUID);
+                origDash.Name = entity.Name;
+                origDash.ModifyDate = System.DateTime.Now;
+
+                _context.Dashboards.Update(origDash);
                 _context.SaveChanges();
             }
+        }
+        public bool Remove(string dashGUID)
+        {
+            var entity = Get(dashGUID);
+            if (entity != null)
+            {
+                entity.Deleted = true;
+                _context.Update(entity);
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -21,7 +21,7 @@ namespace szakdoga.BusinessLogic
 
         public ReportDto GetReportStyle(string reportGUID)
         {
-            var report = _reportRepository.GetAll().FirstOrDefault(x => x.GUID == reportGUID);
+            var report = _reportRepository.GetAll().FirstOrDefault(x => x.ReportGUID == reportGUID);
 
             if (report == null)
                 return null;
@@ -34,7 +34,7 @@ namespace szakdoga.BusinessLogic
             var dbReport = new Report
             {
                 Name = report.Name,
-                GUID = CreateGUID.GetGUID(),
+                ReportGUID = CreateGUID.GetGUID(),
                 Query = _reportRepository.GetQuery(report.QueryGUID),
                 Columns = StringArraySerializer(report.Columns),
                 Filter = report.Filter,
@@ -43,7 +43,7 @@ namespace szakdoga.BusinessLogic
             };
             _reportRepository.Add(dbReport);
 
-            return dbReport.GUID;
+            return dbReport.ReportGUID;
         }
 
         private string StringArraySerializer(string[] array)
@@ -76,7 +76,7 @@ namespace szakdoga.BusinessLogic
             var reportEntity = new Report
             {
                 Name = report.Name,
-                GUID = report.GUID,
+                ReportGUID = report.ReportGUID,
                 Query = _reportRepository.GetQuery(report.QueryGUID),
                 Columns = StringArraySerializer(report.Columns),
                 Filter = report.Filter,

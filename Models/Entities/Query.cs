@@ -9,11 +9,11 @@ namespace szakdoga.Models
         public string SQL { get; set; }
         [MaxLength(200)]
         public string ResultTableName { get; set; }
-
+        [Required]
+        [StringLength(50, ErrorMessage = "Maximum GUID length is 50 characters.")]
+        public string QueryGUID { get; set; }
         public string TranslatedColumnNames { get; set; }
-
         public DateTime NextUpdating { get; set; }
-
         [NotMapped]
         public TimeSpan UpdatePeriod { get; set; }
 

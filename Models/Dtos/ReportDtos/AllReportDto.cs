@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace szakdoga.Models.Dtos.Report
+namespace szakdoga.Models.Dtos.ReportDtos
 {
     public class AllReportDto
     {
@@ -11,7 +11,5 @@ namespace szakdoga.Models.Dtos.Report
         public DateTime Created { get; set; }
         public DateTime Modified { get; set; }
         public UserDto Author { get; set; }
-
-
     }
 }

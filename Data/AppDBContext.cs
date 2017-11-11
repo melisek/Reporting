@@ -18,6 +18,10 @@ namespace szakdoga.Data
             modelBuilder.Entity<Report>().Property(b => b.ModifyDate).HasDefaultValueSql("getdate()");
             modelBuilder.Entity<Dashboard>().Property(b => b.CreationDate).HasDefaultValueSql("getdate()");
             modelBuilder.Entity<Dashboard>().Property(b => b.ModifyDate).HasDefaultValueSql("getdate()");
+            modelBuilder.Entity<User>().Property(b => b.CreationDate).HasDefaultValueSql("getdate()");
+            modelBuilder.Entity<User>().Property(b => b.ModifyDate).HasDefaultValueSql("getdate()");
+            modelBuilder.Entity<Query>().Property(b => b.CreationDate).HasDefaultValueSql("getdate()");
+            modelBuilder.Entity<Query>().Property(b => b.ModifyDate).HasDefaultValueSql("getdate()");
 
             //Sajnos ha BaseEntity-t adok meg, akkor megpróbálja létrehozni rá a táblát
             modelBuilder.Entity<Dashboard>().Property(b => b.Deleted).HasDefaultValue(false);
@@ -26,10 +30,10 @@ namespace szakdoga.Data
             modelBuilder.Entity<User>().Property(b => b.Deleted).HasDefaultValue(false);
 
             //Így lehet csak megvalósítani a unique constrain-t
-            modelBuilder.Entity<Dashboard>().HasAlternateKey(x => x.GUID).HasName("AlternateKey_DashBoard_GUID");
-            modelBuilder.Entity<Query>().HasAlternateKey(x => x.GUID).HasName("AlternateKey_Query_GUID");
-            modelBuilder.Entity<Report>().HasAlternateKey(x => x.GUID).HasName("AlternateKey_Report_GUID");
-            modelBuilder.Entity<User>().HasAlternateKey(x => x.GUID).HasName("AlternateKey_User_GUID");
+            modelBuilder.Entity<Dashboard>().HasAlternateKey(x => x.DashBoardGUID).HasName("AlternateKey_DashBoard_GUID");
+            modelBuilder.Entity<Query>().HasAlternateKey(x => x.QueryGUID).HasName("AlternateKey_Query_GUID");
+            modelBuilder.Entity<Report>().HasAlternateKey(x => x.ReportGUID).HasName("AlternateKey_Report_GUID");
+            modelBuilder.Entity<User>().HasAlternateKey(x => x.UserGUID).HasName("AlternateKey_User_GUID");
         }
 
         public DbSet<Dashboard> Dashboards { get; set; }

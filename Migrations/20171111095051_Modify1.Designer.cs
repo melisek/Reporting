@@ -11,8 +11,8 @@ using szakdoga.Data;
 namespace szakdoga.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20171109103500_Modify8")]
-    partial class Modify8
+    [Migration("20171111095051_Modify1")]
+    partial class Modify1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,15 +30,16 @@ namespace szakdoga.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("getdate()");
 
+                    b.Property<string>("DashBoardGUID")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
                     b.Property<bool>("Deleted")
                         .ValueGeneratedOnAdd()
                         .HasDefaultValue(false);
 
-                    b.Property<string>("GUID")
-                        .IsRequired();
-
                     b.Property<DateTime>("ModifyDate")
-                        .ValueGeneratedOnAddOrUpdate()
+                        .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("getdate()");
 
                     b.Property<string>("Name")
@@ -49,6 +50,9 @@ namespace szakdoga.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasAlternateKey("DashBoardGUID")
+                        .HasName("AlternateKey_DashBoard_GUID");
+
                     b.ToTable("Dashboards");
                 });
 
@@ -58,23 +62,26 @@ namespace szakdoga.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreationDate")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("getdate()");
 
                     b.Property<bool>("Deleted")
                         .ValueGeneratedOnAdd()
                         .HasDefaultValue(false);
 
-                    b.Property<string>("GUID")
-                        .IsRequired();
-
                     b.Property<DateTime>("ModifyDate")
-                        .ValueGeneratedOnAddOrUpdate();
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("getdate()");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200);
 
                     b.Property<DateTime>("NextUpdating");
+
+                    b.Property<string>("QueryGUID")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.Property<string>("ResultTableName")
                         .HasMaxLength(200);
@@ -86,6 +93,9 @@ namespace szakdoga.Migrations
                     b.Property<long>("UpdatePeriodTicks");
 
                     b.HasKey("Id");
+
+                    b.HasAlternateKey("QueryGUID")
+                        .HasName("AlternateKey_Query_GUID");
 
                     b.ToTable("Query");
                 });
@@ -107,11 +117,8 @@ namespace szakdoga.Migrations
 
                     b.Property<string>("Filter");
 
-                    b.Property<string>("GUID")
-                        .IsRequired();
-
                     b.Property<DateTime>("ModifyDate")
-                        .ValueGeneratedOnAddOrUpdate()
+                        .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("getdate()");
 
                     b.Property<string>("Name")
@@ -120,11 +127,20 @@ namespace szakdoga.Migrations
 
                     b.Property<int?>("QueryId");
 
+                    b.Property<string>("ReportGUID")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<int>("Rows");
+
                     b.Property<string>("Sort");
 
                     b.Property<string>("Style");
 
                     b.HasKey("Id");
+
+                    b.HasAlternateKey("ReportGUID")
+                        .HasName("AlternateKey_Report_GUID");
 
                     b.HasIndex("QueryId");
 
@@ -177,7 +193,8 @@ namespace szakdoga.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreationDate")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("getdate()");
 
                     b.Property<bool>("Deleted")
                         .ValueGeneratedOnAdd()
@@ -185,11 +202,9 @@ namespace szakdoga.Migrations
 
                     b.Property<string>("EmailAddress");
 
-                    b.Property<string>("GUID")
-                        .IsRequired();
-
                     b.Property<DateTime>("ModifyDate")
-                        .ValueGeneratedOnAddOrUpdate();
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("getdate()");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -198,7 +213,14 @@ namespace szakdoga.Migrations
                     b.Property<string>("Password")
                         .IsRequired();
 
+                    b.Property<string>("UserGUID")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
                     b.HasKey("Id");
+
+                    b.HasAlternateKey("UserGUID")
+                        .HasName("AlternateKey_User_GUID");
 
                     b.ToTable("User");
                 });

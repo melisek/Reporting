@@ -27,9 +27,9 @@ namespace szakdoga.Models.Repositories
             return _context.User.SingleOrDefault(x => x.Id == id);
         }
 
-        public User Get(string GUID)
+        public User Get(string userGUID)
         {
-            return _context.User.SingleOrDefault(x => x.GUID == GUID);
+            return _context.User.SingleOrDefault(x => x.UserGUID == userGUID);
         }
 
         public IEnumerable<User> GetAll()

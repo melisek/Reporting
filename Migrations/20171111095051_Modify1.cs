@@ -4,13 +4,21 @@ using System.Collections.Generic;
 
 namespace szakdoga.Migrations
 {
-    public partial class Modify10 : Migration
+    public partial class Modify1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<DateTime>(
                 name: "ModifyDate",
-                table: "Report",
+                table: "User",
+                type: "datetime2",
+                nullable: false,
+                defaultValueSql: "getdate()",
+                oldClrType: typeof(DateTime));
+
+            migrationBuilder.AlterColumn<DateTime>(
+                name: "CreationDate",
+                table: "User",
                 type: "datetime2",
                 nullable: false,
                 defaultValueSql: "getdate()",
@@ -18,7 +26,15 @@ namespace szakdoga.Migrations
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "ModifyDate",
-                table: "Dashboards",
+                table: "Query",
+                type: "datetime2",
+                nullable: false,
+                defaultValueSql: "getdate()",
+                oldClrType: typeof(DateTime));
+
+            migrationBuilder.AlterColumn<DateTime>(
+                name: "CreationDate",
+                table: "Query",
                 type: "datetime2",
                 nullable: false,
                 defaultValueSql: "getdate()",
@@ -29,7 +45,15 @@ namespace szakdoga.Migrations
         {
             migrationBuilder.AlterColumn<DateTime>(
                 name: "ModifyDate",
-                table: "Report",
+                table: "User",
+                nullable: false,
+                oldClrType: typeof(DateTime),
+                oldType: "datetime2",
+                oldDefaultValueSql: "getdate()");
+
+            migrationBuilder.AlterColumn<DateTime>(
+                name: "CreationDate",
+                table: "User",
                 nullable: false,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
@@ -37,7 +61,15 @@ namespace szakdoga.Migrations
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "ModifyDate",
-                table: "Dashboards",
+                table: "Query",
+                nullable: false,
+                oldClrType: typeof(DateTime),
+                oldType: "datetime2",
+                oldDefaultValueSql: "getdate()");
+
+            migrationBuilder.AlterColumn<DateTime>(
+                name: "CreationDate",
+                table: "Query",
                 nullable: false,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",

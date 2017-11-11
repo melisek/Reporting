@@ -17,7 +17,7 @@ namespace szakdoga.Controllers
         [HttpGet()]
         public IActionResult GetQueries()
         {
-            List<QueryDto> asd = _queryRepository.GetAll().Select(x => new QueryDto { Name = x.Name, GUID = x.GUID }).ToList();
+            List<QueryDto> asd = _queryRepository.GetAll().Select(x => new QueryDto { Name = x.Name, QueryGUID = x.QueryGUID }).ToList();
             return Ok(asd);
             /*
              * using blokkokban használjam a businesslogikot

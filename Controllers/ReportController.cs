@@ -16,8 +16,10 @@ namespace szakdoga.Controllers
         }
 
         [HttpGet("GetStyle/{reportGUID}")]
-        public IActionResult GetStyle(string reportGUID)
+        public IActionResult GetRiportStyle(string reportGUID)
         {
+            if (string.IsNullOrEmpty(reportGUID)) return BadRequest("Empty GUID!");
+
             using (var reportManager = new ReportManager(_reportRepository))
             {
                 var report = reportManager.GetReportStyle(reportGUID);
@@ -28,13 +30,14 @@ namespace szakdoga.Controllers
             }
         }
 
-        [HttpPost("CreateReport")]
+        [HttpPost("Create")]
         public IActionResult CreateReport([FromBody] CreateReportDto report)
         {
-            if (report == null      //ha nem lehet a bemeneti json-t serializálni a megadott objektumba akk null lesz az értéke
-                || !ModelState.IsValid)//ha nem felelt meg a DataAnnotation atribútumoknak - nem a legjobb adatellenőrzésre a dataannotations, mert keverve vannak az ellenőrzési helye
-                //hozzá lehet adni itt is hibát, ellenőrzést, ajánlás: FluenValidation:  library- lambdákkal lehet megkötéseket definiálni
-                return BadRequest(); //400-as hibakód
+            if (report == null)     //ha nem lehet a bemeneti json-t serializálni a megadott objektumba akk null lesz az értéke
+                return BadRequest("Invalid Dto!");
+            if (!ModelState.IsValid)//ha nem felelt meg a DataAnnotation atribútumoknak - nem a legjobb adatellenőrzésre a dataannotations, mert keverve vannak az ellenőrzési helye
+                                    //hozzá lehet adni itt is hibát, ellenőrzést, ajánlás: FluenValidation:  library- lambdákkal lehet megkötéseket definiálni
+                return BadRequest(ModelState); //400-as hibakód
 
             using (var reportManager = new ReportManager(_reportRepository))
             {
@@ -48,11 +51,11 @@ namespace szakdoga.Controllers
 
         }
 
-        [HttpPut("UpdateReport/{reportGUID}")]
+        [HttpPut("Update/{reportGUID}")]
         public IActionResult UpdateReport([FromBody] UpdateReportDto report, string reportGUID)
         {
-            if (report == null || !ModelState.IsValid)
-                return BadRequest();
+            if (report == null) return BadRequest("Invalid Dto");
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             using (var reportManager = new ReportManager(_reportRepository))
             {
@@ -63,11 +66,11 @@ namespace szakdoga.Controllers
             }
         }
 
-        [HttpDelete("DeleteReport/{reportGUID}")]
+        [HttpDelete("Delete/{reportGUID}")]
         public IActionResult DeleteReport(string reportGUID)
         {
             if (string.IsNullOrEmpty(reportGUID))
-                return BadRequest();
+                return BadRequest("Empty GUID!");
 
             using (var reportManager = new ReportManager(_reportRepository))
             {
