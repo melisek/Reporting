@@ -30,7 +30,7 @@ namespace szakdoga.Models.Repositories
 
         public Dashboard Get(string dashGUID)
         {
-            return _context.Dashboards.SingleOrDefault(x => x.DashBoardGUID == dashGUID);
+            return _context.Dashboards.FirstOrDefault(x => x.DashBoardGUID == dashGUID);
         }
 
         public IEnumerable<Dashboard> GetAll()

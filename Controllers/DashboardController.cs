@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using szakdoga.BusinessLogic;
 using szakdoga.Models;
 using szakdoga.Models.Dtos.DashboardDtos;
@@ -67,7 +68,7 @@ namespace szakdoga.Controllers
         }
 
         [HttpDelete("Delete/{dashboardGUID}")]
-        public IActionResult DeleteReport(string dashboardGUID)
+        public IActionResult DeleteDashboard(string dashboardGUID)
         {
             if (string.IsNullOrEmpty(dashboardGUID))
                 return BadRequest("Empty GUID!");
@@ -78,6 +79,55 @@ namespace szakdoga.Controllers
                     return NoContent();
                 else
                     return BadRequest();
+            }
+        }
+
+        [HttpGet("GetDashboardReportNames/{dashboardGUID}")]
+        public IActionResult GetDashboardReportNames(string dashboardGUID)
+        {
+            if (string.IsNullOrEmpty(dashboardGUID))
+                return BadRequest("Empty GUID");
+
+            using (var dashboardManager = new DashboardManager(_dashboardRepository, _reportDashboardRel, _reportRepository))
+            {
+                IEnumerable<ReportDto> repots = dashboardManager.GetReportNames(dashboardGUID);
+                return Ok(repots);
+            }
+
+        }
+
+        [HttpGet("GetDashboardReports/{dashboardGUID}")]
+        public IActionResult GetDashboardReports(string dashboardGUID)
+        {
+            if (string.IsNullOrEmpty(dashboardGUID))
+                return BadRequest("Empty GUID");
+
+            using (var dashboardManager = new DashboardManager(_dashboardRepository, _reportDashboardRel, _reportRepository))
+            {
+                var reports = dashboardManager.GetDashboardReports(dashboardGUID);
+
+                if (reports == null)
+                    return BadRequest();
+                else
+                    return Ok(reports);
+            }
+        }
+
+        [HttpGet("GetDashboardReportPosition/{dashboardGUID}/{reportGUID}")]
+        public IActionResult GetDashboardReportPosition(string dashboardGUID, string reportGUID)
+        {
+            if (string.IsNullOrEmpty(dashboardGUID) || string.IsNullOrEmpty(reportGUID))
+                return BadRequest("Empty GUID");
+
+            using (var dashboardManager = new DashboardManager(_dashboardRepository, _reportDashboardRel, _reportRepository))
+            {
+                string position = dashboardManager.GetPosition(dashboardGUID, reportGUID);
+
+                if (string.IsNullOrEmpty(position))
+                    return BadRequest("Invalid dashboardGUID or reportGUID!");
+
+                else
+                    return Ok(position);
             }
         }
     }

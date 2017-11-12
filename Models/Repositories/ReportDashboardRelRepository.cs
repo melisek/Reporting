@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using szakdoga.Data;
 
@@ -24,12 +25,15 @@ namespace szakdoga.Models.Repositories
 
         public ReportDashboardRel Get(int id)
         {
-            return _context.ReportDashboardRel.SingleOrDefault(x => x.Id == id);
+            return _context.ReportDashboardRel.Include(x => x.Report).
+                Include(y => y.Dashboard).
+                Include(z => z.Report.Query).
+                SingleOrDefault(x => x.Id == id);
         }
 
         public IEnumerable<ReportDashboardRel> GetAll()
         {
-            return _context.ReportDashboardRel.ToList();
+            return _context.ReportDashboardRel.Include(x => x.Report).Include(y => y.Dashboard).ToList();
         }
 
         public bool Remove(int id)
@@ -55,7 +59,20 @@ namespace szakdoga.Models.Repositories
 
         public IEnumerable<ReportDashboardRel> GetDashboardReports(int dashId)
         {
-            return _context.ReportDashboardRel.Where(x => x.Dashboard.Id == dashId).ToList();
+            return _context.ReportDashboardRel.
+                Include(x => x.Report).
+                Include(y => y.Dashboard).
+                Include(z => z.Report.Query).
+                Where(z => z.Dashboard.Id == dashId).ToList();
+        }
+
+        public IEnumerable<ReportDashboardRel> GetReportDashboards(int repId)
+        {
+            return _context.ReportDashboardRel.
+                Include(x => x.Report).
+                Include(y => y.Dashboard).
+                Include(z => z.Report.Query).
+                Where(z => z.Report.Id == repId).ToList();
         }
     }
 }
