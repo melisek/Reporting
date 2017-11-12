@@ -9,10 +9,12 @@ namespace szakdoga.Controllers
     public class ReportController : Controller
     {
         private IReportRepository _reportRepository;
+        private IReportDashboardRelRepository _reportDashboardRel;
 
-        public ReportController(IReportRepository reportRepository)
+        public ReportController(IReportRepository reportRepository, IReportDashboardRelRepository repDashRel)
         {
             _reportRepository = reportRepository;
+            _reportDashboardRel = repDashRel;
         }
 
         [HttpGet("GetStyle/{reportGUID}")]
@@ -20,7 +22,7 @@ namespace szakdoga.Controllers
         {
             if (string.IsNullOrEmpty(reportGUID)) return BadRequest("Empty GUID!");
 
-            using (var reportManager = new ReportManager(_reportRepository))
+            using (var reportManager = new ReportManager(_reportRepository, _reportDashboardRel))
             {
                 var report = reportManager.GetReportStyle(reportGUID);
                 if (report == null)
@@ -39,7 +41,7 @@ namespace szakdoga.Controllers
                                     //hozzá lehet adni itt is hibát, ellenőrzést, ajánlás: FluenValidation:  library- lambdákkal lehet megkötéseket definiálni
                 return BadRequest(ModelState); //400-as hibakód
 
-            using (var reportManager = new ReportManager(_reportRepository))
+            using (var reportManager = new ReportManager(_reportRepository, _reportDashboardRel))
             {
                 var guid = reportManager.CreateReport(report);
                 if (!string.IsNullOrEmpty(guid))
@@ -56,7 +58,7 @@ namespace szakdoga.Controllers
             if (report == null) return BadRequest("Invalid Dto");
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            using (var reportManager = new ReportManager(_reportRepository))
+            using (var reportManager = new ReportManager(_reportRepository, _reportDashboardRel))
             {
                 if (reportManager.UpdateReport(report, reportGUID))
                     return NoContent();
@@ -71,7 +73,7 @@ namespace szakdoga.Controllers
             if (string.IsNullOrEmpty(reportGUID))
                 return BadRequest("Empty GUID!");
 
-            using (var reportManager = new ReportManager(_reportRepository))
+            using (var reportManager = new ReportManager(_reportRepository, _reportDashboardRel))
             {
                 if (reportManager.DeleteReport(reportGUID))
                     return NoContent();

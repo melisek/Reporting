@@ -9,10 +9,12 @@ namespace szakdoga.BusinessLogic
     public class ReportManager : IDisposable
     {
         private IReportRepository _reportRepository;
+        private IReportDashboardRelRepository _reportDashboardRel;
 
-        public ReportManager(IReportRepository reportRepository)
+        public ReportManager(IReportRepository reportRepository, IReportDashboardRelRepository repDashRel)
         {
             _reportRepository = reportRepository;
+            _reportDashboardRel = repDashRel;
         }
 
         public void Dispose()
@@ -90,6 +92,10 @@ namespace szakdoga.BusinessLogic
 
         public bool DeleteReport(string reportGUID)
         {
+            foreach (var rel in _reportDashboardRel.GetReportDashboards(_reportRepository.Get(reportGUID).Id))
+            {
+                _reportDashboardRel.Remove(rel.Id);
+            }
             return _reportRepository.Remove(reportGUID);
         }
     }
