@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "7cd566e64a60f167f88b"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "f256ab9aa7c795c2334c"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -13251,8 +13251,9 @@ var ReportService = /** @class */ (function () {
     function ReportService(_http) {
         this._http = _http;
         this._listUrl = './api/reports.json';
-        this._addUrl = './api/reports.json';
+        this._addUrl = './api/reports/Create';
         this._deleteUrl = './api/delete/';
+        this._getStyleUrl = './api/reports/GetStyle';
     }
     ReportService.prototype.getReports = function (sort, order, page) {
         return this._http.get(this._listUrl)
@@ -13261,9 +13262,15 @@ var ReportService = /** @class */ (function () {
             .catch(this.handleError);
     };
     ReportService.prototype.addReport = function (report) {
+        console.log(report);
         return this._http.post(this._addUrl, report)
-            .map(function (response) { return response.json(); })
             .do(function (data) { return console.log("Add report: " + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
+    ReportService.prototype.getStyle = function () {
+        return this._http.get(this._getStyleUrl + "/a4f53c6a-21f8-4fe6-a45c-fb0ceec919e6")
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log("get style: " + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     ReportService.prototype.deleteReport = function (id) {
@@ -13273,8 +13280,8 @@ var ReportService = /** @class */ (function () {
             .catch(this.handleError);
     };
     ReportService.prototype.handleError = function (err) {
-        console.log(err.message);
-        return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].throw(err.message);
+        console.log(err);
+        return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"].throw(err.statusText);
     };
     ReportService = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
@@ -68191,6 +68198,17 @@ var ReportEditComponent = /** @class */ (function () {
     }
     ReportEditComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.report = {
+            name: "",
+            queryGUID: "",
+            columns: [],
+            filter: "",
+            rows: 10,
+            sort: "abc"
+            /*Sort: {
+                Column: "", Direction: ""
+            }*/
+        };
         this.queryService = new __WEBPACK_IMPORTED_MODULE_12__query_query_service__["a" /* QueryService */](this.http);
         this.queryService.getQueriesIdName()
             .subscribe(function (queries) { return _this.queries = queries; });
@@ -68228,11 +68246,15 @@ var ReportEditComponent = /** @class */ (function () {
         this.showDataTable = true;
     };
     ReportEditComponent.prototype.onSaveClick = function () {
-        /*let report: IReport;
-
+        this.report.queryGUID = "3066e94b-ff9e-454c-ab58-6a88436e4b52";
+        this.report.sort = "abc"; //{ Column: "abc", Direction: "asc" };
+        this.report.rows = 20;
         if (this.reportService != null)
-            if(this.reportService.addReport(report)
-                .subscribe())*/
+            this.reportService.addReport(this.report)
+                .subscribe();
+        //if (this.reportService != null)
+        //    this.reportService.getStyle()
+        //        .subscribe();
     };
     ReportEditComponent.prototype.deleteReport = function (id) {
         console.log("okker:" + id);
@@ -68781,7 +68803,7 @@ exports = module.exports = __webpack_require__(33)(undefined);
 
 
 // module
-exports.push([module.i, "/* Structure */\r\n.example-container {\r\n  display: flex;\r\n  flex-direction: column;\r\n  max-height: 500px;\r\n  min-width: 300px;\r\n  position: relative;\r\n}\r\n\r\n.example-header {\r\n  min-height: 64px;\r\n  display: flex;\r\n  align-items: center;\r\n  padding-left: 24px;\r\n  font-size: 20px;\r\n}\r\n\r\n.example-table {\r\n  overflow: auto;\r\n  min-height: 300px;\r\n}\r\n\r\n.mat-column-title {\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  flex: 1;\r\n  overflow: hidden;\r\n}\r\n\r\n/* Column Widths */\r\n.mat-column-number,\r\n.mat-column-state {\r\n  max-width: 64px;\r\n}\r\n\r\n.mat-column-created {\r\n  max-width: 124px;\r\n}\r\n\r\n.example-loading-shade {\r\n  position: absolute;\r\n  top: 0;\r\n  left: 0;\r\n  bottom: 56px;\r\n  right: 0;\r\n  background: rgba(0, 0, 0, 0.15);\r\n  z-index: 1;\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n}\r\n\r\n.example-rate-limit-reached {\r\n  color: #980000;\r\n  max-width: 360px;\r\n  text-align: center;\r\n}\r\n", ""]);
+exports.push([module.i, "/* Structure */\n.example-container {\n  display: flex;\n  flex-direction: column;\n  max-height: 500px;\n  min-width: 300px;\n  position: relative;\n}\n\n.example-header {\n  min-height: 64px;\n  display: flex;\n  align-items: center;\n  padding-left: 24px;\n  font-size: 20px;\n}\n\n.example-table {\n  overflow: auto;\n  min-height: 300px;\n}\n\n.mat-column-title {\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  flex: 1;\n  overflow: hidden;\n}\n\n/* Column Widths */\n.mat-column-number,\n.mat-column-state {\n  max-width: 64px;\n}\n\n.mat-column-created {\n  max-width: 124px;\n}\n\n.example-loading-shade {\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 56px;\n  right: 0;\n  background: rgba(0, 0, 0, 0.15);\n  z-index: 1;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.example-rate-limit-reached {\n  color: #980000;\n  max-width: 360px;\n  text-align: center;\n}\n", ""]);
 
 // exports
 
@@ -78525,7 +78547,7 @@ module.exports = "<!--<div class='main-nav'>\r\n    <div class='navbar navbar-in
 /* 477 */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<div class=\"clearfix\">\r\n    <mat-form-field floatPlaceholder=\"never\">\r\n        <input matInput #name id=\"name\" placeholder=\"Report name\">\r\n    </mat-form-field>\r\n</div>\r\n\r\n<mat-tab-group dynamicHeight=\"false\">\r\n    <mat-tab>\r\n        <ng-template mat-tab-label>\r\n            <mat-icon class=\"md-18\">view_headline</mat-icon> Data source\r\n        </ng-template>\r\n\r\n        <div class=\"margin-top-20\">\r\n            <div class=\"col-md-2 padding-left-3\">\r\n                <mat-card>\r\n                    <mat-card-header>\r\n                        <mat-card-title>Select Data source</mat-card-title>\r\n                    </mat-card-header>\r\n                    <mat-card-content>\r\n                        <form>\r\n                            <mat-select placeholder=\"Query\" #query [(ngModel)]=\"selectedValue\" (ngModelChange)=\"queryChange()\" name=\"query\" class=\"margin-top-20 fit-container\">\r\n                                <mat-option *ngFor=\"let query of queries\" [value]=\"query.id\">\r\n                                    {{query.name}}\r\n                                </mat-option>\r\n                            </mat-select>\r\n                        </form>\r\n\r\n                        <mat-selection-list #columns *ngIf=\"queryColumns\" class=\"margin-top-20\">\r\n                            <mat-list-option *ngFor=\"let column of queryColumns.columns\" value=\"{{column}}\">\r\n                                {{column}}\r\n                            </mat-list-option>\r\n                        </mat-selection-list>\r\n                    </mat-card-content>\r\n                    <mat-card-actions>\r\n                        <button mat-raised-button color=\"primary\" (click)=\"onSaveClick()\" [disabled]=\"query && columns && columns.selectedOptions.selected.length == 0\" class=\"margintop20\">Save</button>\r\n                        <button mat-raised-button color=\"accent\" (click)=\"onUpdateClick()\" [disabled]=\"query && columns && columns.selectedOptions.selected.length == 0\" class=\"margintop20\">Update</button>\r\n                    </mat-card-actions>\r\n                </mat-card>\r\n            </div>\r\n            <div class=\"col-md-10\">\r\n                <div class=\"clearfix\" [hidden]=\"!showDataTable\">\r\n                    <mat-form-field floatPlaceholder=\"never\">\r\n                        <input matInput #filter placeholder=\"Filter reports\">\r\n                    </mat-form-field>\r\n                </div>\r\n\r\n                <div [hidden]=\"!showDataTable\">\r\n                    <mat-table #table [dataSource]=\"dataSource\" matSort matSortActive=\"id\" matSortDisableClear matSortDirection=\"asc\">\r\n                        <ng-container *ngFor=\"let column of columnNames\" [matColumnDef]=\"column.columnDef\">\r\n                            <mat-header-cell *matHeaderCellDef>{{ column.header }}</mat-header-cell>\r\n                            <mat-cell *matCellDef=\"let row\">{{ column.cell(row) }}</mat-cell>\r\n                        </ng-container>\r\n\r\n                        <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\r\n                        <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\r\n\r\n                    </mat-table>\r\n\r\n                    <mat-paginator #paginator\r\n                                   [length]=\"dataSource.totalCount\"\r\n                                   [pageSize]=\"2\">\r\n                    </mat-paginator>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n    </mat-tab>\r\n    <mat-tab>\r\n        <ng-template mat-tab-label>\r\n            <mat-icon class=\"md-18\">pie_chart</mat-icon> Chart\r\n        </ng-template>\r\n\r\n        <chart-editor></chart-editor>\r\n    </mat-tab>\r\n</mat-tab-group>\r\n";
+module.exports = "\r\n<div class=\"clearfix\">\r\n    <mat-form-field floatPlaceholder=\"never\">\r\n        <input matInput #name [(ngModel)]=\"report.name\" id=\"name\" placeholder=\"Report name\">\r\n    </mat-form-field>\r\n</div>\r\n\r\n<mat-tab-group dynamicHeight=\"false\">\r\n    <mat-tab>\r\n        <ng-template mat-tab-label>\r\n            <mat-icon class=\"md-18\">view_headline</mat-icon> Data source\r\n        </ng-template>\r\n\r\n        <div class=\"margin-top-20\">\r\n            <div class=\"col-md-2 padding-left-3\">\r\n                <mat-card>\r\n                    <mat-card-header>\r\n                        <mat-card-title>Select Data source</mat-card-title>\r\n                    </mat-card-header>\r\n                    <mat-card-content>\r\n                        <form>\r\n                            <mat-select placeholder=\"Query\" #query [(ngModel)]=\"selectedValue\" (ngModelChange)=\"queryChange()\" name=\"query\" class=\"margin-top-20 fit-container\">\r\n                                <mat-option *ngFor=\"let query of queries\" [value]=\"query.id\">\r\n                                    {{query.name}}\r\n                                </mat-option>\r\n                            </mat-select>\r\n                        </form>\r\n\r\n                        <mat-selection-list #columns *ngIf=\"queryColumns\" class=\"margin-top-20\">\r\n                            <mat-list-option *ngFor=\"let column of queryColumns.columns\" value=\"{{column}}\">\r\n                                {{column}}\r\n                            </mat-list-option>\r\n                        </mat-selection-list>\r\n                    </mat-card-content>\r\n                    <mat-card-actions>\r\n                        <button mat-raised-button color=\"primary\" (click)=\"onSaveClick()\" [disabled]=\"query && columns && columns.selectedOptions.selected.length == 0\" class=\"margintop20\">Save</button>\r\n                        <button mat-raised-button color=\"accent\" (click)=\"onUpdateClick()\" [disabled]=\"query && columns && columns.selectedOptions.selected.length == 0\" class=\"margintop20\">Update</button>\r\n                    </mat-card-actions>\r\n                </mat-card>\r\n            </div>\r\n            <div class=\"col-md-10\">\r\n                <div class=\"clearfix\" [hidden]=\"!showDataTable\">\r\n                    <mat-form-field floatPlaceholder=\"never\">\r\n                        <input matInput #filter placeholder=\"Filter reports\">\r\n                    </mat-form-field>\r\n                </div>\r\n\r\n                <div [hidden]=\"!showDataTable\">\r\n                    <mat-table #table [dataSource]=\"dataSource\" matSort matSortActive=\"id\" matSortDisableClear matSortDirection=\"asc\">\r\n                        <ng-container *ngFor=\"let column of columnNames\" [matColumnDef]=\"column.columnDef\">\r\n                            <mat-header-cell *matHeaderCellDef>{{ column.header }}</mat-header-cell>\r\n                            <mat-cell *matCellDef=\"let row\">{{ column.cell(row) }}</mat-cell>\r\n                        </ng-container>\r\n\r\n                        <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\r\n                        <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\r\n\r\n                    </mat-table>\r\n\r\n                    <mat-paginator #paginator\r\n                                   [length]=\"dataSource.totalCount\"\r\n                                   [pageSize]=\"2\">\r\n                    </mat-paginator>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n    </mat-tab>\r\n    <mat-tab>\r\n        <ng-template mat-tab-label>\r\n            <mat-icon class=\"md-18\">pie_chart</mat-icon> Chart\r\n        </ng-template>\r\n\r\n        <chart-editor></chart-editor>\r\n    </mat-tab>\r\n</mat-tab-group>\r\n";
 
 /***/ }),
 /* 478 */
@@ -78543,7 +78565,7 @@ module.exports = "<h1 mat-dialog-title>Share: {{data.name}}</h1>\r\n<div mat-dia
 /* 480 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"example-container mat-elevation-z8\">\r\n  <div class=\"example-loading-shade\"\r\n       *ngIf=\"dataSource.isLoadingResults || dataSource.isRateLimitReached\">\r\n    <mat-spinner *ngIf=\"dataSource.isLoadingResults\"></mat-spinner>\r\n    <div class=\"example-rate-limit-reached\" *ngIf=\"dataSource.isRateLimitReached\">\r\n      GitHub's API rate limit has been reached. It will be reset in one minute.\r\n    </div>\r\n  </div>\r\n\r\n  <mat-table #table [dataSource]=\"dataSource\" class=\"example-table\"\r\n            matSort matSortActive=\"created_at\" matSortDisableClear matSortDirection=\"asc\">\r\n\r\n    <!--- Note that these columns can be defined in any order.\r\n          The actual rendered columns are set as a property on the row definition\" -->\r\n\r\n    <!-- Number Column -->\r\n    <ng-container matColumnDef=\"number\">\r\n      <mat-header-cell *matHeaderCellDef>#</mat-header-cell>\r\n      <mat-cell *matCellDef=\"let row\">{{ row.number }}</mat-cell>\r\n    </ng-container>\r\n\r\n    <!-- Title Column -->\r\n    <ng-container matColumnDef=\"title\">\r\n      <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>\r\n      <mat-cell *matCellDef=\"let row\">{{ row.title }}</mat-cell>\r\n    </ng-container>\r\n\r\n    <!-- State Column -->\r\n    <ng-container matColumnDef=\"state\">\r\n      <mat-header-cell *matHeaderCellDef>State</mat-header-cell>\r\n      <mat-cell *matCellDef=\"let row\">{{ row.state }}</mat-cell>\r\n    </ng-container>\r\n\r\n    <!-- Created Column -->\r\n    <ng-container matColumnDef=\"created_at\">\r\n      <mat-header-cell *matHeaderCellDef\r\n                      mat-sort-header\r\n                      disableClear=\"true\">\r\n        Created\r\n      </mat-header-cell>\r\n      <mat-cell *matCellDef=\"let row\">{{ row.created_at | date }}</mat-cell>\r\n    </ng-container>\r\n\r\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\r\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\r\n  </mat-table>\r\n\r\n  <mat-paginator [length]=\"dataSource.resultsLength\"\r\n                [pageSize]=\"30\">\r\n  </mat-paginator>\r\n</div>\r\n";
+module.exports = "<div class=\"example-container mat-elevation-z8\">\n  <div class=\"example-loading-shade\"\n       *ngIf=\"dataSource.isLoadingResults || dataSource.isRateLimitReached\">\n    <mat-spinner *ngIf=\"dataSource.isLoadingResults\"></mat-spinner>\n    <div class=\"example-rate-limit-reached\" *ngIf=\"dataSource.isRateLimitReached\">\n      GitHub's API rate limit has been reached. It will be reset in one minute.\n    </div>\n  </div>\n\n  <mat-table #table [dataSource]=\"dataSource\" class=\"example-table\"\n            matSort matSortActive=\"created_at\" matSortDisableClear matSortDirection=\"asc\">\n\n    <!--- Note that these columns can be defined in any order.\n          The actual rendered columns are set as a property on the row definition\" -->\n\n    <!-- Number Column -->\n    <ng-container matColumnDef=\"number\">\n      <mat-header-cell *matHeaderCellDef>#</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\">{{ row.number }}</mat-cell>\n    </ng-container>\n\n    <!-- Title Column -->\n    <ng-container matColumnDef=\"title\">\n      <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\">{{ row.title }}</mat-cell>\n    </ng-container>\n\n    <!-- State Column -->\n    <ng-container matColumnDef=\"state\">\n      <mat-header-cell *matHeaderCellDef>State</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\">{{ row.state }}</mat-cell>\n    </ng-container>\n\n    <!-- Created Column -->\n    <ng-container matColumnDef=\"created_at\">\n      <mat-header-cell *matHeaderCellDef\n                      mat-sort-header\n                      disableClear=\"true\">\n        Created\n      </mat-header-cell>\n      <mat-cell *matCellDef=\"let row\">{{ row.created_at | date }}</mat-cell>\n    </ng-container>\n\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\n  </mat-table>\n\n  <mat-paginator [length]=\"dataSource.resultsLength\"\n                [pageSize]=\"30\">\n  </mat-paginator>\n</div>\n";
 
 /***/ }),
 /* 481 */

@@ -12,7 +12,7 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/fromEvent';
 
 import { QueryService } from "../query/query.service";
-import { IReport } from "./report";
+import { IReport, IReportCreate } from "./report";
 import { ShareDialogComponent } from '../shared/share-dialog.component';
 import { IResponseResult, IEntityWithIdName } from '../shared/shared-interfaces';
 import { ReportService } from './report.service';
@@ -24,6 +24,9 @@ import { IQueryColumns } from '../query/query';
     styleUrls: [ './report-edit.component.css', '../shared/shared-styles.css' ]
 })
 export class ReportEditComponent implements OnInit {
+
+    report: IReportCreate;
+
 
     columnNames = [
         { columnDef: 'id', header: 'ID', cell: (row: IReport) => `${row.id}` },
@@ -52,6 +55,18 @@ export class ReportEditComponent implements OnInit {
 
 
     ngOnInit() {
+        this.report = {
+            name: "",
+            queryGUID: "",
+            columns: [],
+            filter: "",
+            rows: 10,
+            sort: "abc"
+            /*Sort: {
+                Column: "", Direction: ""
+            }*/
+        };
+
         this.queryService = new QueryService(this.http);
         this.queryService.getQueriesIdName()
             .subscribe(queries => this.queries = queries);
@@ -96,13 +111,18 @@ export class ReportEditComponent implements OnInit {
     }
 
     onSaveClick(): void {
-        /*let report: IReport;
+
+        this.report.queryGUID = "3066e94b-ff9e-454c-ab58-6a88436e4b52";
+        this.report.sort = "abc";//{ Column: "abc", Direction: "asc" };
+        this.report.rows = 20;
 
         if (this.reportService != null)
-            if(this.reportService.addReport(report)
-                .subscribe())*/
+            this.reportService.addReport(this.report)
+                .subscribe();
 
-        
+        //if (this.reportService != null)
+        //    this.reportService.getStyle()
+        //        .subscribe();
     }
 
     deleteReport(id: number): boolean {

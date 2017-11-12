@@ -7,14 +7,15 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 
-import { IReportList, IReport } from "./report";
+import { IReportList, IReport, IReportCreate } from "./report";
 import { IResponseResult } from "../shared/shared-interfaces";
 
 @Injectable()
 export class ReportService {
     private _listUrl = './api/reports.json';
-    private _addUrl = './api/reports.json';
+    private _addUrl = './api/reports/Create';
     private _deleteUrl = './api/delete/';
+    private _getStyleUrl = './api/reports/GetStyle';
 
 
     constructor(private _http: Http) { }
@@ -26,10 +27,18 @@ export class ReportService {
             .catch(this.handleError);
     }
 
-    addReport(report: IReport): Observable<IResponseResult> {
+    addReport(report: IReportCreate): Observable<IResponseResult> {
+        console.log(report);
         return this._http.post(this._addUrl, report)
-            .map(response => response.json() as IResponseResult)
+            //.map(response => response.json() as IResponseResult)
             .do(data => console.log("Add report: " + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    getStyle(): Observable<IResponseResult> {
+        return this._http.get(this._getStyleUrl + "/a4f53c6a-21f8-4fe6-a45c-fb0ceec919e6")
+            .map(response => response.json() as IResponseResult)
+            .do(data => console.log("get style: " + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
@@ -41,7 +50,7 @@ export class ReportService {
     }
 
     private handleError(err: HttpErrorResponse) {
-        console.log(err.message);
-        return Observable.throw(err.message);
+        console.log(err);
+        return Observable.throw(err.statusText);
     }
 }

@@ -4,8 +4,10 @@
 }
 
 export interface IResponseResult {
-    result: boolean;
-    error: string;
+    status: number;
+    ok: boolean;
+    statusText: string;
+    _body: any;
 }
 
 export interface INameValue {
