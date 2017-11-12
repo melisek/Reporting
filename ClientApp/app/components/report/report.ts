@@ -16,7 +16,20 @@ export interface IReport {
     style: string;
 }
 
+export interface IReportCreate {
+    name: string;
+    queryGUID: string;
+    columns: string[];
+    filter: string;
+    rows: number;
+    sort: string;
+    //Style: string;
+}
 
+export interface IColumnSort {
+    Column: string;
+    Direction: string;
+}
 
 export class Report implements IReport {
     constructor(public id: number,
