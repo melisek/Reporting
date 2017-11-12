@@ -45,6 +45,10 @@ export class ChartEditComponent implements AfterViewInit {
             {
                 name: "Pie Chart",
                 value: 2
+            },
+            {
+                name: "Line Chart",
+                value: 3
             }];
         this.chartItem = this.chartService.getChart(this.selectedChartType);
 

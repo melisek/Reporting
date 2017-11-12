@@ -2,7 +2,7 @@
 
 export interface IChart {
     options: IChartOption[];
-    data: INameValue[];
+    data: any[];
 }
 export interface IChartOption {
     name: string;

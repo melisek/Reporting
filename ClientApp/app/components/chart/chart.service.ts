@@ -1,13 +1,15 @@
 ﻿import { Injectable, Type } from '@angular/core';
 
-import { HorizontalBarChartComponent } from './chart-horizontal-bar.component';
-import { VerticalBarChartComponent } from './chart-vertical-bar.component';
-import { PieChartComponent } from './chart-pie.component';
+import { HorizontalBarChartComponent } from './types/chart-horizontal-bar.component';
+import { VerticalBarChartComponent } from './types/chart-vertical-bar.component';
+import { PieChartComponent } from './types/chart-pie.component';
+import { LineChartComponent } from './types/chart-line.component';
 
 import { ChartItem } from './chart-item';
 import { colorSets } from '@swimlane/ngx-charts/release/utils'
 import { IChartOption } from './chart';
-import { INameValue } from '../shared/shared-interfaces';
+import { INameValue, ISeriesNameValue } from '../shared/shared-interfaces';
+
 
 
 @Injectable()
@@ -16,7 +18,8 @@ export class ChartService {
     types: Type<any>[] = [
         HorizontalBarChartComponent,
         VerticalBarChartComponent,
-        PieChartComponent
+        PieChartComponent,
+        LineChartComponent
     ];
 
     
@@ -53,6 +56,7 @@ export class ChartService {
         [...this.barOptions, ...this.baseOptions],
         [...this.barOptions, ...this.baseOptions],
         [...this.pieOptions, ...this.baseOptions],
+        [...this.barOptions, ...this.baseOptions],
     ];
 
     arrdata: INameValue[] = [
@@ -70,10 +74,138 @@ export class ChartService {
         }
     ];
 
+    seriesarrdata: ISeriesNameValue[] = [
+        {
+            name: "Brunei Darussalam",
+            series: [
+                {
+                    value: 2743,
+                    name: "2016-09-21T00:30:01.431Z"
+                },
+                {
+                    value: 4184,
+                    name: "2016-09-22T01:53:25.763Z"
+                },
+                {
+                    value: 6839,
+                    name: "2016-09-23T18:09:28.859Z"
+                },
+                {
+                    value: 2767,
+                    name: "2016-09-15T13:48:57.935Z"
+                },
+                {
+                    value: 2777,
+                    name: "2016-09-23T08:40:00.582Z"
+                }
+            ]
+        },
+        {
+            name: "Iran",
+            series: [
+                {
+                    value: 3780,
+                    name: "2016-09-21T00:30:01.431Z"
+                },
+                {
+                    value: 5523,
+                    name: "2016-09-22T01:53:25.763Z"
+                },
+                {
+                    value: 3737,
+                    name: "2016-09-23T18:09:28.859Z"
+                },
+                {
+                    value: 4398,
+                    name: "2016-09-15T13:48:57.935Z"
+                },
+                {
+                    value: 2862,
+                    name: "2016-09-23T08:40:00.582Z"
+                }
+            ]
+        },
+        {
+            name: "Cambodia",
+            series: [
+                {
+                    value: 3073,
+                    name: "2016-09-21T00:30:01.431Z"
+                },
+                {
+                    value: 6583,
+                    name: "2016-09-22T01:53:25.763Z"
+                },
+                {
+                    value: 2340,
+                    name: "2016-09-23T18:09:28.859Z"
+                },
+                {
+                    value: 5742,
+                    name: "2016-09-15T13:48:57.935Z"
+                },
+                {
+                    value: 3696,
+                    name: "2016-09-23T08:40:00.582Z"
+                }
+            ]
+        },
+        {
+            name: "Mauritania",
+            series: [
+                {
+                    value: 2054,
+                    name: "2016-09-21T00:30:01.431Z"
+                },
+                {
+                    value: 3892,
+                    name: "2016-09-22T01:53:25.763Z"
+                },
+                {
+                    value: 5643,
+                    name: "2016-09-23T18:09:28.859Z"
+                },
+                {
+                    value: 2861,
+                    name: "2016-09-15T13:48:57.935Z"
+                },
+                {
+                    value: 5372,
+                    name: "2016-09-23T08:40:00.582Z"
+                }
+            ]
+        },
+        {
+            name: "India",
+            series: [
+                {
+                    value: 4485,
+                    name: "2016-09-21T00:30:01.431Z"
+                },
+                {
+                    value: 3630,
+                    name: "2016-09-22T01:53:25.763Z"
+                },
+                {
+                    value: 2786,
+                    name: "2016-09-23T18:09:28.859Z"
+                },
+                {
+                    value: 2996,
+                    name: "2016-09-15T13:48:57.935Z"
+                },
+                {
+                    value: 4148,
+                    name: "2016-09-23T08:40:00.582Z"
+                }
+            ]
+        }
+    ];
+
     getChart(selected: number) {
         console.log(selected);
         //console.log(this.arrdata);
-        return new ChartItem(this.types[selected], this.chartTypeOptions[selected], this.arrdata); 
+        return new ChartItem(this.types[selected], this.chartTypeOptions[selected], selected < 3 ? this.arrdata : this.seriesarrdata); 
     }
 
 }

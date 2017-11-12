@@ -14,3 +14,8 @@ export interface INameValue {
     value: number;
     name: string;
 }
+
+export interface ISeriesNameValue {
+    series: INameValue[];
+    name: string;
+}

@@ -24,7 +24,7 @@ import { IResponseResult, IEntityWithIdName } from '../shared/shared-interfaces'
     templateUrl: './report-list.component.html',
     styleUrls: [ './report-list.component.css' ]
 })
-export class ReportComponent implements OnInit {
+export class ReportListComponent implements OnInit {
     displayedColumns = ['id', 'name', 'query', 'createdBy', 'createdAt', 'modifiedBy', 'modifiedAt', 'actions'];
     service: ReportService | null;
     dataSource: ExampleDataSource | null;
