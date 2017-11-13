@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
+using szakdoga.BusinessLogic;
 using szakdoga.Models;
 
 namespace szakdoga.Controllers
@@ -15,16 +14,14 @@ namespace szakdoga.Controllers
             _queryRepository = queryRepository;
         }
 
-        [HttpGet()]
+        [HttpGet("GetAll")]
         public IActionResult GetQueries()
         {
-            List<QueryDto> asd = _queryRepository.GetAll().Select(x => new QueryDto { Name = x.Name, QueryGUID = x.QueryGUID }).ToList();
-            return Ok(asd);
-            /*
-             * using blokkokban használjam a businesslogikot
-             * dot-k a controller és a manager között
-             * businesslogisban van a validáticó
-             */
+            using (var queryMan = new QueryManager(_queryRepository))
+            {
+                var queries = queryMan.GetAll();
+                return Ok(queries);
+            }
         }
     }
 }
