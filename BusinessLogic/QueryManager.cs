@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,5 +24,25 @@ namespace szakdoga.BusinessLogic
         {
             return Mapper.Map<IEnumerable<QueryDto>>(_queryRepository.GetAll()).ToList();
         }
+
+        public object GetColumnNames(string queryGUID)
+        {
+            var AllColumns = JsonConvert.DeserializeObject<AllColumns>(_queryRepository.Get(queryGUID).TranslatedColumnNames);
+            return new
+            {
+                QueryGUID = queryGUID,
+                Columns = AllColumns.Columns.Where(x => x.hidden == true).Select(x => x.text).ToArray()
+            };
+        }
+    }
+    public class Column
+    {
+        public string name { get; set; }
+        public string text { get; set; }
+        public bool hidden { get; set; }
+    }
+    public class AllColumns
+    {
+        public Column[] Columns { get; set; }
     }
 }

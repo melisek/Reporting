@@ -23,5 +23,17 @@ namespace szakdoga.Controllers
                 return Ok(queries);
             }
         }
+        [HttpGet("GetQueryColumns/{queryGUID}")]
+        public IActionResult GetQueryColumns(string queryGUID)
+        {
+            if (string.IsNullOrEmpty(queryGUID))
+                return BadRequest();
+
+            using (var queryMan = new QueryManager(_queryRepository))
+            {
+                var result = queryMan.GetColumnNames(queryGUID);
+                return Ok(result);
+            }
+        }
     }
 }
