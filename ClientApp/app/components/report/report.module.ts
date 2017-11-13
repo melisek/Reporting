@@ -1,40 +1,40 @@
 ﻿import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { ReportComponent } from './report-list.component';
+import { AppModuleShared } from '../../app.module.shared';
+import { ChartModule } from '../chart/chart.module';
+
+import { ReportListComponent } from './report-list.component';
+import { ReportEditComponent } from './report-edit.component';
 import { ReportService } from './report.service';
 
-import { AppModuleShared } from '../../app.module.shared';
 
 @NgModule({
     imports: [
-        AppModuleShared,
         RouterModule.forChild([
             {
                 path: 'reports',
-                component: ReportComponent
+                component: ReportListComponent
             },/*
             {
                 path: ':id',
                 component: ProductDetailComponent,
                 resolve: { product: ProductResolver }
-            },
+            },*/
             {
-                path: ':id/edit',
-                component: ProductEditComponent,
-                canDeactivate: [ProductEditGuard],
-                resolve: { product: ProductResolver },
-                children: [
-                    { path: '', redirectTo: 'info', pathMatch: 'full' },
-                    { path: 'info', component: ProductEditInfoComponent },
-                    { path: 'tags', component: ProductEditTagsComponent }
-                ]
-            }*/
-        ])
+                path: 'reports/edit/:id',
+                component: ReportEditComponent,
+                //canDeactivate: [ProductEditGuard],
+                //resolve: { product: ProductResolver },
+            }
+        ]),
+        AppModuleShared,
+        ChartModule
     ],
     declarations: [
-        ReportComponent,
-
+        ReportListComponent,
+        ReportEditComponent,
+        
     ],
     providers: [
         ReportService

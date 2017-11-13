@@ -11,6 +11,16 @@
                             {{chart.name}}
                         </mat-option>
                     </mat-select>
+                    <mat-select placeholder="Name" [(ngModel)]="selectedNameColumn" (ngModelChange)="chartNameColumnChange()" name="nameColumn" class="margin-top-20 fit-container">
+                        <mat-option *ngFor="let chart of chartTypes" [value]="chart.value">
+                            {{chart.name}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-select placeholder="Value" [(ngModel)]="selectedValueColumn" (ngModelChange)="chartValueColumnChange()" name="valueColumn" class="margin-top-20 fit-container">
+                        <mat-option *ngFor="let chart of chartTypes" [value]="chart.value">
+                            {{chart.name}}
+                        </mat-option>
+                    </mat-select>
                 </form>
             </mat-card-content>
             <mat-card-actions>

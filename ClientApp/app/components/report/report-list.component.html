@@ -43,7 +43,7 @@
     <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
         <mat-cell *matCellDef="let row">
-            <button mat-icon-button matTooltip="Edit report" matTooltipPosition="above" ><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i></button>
+            <button [routerLink]="['/reports/edit', row.id]" mat-icon-button matTooltip="Edit report" matTooltipPosition="above" ><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i></button>
             <button mat-icon-button matTooltip="Delete report" matTooltipPosition="above" (click)="deleteReport(row.id)"><i class="glyphicon glyphicon-trash" aria-hidden="true"></i></button>
             <button mat-icon-button matTooltip="Share report" matTooltipPosition="above" (click)="openShareDialog(row.id, row.name)"><i class="glyphicon glyphicon-share-alt" aria-hidden="true"></i></button>
         </mat-cell>

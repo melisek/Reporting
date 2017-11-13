@@ -18,7 +18,7 @@ namespace szakdoga.Data
             {
                 AppDbContext context = serviceScope.ServiceProvider.GetService<AppDbContext>();
 
-                CleanAllTables(context);
+                //CleanAllTables(context);
 
                 if (!context.User.Any())
                     context.User.AddRange(Users);
@@ -40,11 +40,11 @@ namespace szakdoga.Data
                 context.SaveChanges();
 
                 //TODO: nem szép incializálás- ÍRD ÁT A SAJÁTODRA !!!
-                string sourceConn = " Data Source = localhost\\SQL2012ST; Initial Catalog = kszstart_demo;MultipleActiveResultSets=True; Persist Security Info = True; User ID = Admin; Password = admin";
-                using (SqlConnection conn = new SqlConnection(sourceConn))
-                {
-                    ExecuteBatchNonQuery(cmdText, conn);
-                }
+                //string sourceConn = " Data Source = localhost\\SQL2012ST; Initial Catalog = kszstart_demo;MultipleActiveResultSets=True; Persist Security Info = True; User ID = Admin; Password = admin";
+                //using (SqlConnection conn = new SqlConnection(sourceConn))
+                //{
+                //    ExecuteBatchNonQuery(cmdText, conn);
+                //}
             }
         }
 
