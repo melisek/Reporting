@@ -49,5 +49,6 @@ namespace szakdoga.Models.Repositories
             }
             _context.SaveChanges();
         }
+
     }
 }

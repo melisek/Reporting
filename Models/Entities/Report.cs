@@ -23,5 +23,7 @@ namespace szakdoga.Models
         public string Filter { get; set; }
         public string Sort { get; set; }
         public int Rows { get; set; }
+        public User LastModifier { get; set; }
+        public User Author { get; set; }
     }
 }

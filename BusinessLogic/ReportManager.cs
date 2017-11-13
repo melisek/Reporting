@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using szakdoga.Models;
 using szakdoga.Models.Dtos;
+using szakdoga.Models.Dtos.ReportDtos;
 
 namespace szakdoga.BusinessLogic
 {
@@ -97,6 +99,14 @@ namespace szakdoga.BusinessLogic
                 _reportDashboardRel.Remove(rel.Id);
             }
             return _reportRepository.Remove(reportGUID);
+        }
+
+        public AllReportDto GetAllReport()
+        {
+            return new AllReportDto
+            {
+                Reports = Mapper.Map<IEnumerable<ReportForAllDto>>(_reportRepository.GetAll()).ToList()
+            };
         }
     }
 }

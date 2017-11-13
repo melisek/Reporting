@@ -11,9 +11,10 @@ using szakdoga.Data;
 namespace szakdoga.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171113183643_Modify2-Modifier")]
+    partial class Modify2Modifier
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,8 +25,6 @@ namespace szakdoga.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<int?>("AuthorId");
 
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
@@ -55,8 +54,6 @@ namespace szakdoga.Migrations
 
                     b.HasAlternateKey("DashBoardGUID")
                         .HasName("AlternateKey_DashBoard_GUID");
-
-                    b.HasIndex("AuthorId");
 
                     b.HasIndex("LastModifierId");
 
@@ -130,8 +127,6 @@ namespace szakdoga.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("AuthorId");
-
                     b.Property<string>("Columns");
 
                     b.Property<DateTime>("CreationDate")
@@ -170,8 +165,6 @@ namespace szakdoga.Migrations
 
                     b.HasAlternateKey("ReportGUID")
                         .HasName("AlternateKey_Report_GUID");
-
-                    b.HasIndex("AuthorId");
 
                     b.HasIndex("LastModifierId");
 
@@ -280,10 +273,6 @@ namespace szakdoga.Migrations
 
             modelBuilder.Entity("szakdoga.Models.Dashboard", b =>
                 {
-                    b.HasOne("szakdoga.Models.User", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId");
-
                     b.HasOne("szakdoga.Models.User", "LastModifier")
                         .WithMany()
                         .HasForeignKey("LastModifierId");
@@ -298,10 +287,6 @@ namespace szakdoga.Migrations
 
             modelBuilder.Entity("szakdoga.Models.Report", b =>
                 {
-                    b.HasOne("szakdoga.Models.User", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId");
-
                     b.HasOne("szakdoga.Models.User", "LastModifier")
                         .WithMany()
                         .HasForeignKey("LastModifierId");

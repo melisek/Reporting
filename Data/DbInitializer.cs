@@ -18,7 +18,7 @@ namespace szakdoga.Data
             {
                 AppDbContext context = serviceScope.ServiceProvider.GetService<AppDbContext>();
 
-                //CleanAllTables(context);
+                CleanAllTables(context);
 
                 if (!context.User.Any())
                     context.User.AddRange(Users);
@@ -118,8 +118,8 @@ namespace szakdoga.Data
                 if (dashboards == null)
                 {
                     dashboards = new List<Dashboard> {
-                               new Dashboard{ Name = "Dashboard1", DashBoardGUID = "9b4ea50f-8a05-4025-ab01-0072894691e6", Style = "style" },
-                               new Dashboard{ Name = "Dashboard2", DashBoardGUID = "2adccadc-7a05-419d-b8c3-9578db9a81dc", Style = "style" } };
+                               new Dashboard{ Name = "Dashboard1", DashBoardGUID = "9b4ea50f-8a05-4025-ab01-0072894691e6", Style = "style" , LastModifier=Users.FirstOrDefault(x=>x.Name.Equals("Admin")), Author=Users.FirstOrDefault(x=>x.Name.Equals("Admin"))},
+                               new Dashboard{ Name = "Dashboard2", DashBoardGUID = "2adccadc-7a05-419d-b8c3-9578db9a81dc", Style = "style",LastModifier=Users.FirstOrDefault(x=>x.Name.Equals("Teszt")), Author=Users.FirstOrDefault(x=>x.Name.Equals("Teszt")) } };
                 }
                 return dashboards;
             }
@@ -134,8 +134,8 @@ namespace szakdoga.Data
                 if (reports == null)
                 {
                     reports = new List<Report> {
-                            new Report{Name = "Riport1", Query = Queries.FirstOrDefault(x=>x.Name.Equals("Számlák")), Style = "style json", ReportGUID="b2fc0e93-4260-47bb-9757-e682f077dd27" },
-                            new Report{Name = "Riport2", Query = Queries.FirstOrDefault(x=>x.Name.Equals("Számlák")), Style = "style json", ReportGUID="51adb95f-161b-4473-95ff-e0d6392f5caa" } };
+                            new Report{Name = "Riport1", Query = Queries.FirstOrDefault(x=>x.Name.Equals("Számlák")), Style = "style json", ReportGUID="b2fc0e93-4260-47bb-9757-e682f077dd27", LastModifier=Users.FirstOrDefault(x=>x.Name.Equals("Admin")), Author=Users.FirstOrDefault(x=>x.Name.Equals("Admin"))},
+                            new Report{Name = "Riport2", Query = Queries.FirstOrDefault(x=>x.Name.Equals("Számlák")), Style = "style json", ReportGUID="51adb95f-161b-4473-95ff-e0d6392f5caa" ,LastModifier=Users.FirstOrDefault(x=>x.Name.Equals("Teszt")) , Author=Users.FirstOrDefault(x=>x.Name.Equals("Teszt"))}};
                 }
                 return reports;
             }
@@ -490,6 +490,7 @@ namespace szakdoga.Data
             context.UserDashboardRel.RemoveRange(context.UserDashboardRel.ToList());
             context.Dashboards.RemoveRange(context.Dashboards.ToList());
             context.Report.RemoveRange(context.Report.ToList());
+            context.UserJwtMap.RemoveRange(context.UserJwtMap.ToList());
             context.User.RemoveRange(context.User.ToList());
             context.Query.RemoveRange(context.Query.ToList());
             context.SaveChanges();

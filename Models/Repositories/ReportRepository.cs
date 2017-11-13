@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using szakdoga.Data;
 
@@ -30,7 +31,7 @@ namespace szakdoga.Models.Repositories
 
         public IEnumerable<Report> GetAll()
         {
-            return _context.Report.ToList();
+            return _context.Report.Include(x => x.LastModifier).Include(y => y.Author).ToList();
         }
 
         public bool Remove(int id)

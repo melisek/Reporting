@@ -2,6 +2,7 @@
 using szakdoga.BusinessLogic;
 using szakdoga.Models;
 using szakdoga.Models.Dtos;
+using szakdoga.Models.Dtos.ReportDtos;
 
 namespace szakdoga.Controllers
 {
@@ -81,5 +82,20 @@ namespace szakdoga.Controllers
                     return BadRequest();
             }
         }
+        [HttpPost("GetAll")]
+        public IActionResult GetAll([FromBody] GetAllDto filter)
+        {
+            if (filter == null) return BadRequest("Wrong structure!");
+
+            using (var reportManager = new ReportManager(_reportRepository, _reportDashboardRel))
+            {
+                AllReportDto report = reportManager.GetAllReport();
+                if (report == null)
+                    return NotFound();
+                else
+                    return Ok(report);
+            }
+        }
+
     }
 }
