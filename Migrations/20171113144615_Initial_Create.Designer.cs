@@ -11,9 +11,10 @@ using szakdoga.Data;
 namespace szakdoga.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171113144615_Initial_Create")]
+    partial class Initial_Create
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,24 +54,6 @@ namespace szakdoga.Migrations
                         .HasName("AlternateKey_DashBoard_GUID");
 
                     b.ToTable("Dashboards");
-                });
-
-            modelBuilder.Entity("szakdoga.Models.Entities.UserJwtMap", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("ExpireTime");
-
-                    b.Property<string>("Jwt");
-
-                    b.Property<int?>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserJwtMap");
                 });
 
             modelBuilder.Entity("szakdoga.Models.Query", b =>
@@ -260,13 +243,6 @@ namespace szakdoga.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserDashboardRel");
-                });
-
-            modelBuilder.Entity("szakdoga.Models.Entities.UserJwtMap", b =>
-                {
-                    b.HasOne("szakdoga.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("szakdoga.Models.Report", b =>

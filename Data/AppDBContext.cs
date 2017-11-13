@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using szakdoga.Models;
+using szakdoga.Models.Entities;
 
 namespace szakdoga.Data
 {
@@ -42,7 +43,7 @@ namespace szakdoga.Data
         public DbSet<Report> Report { get; set; }
         public DbSet<ReportUserRel> ReportUserRel { get; set; }
         public DbSet<User> User { get; set; }
-
         public DbSet<UserDashboardRel> UserDashboardRel { get; set; }
+        public DbSet<UserJwtMap> UserJwtMap { get; set; }
     }
 }

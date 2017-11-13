@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using szakdoga.BusinessLogic;
 using szakdoga.Models;
@@ -6,6 +7,7 @@ using szakdoga.Models.Dtos.DashboardDtos;
 
 namespace szakdoga.Controllers
 {
+    //[Authorize]
     [Route("api/dashboards")]
     public class DashboardController : Controller
     {

@@ -1,13 +1,19 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using szakdoga.Data;
 using szakdoga.Models;
 using szakdoga.Models.Dtos.DashboardDtos;
 using szakdoga.Models.Repositories;
+using szakdoga.Models.RepositoryInterfaces;
+using szakdoga.Others;
 
 namespace szakdoga
 {
@@ -28,6 +34,16 @@ namespace szakdoga
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                  builder => builder.AllowAnyOrigin()
+                                    .AllowAnyMethod()
+                                    .AllowAnyHeader()
+                                    .AllowCredentials());
+            });
+
+
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(_configurationRoot.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IQueryRepository, QueryRepository>();
@@ -37,7 +53,40 @@ namespace szakdoga
             services.AddScoped<IReportDashboardRelRepository, ReportDashboardRelRepository>();
             services.AddScoped<IReportUserRelRepository, ReportUserRelRepository>();
             services.AddScoped<IUserDashboardRelRepository, UserDashboardRelRepository>();
+            services.AddScoped<IUserJwtMapRepository, UserJwtMapRepository>();
 
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                   .AddJwtBearer(options =>
+                   {
+                       options.TokenValidationParameters =
+                            new TokenValidationParameters
+                            {
+                                ValidateIssuer = true,
+                                ValidateAudience = true,
+                                ValidateLifetime = true,
+                                ValidateIssuerSigningKey = true,
+
+                                ValidIssuer = "ToDoListServer",
+                                ValidAudience = "ToDoListServer",
+                                IssuerSigningKey =
+                                 JwtSecurityKey.Create("zhenwang123!.123")
+                            };
+                       options.Events = new JwtBearerEvents
+                       {
+                           OnAuthenticationFailed = context =>
+                           {
+                               Debug.WriteLine("OnAuthenticationFailed: asdasdasd " +
+                                   context.Exception.Message);
+                               return Task.CompletedTask;
+                           },
+                           OnTokenValidated = context =>
+                           {
+                               Debug.WriteLine("OnTokenValidated: " +
+                                   context.SecurityToken);
+                               return Task.CompletedTask;
+                           }
+                       };
+                   });
 
             services.AddMvc();
         }
@@ -45,6 +94,7 @@ namespace szakdoga
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseCors("CorsPolicy");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -59,6 +109,8 @@ namespace szakdoga
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseAuthentication();
+
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
@@ -72,7 +124,7 @@ namespace szakdoga
                          defaults: new { controller = "Home", action = "Index" });
                  });
             //új db-migration elõtt kikapcsolni, mivel futtatásnál már próbál beírni a nem létezõ táblákba
-            DbInitializer.Seed(app);
+            //DbInitializer.Seed(app);
 
             AutoMapper.Mapper.Initialize(cfg =>
             {

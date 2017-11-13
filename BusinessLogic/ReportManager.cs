@@ -73,7 +73,7 @@ namespace szakdoga.BusinessLogic
 
         public bool UpdateReport(UpdateReportDto report, string reportGUID)
         {
-            var origReport = _reportRepository.Get(reportGUID);
+            var origReport = _reportRepository.Get(reportGUID);//TODO:origreportot kéne az update-nek adni, akk megoldott lenne a style fv módosítás
             if (origReport == null)
                 return false;
             var reportEntity = new Report
