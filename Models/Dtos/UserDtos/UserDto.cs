@@ -6,7 +6,7 @@ namespace szakdoga.Models.Dtos
     {
         [Required(ErrorMessage = "Yout should provide UserGUID!")]
         [MaxLength(50, ErrorMessage = "Maximum GUID length is 50 characters.")]
-        public string QueryGUID { get; set; }
+        public string UserGUID { get; set; }
 
         public string Name { get; set; }
     }

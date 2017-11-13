@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using szakdoga.Data;
 using szakdoga.Models;
+using szakdoga.Models.Dtos;
 using szakdoga.Models.Dtos.DashboardDtos;
 using szakdoga.Models.Dtos.ReportDtos;
 using szakdoga.Models.Repositories;
@@ -125,13 +126,15 @@ namespace szakdoga
                          defaults: new { controller = "Home", action = "Index" });
                  });
             //új db-migration elõtt kikapcsolni, mivel futtatásnál már próbál beírni a nem létezõ táblákba
-            DbInitializer.Seed(app);
+            //DbInitializer.Seed(app);
 
             AutoMapper.Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<Dashboard, DashboardDto>();
                 cfg.CreateMap<Report, ReportDto>();
                 cfg.CreateMap<Report, ReportForAllDto>();
+                cfg.CreateMap<User, UserDto>();
+                cfg.CreateMap<Query, QueryDto>();
             });
         }
     }

@@ -31,7 +31,9 @@ namespace szakdoga.Models.Repositories
 
         public IEnumerable<Report> GetAll()
         {
-            return _context.Report.Include(x => x.LastModifier).Include(y => y.Author).ToList();
+            return _context.Report.Include(x => x.LastModifier).
+                Include(y => y.Author).
+                Include(z => z.Query).ToList();
         }
 
         public bool Remove(int id)
