@@ -6,14 +6,14 @@ export interface IReportList {
 }
 
 export interface IReport {
-    id: number;
+    reportGUID: number;
     name: string;
     query: IEntityWithIdName;
-    createdAt: string;
-    createdBy: IEntityWithIdName;
-    modifiedAt: string;
-    modifiedBy: IEntityWithIdName;
-    style: string;
+    creationDate: Date;
+    author: IEntityWithIdName;
+    modifyDate: Date;
+    lastModifier: IEntityWithIdName;
+    //style: string;
 }
 
 export interface IReportCreate {
@@ -31,16 +31,16 @@ export interface IColumnSort {
     Direction: string;
 }
 
-export class Report implements IReport {
-    constructor(public id: number,
-        public name: string,
-        public query: IEntityWithIdName,
-        public createdAt: string,
-        public createdBy: IEntityWithIdName,
-        public modifiedAt: string,
-        public modifiedBy: IEntityWithIdName,
-        public style: string) {
-    }
+//export class Report implements IReport {
+//    constructor(public id: number,
+//        public name: string,
+//        public query: IEntityWithIdName,
+//        public createdAt: string,
+//        public createdBy: IEntityWithIdName,
+//        public modifiedAt: string,
+//        public modifiedBy: IEntityWithIdName,
+//        public style: string) {
+//    }
 
-    // műveletek
-}
+//    // műveletek
+//}

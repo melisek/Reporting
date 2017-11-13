@@ -14,7 +14,7 @@ import 'rxjs/add/observable/fromEvent';
 import { QueryService } from "../query/query.service";
 import { IReport, IReportCreate } from "./report";
 import { ShareDialogComponent } from '../shared/share-dialog.component';
-import { IResponseResult, IEntityWithIdName } from '../shared/shared-interfaces';
+import { IResponseResult, IEntityWithIdName, IListFilter } from '../shared/shared-interfaces';
 import { ReportService } from './report.service';
 import { IQueryColumns } from '../query/query';
 
@@ -29,8 +29,8 @@ export class ReportEditComponent implements OnInit {
 
 
     columnNames = [
-        { columnDef: 'id', header: 'ID', cell: (row: IReport) => `${row.id}` },
-        { columnDef: 'name', header: 'Name', cell: (row: IReport) => `${row.name}` }
+        { columnDef: 'id', header: 'ID', cell: (row: IReport) => `${row.query}` },
+        { columnDef: 'name', header: 'Name', cell: (row: IReport) => `${row.modifyDate}` }
     ];
 
     /** Column definitions in order */
@@ -187,7 +187,13 @@ export class ExampleDataSource extends DataSource<any> {
             .startWith(null)
             .switchMap(() => {
                 this.isLoadingResults = true;
-                return this._reportService.getReports(this._sort.active, this._sort.direction, this._paginator.pageIndex);
+                let filterObject: IListFilter = {
+                    filter: this.filter,
+                    page: this._paginator.pageIndex,
+                    sort: { columnName: this._sort.active, direction: this._sort.direction },
+                    rows: 10,
+                }
+                return this._reportService.getReports(filterObject);
             })
             .map(data => {
                 this.isLoadingResults = false;

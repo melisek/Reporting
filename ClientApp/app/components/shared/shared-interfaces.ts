@@ -19,3 +19,15 @@ export interface ISeriesNameValue {
     series: INameValue[];
     name: string;
 }
+
+export interface IColumnSort {
+    columnName: string;
+    direction: string;
+}
+
+export interface IListFilter {
+    filter: string;
+    page: number;
+    rows: number;
+    sort: IColumnSort;
+}

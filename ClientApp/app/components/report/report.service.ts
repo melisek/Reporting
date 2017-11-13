@@ -8,11 +8,11 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 
 import { IReportList, IReport, IReportCreate } from "./report";
-import { IResponseResult } from "../shared/shared-interfaces";
+import { IResponseResult, IListFilter } from "../shared/shared-interfaces";
 
 @Injectable()
 export class ReportService {
-    private _listUrl = './api/reports.json';
+    private _listUrl = './api/reports/GetAll';
     private _addUrl = './api/reports/Create';
     private _deleteUrl = './api/delete/';
     private _getStyleUrl = './api/reports/GetStyle';
@@ -20,8 +20,8 @@ export class ReportService {
 
     constructor(private _http: Http) { }
 
-    getReports(sort: string, order: string, page: number): Observable<IReportList> {
-        return this._http.get(this._listUrl)
+    getReports(filter: IListFilter): Observable<IReportList> {
+        return this._http.post(this._listUrl, filter)
             .map(response => response.json() as IReportList)
             .do(data => console.log("Reports: " + JSON.stringify(data)))
             .catch(this.handleError);

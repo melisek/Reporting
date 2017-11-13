@@ -16,7 +16,7 @@ import 'rxjs/add/observable/fromEvent';*/
 import { ReportService } from "./report.service";
 import { IReport } from "./report";
 import { ShareDialogComponent } from '../shared/share-dialog.component';
-import { IResponseResult, IEntityWithIdName } from '../shared/shared-interfaces';
+import { IResponseResult, IEntityWithIdName, IListFilter } from '../shared/shared-interfaces';
 
 
 @Component({
@@ -25,7 +25,7 @@ import { IResponseResult, IEntityWithIdName } from '../shared/shared-interfaces'
     styleUrls: [ './report-list.component.css' ]
 })
 export class ReportListComponent implements OnInit {
-    displayedColumns = ['id', 'name', 'query', 'createdBy', 'createdAt', 'modifiedBy', 'modifiedAt', 'actions'];
+    displayedColumns = [/*'reportGUID',*/ 'name', 'query', 'author', 'creationDate', 'lastModifier', 'modifyDate', 'actions'];
     service: ReportService | null;
     dataSource: ExampleDataSource | null;
 
@@ -125,7 +125,13 @@ export class ExampleDataSource extends DataSource<any> {
             .startWith(null)
             .switchMap(() => {
                 this.isLoadingResults = true;
-                return this._reportService.getReports(this._sort.active, this._sort.direction, this._paginator.pageIndex);
+                let filterObject: IListFilter = {
+                    filter: this.filter,
+                    page: this._paginator.pageIndex,
+                    sort: { columnName: this._sort.active, direction: this._sort.direction },
+                    rows: 10,
+                }
+                return this._reportService.getReports(filterObject);
             })
             .map(data => {
                 this.isLoadingResults = false;
