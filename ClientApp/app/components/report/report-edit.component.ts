@@ -16,7 +16,7 @@ import { IReport, IReportCreate } from "./report";
 import { ShareDialogComponent } from '../shared/share-dialog.component';
 import { IResponseResult, IEntityWithIdName, IListFilter } from '../shared/shared-interfaces';
 import { ReportService } from './report.service';
-import { IQueryColumns } from '../query/query';
+import { IQueryColumns, IQuery } from '../query/query';
 
 
 @Component({
@@ -42,7 +42,7 @@ export class ReportEditComponent implements OnInit {
     selectedValue: string;
     showDataTable: boolean;
 
-    queries: IEntityWithIdName[];
+    queries: IQuery[];
     queryColumns: IQueryColumns;
 
 
@@ -93,7 +93,7 @@ export class ReportEditComponent implements OnInit {
 
     queryChange(): void {
         if (this.queryService != null)
-            this.queryService.getQueryColumns(Number(this.selectedValue))
+            this.queryService.getQueryColumns(this.selectedValue)
                 .subscribe(data => this.queryColumns = data);
         
     }

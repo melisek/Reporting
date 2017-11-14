@@ -8,27 +8,27 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 
 import { IResponseResult, IEntityWithIdName } from '../shared/shared-interfaces';
-import { IQueryColumns } from "./query";
+import { IQueryColumns, IQuery } from "./query";
 
 @Injectable()
 export class QueryService {
-    private _idNameUrl = './api/queries-idname.json';
-    private _columnUrl = './api/query-columns-report.json';
+    private _idNameUrl = './api/queries/GetAll';
+    private _columnUrl = './api/queries/GetQueryColumns/';
 
     constructor(private _http: Http) { }
 
-    getQueriesIdName(): Observable<IEntityWithIdName[]> {
+    getQueriesIdName(): Observable<IQuery[]> {
         return this._http.get(this._idNameUrl)
-            .map(response => response.json().queries as IEntityWithIdName[])
+            .map(response => response.json() as IQuery[])
             .do(data => console.log("Queries: " + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
-    getQueryColumns(id: number): Observable<IQueryColumns> {
-        console.log(id);
-        return this._http.get(this._columnUrl)
+    getQueryColumns(guid: string): Observable<IQueryColumns> {
+        console.log(guid);
+        return this._http.get(this._columnUrl + guid)
             .map(response => response.json() as IQueryColumns)
-            .do(data => console.log(`Query: ${id} ${JSON.stringify(data)}`))
+            .do(data => console.log(`Query: ${guid} ${JSON.stringify(data)}`))
             .catch(this.handleError);
     }
 

@@ -1,4 +1,9 @@
 ﻿export interface IQueryColumns {
-    id: number;
+    queryGUID: number;
     columns: string[];
+}
+
+export interface IQuery {
+    queryGUID: string;
+    name: string;
 }

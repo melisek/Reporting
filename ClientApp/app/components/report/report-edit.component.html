@@ -20,7 +20,7 @@
                     <mat-card-content>
                         <form>
                             <mat-select placeholder="Query" #query [(ngModel)]="selectedValue" (ngModelChange)="queryChange()" name="query" class="margin-top-20 fit-container">
-                                <mat-option *ngFor="let query of queries" [value]="query.id">
+                                <mat-option *ngFor="let query of queries" [value]="query.queryGUID">
                                     {{query.name}}
                                 </mat-option>
                             </mat-select>
