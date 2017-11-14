@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using szakdoga.Models;
+using szakdoga.Models.Dtos.QueryDtos;
 
 namespace szakdoga.BusinessLogic
 {
@@ -28,18 +29,25 @@ namespace szakdoga.BusinessLogic
         public object GetColumnNames(string queryGUID)
         {
             var AllColumns = JsonConvert.DeserializeObject<AllColumns>(_queryRepository.Get(queryGUID).TranslatedColumnNames);
-            return new
+            return new QueryColumnsDto
             {
                 QueryGUID = queryGUID,
-                Columns = AllColumns.Columns.Where(x => x.hidden == true).Select(x => x.text).ToArray()
+                Columns = AllColumns.Columns.Where(x => x.Hidden == true).Select(x =>
+                new ColumnNamesDto
+                {
+                    Name = x.Name,
+                    Text = x.Text,
+                    Type = x.Type
+                }).ToArray()
             };
         }
     }
     public class Column
     {
-        public string name { get; set; }
-        public string text { get; set; }
-        public bool hidden { get; set; }
+        public string Name { get; set; }
+        public string Text { get; set; }
+        public bool Hidden { get; set; }
+        public string Type { get; set; }
     }
     public class AllColumns
     {

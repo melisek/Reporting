@@ -36,17 +36,9 @@ namespace szakdoga
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy",
-                  builder => builder.AllowAnyOrigin()
-                                    .AllowAnyMethod()
-                                    .AllowAnyHeader()
-                                    .AllowCredentials());
-            });
-
-
+            services.AddSingleton(_configurationRoot);
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(_configurationRoot.GetConnectionString("DefaultConnection")));
+            services.AddTransient<DbInitializer>();
 
             services.AddScoped<IQueryRepository, QueryRepository>();
             services.AddScoped<IReportRepository, ReportRepository>();
@@ -90,11 +82,20 @@ namespace szakdoga
                        };
                    });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                  builder => builder.AllowAnyOrigin()
+                                    .AllowAnyMethod()
+                                    .AllowAnyHeader()
+                                    .AllowCredentials());
+            });
+
             services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, DbInitializer dbInitializer)
         {
             app.UseCors("CorsPolicy");
             if (env.IsDevelopment())
@@ -126,7 +127,7 @@ namespace szakdoga
                          defaults: new { controller = "Home", action = "Index" });
                  });
             //új db-migration elõtt kikapcsolni, mivel futtatásnál már próbál beírni a nem létezõ táblákba
-            //DbInitializer.Seed(app);
+            //dbInitializer.Seed();
 
             AutoMapper.Mapper.Initialize(cfg =>
             {

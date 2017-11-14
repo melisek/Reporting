@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -10,41 +9,42 @@ namespace szakdoga.Data
 {
     public class DbInitializer
     {
-        public static void Seed(IApplicationBuilder applicationBuilder)
+        private AppDbContext _context;
+        private IConfigurationRoot _cfg;
+
+        public DbInitializer(AppDbContext context, IConfigurationRoot cfg)
         {
-            //TODO: megnézni h ezzel mért nem működik //AppDbContext context = applicationBuilder.ApplicationServices.GetRequiredService<AppDbContext>();
-            using (var serviceScope = applicationBuilder.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
-                .CreateScope())
+            _context = context;
+            _cfg = cfg;
+        }
+
+        public void Seed()
+        {
+            CleanAllTables(_context);
+
+            if (!_context.User.Any())
+                _context.User.AddRange(Users);
+            if (!_context.Query.Any())
+                _context.Query.AddRange(Queries);
+
+            _context.SaveChanges();
+            if (!_context.Report.Any())
+                _context.Report.AddRange(Reports);
+            if (!_context.Dashboards.Any())
+                _context.Dashboards.AddRange(Dashboards);
+            if (!_context.ReportDashboardRel.Any())
+                _context.ReportDashboardRel.AddRange(ReportDashboardRels);
+            if (!_context.UserDashboardRel.Any())
+                _context.UserDashboardRel.AddRange(UserDashboardRels);
+            if (!_context.ReportUserRel.Any())
+                _context.ReportUserRel.AddRange(ReportUserRels);
+
+            _context.SaveChanges();
+
+            string sourceConn = _cfg.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(sourceConn))
             {
-                AppDbContext context = serviceScope.ServiceProvider.GetService<AppDbContext>();
-
-                CleanAllTables(context);
-
-                if (!context.User.Any())
-                    context.User.AddRange(Users);
-                if (!context.Query.Any())
-                    context.Query.AddRange(Queries);
-
-                context.SaveChanges();
-                if (!context.Report.Any())
-                    context.Report.AddRange(Reports);
-                if (!context.Dashboards.Any())
-                    context.Dashboards.AddRange(Dashboards);
-                if (!context.ReportDashboardRel.Any())
-                    context.ReportDashboardRel.AddRange(ReportDashboardRels);
-                if (!context.UserDashboardRel.Any())
-                    context.UserDashboardRel.AddRange(UserDashboardRels);
-                if (!context.ReportUserRel.Any())
-                    context.ReportUserRel.AddRange(ReportUserRels);
-
-                context.SaveChanges();
-
-                //TODO: nem szép incializálás- ÍRD ÁT A SAJÁTODRA !!!
-                //string sourceConn = " Data Source = localhost\\SQL2012ST; Initial Catalog = kszstart_demo;MultipleActiveResultSets=True; Persist Security Info = True; User ID = Admin; Password = admin";
-                //using (SqlConnection conn = new SqlConnection(sourceConn))
-                //{
-                //    ExecuteBatchNonQuery(cmdText, conn);
-                //}
+                ExecuteBatchNonQuery(cmdText, conn);
             }
         }
 
@@ -156,104 +156,103 @@ namespace szakdoga.Data
             }
         }
 
-        private static string columns = @"{ ""Columns"":
-	[ { ""name"": ""Table_95_Field_1"", ""text"": ""SzámlafejID"", ""hidden"": ""false"" },
-	 { ""name"": ""Table_95_Field_1"", ""text"": ""SzámlafejID"", ""hidden"": ""false"" },
-      	{ ""name"": ""Table_95_Field_3"", ""text"": ""Bizonylat azonosító"", ""hidden"": ""true"" },
-                 	                       { ""name"": ""Table_95_Field_5"", ""text"": ""Bizonylattömb"", ""hidden"": ""true"" },
-                             	           { ""name"": ""Table_95_Field_7"", ""text"": ""Bizonylatszám"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_9"", ""text"": ""Stornó bizonylat"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_11"", ""text"": ""Helyesbítő bizonylat"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_13"", ""text"": ""Ügyfél"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_15"", ""text"": ""Ügyfélcím"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_17"", ""text"": ""Kapcsolattartó"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_19"", ""text"": ""Cégprofil"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_21"", ""text"": ""Valuta"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_23"", ""text"": ""Részlegszám"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_25"", ""text"": ""Munkaszám"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_27"", ""text"": ""Projekt"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_29"", ""text"": ""Bizonylat"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_31"", ""text"": ""Kelte"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_33"", ""text"": ""Teljesítés dátuma"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_35"", ""text"": ""Esedékesség"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_37"", ""text"": ""Fizetési mód"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_39"", ""text"": ""Raktár azonosító"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_41"", ""text"": ""Nettó érték"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_43"", ""text"": ""Áfa értékű"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_45"", ""text"": ""Bruttó érték"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_47"", ""text"": ""Fennmaradó összeg"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_49"", ""text"": ""Kiegyenlített összeg"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_51"", ""text"": ""? Kiterjesztő azonosító?"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_53"", ""text"": ""Felhasználható"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_55"", ""text"": ""Raktári bevét"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""TopComment"", ""text"": ""Felső megjegyzés"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Comment"", ""text"": ""Megjegyzés"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""ReportRepository"", ""text"": ""Bizonylatkép"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_63"", ""text"": ""Bizonylat oldalainak száma"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_65"", ""text"": ""RowVersion"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_67"", ""text"": ""Vevő"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_69"", ""text"": ""Vevő kód"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_71"", ""text"": ""Rögzítés dátuma"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_73"", ""text"": ""Munkatárs"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_75"", ""text"": ""Logokép"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_77"", ""text"": ""Teljes bizonylatnév"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_79"", ""text"": ""Végső termék"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_81"", ""text"": ""Végső terméknév"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_83"", ""text"": ""Lockolt"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_85"", ""text"": ""Áfa nélkül"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_87"", ""text"": ""Nyelv"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_89"", ""text"": ""Kiegyenlítés dátuma"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_91"", ""text"": ""ReportDesign"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_93"", ""text"": ""IntrastatTransactionCode"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_95"", ""text"": ""IntrastatDeliveryTermCode"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_97"", ""text"": ""IntrastatModeOfTransportCode"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_99"", ""text"": ""IntrastatCountryNonEU"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_101"", ""text"": ""IntrastatCountryEU"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_103"", ""text"": ""Nettó súly"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_105"", ""text"": ""Bruttó súly"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_107"", ""text"": ""Bizonylat státusza"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_109"", ""text"": ""SettlementPeriodDate"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_111"", ""text"": ""Eszámla"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_113"", ""text"": ""EDI számla"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_115"", ""text"": ""Házipénztár"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_117"", ""text"": ""Kiegyenlített összeg"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_119"", ""text"": ""Fennmaradó összeg"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_121"", ""text"": ""Bizonylat sablon"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_123"", ""text"": ""Nyomtatás dátuma"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_125"", ""text"": ""Távoli nyomtatás hatálya"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_127"", ""text"": ""Távoli nyomtatás dátuma"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_129"", ""text"": ""Egységár tizedesjegyek"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_131"", ""text"": ""Nettó érték tizedes jegyek"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_133"", ""text"": ""ÁFA érték tizedes jegyek"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_135"", ""text"": ""Bruttó érték tizedes jegyek"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_137"", ""text"": ""GrandTotalDigits"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_139"", ""text"": ""Valuta szorzó"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_141"", ""text"": ""Szállítási cím"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_143"", ""text"": ""Szállítási mód"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_145"", ""text"": ""PaymentAccounting"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""InheretedTopComment"", ""text"": ""Örökölt felső megjegyzés"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""InheretedBottomComment"", ""text"": ""Örökölt alső megjegyzés"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_151"", ""text"": ""SalesOpportunity"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_153"", ""text"": ""DetailGroupByType"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_155"", ""text"": ""RetentionWarranty"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_157"", ""text"": ""RetentionPaymentDate"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_159"", ""text"": ""AppliedPriceRule"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_161"", ""text"": ""AccountingStockMovementType"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_163"", ""text"": ""Webshop azonosító"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Description"", ""text"": ""Leírás"", ""hidden"": ""true"" },
-                                        	{ ""name"": ""Table_95_Field_167"", ""text"": ""ActualCurrencyRate"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_169"", ""text"": ""DiscountMode"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_171"", ""text"": ""FulfilledCertificate"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_173"", ""text"": ""CustomerStockInIntermediate"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_175"", ""text"": ""MadeWithCashRegister"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""NAVRepository"", ""text"": ""NAVRepository,"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_179"", ""text"": ""SecQuantity"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_181"", ""text"": ""SecQuantityUnit"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_183"", ""text"": ""SecQuantityDigits"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_185"", ""text"": ""ConversionRate"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_187"", ""text"": ""QuantityUnit"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_189"", ""text"": ""QuantityDigits"", ""hidden"": ""false"" },
-                                        	{ ""name"": ""Table_95_Field_191"", ""text"": ""Magánszemély"", ""hidden"": ""true"" }
+        private static string columns = @"{ ""Columns"":	[
+											{ ""Name"": ""Table_95_Field_1"", ""Text"": ""SzámlafejID"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+											{ ""Name"": ""Table_95_Field_3"", ""Text"": ""Bizonylat azonosító"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                 	                        { ""Name"": ""Table_95_Field_5"", ""Text"": ""Bizonylattömb"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                             	            { ""Name"": ""Table_95_Field_7"", ""Text"": ""Bizonylatszám"", ""Hidden"": ""false"" ,""Type"": ""string"" },
+                                        	{ ""Name"": ""Table_95_Field_9"", ""Text"": ""Stornó bizonylat"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_11"", ""Text"": ""Helyesbítő bizonylat"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_13"", ""Text"": ""Ügyfél"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_15"", ""Text"": ""Ügyfélcím"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_17"", ""Text"": ""Kapcsolattartó"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_19"", ""Text"": ""Cégprofil"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_21"", ""Text"": ""Valuta"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_23"", ""Text"": ""Részlegszám"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_25"", ""Text"": ""Munkaszám"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_27"", ""Text"": ""Projekt"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_29"", ""Text"": ""Bizonylat"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_31"", ""Text"": ""Kelte"", ""Hidden"": ""false"" ,""Type"": ""date"" },
+                                        	{ ""Name"": ""Table_95_Field_33"", ""Text"": ""Teljesítés dátuma"", ""Hidden"": ""false"" ,""Type"": ""date"" },
+                                        	{ ""Name"": ""Table_95_Field_35"", ""Text"": ""Esedékesség"", ""Hidden"": ""false"" ,""Type"": ""date"" },
+                                        	{ ""Name"": ""Table_95_Field_37"", ""Text"": ""Fizetési mód"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_39"", ""Text"": ""Raktár azonosító"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_41"", ""Text"": ""Nettó érték"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_43"", ""Text"": ""Áfa értékű"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_45"", ""Text"": ""Bruttó érték"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_47"", ""Text"": ""Fennmaradó összeg"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_49"", ""Text"": ""Kiegyenlített összeg"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_51"", ""Text"": ""? Kiterjesztő azonosító?"", ""Hidden"": ""false"" ,""Type"": ""string"" },
+                                        	{ ""Name"": ""Table_95_Field_53"", ""Text"": ""Felhasználható"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_55"", ""Text"": ""Raktári bevét"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""TopComment"", ""Text"": ""Felső megjegyzés"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Comment"", ""Text"": ""Megjegyzés"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""ReportRepository"", ""Text"": ""Bizonylatkép"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_63"", ""Text"": ""Bizonylat oldalainak száma"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_65"", ""Text"": ""RowVersion"", ""Hidden"": ""true"" ,""Type"": ""date"" },
+                                        	{ ""Name"": ""Table_95_Field_67"", ""Text"": ""Vevő"", ""Hidden"": ""false"" ,""Type"": ""string"" },
+                                        	{ ""Name"": ""Table_95_Field_69"", ""Text"": ""Vevő kód"", ""Hidden"": ""false"" ,""Type"": ""string"" },
+                                        	{ ""Name"": ""Table_95_Field_71"", ""Text"": ""Rögzítés dátuma"", ""Hidden"": ""false"" ,""Type"": ""date"" },
+                                        	{ ""Name"": ""Table_95_Field_73"", ""Text"": ""Munkatárs"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_75"", ""Text"": ""Logokép"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_77"", ""Text"": ""Teljes bizonylatnév"", ""Hidden"": ""false"" ,""Type"": ""string"" },
+                                        	{ ""Name"": ""Table_95_Field_79"", ""Text"": ""Végső termék"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_81"", ""Text"": ""Végső terméknév"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_83"", ""Text"": ""Lockolt"", ""Hidden"": ""true"" ,""Type"": ""boolean"" },
+                                        	{ ""Name"": ""Table_95_Field_85"", ""Text"": ""Áfa nélkül"", ""Hidden"": ""false"" ,""Type"": ""boolean"" },
+                                        	{ ""Name"": ""Table_95_Field_87"", ""Text"": ""Nyelv"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_89"", ""Text"": ""Kiegyenlítés dátuma"", ""Hidden"": ""false"" ,""Type"": ""date"" },
+                                        	{ ""Name"": ""Table_95_Field_91"", ""Text"": ""ReportDesign"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_93"", ""Text"": ""IntrastatTransactionCode"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_95"", ""Text"": ""IntrastatDeliveryTermCode"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_97"", ""Text"": ""IntrastatModeOfTransportCode"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_99"", ""Text"": ""IntrastatCountryNonEU"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_101"", ""Text"": ""IntrastatCountryEU"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_103"", ""Text"": ""Nettó súly"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_105"", ""Text"": ""Bruttó súly"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_107"", ""Text"": ""Bizonylat státusza"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_109"", ""Text"": ""SettlementPeriodDate"", ""Hidden"": ""false"" ,""Type"": ""date"" },
+                                        	{ ""Name"": ""Table_95_Field_111"", ""Text"": ""Eszámla"", ""Hidden"": ""false"" ,""Type"": ""boolean"" },
+                                        	{ ""Name"": ""Table_95_Field_113"", ""Text"": ""EDI számla"", ""Hidden"": ""false"" ,""Type"": ""boolean"" },
+                                        	{ ""Name"": ""Table_95_Field_115"", ""Text"": ""Házipénztár"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_117"", ""Text"": ""Kiegyenlített összeg"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_119"", ""Text"": ""Fennmaradó összeg"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_121"", ""Text"": ""Bizonylat sablon"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_123"", ""Text"": ""Nyomtatás dátuma"", ""Hidden"": ""false"" ,""Type"": ""date"" },
+                                        	{ ""Name"": ""Table_95_Field_125"", ""Text"": ""Távoli nyomtatás hatálya"", ""Hidden"": ""false"" ,""Type"": ""date"" },
+                                        	{ ""Name"": ""Table_95_Field_127"", ""Text"": ""Távoli nyomtatás dátuma"", ""Hidden"": ""false"" ,""Type"": ""date"" },
+                                        	{ ""Name"": ""Table_95_Field_129"", ""Text"": ""Egységár tizedesjegyek"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_131"", ""Text"": ""Nettó érték tizedes jegyek"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_133"", ""Text"": ""ÁFA érték tizedes jegyek"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_135"", ""Text"": ""Bruttó érték tizedes jegyek"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_137"", ""Text"": ""GrandTotalDigits"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_139"", ""Text"": ""Valuta szorzó"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_141"", ""Text"": ""Szállítási cím"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_143"", ""Text"": ""Szállítási mód"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_145"", ""Text"": ""PaymentAccounting"", ""Hidden"": ""false"" ,""Type"": ""boolean"" },
+                                        	{ ""Name"": ""InheretedTopComment"", ""Text"": ""Örökölt felső megjegyzés"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""InheretedBottomComment"", ""Text"": ""Örökölt alső megjegyzés"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_151"", ""Text"": ""SalesOpportunity"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_153"", ""Text"": ""DetailGroupByType"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_155"", ""Text"": ""RetentionWarranty"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_157"", ""Text"": ""RetentionPaymentDate"", ""Hidden"": ""true"" ,""Type"": ""date"" },
+                                        	{ ""Name"": ""Table_95_Field_159"", ""Text"": ""AppliedPriceRule"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_161"", ""Text"": ""AccountingStockMovementType"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_163"", ""Text"": ""Webshop azonosító"", ""Hidden"": ""false"" ,""Type"": ""string"" },
+                                        	{ ""Name"": ""Description"", ""Text"": ""Leírás"", ""Hidden"": ""false"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_167"", ""Text"": ""ActualCurrencyRate"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_169"", ""Text"": ""DiscountMode"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_171"", ""Text"": ""FulfilledCertificate"", ""Hidden"": ""true"" ,""Type"": ""boolean"" },
+                                        	{ ""Name"": ""Table_95_Field_173"", ""Text"": ""CustomerStockInIntermediate"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_175"", ""Text"": ""MadeWithCashRegister"", ""Hidden"": ""true"" ,""Type"": ""boolean"" },
+                                        	{ ""Name"": ""NAVRepository"", ""Text"": ""NAVRepository,"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_179"", ""Text"": ""SecQuantity"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_181"", ""Text"": ""SecQuantityUnit"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_183"", ""Text"": ""SecQuantityDigits"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_185"", ""Text"": ""ConversionRate"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_187"", ""Text"": ""QuantityUnit"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_189"", ""Text"": ""QuantityDigits"", ""Hidden"": ""true"" ,""Type"": ""number"" },
+                                        	{ ""Name"": ""Table_95_Field_191"", ""Text"": ""Magánszemély"", ""Hidden"": ""true"",""Type"":""boolean"" }
                                         	]
 }";
 

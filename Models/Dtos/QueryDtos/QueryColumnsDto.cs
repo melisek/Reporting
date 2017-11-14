@@ -6,6 +6,6 @@ namespace szakdoga.Models.Dtos.QueryDtos
     {
         [Required(ErrorMessage = "Required QueryGUID.")]
         public string QueryGUID { get; set; }
-        public string[] Columns { get; set; }
+        public ColumnNamesDto[] Columns { get; set; }
     }
 }
