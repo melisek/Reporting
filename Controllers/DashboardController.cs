@@ -20,6 +20,7 @@ namespace szakdoga.Controllers
             _dashboardRepository = dashboardRepository;
             _reportDashboardRel = repDashRel;
             _reportRepository = reportRepository;
+            _manager = manager;
         }
 
         [HttpGet("GetStyle/{dashboardGUID}")]
