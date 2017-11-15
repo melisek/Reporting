@@ -88,6 +88,16 @@ namespace szakdoga.BusinessLogic
             return sb.ToString();
         }
 
+        public QueryColumnCountDto GetQueryColumnCount(string queryGUID)
+        {
+            var AllColumns = GetAllColumns(queryGUID);
+            return new QueryColumnCountDto
+            {
+                QueryGuid = queryGUID,
+                ColumnCount = AllColumns.Columns.Where(x => x.Hidden == false).Count()
+            };
+        }
+
         private string GetCommandText(AllColumns allColumns, int x, int y, string table)
         {
             string columns = String.Empty;

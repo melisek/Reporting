@@ -46,5 +46,14 @@ namespace szakdoga.Controllers
 
             return Ok(jsonResult);
         }
+
+        [HttpGet("GetQueryColumnCount/{queryGUID}")]
+        public IActionResult GetQueryColumnCount(string queryGUID)
+        {
+            if (string.IsNullOrEmpty(queryGUID))
+                return BadRequest("Empty queryGUID");
+
+            return Ok(_manager.GetQueryColumnCount(queryGUID));
+        }
     }
 }
