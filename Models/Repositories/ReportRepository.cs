@@ -26,7 +26,7 @@ namespace szakdoga.Models.Repositories
 
         public Report Get(int id)
         {
-            return _context.Report.SingleOrDefault(x => x.Id == id);
+            return _context.Report.Include(y => y.Query).SingleOrDefault(x => x.Id == id);
         }
 
         public IEnumerable<Report> GetAll()
@@ -70,7 +70,7 @@ namespace szakdoga.Models.Repositories
 
         public Report Get(string reportGUID)
         {
-            return _context.Report.SingleOrDefault(x => x.ReportGUID == reportGUID);
+            return _context.Report.Include(y => y.Query).SingleOrDefault(x => x.ReportGUID == reportGUID);
         }
 
         public Query GetQuery(string QueryGUID)

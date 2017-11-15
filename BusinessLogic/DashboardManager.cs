@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using szakdoga.Models;
@@ -8,22 +7,17 @@ using szakdoga.Models.Dtos.ReportDtos;
 
 namespace szakdoga.BusinessLogic
 {
-    public class DashboardManager : IDisposable
+    public class DashboardManager
     {
-        private IDashboardRepository _dashboardRepository;
-        private IReportDashboardRelRepository _reportDashboardRel;
-        private IReportRepository _reportRepository;
+        private readonly IDashboardRepository _dashboardRepository;
+        private readonly IReportDashboardRelRepository _reportDashboardRel;
+        private readonly IReportRepository _reportRepository;
 
         public DashboardManager(IDashboardRepository dashboardRepository, IReportDashboardRelRepository repDashRel, IReportRepository reportRepository)
         {
             _dashboardRepository = dashboardRepository;
             _reportDashboardRel = repDashRel;
             _reportRepository = reportRepository;
-        }
-
-        public void Dispose()
-        {
-            _dashboardRepository = null;
         }
 
         public DashboardDto GetDashBoardStyle(string dashboardGUID)
@@ -111,7 +105,6 @@ namespace szakdoga.BusinessLogic
             if (rels == null) return null;
 
             return rels.FirstOrDefault().Position;
-
         }
 
         public DashboardReportDto GetDashboardReports(string dashboardGUID)

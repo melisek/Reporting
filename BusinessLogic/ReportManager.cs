@@ -12,11 +12,13 @@ namespace szakdoga.BusinessLogic
     {
         private IReportRepository _reportRepository;
         private IReportDashboardRelRepository _reportDashboardRel;
+        private QueryManager _queryman;
 
-        public ReportManager(IReportRepository reportRepository, IReportDashboardRelRepository repDashRel)
+        public ReportManager(IReportRepository reportRepository, IReportDashboardRelRepository repDashRel, QueryManager queryman)
         {
             _reportRepository = reportRepository;
             _reportDashboardRel = repDashRel;
+            _queryman = queryman;
         }
 
         public void Dispose()
@@ -107,6 +109,12 @@ namespace szakdoga.BusinessLogic
             {
                 Reports = Mapper.Map<IEnumerable<ReportForAllDto>>(_reportRepository.GetAll()).ToList()
             };
+        }
+
+        public object GetQuerySource(ReportSourceFilterDto filter)
+        {
+            var riport = _reportRepository.Get(filter.ReportGUID);
+            return _queryman.GetQuerySource(new Models.Dtos.QueryDtos.QuerySourceFilterDto { QueryGUID = riport.Query.QueryGUID, X = filter.X, Y = filter.Y });
         }
     }
 }

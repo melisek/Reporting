@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using szakdoga.BusinessLogic;
 using szakdoga.Data;
 using szakdoga.Models;
 using szakdoga.Models.Dtos;
@@ -48,6 +49,10 @@ namespace szakdoga
             services.AddScoped<IReportUserRelRepository, ReportUserRelRepository>();
             services.AddScoped<IUserDashboardRelRepository, UserDashboardRelRepository>();
             services.AddScoped<IUserJwtMapRepository, UserJwtMapRepository>();
+
+            services.AddScoped<DashboardManager>();
+            services.AddScoped<QueryManager>();
+            services.AddScoped<ReportManager>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                    .AddJwtBearer(options =>

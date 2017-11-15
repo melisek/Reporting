@@ -9,28 +9,26 @@ namespace szakdoga.Controllers
     [Route("api/reports")]
     public class ReportController : Controller
     {
-        private IReportRepository _reportRepository;
-        private IReportDashboardRelRepository _reportDashboardRel;
+        private readonly IReportRepository _reportRepository;
+        private readonly IReportDashboardRelRepository _reportDashboardRel;
+        private readonly ReportManager _manager;
 
-        public ReportController(IReportRepository reportRepository, IReportDashboardRelRepository repDashRel)
+        public ReportController(IReportRepository reportRepository, IReportDashboardRelRepository repDashRel, ReportManager manager)
         {
             _reportRepository = reportRepository;
             _reportDashboardRel = repDashRel;
+            _manager = manager;
         }
 
         [HttpGet("GetStyle/{reportGUID}")]
         public IActionResult GetRiportStyle(string reportGUID)
         {
             if (string.IsNullOrEmpty(reportGUID)) return BadRequest("Empty GUID!");
-
-            using (var reportManager = new ReportManager(_reportRepository, _reportDashboardRel))
-            {
-                var report = reportManager.GetReportStyle(reportGUID);
-                if (report == null)
-                    return NotFound();
-                else
-                    return Ok(reportManager.GetReportStyle(reportGUID));//OK 200 as státuszkódja van
-            }
+            var report = _manager.GetReportStyle(reportGUID);
+            if (report == null)
+                return NotFound();
+            else
+                return Ok(_manager.GetReportStyle(reportGUID));//OK 200 as státuszkódja van
         }
 
         [HttpPost("Create")]
@@ -42,15 +40,12 @@ namespace szakdoga.Controllers
                                     //hozzá lehet adni itt is hibát, ellenőrzést, ajánlás: FluenValidation:  library- lambdákkal lehet megkötéseket definiálni
                 return BadRequest(ModelState); //400-as hibakód
 
-            using (var reportManager = new ReportManager(_reportRepository, _reportDashboardRel))
-            {
-                var guid = reportManager.CreateReport(report);
-                if (!string.IsNullOrEmpty(guid))
-                    return Created(string.Empty, guid);
-                else
-                    return BadRequest("Could not save.");
-                //Created()//lehetne még createatute()-akkor megadná h hogy tudja elérni tehát: GetReport/ReportGUID
-            }
+            var guid = _manager.CreateReport(report);
+            if (!string.IsNullOrEmpty(guid))
+                return Created(string.Empty, guid);
+            else
+                return BadRequest("Could not save.");
+            //Created()//lehetne még createatute()-akkor megadná h hogy tudja elérni tehát: GetReport/ReportGUID
         }
 
         [HttpPut("Update/{reportGUID}")]
@@ -59,13 +54,10 @@ namespace szakdoga.Controllers
             if (report == null) return BadRequest("Invalid Dto");
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            using (var reportManager = new ReportManager(_reportRepository, _reportDashboardRel))
-            {
-                if (reportManager.UpdateReport(report, reportGUID))
-                    return NoContent();
-                else
-                    return BadRequest("Report GUID is not valid.");
-            }
+            if (_manager.UpdateReport(report, reportGUID))
+                return NoContent();
+            else
+                return BadRequest("Report GUID is not valid.");
         }
 
         [HttpDelete("Delete/{reportGUID}")]
@@ -74,28 +66,34 @@ namespace szakdoga.Controllers
             if (string.IsNullOrEmpty(reportGUID))
                 return BadRequest("Empty GUID!");
 
-            using (var reportManager = new ReportManager(_reportRepository, _reportDashboardRel))
-            {
-                if (reportManager.DeleteReport(reportGUID))
-                    return NoContent();
-                else
-                    return BadRequest();
-            }
+            if (_manager.DeleteReport(reportGUID))
+                return NoContent();
+            else
+                return BadRequest();
         }
+
         [HttpPost("GetAll")]
         public IActionResult GetAll([FromBody] GetAllDto filter)
         {
             if (filter == null) return BadRequest("Wrong structure!");
+            if (!ModelState.IsValid) BadRequest(ModelState);
 
-            using (var reportManager = new ReportManager(_reportRepository, _reportDashboardRel))
-            {
-                AllReportDto report = reportManager.GetAllReport();
-                if (report == null)
-                    return NotFound();
-                else
-                    return Ok(report);
-            }
+            AllReportDto report = _manager.GetAllReport();
+            if (report == null)
+                return NotFound();
+            else
+                return Ok(report);
         }
 
+        [HttpPost("GetReportSource")]
+        public IActionResult GetReportSource([FromBody] ReportSourceFilterDto filter)
+        {
+            if (filter == null) return BadRequest("Wrong structure!");
+            if (!ModelState.IsValid) BadRequest(ModelState);
+
+            var jsonResult = _manager.GetQuerySource(filter);
+
+            return Ok(jsonResult);
+        }
     }
 }
