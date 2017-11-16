@@ -26,7 +26,7 @@ namespace szakdoga.BusinessLogic
             var report = _reportRepository.GetAll().FirstOrDefault(x => x.ReportGUID == reportGUID);
 
             if (report == null)
-                return null;
+                throw new NotFoundException("Invalid reportGUID.");
 
             return Mapper.Map<ReportDto>(report);
         }
@@ -74,18 +74,17 @@ namespace szakdoga.BusinessLogic
         {
             var origReport = _reportRepository.Get(reportGUID);//TODO:origreportot kéne az update-nek adni, akk megoldott lenne a style fv módosítás
             if (origReport == null)
-                return false;
-            var reportEntity = new Report
-            {
-                Name = report.Name,
-                ReportGUID = report.ReportGUID,
-                Query = _reportRepository.GetQuery(report.QueryGUID),
-                Columns = StringArraySerializer(report.Columns),
-                Filter = report.Filter,
-                Sort = report.Sort,
-                Rows = report.Rows
-            };
-            _reportRepository.Update(reportEntity);
+                throw new NotFoundException("Invalid reportGUID.");
+
+            origReport.Name = report.Name;
+            origReport.ReportGUID = report.ReportGUID;
+            origReport.Query = _reportRepository.GetQuery(report.QueryGUID);
+            origReport.Columns = StringArraySerializer(report.Columns);
+            origReport.Filter = report.Filter;
+            origReport.Sort = report.Sort;
+            origReport.Rows = report.Rows;
+
+            _reportRepository.Update(origReport);
             return true;
         }
 

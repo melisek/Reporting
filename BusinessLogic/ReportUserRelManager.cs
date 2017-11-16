@@ -22,7 +22,7 @@ namespace szakdoga.BusinessLogic
         {
             var report = _reportRepository.Get(reportGUID);
             if (report == null)
-                return null;
+                throw new NotFoundException($"There is no report with this GUID: {reportGUID}");
 
             List<ReportUserDto> users = new List<ReportUserDto>();
             foreach (var rel in _reportUserRelRepository.GetReportUsers(report.Id))
@@ -62,7 +62,7 @@ namespace szakdoga.BusinessLogic
             var origRel = IsExistRel(user.Id, report.Id);
 
             if (origRel == null)
-                return false;
+                throw new NotFoundException("There is no relation record with this data.");
 
             return _reportUserRelRepository.Remove(origRel.Id);
         }
@@ -75,7 +75,7 @@ namespace szakdoga.BusinessLogic
             var origRel = IsExistRel(user.Id, report.Id);
 
             if (origRel == null)
-                return false;
+                throw new NotFoundException("There is no relation record with this data.");
 
             origRel.AuthoryLayer = reportUserRel.Permission;
             _reportUserRelRepository.Update(origRel);
@@ -87,8 +87,10 @@ namespace szakdoga.BusinessLogic
             report = _reportRepository.Get(reportGUID);
             user = _userRepository.Get(userGUID);
 
-            if (user == null || report == null)
-                return false;
+            if (user == null)
+                throw new NotFoundException("Invalid userGUID.");
+            if (report == null)
+                throw new NotFoundException("Invalid reportGUID.");
             else return true;
         }
 
@@ -98,4 +100,3 @@ namespace szakdoga.BusinessLogic
         }
     }
 }
-

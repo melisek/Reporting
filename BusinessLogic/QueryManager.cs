@@ -49,7 +49,7 @@ namespace szakdoga.BusinessLogic
             var query = _queryRepository.Get(filter.QueryGUID);
 
             if (query == null)
-                return null;
+                throw new NotFoundException("Invalid QueryGUID.");
 
             var AllColumns = GetAllColumns(filter.QueryGUID);
 

@@ -52,7 +52,7 @@ namespace szakdoga.BusinessLogic
         {
             var origDashboard = _dashboardRepository.Get(dashboardGUID);
             if (origDashboard == null)
-                return false;
+                throw new NotFoundException("Invalid dashboardGUID");
             var dashboardEntity = new Dashboard
             {
                 Name = dashboard.Name,
@@ -89,7 +89,7 @@ namespace szakdoga.BusinessLogic
         {
             var dash = _dashboardRepository.Get(dashboardGUID);
             if (dash == null)
-                return null;
+                throw new NotFoundException("Invalid dashboardGUID");
 
             return Mapper.Map<IEnumerable<ReportDto>>(
                 _reportDashboardRel.GetDashboardReports(dash.Id).
@@ -100,9 +100,9 @@ namespace szakdoga.BusinessLogic
         public string GetPosition(string dashboardGUID, string reportGUID)
         {
             var dash = _dashboardRepository.Get(dashboardGUID);
-            if (dash == null) return null;
+            if (dash == null) throw new NotFoundException("Invalid dashboardGUID");
             var rels = _reportDashboardRel.GetDashboardReports(dash.Id);
-            if (rels == null) return null;
+            if (rels == null) throw new NotFoundException("Invalid dashboardGUID");
 
             return rels.FirstOrDefault().Position;
         }
@@ -111,7 +111,7 @@ namespace szakdoga.BusinessLogic
         {
             var dash = _dashboardRepository.Get(dashboardGUID);
             if (dash == null)
-                return null;
+                throw new NotFoundException("Invalid dashboardGUID");
 
             var rels = _reportDashboardRel.GetDashboardReports(dash.Id);
 

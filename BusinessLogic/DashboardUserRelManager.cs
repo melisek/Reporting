@@ -4,12 +4,12 @@ using szakdoga.Models.Dtos.RelDtos.DashboardUserRelDtos;
 
 namespace szakdoga.BusinessLogic
 {
-
     public class DashboardUserRelManager
     {
-        IUserRepository _userRepository;
-        IDashboardRepository _dashboardRepository;
-        IUserDashboardRelRepository _userDashboardRelRepository;
+        private IUserRepository _userRepository;
+        private IDashboardRepository _dashboardRepository;
+        private IUserDashboardRelRepository _userDashboardRelRepository;
+
         public DashboardUserRelManager(IUserRepository userRepository, IDashboardRepository dashboardRepository, IUserDashboardRelRepository userDashboardRelRepository)
         {
             _userRepository = userRepository;
@@ -21,7 +21,7 @@ namespace szakdoga.BusinessLogic
         {
             var Dashboard = _dashboardRepository.Get(DashboardGUID);
             if (Dashboard == null)
-                return null;
+                throw new NotFoundException("Invalid DashboardGUID.");
 
             List<DashboardUserDto> users = new List<DashboardUserDto>();
             foreach (var rel in _userDashboardRelRepository.GetDashboardUsers(Dashboard.Id))
@@ -61,7 +61,7 @@ namespace szakdoga.BusinessLogic
             var origRel = IsExistRel(user.Id, Dashboard.Id);
 
             if (origRel == null)
-                return false;
+                throw new NotFoundException("There is no relation record with this data.");
 
             return _userDashboardRelRepository.Remove(origRel.Id);
         }
@@ -74,7 +74,7 @@ namespace szakdoga.BusinessLogic
             var origRel = IsExistRel(user.Id, Dashboard.Id);
 
             if (origRel == null)
-                return false;
+                throw new NotFoundException("There is no relation record with this data.");
 
             origRel.AuthoryLayer = DashboardUserRel.Permission;
             _userDashboardRelRepository.Update(origRel);
@@ -86,9 +86,12 @@ namespace szakdoga.BusinessLogic
             dashboard = _dashboardRepository.Get(dashboardGUID);
             user = _userRepository.Get(userGUID);
 
-            if (user == null || dashboard == null)
-                return false;
-            else return true;
+            if (user == null)
+                throw new NotFoundException("Invalid userGUID.");
+            if (dashboard == null)
+                throw new NotFoundException("Invalid dashboardGUID");
+
+            return true;
         }
 
         private UserDashboardRel IsExistRel(int userId, int dashboardID)
