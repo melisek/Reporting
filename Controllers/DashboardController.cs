@@ -45,7 +45,6 @@ namespace szakdoga.Controllers
                 _logger.LogError(ex.Message);
                 return BadRequest();
             }
-
         }
 
         [HttpPost("Create")]
@@ -74,70 +73,144 @@ namespace szakdoga.Controllers
                 _logger.LogError(ex.Message);
                 return BadRequest();
             }
-
-
         }
 
         [HttpPut("Update/{dashboardGUID}")]
         public IActionResult UpdateReport([FromBody] UpdateDashboardDto dashboard, string dashboardGUID)
         {
-            if (dashboard == null) return BadRequest("Invalid Dto");
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            try
+            {
+                if (dashboard == null) throw new BasicException("Invalid Dto");
+                if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            if (_manager.UpdateDashboard(dashboard, dashboardGUID))
+                _manager.UpdateDashboard(dashboard, dashboardGUID);
                 return NoContent();
-            else
-                return BadRequest("Report GUID is not valid.");
+            }
+            catch (BasicException ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogError(ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest();
+            }
         }
 
         [HttpDelete("Delete/{dashboardGUID}")]
         public IActionResult DeleteDashboard(string dashboardGUID)
         {
-            if (string.IsNullOrEmpty(dashboardGUID))
-                return BadRequest("Empty GUID!");
+            try
+            {
+                if (string.IsNullOrEmpty(dashboardGUID)) throw new BasicException("Empty GUID!");
 
-            if (_manager.DeleteDashboard(dashboardGUID))
+                _manager.DeleteDashboard(dashboardGUID);
                 return NoContent();
-            else
+            }
+            catch (BasicException ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogError(ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
                 return BadRequest();
+            }
         }
 
         [HttpGet("GetDashboardReportNames/{dashboardGUID}")]
         public IActionResult GetDashboardReportNames(string dashboardGUID)
         {
-            if (string.IsNullOrEmpty(dashboardGUID))
-                return BadRequest("Empty GUID");
+            try
+            {
+                if (string.IsNullOrEmpty(dashboardGUID)) throw new BasicException("Empty GUID");
 
-            IEnumerable<ReportDto> repots = _manager.GetReportNames(dashboardGUID);
-            return Ok(repots);
+                IEnumerable<ReportDto> repots = _manager.GetReportNames(dashboardGUID);
+                return Ok(repots);
+            }
+            catch (BasicException ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogError(ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest();
+            }
         }
 
         [HttpGet("GetDashboardReports/{dashboardGUID}")]
         public IActionResult GetDashboardReports(string dashboardGUID)
         {
-            if (string.IsNullOrEmpty(dashboardGUID))
-                return BadRequest("Empty GUID");
+            try
+            {
+                if (string.IsNullOrEmpty(dashboardGUID)) throw new BasicException("Empty GUID");
 
-            var reports = _manager.GetDashboardReports(dashboardGUID);
-
-            if (reports == null)
-                return BadRequest();
-            else
+                var reports = _manager.GetDashboardReports(dashboardGUID);
                 return Ok(reports);
+            }
+            catch (BasicException ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogError(ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest();
+            }
         }
 
         [HttpGet("GetDashboardReportPosition/{dashboardGUID}/{reportGUID}")]
         public IActionResult GetDashboardReportPosition(string dashboardGUID, string reportGUID)
         {
-            if (string.IsNullOrEmpty(dashboardGUID) || string.IsNullOrEmpty(reportGUID))
-                return BadRequest("Empty GUID");
+            try
+            {
+                if (string.IsNullOrEmpty(dashboardGUID) || string.IsNullOrEmpty(reportGUID))
+                    throw new BasicException("Empty GUID");
 
-            string position = _manager.GetPosition(dashboardGUID, reportGUID);
+                string position = _manager.GetPosition(dashboardGUID, reportGUID);
 
-            if (string.IsNullOrEmpty(position))
-                return BadRequest("Invalid dashboardGUID or reportGUID!");
-            else
                 return Ok(position);
+            }
+            catch (BasicException ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogError(ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest();
+            }
         }
     }
 }

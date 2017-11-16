@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using szakdoga.BusinessLogic;
 using szakdoga.Models.Dtos.RelDtos.DashboardUserRelDtos;
 
@@ -8,8 +9,9 @@ namespace szakdoga.Controllers
     [Route("api/dashboarduserrels")]
     public class DashboardUserRelController : Controller
     {
-        DashboardUserRelManager _manager;
-        ILogger _logger;
+        private DashboardUserRelManager _manager;
+        private ILogger _logger;
+
         public DashboardUserRelController(DashboardUserRelManager manager, ILogger<DashboardUserRelController> logger)
         {
             _manager = manager;
@@ -19,45 +21,112 @@ namespace szakdoga.Controllers
         [HttpGet("GetDashboardUsers/{dashboardGUID}")]
         public IActionResult GetDashboardUsers(string DashboardGUID)
         {
-            if (string.IsNullOrEmpty(DashboardGUID)) return BadRequest("Empty GUID!");
-            var DashboardUsers = _manager.GetDashboardUsers(DashboardGUID);
+            try
+            {
+                if (string.IsNullOrEmpty(DashboardGUID)) throw new BasicException("Empty GUID!");
+                var DashboardUsers = _manager.GetDashboardUsers(DashboardGUID);
 
-            if (DashboardUsers == null)
-                BadRequest();
-
-            return Ok(DashboardUsers);
+                return Ok(DashboardUsers);
+            }
+            catch (BasicException ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogError(ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest();
+            }
         }
+
         [HttpPost("Create")]
         public IActionResult Create([FromBody] CreateDashboardUserDto DashboardUserRel)
         {
-            if (DashboardUserRel == null) return BadRequest("Wrong body format.");
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            try
+            {
+                if (DashboardUserRel == null) throw new BasicException("Wrong body format.");
+                if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            if (_manager.Create(DashboardUserRel)) return Created(string.Empty, null);
-            else return BadRequest("Could not save.");
+                _manager.Create(DashboardUserRel);
+                return Created(string.Empty, null);
+            }
+            catch (BasicException ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogError(ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest();
+            }
         }
 
         [HttpPut("Update")]
         public IActionResult Update([FromBody] UpdateDashboardUserDto DashboardUserRel)
         {
-            if (DashboardUserRel == null) return BadRequest("Wrong body format.");
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            try
+            {
+                if (DashboardUserRel == null) throw new BasicException("Wrong body format.");
+                if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            if (_manager.UpdateDashboardUserRel(DashboardUserRel))
+                _manager.UpdateDashboardUserRel(DashboardUserRel);
                 return NoContent();
-            else return BadRequest();
-
+            }
+            catch (BasicException ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogError(ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest();
+            }
         }
 
         [HttpDelete("Delete")]
         public IActionResult Delete([FromBody] DeleteDashboardUserDto DashboardUserRel)
         {
-            if (DashboardUserRel == null) return BadRequest("Wrong body format.");
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            try
+            {
+                if (DashboardUserRel == null) throw new Exception("Wrong body format.");
+                if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            if (_manager.DeleteDashboardUserRel(DashboardUserRel))
+                _manager.DeleteDashboardUserRel(DashboardUserRel);
                 return NoContent();
-            else return BadRequest();
+            }
+            catch (BasicException ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogError(ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest();
+            }
         }
     }
 }

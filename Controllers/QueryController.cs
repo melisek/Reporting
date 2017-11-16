@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
 using szakdoga.BusinessLogic;
 using szakdoga.Models.Dtos.QueryDtos;
 
@@ -8,49 +10,119 @@ namespace szakdoga.Controllers
     public class QueryController : Controller
     {
         private readonly QueryManager _manager;
+        private readonly ILogger<QueryController> _logger;
 
-        public QueryController(QueryManager manager)
+        public QueryController(QueryManager manager, ILogger<QueryController> logger)
         {
             _manager = manager;
+            _logger = logger;
         }
 
         [HttpGet("GetAll")]
         public IActionResult GetQueries()
         {
-            var queries = _manager.GetAll();
-            return Ok(queries);
+            try
+            {
+                var queries = _manager.GetAll();
+                return Ok(queries);
+            }
+            catch (BasicException ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogError(ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest();
+            }
         }
 
         [HttpGet("GetQueryColumns/{queryGUID}")]
         public IActionResult GetQueryColumns(string queryGUID)
         {
-            if (string.IsNullOrEmpty(queryGUID))
+            try
+            {
+                if (string.IsNullOrEmpty(queryGUID)) throw new BasicException("Empty queryGUID.");
+                var result = _manager.GetColumnNames(queryGUID);
+                return Ok(result);
+            }
+            catch (BasicException ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogError(ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
                 return BadRequest();
-
-            var result = _manager.GetColumnNames(queryGUID);
-            return Ok(result);
+            }
         }
 
         [HttpPost("GetQuerySource")]
         public IActionResult GetQuerySource([FromBody] QuerySourceFilterDto filter)
         {
-            if (filter == null)
-                BadRequest();
-            if (!ModelState.IsValid)
-                BadRequest(ModelState);
+            try
+            {
+                if (filter == null) throw new BasicException("Wrong input format.");
+                if (!ModelState.IsValid)
+                    BadRequest(ModelState);
 
-            var jsonResult = _manager.GetQuerySource(filter);
+                var jsonResult = _manager.GetQuerySource(filter);
 
-            return Ok(jsonResult);
+                return Ok(jsonResult);
+            }
+            catch (BasicException ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogError(ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest();
+            }
         }
 
         [HttpGet("GetQueryColumnCount/{queryGUID}")]
         public IActionResult GetQueryColumnCount(string queryGUID)
         {
-            if (string.IsNullOrEmpty(queryGUID))
-                return BadRequest("Empty queryGUID");
+            try
+            {
+                if (string.IsNullOrEmpty(queryGUID)) throw new BasicException("Empty queryGUID");
 
-            return Ok(_manager.GetQueryColumnCount(queryGUID));
+                return Ok(_manager.GetQueryColumnCount(queryGUID));
+            }
+            catch (BasicException ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogError(ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest();
+            }
         }
     }
 }

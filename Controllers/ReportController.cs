@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Logging;
 using System;
 using szakdoga.BusinessLogic;
-using szakdoga.Models;
 using szakdoga.Models.Dtos;
 using szakdoga.Models.Dtos.ReportDtos;
 
@@ -11,15 +10,11 @@ namespace szakdoga.Controllers
     [Route("api/reports")]
     public class ReportController : Controller
     {
-        private readonly IReportRepository _reportRepository;
-        private readonly IReportDashboardRelRepository _reportDashboardRel;
         private readonly ReportManager _manager;
         private readonly ILogger<ReportController> _logger;
 
-        public ReportController(IReportRepository reportRepository, IReportDashboardRelRepository repDashRel, ReportManager manager, ILogger<ReportController> logger)
+        public ReportController(ReportManager manager, ILogger<ReportController> logger)
         {
-            _reportRepository = reportRepository;
-            _reportDashboardRel = repDashRel;
             _manager = manager;
             _logger = logger;
         }
@@ -29,17 +24,20 @@ namespace szakdoga.Controllers
         {
             try
             {
-                if (string.IsNullOrEmpty(reportGUID)) return BadRequest("Empty GUID!");
+                if (string.IsNullOrEmpty(reportGUID)) throw new BasicException("Empty GUID!");
                 var report = _manager.GetReportStyle(reportGUID);
-                if (report == null)
-                    return NotFound();
-                else
-                    return Ok(_manager.GetReportStyle(reportGUID));//OK 200 as státuszkódja van
+
+                return Ok(_manager.GetReportStyle(reportGUID));
             }
             catch (BasicException ex)
             {
                 _logger.LogError(ex.Message);
                 return BadRequest(ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogError(ex.Message);
+                return NotFound(ex.Message);
             }
             catch (Exception ex)
             {
@@ -51,66 +49,138 @@ namespace szakdoga.Controllers
         [HttpPost("Create")]
         public IActionResult CreateReport([FromBody] CreateReportDto report)
         {
-            if (report == null)     //ha nem lehet a bemeneti json-t serializálni a megadott objektumba akk null lesz az értéke
-                return BadRequest("Invalid Dto!");
-            if (!ModelState.IsValid)//ha nem felelt meg a DataAnnotation atribútumoknak - nem a legjobb adatellenőrzésre a dataannotations, mert keverve vannak az ellenőrzési helye
-                                    //hozzá lehet adni itt is hibát, ellenőrzést, ajánlás: FluenValidation:  library- lambdákkal lehet megkötéseket definiálni
-                return BadRequest(ModelState); //400-as hibakód
+            try
+            {
+                if (report == null) throw new BasicException("Invalud input format!");
+                if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var guid = _manager.CreateReport(report);
-            if (!string.IsNullOrEmpty(guid))
+                var guid = _manager.CreateReport(report);
                 return Created(string.Empty, guid);
-            else
-                return BadRequest("Could not save.");
-            //Created()//lehetne még createatute()-akkor megadná h hogy tudja elérni tehát: GetReport/ReportGUID            
+            }
+            catch (BasicException ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogError(ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest();
+            }
         }
 
         [HttpPut("Update/{reportGUID}")]
         public IActionResult UpdateReport([FromBody] UpdateReportDto report, string reportGUID)
         {
-            if (report == null) return BadRequest("Invalid Dto");
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            try
+            {
+                if (report == null) throw new BasicException("Invalid input format!");
+                if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            if (_manager.UpdateReport(report, reportGUID))
+                _manager.UpdateReport(report, reportGUID);
                 return NoContent();
-            else
-                return BadRequest("Report GUID is not valid.");
+            }
+            catch (BasicException ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogError(ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest();
+            }
         }
 
         [HttpDelete("Delete/{reportGUID}")]
         public IActionResult DeleteReport(string reportGUID)
         {
-            if (string.IsNullOrEmpty(reportGUID))
-                return BadRequest("Empty GUID!");
+            try
+            {
+                if (string.IsNullOrEmpty(reportGUID)) throw new BasicException("Empty GUID!");
 
-            if (_manager.DeleteReport(reportGUID))
+                _manager.DeleteReport(reportGUID);
                 return NoContent();
-            else
+            }
+            catch (BasicException ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogError(ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
                 return BadRequest();
+            }
         }
 
         [HttpPost("GetAll")]
         public IActionResult GetAll([FromBody] GetAllDto filter)
         {
-            if (filter == null) return BadRequest("Wrong structure!");
-            if (!ModelState.IsValid) BadRequest(ModelState);
+            try
+            {
+                if (filter == null) throw new BasicException("Wrong structure!");
+                if (!ModelState.IsValid) BadRequest(ModelState);
 
-            AllReportDto report = _manager.GetAllReport();
-            if (report == null)
-                return NotFound();
-            else
-                return Ok(report);
+                return Ok(_manager.GetAllReport());
+            }
+            catch (BasicException ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogError(ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest();
+            }
         }
 
         [HttpPost("GetReportSource")]
         public IActionResult GetReportSource([FromBody] ReportSourceFilterDto filter)
         {
-            if (filter == null) return BadRequest("Wrong structure!");
-            if (!ModelState.IsValid) BadRequest(ModelState);
+            try
+            {
+                if (filter == null) throw new BasicException("Wrong structure!");
+                if (!ModelState.IsValid) BadRequest(ModelState);
 
-            var jsonResult = _manager.GetQuerySource(filter);
-
-            return Ok(jsonResult);
+                return Ok(_manager.GetQuerySource(filter));
+            }
+            catch (BasicException ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogError(ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest();
+            }
         }
     }
 }
