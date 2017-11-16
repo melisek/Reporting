@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using szakdoga.Data;
 
@@ -30,6 +31,11 @@ namespace szakdoga.Models.Repositories
         public IEnumerable<ReportUserRel> GetAll()
         {
             return _context.ReportUserRel.ToList();
+        }
+
+        public IEnumerable<ReportUserRel> GetReportUsers(int ReportId)
+        {
+            return _context.ReportUserRel.Include(y => y.User).Where(x => x.Report.Id == ReportId).ToList();
         }
 
         public bool Remove(int id)
