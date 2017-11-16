@@ -8,22 +8,17 @@ using szakdoga.Models.Dtos.ReportDtos;
 
 namespace szakdoga.BusinessLogic
 {
-    public class ReportManager : IDisposable
+    public class ReportManager
     {
-        private IReportRepository _reportRepository;
-        private IReportDashboardRelRepository _reportDashboardRel;
-        private QueryManager _queryman;
+        private readonly IReportRepository _reportRepository;
+        private readonly IReportDashboardRelRepository _reportDashboardRel;
+        private readonly QueryManager _queryManager;
 
         public ReportManager(IReportRepository reportRepository, IReportDashboardRelRepository repDashRel, QueryManager queryman)
         {
             _reportRepository = reportRepository;
             _reportDashboardRel = repDashRel;
-            _queryman = queryman;
-        }
-
-        public void Dispose()
-        {
-            _reportRepository = null;
+            _queryManager = queryman;
         }
 
         public ReportDto GetReportStyle(string reportGUID)
@@ -114,7 +109,7 @@ namespace szakdoga.BusinessLogic
         public object GetQuerySource(ReportSourceFilterDto filter)
         {
             var riport = _reportRepository.Get(filter.ReportGUID);
-            return _queryman.GetQuerySource(new Models.Dtos.QueryDtos.QuerySourceFilterDto { QueryGUID = riport.Query.QueryGUID, X = filter.X, Y = filter.Y });
+            return _queryManager.GetQuerySource(new Models.Dtos.QueryDtos.QuerySourceFilterDto { QueryGUID = riport.Query.QueryGUID, X = filter.X, Y = filter.Y });
         }
     }
 }

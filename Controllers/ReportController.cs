@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using szakdoga.BusinessLogic;
 using szakdoga.Models;
 using szakdoga.Models.Dtos;
@@ -12,12 +13,14 @@ namespace szakdoga.Controllers
         private readonly IReportRepository _reportRepository;
         private readonly IReportDashboardRelRepository _reportDashboardRel;
         private readonly ReportManager _manager;
+        private readonly ILogger<ReportController> _logger;
 
-        public ReportController(IReportRepository reportRepository, IReportDashboardRelRepository repDashRel, ReportManager manager)
+        public ReportController(IReportRepository reportRepository, IReportDashboardRelRepository repDashRel, ReportManager manager, ILogger<ReportController> logger)
         {
             _reportRepository = reportRepository;
             _reportDashboardRel = repDashRel;
             _manager = manager;
+            _logger = logger;
         }
 
         [HttpGet("GetStyle/{reportGUID}")]
