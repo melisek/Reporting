@@ -75,11 +75,11 @@ namespace szakdoga.BusinessLogic
                 {
                     if (isFirst)
                     {
-                        sb.Append($"\" {col.Name}\" : \" {row[col.Name].ToString()}\"");
+                        sb.Append($"\"{col.Name}\" : \"{row[col.Name].ToString()}\"");
                         isFirst = false;
                     }
                     else
-                        sb.Append($",\" {col.Name}\" : \" {row[col.Name].ToString()}\"");
+                        sb.Append($",\"{col.Name}\" : \"{row[col.Name].ToString()}\"");
                 }
                 sb.Append("},");
             }
