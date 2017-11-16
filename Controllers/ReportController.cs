@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using szakdoga.BusinessLogic;
 using szakdoga.Models;
 using szakdoga.Models.Dtos;
@@ -26,12 +27,25 @@ namespace szakdoga.Controllers
         [HttpGet("GetStyle/{reportGUID}")]
         public IActionResult GetRiportStyle(string reportGUID)
         {
-            if (string.IsNullOrEmpty(reportGUID)) return BadRequest("Empty GUID!");
-            var report = _manager.GetReportStyle(reportGUID);
-            if (report == null)
-                return NotFound();
-            else
-                return Ok(_manager.GetReportStyle(reportGUID));//OK 200 as státuszkódja van
+            try
+            {
+                if (string.IsNullOrEmpty(reportGUID)) return BadRequest("Empty GUID!");
+                var report = _manager.GetReportStyle(reportGUID);
+                if (report == null)
+                    return NotFound();
+                else
+                    return Ok(_manager.GetReportStyle(reportGUID));//OK 200 as státuszkódja van
+            }
+            catch (BasicException ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest();
+            }
         }
 
         [HttpPost("Create")]
@@ -48,7 +62,7 @@ namespace szakdoga.Controllers
                 return Created(string.Empty, guid);
             else
                 return BadRequest("Could not save.");
-            //Created()//lehetne még createatute()-akkor megadná h hogy tudja elérni tehát: GetReport/ReportGUID
+            //Created()//lehetne még createatute()-akkor megadná h hogy tudja elérni tehát: GetReport/ReportGUID            
         }
 
         [HttpPut("Update/{reportGUID}")]
