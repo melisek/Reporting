@@ -16,6 +16,7 @@ namespace szakdoga.Controllers
         private readonly IUserRepository _userRepository;
         private readonly IUserJwtMapRepository _userJwtMapRepository;
         private readonly int expiryMinutes = 10;
+
         public AuthController(IUserRepository userRepository, IUserJwtMapRepository userJwtMapRepository)
         {
             _userRepository = userRepository;
@@ -26,9 +27,10 @@ namespace szakdoga.Controllers
         public IActionResult Login([FromBody]CredentialDto credDto)
         {
             if (credDto == null)
-            {
                 return BadRequest("Wrong data syntax.");
-            }
+
+            if (!ModelState.IsValid)
+                BadRequest(ModelState);
 
             User user = _userRepository.GetAll().FirstOrDefault(x => x.Name.Equals(credDto.Name));
             if (user == null)

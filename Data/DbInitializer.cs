@@ -150,13 +150,14 @@ namespace szakdoga.Data
                 if (queries == null)
                 {
                     queries = new List<Query> {
-                            new Query{  SQL = sql1, Name = "Számlák",TranslatedColumnNames=columns, QueryGUID = "3066e94b-ff9e-454c-ab58-6a88436e4b52", NextUpdating = System.DateTime.Now, UpdatePeriod = new TimeSpan(1, 0, 0, 0) } };
+                            new Query{  SQL = sql1, Name = "Számlák",TranslatedColumnNames=columns, QueryGUID = "3066e94b-ff9e-454c-ab58-6a88436e4b52", NextUpdating = System.DateTime.Now, UpdatePeriod = new TimeSpan(1, 0, 0, 0),ResultTableName="a73bcfb4b6d714f32bedcf68a48a52fc5" } };
                 }
                 return queries;
             }
         }
 
-        private static string columns = @"{ ""Columns"":	[
+        private static string columns = @"{ ""PrimeryKeyColumn"":""Table_95_Field_1"",
+                                            ""Columns"":	[
 											{ ""Name"": ""Table_95_Field_1"", ""Text"": ""SzámlafejID"", ""Hidden"": ""true"" ,""Type"": ""number"" },
 											{ ""Name"": ""Table_95_Field_3"", ""Text"": ""Bizonylat azonosító"", ""Hidden"": ""false"" ,""Type"": ""number"" },
                  	                        { ""Name"": ""Table_95_Field_5"", ""Text"": ""Bizonylattömb"", ""Hidden"": ""false"" ,""Type"": ""number"" },
