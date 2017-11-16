@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using szakdoga.BusinessLogic;
-using szakdoga.Models;
 using szakdoga.Models.Dtos.DashboardDtos;
 
 namespace szakdoga.Controllers
@@ -10,44 +11,71 @@ namespace szakdoga.Controllers
     [Route("api/dashboards")]
     public class DashboardController : Controller
     {
-        private readonly IDashboardRepository _dashboardRepository;
-        private readonly IReportDashboardRelRepository _reportDashboardRel;
-        private readonly IReportRepository _reportRepository;
         private readonly DashboardManager _manager;
+        private readonly ILogger<DashboardController> _logger;
 
-        public DashboardController(IDashboardRepository dashboardRepository, IReportDashboardRelRepository repDashRel, IReportRepository reportRepository, DashboardManager manager)
+        public DashboardController(DashboardManager manager, ILogger<DashboardController> logger)
         {
-            _dashboardRepository = dashboardRepository;
-            _reportDashboardRel = repDashRel;
-            _reportRepository = reportRepository;
             _manager = manager;
+            _logger = logger;
         }
 
         [HttpGet("GetStyle/{dashboardGUID}")]
         public IActionResult GetDashBoardStyle(string dashboardGUID)
         {
-            if (string.IsNullOrEmpty(dashboardGUID))
-                return BadRequest("Empty GUID!");
+            try
+            {
+                if (string.IsNullOrEmpty(dashboardGUID)) throw new BasicException("Empty GUID!");
 
-            var dashboardDto = _manager.GetDashBoardStyle(dashboardGUID);
-
-            if (dashboardDto == null)
-                return NotFound();
-            else
+                var dashboardDto = _manager.GetDashBoardStyle(dashboardGUID);
                 return Ok(dashboardDto);
+            }
+            catch (BasicException ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogError(ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest();
+            }
+
         }
 
         [HttpPost("Create")]
         public IActionResult CreateDashboard([FromBody] CreateDashboardDto dbDto)
         {
-            if (dbDto == null) return BadRequest("Invalid Dto");
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            try
+            {
+                if (dbDto == null) throw new BasicException("Invalid Dto");
+                if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var guid = _manager.CreateDashboard(dbDto);
-            if (!string.IsNullOrEmpty(guid))
+                var guid = _manager.CreateDashboard(dbDto);
                 return Created(string.Empty, guid);
-            else
-                return BadRequest("Could not save.");
+            }
+            catch (BasicException ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogError(ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest();
+            }
+
+
         }
 
         [HttpPut("Update/{dashboardGUID}")]

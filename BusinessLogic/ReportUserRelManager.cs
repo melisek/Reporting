@@ -31,7 +31,7 @@ namespace szakdoga.BusinessLogic
                 {
                     UserGUID = rel.User.UserGUID,
                     Name = rel.User.Name,
-                    Permission = (RepotUserPermissions)rel.AuthoryLayer
+                    Permission = (ReportUserPermissions)rel.AuthoryLayer
                 });
             }
 
@@ -54,7 +54,7 @@ namespace szakdoga.BusinessLogic
             return true;
         }
 
-        public bool DelteReportUserRel(DeleteReportUserDto reportUserRel)
+        public bool DeleteReportUserRel(DeleteReportUserDto reportUserRel)
         {
             if (!IsExistUserAndReport(out User user, out Report report, reportUserRel.UserGUID, reportUserRel.ReportGUID))
                 return false;

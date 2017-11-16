@@ -10,10 +10,12 @@ namespace szakdoga.Models.Repositories
     public class UserJwtMapRepository : IUserJwtMapRepository
     {
         private readonly AppDbContext _context;
+
         public UserJwtMapRepository(AppDbContext context)
         {
             _context = context;
         }
+
         public void AddUserJwtMapRecord(string jwt, User user, DateTime expireTime)
         {
             //delete all records with same jwt(probably will not happen, just in case)
@@ -49,6 +51,5 @@ namespace szakdoga.Models.Repositories
             }
             _context.SaveChanges();
         }
-
     }
 }

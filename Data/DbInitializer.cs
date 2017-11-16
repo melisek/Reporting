@@ -71,8 +71,8 @@ namespace szakdoga.Data
             {
                 if (reportUserRels == null)
                     reportUserRels = new List<ReportUserRel>   {
-                            new ReportUserRel {  User=Users.FirstOrDefault(x=>x.Name.Equals("Admin")), AuthoryLayer=(int)RepotUserPermissions.CanModify, Report=Reports.FirstOrDefault(x=>x.Name.Equals("Riport1"))},
-                            new ReportUserRel {  User=Users.FirstOrDefault(x=>x.Name.Equals("Teszt")), AuthoryLayer=(int)RepotUserPermissions.CanWatch, Report=Reports.FirstOrDefault(x=>x.Name.Equals("Riport2"))}
+                            new ReportUserRel {  User=Users.FirstOrDefault(x=>x.Name.Equals("Admin")), AuthoryLayer=(int)ReportUserPermissions.CanModify, Report=Reports.FirstOrDefault(x=>x.Name.Equals("Riport1"))},
+                            new ReportUserRel {  User=Users.FirstOrDefault(x=>x.Name.Equals("Teszt")), AuthoryLayer=(int)ReportUserPermissions.CanWatch, Report=Reports.FirstOrDefault(x=>x.Name.Equals("Riport2"))}
                                                                 };
                 return reportUserRels;
             }

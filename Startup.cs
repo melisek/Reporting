@@ -54,6 +54,7 @@ namespace szakdoga
             services.AddScoped<QueryManager>();
             services.AddScoped<ReportManager>();
             services.AddScoped<ReportUserRelManager>();
+            services.AddScoped<DashboardUserRelManager>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                    .AddJwtBearer(options =>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using szakdoga.Data;
 
@@ -27,9 +28,19 @@ namespace szakdoga.Models.Repositories
             return _context.UserDashboardRel.SingleOrDefault(x => x.Id == id);
         }
 
+        public UserDashboardRel Get(int dashboardId, int userId)
+        {
+            return _context.UserDashboardRel.Include(x => x.User).Include(y => y.Dashboard).FirstOrDefault(z => z.Dashboard.Id == dashboardId && z.User.Id == userId);
+        }
+
         public IEnumerable<UserDashboardRel> GetAll()
         {
             return _context.UserDashboardRel.ToList();
+        }
+
+        public IEnumerable<UserDashboardRel> GetDashboardUsers(int dashboardID)
+        {
+            return _context.UserDashboardRel.Include(x => x.User).Include(y => y.Dashboard).Where(z => z.Dashboard.Id == dashboardID).ToList();
         }
 
         public bool Remove(int id)

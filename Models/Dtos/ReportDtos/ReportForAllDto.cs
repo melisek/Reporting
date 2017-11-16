@@ -11,6 +11,7 @@ namespace szakdoga.Models.Dtos.ReportDtos
 
         [MaxLength(ErrorMessage = "Maximum length is 200 characters.")]
         public string Name { get; set; }
+
         public QueryDto Query { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime ModifyDate { get; set; }

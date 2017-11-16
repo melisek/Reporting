@@ -52,7 +52,7 @@ namespace szakdoga.Controllers
             if (reportUserRel == null) return BadRequest("Wrong body format.");
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            if (_manager.DelteReportUserRel(reportUserRel))
+            if (_manager.DeleteReportUserRel(reportUserRel))
                 return NoContent();
             else return BadRequest();
         }

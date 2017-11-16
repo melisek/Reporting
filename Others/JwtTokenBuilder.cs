@@ -7,11 +7,11 @@ using System.Security.Claims;
 
 namespace szakdoga.Others
 {
-
     public sealed class JwtTokenBuilder
     {
         //TODO: majd vmi infót a userről kéne beletenni
         private SecurityKey securityKey = null;
+
         private string subject = "";
         private string issuer = "";
         private string audience = "";
@@ -100,7 +100,6 @@ namespace szakdoga.Others
                 throw new ArgumentNullException("Audience");
         }
 
-        #endregion
+        #endregion " private "
     }
 }
-

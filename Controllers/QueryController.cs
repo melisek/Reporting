@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using szakdoga.BusinessLogic;
-using szakdoga.Models;
 using szakdoga.Models.Dtos.QueryDtos;
 
 namespace szakdoga.Controllers
@@ -8,12 +7,10 @@ namespace szakdoga.Controllers
     [Route("api/queries")]
     public class QueryController : Controller
     {
-        private IQueryRepository _queryRepository;
         private readonly QueryManager _manager;
 
-        public QueryController(IQueryRepository queryRepository, QueryManager manager)
+        public QueryController(QueryManager manager)
         {
-            _queryRepository = queryRepository;
             _manager = manager;
         }
 

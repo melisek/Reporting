@@ -7,6 +7,7 @@ namespace szakdoga.Models.Entities
     {
         [Key]
         public int Id { get; set; }
+
         public string Jwt { get; set; }
         public User User { get; set; }
         public DateTime ExpireTime { get; set; }

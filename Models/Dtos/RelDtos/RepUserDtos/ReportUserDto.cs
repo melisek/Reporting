@@ -4,6 +4,6 @@
     {
         public string UserGUID { get; set; }
         public string Name { get; set; }
-        public RepotUserPermissions Permission { get; set; }
+        public ReportUserPermissions Permission { get; set; }
     }
 }
