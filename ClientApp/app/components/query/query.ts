@@ -1,9 +1,15 @@
 ﻿export interface IQueryColumns {
-    queryGUID: number;
-    columns: string[];
+    queryGUID: string;
+    columns: IQueryColumn[];
 }
 
 export interface IQuery {
     queryGUID: string;
     name: string;
+}
+
+export interface IQueryColumn {
+    name: string;
+    text: string;
+    type: string;
 }

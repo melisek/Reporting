@@ -14,7 +14,7 @@ import { IResponseResult, IListFilter } from "../shared/shared-interfaces";
 export class ReportService {
     private _listUrl = './api/reports/GetAll';
     private _addUrl = './api/reports/Create';
-    private _deleteUrl = './api/delete/';
+    private _deleteUrl = './api/reports/Delete/';
     private _getStyleUrl = './api/reports/GetStyle';
 
 
@@ -42,9 +42,10 @@ export class ReportService {
             .catch(this.handleError);
     }
 
-    deleteReport(id: number): Observable<IResponseResult> {
-        return this._http.get(this._deleteUrl + id)
-            .map(response => response.json() as IResponseResult)
+    deleteReport(reportGUID: string): Observable<any> {
+        console.log('delete called: ' + reportGUID);
+        return this._http.delete(this._deleteUrl + reportGUID)
+            .map(response => response.json() as any)
             .do(data => console.log("Delete report: " + JSON.stringify(data)))
             .catch(this.handleError);
     }

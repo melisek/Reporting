@@ -27,8 +27,8 @@
                         </form>
 
                         <mat-selection-list #columns *ngIf="queryColumns" class="margin-top-20">
-                            <mat-list-option *ngFor="let column of queryColumns.columns" value="{{column}}">
-                                {{column}}
+                            <mat-list-option *ngFor="let column of queryColumns.columns" value="{{column.name}}">
+                                {{column.text}}
                             </mat-list-option>
                         </mat-selection-list>
                     </mat-card-content>

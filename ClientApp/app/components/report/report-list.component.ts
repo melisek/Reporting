@@ -51,16 +51,12 @@ export class ReportListComponent implements OnInit {
     }
 
 
-    deleteReport(id: number): boolean {
-        console.log("okker:"+ id);
-        return false;
-        //return this.service!.deleteReport(id)
-        //    .map(data => {
-        //        return data.result;
-        //    })
-        //    .catch(() => {
-        //        return Observable.of([]);
-        //    });
+    deleteReport(guid: string): void {
+        if (this.service != null) {
+            this.service.deleteReport(guid)
+                .do(data => console.log("Delete report: " + JSON.stringify(data)));
+            console.log('delete in component');
+        }
     }
 
     openShareDialog(id: number, name: string): void {

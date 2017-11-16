@@ -10,6 +10,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
 
+
 @Component({
     selector: 'chart-editor',
     templateUrl: './chart-edit.component.html',
@@ -27,10 +28,14 @@ export class ChartEditComponent implements AfterViewInit {
     boolOptions: any[];
     stringOptions: any[];
 
+    
+   
+
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,
         private chartService: ChartService,
-        private _cdr: ChangeDetectorRef) { }
+        private _cdr: ChangeDetectorRef) {
+    }
 
     ngOnInit() {
         this.chartTypes =
