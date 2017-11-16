@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using szakdoga.BusinessLogic;
+using szakdoga.Models.Dtos.RelDtos.RepUserDtos;
 
 namespace szakdoga.Controllers
 {
@@ -22,6 +23,38 @@ namespace szakdoga.Controllers
                 BadRequest();
 
             return Ok(reportUsers);
+        }
+        [HttpPost("Create")]
+        public IActionResult Create([FromBody] CreateReportUserDto reportUserRel)
+        {
+            if (reportUserRel == null) return BadRequest("Wrong body format.");
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            if (_manager.Create(reportUserRel)) return Created(string.Empty, null);
+            else return BadRequest("Could not save.");
+        }
+
+        [HttpPut("Update")]
+        public IActionResult Update([FromBody] UpdateReportUserDto reportUserRel)
+        {
+            if (reportUserRel == null) return BadRequest("Wrong body format.");
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            if (_manager.UpdateReportUserRel(reportUserRel))
+                return NoContent();
+            else return BadRequest();
+
+        }
+
+        [HttpDelete("Delete")]
+        public IActionResult Delete([FromBody] DeleteReportUserDto reportUserRel)
+        {
+            if (reportUserRel == null) return BadRequest("Wrong body format.");
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            if (_manager.DelteReportUserRel(reportUserRel))
+                return NoContent();
+            else return BadRequest();
         }
 
     }

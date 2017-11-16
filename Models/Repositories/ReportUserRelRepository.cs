@@ -25,17 +25,29 @@ namespace szakdoga.Models.Repositories
 
         public ReportUserRel Get(int id)
         {
-            return _context.ReportUserRel.SingleOrDefault(x => x.Id == id);
+            return _context.ReportUserRel.
+                   Include(x => x.Report).
+                Include(y => y.User).SingleOrDefault(x => x.Id == id);
+        }
+
+        public ReportUserRel Get(int ReportId, int UserId)
+        {
+            return _context.ReportUserRel.
+                Include(x => x.Report).
+                Include(y => y.User).
+                FirstOrDefault(z => z.Report.Id == ReportId && z.User.Id == UserId);
         }
 
         public IEnumerable<ReportUserRel> GetAll()
         {
-            return _context.ReportUserRel.ToList();
+            return _context.ReportUserRel.Include(x => x.Report).
+                Include(y => y.User).ToList();
         }
 
         public IEnumerable<ReportUserRel> GetReportUsers(int ReportId)
         {
-            return _context.ReportUserRel.Include(y => y.User).Where(x => x.Report.Id == ReportId).ToList();
+            return _context.ReportUserRel.Include(z => z.Report).
+                Include(y => y.User).Where(x => x.Report.Id == ReportId).ToList();
         }
 
         public bool Remove(int id)
