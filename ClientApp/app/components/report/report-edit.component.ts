@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Http } from '@angular/http';
 import { DataSource } from '@angular/cdk/collections';
-import { MatSort, MatPaginator, MatDialog, MatSelectionList } from '@angular/material';
+import { MatSort, MatPaginator, MatDialog, MatSelectionList, MatSnackBar } from '@angular/material';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
@@ -16,7 +16,8 @@ import { IReport, IReportCreate } from "./report";
 import { ShareDialogComponent } from '../shared/share-dialog.component';
 import { IResponseResult, IEntityWithIdName, IListFilter } from '../shared/shared-interfaces';
 import { ReportService } from './report.service';
-import { IQueryColumns, IQuery } from '../query/query';
+import { IQueryColumns, IQuery, IQuerySourceData } from '../query/query';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -46,7 +47,12 @@ export class ReportEditComponent implements OnInit {
     queryColumns: IQueryColumns;
 
 
-    constructor(private http: Http, private dialog: MatDialog, private _cdr: ChangeDetectorRef) { }
+    constructor(private http: Http,
+        private dialog: MatDialog,
+        private _snackbar: MatSnackBar,
+        private _cdr: ChangeDetectorRef,
+        private _router: Router,
+        private _route: ActivatedRoute) { }
 
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -55,17 +61,28 @@ export class ReportEditComponent implements OnInit {
 
 
     ngOnInit() {
-        this.report = {
-            name: "",
-            queryGUID: "",
-            columns: [],
-            filter: "",
-            rows: 10,
-            sort: "abc"
-            /*Sort: {
-                Column: "", Direction: ""
-            }*/
-        };
+        let reportGUID = this._route.snapshot.paramMap.get('reportGUID');
+        if (reportGUID != null) {
+            if (this.reportService != null)
+                this.reportService.getReport(reportGUID)
+                    .subscribe(report => this.report = report);
+             
+        }
+        else {
+            this.report = {
+                name: "",
+                queryGUID: "",
+                columns: [],
+                filter: "",
+                rows: 10,
+                sort: "abc"
+                /*Sort: {
+                    Column: "", Direction: ""
+                }*/
+            };
+        }
+        console.log(reportGUID);
+        
 
         this.queryService = new QueryService(this.http);
         this.queryService.getQueriesIdName()
@@ -73,7 +90,7 @@ export class ReportEditComponent implements OnInit {
 
         this.showDataTable = false;
         this.reportService = new ReportService(this.http);
-        this.dataSource = new ExampleDataSource(this.reportService!, this.sort, this.paginator);
+        //this.dataSource = new ExampleDataSource(this.queryService!, this.sort, this.paginator);
         this._cdr.detectChanges();
         /*this.queryService.getQueryColumns(Number(this.selectedValue))
             .subscribe(data => this.queryColumns = data);*/
@@ -99,6 +116,8 @@ export class ReportEditComponent implements OnInit {
     }
 
     onUpdateClick(): void {
+        this.dataSource = new ExampleDataSource(this.queryService!, this.sort, this.paginator);
+
 
         this.columnNames = [];
         this.columns.selectedOptions.selected.forEach(x => {
@@ -106,19 +125,39 @@ export class ReportEditComponent implements OnInit {
         });
 
         this.displayedColumns = this.columnNames.map(x => x.columnDef);
+
+        if (this.queryService != null) {
+            var z = this.queryService.getQuerySourceData({ queryGUID: this.selectedValue, x: 3, y: 2 }).subscribe();
+
+            console.log(z);
+        }
+            
+
         this.showDataTable = true;
         
     }
 
     onSaveClick(): void {
 
-        this.report.queryGUID = "3066e94b-ff9e-454c-ab58-6a88436e4b52";
+        this.report.queryGUID = this.selectedValue;
         this.report.sort = "abc";//{ Column: "abc", Direction: "asc" };
         this.report.rows = 20;
+        this.report.columns = this.columns.selectedOptions.selected.map(x => x.value);
 
-        if (this.reportService != null)
+        if (this.reportService != null) {
             this.reportService.addReport(this.report)
-                .subscribe();
+                .subscribe(res => {
+                    this._snackbar.open(`Report created.`, 'x', {
+                        duration: 5000
+                    });
+                    this._router.navigate(['./reports']);
+                }, err => {
+                    this._snackbar.open(`Error: ${<any>err}`, 'x', {
+                        duration: 5000
+                    });
+                }); 
+        }
+            
 
         //if (this.reportService != null)
         //    this.reportService.getStyle()
@@ -168,13 +207,13 @@ export class ExampleDataSource extends DataSource<any> {
     get filter(): string { return this._filterChange.value; }
     set filter(filter: string) { this._filterChange.next(filter); }
 
-    constructor(private _reportService: ReportService,
+    constructor(private _queryService: QueryService,
         private _sort: MatSort, private _paginator: MatPaginator) {
         super();
     }
 
     /** Connect function called by the table to retrieve one stream containing the data to render. */
-    connect(): Observable<IReport[]> {
+    connect(): Observable<any[]> {
         const displayDataChanges = [
             this._sort.sortChange,
             this._filterChange,
@@ -193,13 +232,14 @@ export class ExampleDataSource extends DataSource<any> {
                     sort: { columnName: this._sort.active, direction: this._sort.direction },
                     rows: 10,
                 }
-                return this._reportService.getReports(filterObject);
+                return this._queryService.getQuerySourceData({
+                    queryGUID: "3066e94b-ff9e-454c-ab58-6a88436e4b52", x: 10, y: 1 });
             })
-            .map(data => {
+            .map(result => {
                 this.isLoadingResults = false;
-                this.totalCount = data.totalCount;
+                //this.totalCount = data.totalCount;
 
-                return data.reports;
+                return result.data;
             })
             .catch(() => {
                 return Observable.of([]);

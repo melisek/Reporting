@@ -31,7 +31,9 @@ export class ReportListComponent implements OnInit {
 
     sharePermissions: IEntityWithIdName[];
 
-    constructor(private http: Http, private dialog: MatDialog, private snackbar: MatSnackBar) { }
+    constructor(private http: Http,
+        private dialog: MatDialog,
+        private _snackbar: MatSnackBar) { }
 
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -54,8 +56,15 @@ export class ReportListComponent implements OnInit {
     deleteReport(guid: string): void {
         if (this.service != null) {
             this.service.deleteReport(guid)
-                .do(data => console.log("Delete report: " + JSON.stringify(data)));
-            console.log('delete in component');
+                .subscribe(res => {
+                    this._snackbar.open(`Report deleted.`, 'x', {
+                        duration: 5000
+                    });
+                }, err => {
+                    this._snackbar.open(`Error: ${<any>err}`, 'x', {
+                        duration: 5000
+                    });
+                });
         }
     }
 
@@ -79,10 +88,9 @@ export class ReportListComponent implements OnInit {
             console.log('The dialog was closed');
             if (result != undefined) {
                 console.log(`email:${result.email};permission:${result.permission}`);
-                this.snackbar.open(`${result.reportName} shared with ${result.email}.`, 'OK', {
+                this._snackbar.open(`${result.reportName} shared with ${result.email}.`, 'OK', {
                     duration: 5000
                 });
-            //this.animal = result;
             }
         });
     }

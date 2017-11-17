@@ -12,7 +12,7 @@
         </ng-template>
 
         <div class="margin-top-20">
-            <div class="col-md-2 padding-left-3">
+            <div class="col-md-3 padding-left-3">
                 <mat-card>
                     <mat-card-header>
                         <mat-card-title>Select Data source</mat-card-title>
@@ -26,7 +26,7 @@
                             </mat-select>
                         </form>
 
-                        <mat-selection-list #columns *ngIf="queryColumns" class="margin-top-20">
+                        <mat-selection-list #columns *ngIf="queryColumns" class="margin-top-20" style="height: 300px; overflow-y: auto">
                             <mat-list-option *ngFor="let column of queryColumns.columns" value="{{column.name}}">
                                 {{column.text}}
                             </mat-list-option>
@@ -38,14 +38,14 @@
                     </mat-card-actions>
                 </mat-card>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-9">
                 <div class="clearfix" [hidden]="!showDataTable">
                     <mat-form-field floatPlaceholder="never">
                         <input matInput #filter placeholder="Filter reports">
                     </mat-form-field>
                 </div>
 
-                <div [hidden]="!showDataTable">
+                <div *ngIf="showDataTable">
                     <mat-table #table [dataSource]="dataSource" matSort matSortActive="id" matSortDisableClear matSortDirection="asc">
                         <ng-container *ngFor="let column of columnNames" [matColumnDef]="column.columnDef">
                             <mat-header-cell *matHeaderCellDef>{{ column.header }}</mat-header-cell>

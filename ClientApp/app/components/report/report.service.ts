@@ -14,6 +14,7 @@ import { IResponseResult, IListFilter } from "../shared/shared-interfaces";
 export class ReportService {
     private _listUrl = './api/reports/GetAll';
     private _addUrl = './api/reports/Create';
+    private _getUrl = './api/reports/Get/';
     private _deleteUrl = './api/reports/Delete/';
     private _getStyleUrl = './api/reports/GetStyle';
 
@@ -31,7 +32,14 @@ export class ReportService {
         console.log(report);
         return this._http.post(this._addUrl, report)
             //.map(response => response.json() as IResponseResult)
-            .do(data => console.log("Add report: " + JSON.stringify(data)))
+            //.do(data => console.log("Add report: " + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    getReport(reportGUID: string): Observable<IReportCreate> {
+        return this._http.get(this._getUrl + reportGUID)
+            .map(response => response.json() as IReportCreate)
+            .do(data => console.log("Report: " + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
@@ -42,10 +50,9 @@ export class ReportService {
             .catch(this.handleError);
     }
 
-    deleteReport(reportGUID: string): Observable<any> {
-        console.log('delete called: ' + reportGUID);
-        return this._http.delete(this._deleteUrl + reportGUID)
-            .map(response => response.json() as any)
+    deleteReport(reportGUID: string): Observable<boolean> {
+        return this._http.delete(this._deleteUrl + null)
+            //.map(response => response.ok)
             .do(data => console.log("Delete report: " + JSON.stringify(data)))
             .catch(this.handleError);
     }

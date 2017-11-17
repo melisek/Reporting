@@ -13,3 +13,13 @@ export interface IQueryColumn {
     text: string;
     type: string;
 }
+
+export interface IQuerySourceDataFilter {
+    queryGUID: string;
+    y: number;
+    x: number;
+}
+
+export interface IQuerySourceData {
+    data: any[];
+}

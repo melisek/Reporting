@@ -22,7 +22,13 @@ import { ReportService } from './report.service';
                 resolve: { product: ProductResolver }
             },*/
             {
-                path: 'reports/edit/:id',
+                path: 'reports/create',
+                component: ReportEditComponent,
+                //canDeactivate: [ProductEditGuard],
+                //resolve: { product: ProductResolver },
+            },
+            {
+                path: 'reports/edit/:reportGUID',
                 component: ReportEditComponent,
                 //canDeactivate: [ProductEditGuard],
                 //resolve: { product: ProductResolver },
