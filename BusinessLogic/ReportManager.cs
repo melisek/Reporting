@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using szakdoga.Models;
 using szakdoga.Models.Dtos;
@@ -14,12 +17,14 @@ namespace szakdoga.BusinessLogic
         private readonly IReportRepository _reportRepository;
         private readonly IReportDashboardRelRepository _reportDashboardRel;
         private readonly QueryManager _queryManager;
+        private readonly IConfigurationRoot _cfg;
 
-        public ReportManager(IReportRepository reportRepository, IReportDashboardRelRepository repDashRel, QueryManager queryman)
+        public ReportManager(IReportRepository reportRepository, IReportDashboardRelRepository repDashRel, QueryManager queryman, IConfigurationRoot cfg)
         {
             _reportRepository = reportRepository;
             _reportDashboardRel = repDashRel;
             _queryManager = queryman;
+            _cfg = cfg;
         }
 
         public ReportDto GetReportStyle(string reportGUID)
@@ -168,6 +173,33 @@ namespace szakdoga.BusinessLogic
             origReport.Style = report.Style;
 
             _reportRepository.Update(origReport);
+        }
+
+        public object GetDiscreetRiportDiagram(ReportDiagramDiscDto diagram)
+        {
+            Report report = _reportRepository.Get(diagram.ReportGUID);
+            if (report == null) throw new NotFoundException("Report not found by GUID.");
+
+            DataTable data = new DataTable();
+            string sql = $"select {diagram.NameColumn}, {diagram.Aggregation.ToString()} ({diagram.ValueColumn}) as Value from {report.Query.ResultTableName} group by {diagram.NameColumn}";
+            string sourceConn = _cfg.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(sourceConn))
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                conn.Open();
+                data.Load(cmd.ExecuteReader());
+            }
+
+            List<DiscreetValueDto> result = new List<DiscreetValueDto>();
+            foreach (DataRow row in data.Rows)
+            {
+                result.Add(new DiscreetValueDto
+                {
+                    Name = row[diagram.NameColumn].ToString(),
+                    Value = double.Parse(row["Value"].ToString())
+                });
+            }
+            return result.ToArray();
         }
     }
 }

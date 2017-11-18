@@ -234,7 +234,34 @@ namespace szakdoga.Controllers
                 return BadRequest();
             }
         }
+        [HttpPost("GetDiscreetRiportDiagram")]
+        public IActionResult GetDiscreetRiportDiagram([FromBody]ReportDiagramDiscDto diagram)
+        {
+            try
+            {
+                if (diagram == null) throw new BasicException("Invalud input format!");
+                if (!ModelState.IsValid) return BadRequest(ModelState);
 
+                var result = _manager.GetDiscreetRiportDiagram(diagram);
+                return Ok(result);
+            }
+            catch (BasicException ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogError(ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest();
+            }
+
+        }
 
     }
 }
