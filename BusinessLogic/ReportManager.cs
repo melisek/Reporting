@@ -39,11 +39,11 @@ namespace szakdoga.BusinessLogic
             return new GetReportDto
             {
                 Name = report.Name,
-                QueryGUID = report.ReportGUID,
+                QueryGUID = report.Query.QueryGUID,
                 Columns = StringArrayDeserializer(report.Columns),
                 Filter = report.Filter,
                 Rows = report.Rows,
-                Sort = String.IsNullOrEmpty(report.Sort)? null: JsonConvert.DeserializeObject<SortDto>(report.Sort)
+                Sort = String.IsNullOrEmpty(report.Sort) ? null : JsonConvert.DeserializeObject<SortDto>(report.Sort)
             };
         }
 
@@ -91,7 +91,7 @@ namespace szakdoga.BusinessLogic
 
         public bool UpdateReport(UpdateReportDto report, string reportGUID)
         {
-            var origReport = _reportRepository.Get(reportGUID);//TODO:origreportot kéne az update-nek adni, akk megoldott lenne a style fv módosítás
+            var origReport = _reportRepository.Get(reportGUID);
             if (origReport == null)
                 throw new NotFoundException("Invalid reportGUID.");
 
@@ -118,7 +118,7 @@ namespace szakdoga.BusinessLogic
 
         public AllReportDto GetAllReport(GetAllFilterDto filter)
         {
-            IEnumerable<Report> reports = reports = _reportRepository.GetAll()
+            IEnumerable<Report> reports = _reportRepository.GetAll()
                              .Where(x => (String.IsNullOrEmpty(filter.Filter) || x.Name.Contains(filter.Filter) || x.LastModifier.Name.Contains(filter.Filter)
                              || x.Query.Name.Contains(filter.Filter))).ToList();
 
@@ -127,13 +127,13 @@ namespace szakdoga.BusinessLogic
             if (filter.Sort.Direction == Direction.Asc)
                 reports = reports
                      .OrderBy(z => typeof(Report).GetProperty(filter.Sort.ColumnName).GetValue(z, null))
-                     .Take(filter.Rows)
-                     .Skip(filter.Page > 1 ? (filter.Page - 1) * filter.Rows : 0).ToList();
+                     .Skip(filter.Page > 1 ? (filter.Page - 1) * filter.Rows : 0)
+                     .Take(filter.Rows).ToList();
             else
                 reports = reports
                  .OrderByDescending(z => typeof(Report).GetProperty(filter.Sort.ColumnName).GetValue(z, null))
-                 .Take(filter.Rows)
-                 .Skip(filter.Page > 1 ? (filter.Page - 1) * filter.Rows : 0).ToList();
+                 .Skip(filter.Page > 1 ? (filter.Page - 1) * filter.Rows : 0)
+                 .Take(filter.Rows).ToList();
 
 
 
@@ -146,8 +146,28 @@ namespace szakdoga.BusinessLogic
 
         public object GetQuerySource(ReportSourceFilterDto filter)
         {
-            var riport = _reportRepository.Get(filter.ReportGUID);
-            return _queryManager.GetQuerySource(new Models.Dtos.QueryDtos.QuerySourceFilterDto { QueryGUID = riport.Query.QueryGUID, X = filter.X, Y = filter.Y });
+            var report = _reportRepository.Get(filter.ReportGUID);
+            return _queryManager.GetQuerySource(
+                new Models.Dtos.QueryDtos.QuerySourceFilterDto
+                {
+                    QueryGUID = report.Query.QueryGUID,
+                    Rows = filter.X,
+                    Page = filter.Y,
+                    Columns = report.Columns.Split(':'),
+                    Filter = report.Filter,
+                    Sort = JsonConvert.DeserializeObject<SortDto>(report.Sort)
+                });
+        }
+
+        public void UpdateStyle(UpdateReportStyle report)
+        {
+            var origReport = _reportRepository.Get(report.ReportGUID);
+            if (origReport == null)
+                throw new NotFoundException("Invalid reportGUID.");
+
+            origReport.Style = report.Style;
+
+            _reportRepository.Update(origReport);
         }
     }
 }

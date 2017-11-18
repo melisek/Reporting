@@ -33,6 +33,7 @@ namespace szakdoga.Models.Repositories
         {
             return _context.Report.Include(x => x.LastModifier).
                 Include(y => y.Author).
+                Include(s => s.LastModifier).
                 Include(z => z.Query).ToList();
         }
 
@@ -70,7 +71,7 @@ namespace szakdoga.Models.Repositories
 
         public Report Get(string reportGUID)
         {
-            return _context.Report.Include(y => y.Query).SingleOrDefault(x => x.ReportGUID == reportGUID);
+            return _context.Report.Include(y => y.Query).Include(z => z.Author).Include(y => y.LastModifier).SingleOrDefault(x => x.ReportGUID == reportGUID);
         }
 
         public Query GetQuery(string QueryGUID)

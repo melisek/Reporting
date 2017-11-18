@@ -58,7 +58,7 @@ namespace szakdoga.BusinessLogic
             string sourceConn = _cfg.GetConnectionString("DefaultConnection");
             using (SqlConnection conn = new SqlConnection(sourceConn))
             {
-                SqlCommand cmd = new SqlCommand(GetCommandText(AllColumns, filter.X, filter.Y, query.ResultTableName), conn);
+                SqlCommand cmd = new SqlCommand(GetCommandText(AllColumns, filter, query.ResultTableName), conn);
                 conn.Open();
                 data.Load(cmd.ExecuteReader());
             }
@@ -71,15 +71,26 @@ namespace szakdoga.BusinessLogic
             {
                 sb.Append("{");
                 bool isFirst = true;
-                foreach (Column col in AllColumns.Columns)
+                //foreach (Column col in AllColumns.Columns)//a filterből szedjük az oszlopokat, azért itthagyom
+                //{
+                //    if (isFirst)
+                //    {
+                //        sb.Append($"\"{col.Name}\" : \"{row[col.Name].ToString()}\"");
+                //        isFirst = false;
+                //    }
+                //    else
+                //        sb.Append($",\"{col.Name}\" : \"{row[col.Name].ToString()}\"");
+                //}
+
+                foreach (string col in filter.Columns)
                 {
                     if (isFirst)
                     {
-                        sb.Append($"\"{col.Name}\" : \"{row[col.Name].ToString()}\"");
+                        sb.Append($"\"{col}\" : \"{row[col].ToString()}\"");
                         isFirst = false;
                     }
                     else
-                        sb.Append($",\"{col.Name}\" : \"{row[col.Name].ToString()}\"");
+                        sb.Append($",\"{col}\" : \"{row[col].ToString()}\"");
                 }
                 sb.Append("},");
             }
@@ -98,21 +109,36 @@ namespace szakdoga.BusinessLogic
             };
         }
 
-        private string GetCommandText(AllColumns allColumns, int x, int y, string table)
+        private string GetCommandText(AllColumns allColumns, QuerySourceFilterDto filter, string table)
         {
             string columns = String.Empty;
+            string where = String.Empty;
 
-            foreach (var col in allColumns.Columns)
+            foreach (var col in filter.Columns)
             {
-                if (String.IsNullOrEmpty(columns)) columns += col.Name;
-                else columns += ", " + col.Name;
+                if (String.IsNullOrEmpty(columns))
+                {
+                    columns += col;
+                    where += col + $" like '%{filter.Filter}%'";
+                }
+                else
+                {
+                    columns += ", " + col;
+                    where += "or " + col + $" like '%{filter.Filter}%'";
+                }
             }
 
-            string skip = String.Empty;
-            if (y > 1)
-                skip += $"where {allColumns.PrimeryKeyColumn} not in (select top {x * (y - 1)} {allColumns.PrimeryKeyColumn} from {table} )";
 
-            string cmd = $"select top {x} {columns} from {table} {skip} order by {allColumns.PrimeryKeyColumn}";
+            string order_by = filter.Sort.ColumnName + " " + filter.Sort.Direction.ToString();
+
+
+
+
+            string skip = String.Empty;
+            if (filter.Page > 1)
+                skip += $" {allColumns.PrimeryKeyColumn} not in (select top {filter.Rows * (filter.Page - 1)} {allColumns.PrimeryKeyColumn} from {table} ) and ";
+
+            string cmd = $"select top {filter.Rows} {columns} from {table}  where {skip} ({where}) order by {order_by}";
             return cmd;
         }
 

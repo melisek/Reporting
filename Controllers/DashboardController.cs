@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using szakdoga.BusinessLogic;
+using szakdoga.Models.Dtos;
 using szakdoga.Models.Dtos.DashboardDtos;
 
 namespace szakdoga.Controllers
@@ -195,6 +196,33 @@ namespace szakdoga.Controllers
                 string position = _manager.GetPosition(dashboardGUID, reportGUID);
 
                 return Ok(position);
+            }
+            catch (BasicException ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogError(ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest();
+            }
+        }
+
+        [HttpPost("GetAll")]
+        public IActionResult GetAll([FromBody] GetAllFilterDto filter)
+        {
+            try
+            {
+                if (filter == null) throw new BasicException("Wrong structure!");
+                if (!ModelState.IsValid) BadRequest(ModelState);
+
+                return Ok(_manager.GetAllDashboard(filter));
             }
             catch (BasicException ex)
             {
