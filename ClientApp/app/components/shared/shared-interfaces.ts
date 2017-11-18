@@ -1,5 +1,5 @@
 ﻿export interface IEntityWithIdName {
-    id: number;
+    id: string;
     name: string;
 }
 

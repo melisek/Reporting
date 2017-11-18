@@ -6,7 +6,7 @@ export interface IReportList {
 }
 
 export interface IReport {
-    reportGUID: number;
+    reportGUID: string;
     name: string;
     query: IEntityWithIdName;
     creationDate: Date;
@@ -22,13 +22,13 @@ export interface IReportCreate {
     columns: string[];
     filter: string;
     rows: number;
-    sort: string;
+    sort: IColumnSort;
     //Style: string;
 }
 
 export interface IColumnSort {
-    Column: string;
-    Direction: string;
+    columnName: string;
+    direction: string;
 }
 
 //export class Report implements IReport {
