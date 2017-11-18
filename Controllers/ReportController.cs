@@ -18,6 +18,31 @@ namespace szakdoga.Controllers
             _manager = manager;
             _logger = logger;
         }
+        [HttpGet("Get/{reportGUID}")]
+        public IActionResult Get(string reportGUID)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(reportGUID)) throw new BasicException("Empty GUID!");
+                var report = _manager.GetReport(reportGUID);
+                return Ok(report);
+            }
+            catch (BasicException ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogError(ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest();
+            }
+        }
 
         [HttpGet("GetStyle/{reportGUID}")]
         public IActionResult GetRiportStyle(string reportGUID)
@@ -27,7 +52,7 @@ namespace szakdoga.Controllers
                 if (string.IsNullOrEmpty(reportGUID)) throw new BasicException("Empty GUID!");
                 var report = _manager.GetReportStyle(reportGUID);
 
-                return Ok(_manager.GetReportStyle(reportGUID));
+                return Ok(report);
             }
             catch (BasicException ex)
             {

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace szakdoga.Models.Dtos
+namespace szakdoga.Models.Dtos.ReportDtos
 {
-    public class CreateReportDto
+    public class GetReportDto
     {
         [Required(ErrorMessage = "Yout should provide Name.")]
         [MaxLength(ErrorMessage = "Maximum length is 200 characters.")]
@@ -11,7 +11,6 @@ namespace szakdoga.Models.Dtos
         [Required(ErrorMessage = "Yout should provide QueryGUID")]
         [MaxLength(50, ErrorMessage = "Maximum GUID length is 50 characters.")]
         public string QueryGUID { get; set; }
-
         public string[] Columns { get; set; }
         public string Filter { get; set; }
         public SortDto Sort { get; set; }

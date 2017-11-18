@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,21 @@ namespace szakdoga.BusinessLogic
             return Mapper.Map<ReportDto>(report);
         }
 
+        public GetReportDto GetReport(string reportGUID)
+        {
+            var report = _reportRepository.Get(reportGUID);
+            if (report == null) throw new NotFoundException("Query not found.");
+            return new GetReportDto
+            {
+                Name = report.Name,
+                QueryGUID = report.ReportGUID,
+                Columns = StringArrayDeserializer(report.Columns),
+                Filter = report.Filter,
+                Rows = report.Rows,
+                Sort = String.IsNullOrEmpty(report.Sort)? null: JsonConvert.DeserializeObject<SortDto>(report.Sort)
+            };
+        }
+
         public string CreateReport(CreateReportDto report)
         {
             var dbReport = new Report
@@ -40,7 +56,7 @@ namespace szakdoga.BusinessLogic
                 Query = _reportRepository.GetQuery(report.QueryGUID),
                 Columns = StringArraySerializer(report.Columns),
                 Filter = report.Filter,
-                Sort = report.Sort,
+                Sort = JsonConvert.SerializeObject(report.Sort, Formatting.None),
                 Rows = report.Rows
             };
             _reportRepository.Add(dbReport);
@@ -66,6 +82,9 @@ namespace szakdoga.BusinessLogic
 
         private string[] StringArrayDeserializer(string columns)
         {
+            if (String.IsNullOrEmpty(columns))
+                return null;
+
             string[] result = columns.Split(':');
             return result;
         }
@@ -81,7 +100,7 @@ namespace szakdoga.BusinessLogic
             origReport.Query = _reportRepository.GetQuery(report.QueryGUID);
             origReport.Columns = StringArraySerializer(report.Columns);
             origReport.Filter = report.Filter;
-            origReport.Sort = report.Sort;
+            origReport.Sort = JsonConvert.SerializeObject(report.Sort, Formatting.None);
             origReport.Rows = report.Rows;
 
             _reportRepository.Update(origReport);
