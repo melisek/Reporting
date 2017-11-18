@@ -118,7 +118,7 @@ namespace szakdoga.BusinessLogic
 
         public AllReportDto GetAllReport(GetAllFilterDto filter)
         {
-            IEnumerable<Report> reports = reports = _reportRepository.GetAll()
+            IEnumerable<Report> reports = _reportRepository.GetAll()
                              .Where(x => (String.IsNullOrEmpty(filter.Filter) || x.Name.Contains(filter.Filter) || x.LastModifier.Name.Contains(filter.Filter)
                              || x.Query.Name.Contains(filter.Filter))).ToList();
 
@@ -127,13 +127,13 @@ namespace szakdoga.BusinessLogic
             if (filter.Sort.Direction == Direction.Asc)
                 reports = reports
                      .OrderBy(z => typeof(Report).GetProperty(filter.Sort.ColumnName).GetValue(z, null))
-                     .Take(filter.Rows)
-                     .Skip(filter.Page > 1 ? (filter.Page - 1) * filter.Rows : 0).ToList();
+                     .Skip(filter.Page > 1 ? (filter.Page - 1) * filter.Rows : 0)
+                     .Take(filter.Rows).ToList();
             else
                 reports = reports
                  .OrderByDescending(z => typeof(Report).GetProperty(filter.Sort.ColumnName).GetValue(z, null))
-                 .Take(filter.Rows)
-                 .Skip(filter.Page > 1 ? (filter.Page - 1) * filter.Rows : 0).ToList();
+                 .Skip(filter.Page > 1 ? (filter.Page - 1) * filter.Rows : 0)
+                 .Take(filter.Rows).ToList();
 
 
 

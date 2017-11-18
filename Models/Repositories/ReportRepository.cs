@@ -33,6 +33,7 @@ namespace szakdoga.Models.Repositories
         {
             return _context.Report.Include(x => x.LastModifier).
                 Include(y => y.Author).
+                Include(s => s.LastModifier).
                 Include(z => z.Query).ToList();
         }
 

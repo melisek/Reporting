@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using szakdoga.Models;
+using szakdoga.Models.Dtos;
 using szakdoga.Models.Dtos.DashboardDtos;
 using szakdoga.Models.Dtos.ReportDtos;
 
@@ -129,6 +131,34 @@ namespace szakdoga.BusinessLogic
                 });
             }
             return dashboardReportDto;
+        }
+
+        public object GetAllDashboard(GetAllFilterDto filter)
+        {
+
+            IEnumerable<Dashboard> dashboards = dashboards = _dashboardRepository.GetAll()
+                             .Where(x => (String.IsNullOrEmpty(filter.Filter) || x.Name.Contains(filter.Filter))).ToList();
+
+            int count = dashboards.Count();
+
+            if (filter.Sort.Direction == Direction.Asc)
+                dashboards = dashboards
+                     .OrderBy(z => typeof(Report).GetProperty(filter.Sort.ColumnName).GetValue(z, null))
+                     .Skip(filter.Page > 1 ? (filter.Page - 1) * filter.Rows : 0)
+                     .Take(filter.Rows).ToList();
+            else
+                dashboards = dashboards
+                 .OrderByDescending(z => typeof(Report).GetProperty(filter.Sort.ColumnName).GetValue(z, null))
+                 .Skip(filter.Page > 1 ? (filter.Page - 1) * filter.Rows : 0)
+                 .Take(filter.Rows).ToList();
+
+
+
+            return new AllDashboardDto
+            {
+                Dashboards = Mapper.Map<IEnumerable<DashboardForAllDto>>(dashboards).ToList(),
+                TotalCount = count
+            };
         }
     }
 }

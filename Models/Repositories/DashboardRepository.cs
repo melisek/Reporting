@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using szakdoga.Data;
 
@@ -35,7 +36,10 @@ namespace szakdoga.Models.Repositories
 
         public IEnumerable<Dashboard> GetAll()
         {
-            return _context.Dashboards.ToList();
+            return _context.Dashboards
+                .Include(x => x.Author)
+                .Include(y => y.LastModifier)
+                .ToList();
         }
 
         public bool Remove(int id)

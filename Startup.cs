@@ -139,6 +139,7 @@ namespace szakdoga
             AutoMapper.Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<Dashboard, DashboardDto>();
+                cfg.CreateMap<Dashboard, DashboardForAllDto>();
                 cfg.CreateMap<Report, ReportDto>();
                 cfg.CreateMap<Report, ReportForAllDto>();
                 cfg.CreateMap<User, UserDto>();
