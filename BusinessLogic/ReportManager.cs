@@ -39,7 +39,7 @@ namespace szakdoga.BusinessLogic
             return new GetReportDto
             {
                 Name = report.Name,
-                QueryGUID = report.ReportGUID,
+                QueryGUID = report.Query.QueryGUID,
                 Columns = StringArrayDeserializer(report.Columns),
                 Filter = report.Filter,
                 Rows = report.Rows,
