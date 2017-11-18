@@ -201,5 +201,50 @@ namespace szakdoga.BusinessLogic
             }
             return result.ToArray();
         }
+
+        public object GetSeriesRiportDiagram(ReportDiagramSerDto diagram)
+        {
+            Report report = _reportRepository.Get(diagram.ReportGUID);
+            if (report == null) throw new NotFoundException("Report not found by GUID.");
+
+            DataTable data = new DataTable();
+            string sql = $"select {diagram.NameColumn}, {diagram.SeriesNameColumn}, {diagram.ValueColumn} from {report.Query.ResultTableName}";
+            string sourceConn = _cfg.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(sourceConn))
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                conn.Open();
+                data.Load(cmd.ExecuteReader());
+            }
+
+            List<SeriesDto> result = new List<SeriesDto>();
+            string prevName = string.Empty;
+            List<SeriesValueDto> values = new List<SeriesValueDto>();
+            foreach (DataRow row in data.Rows)
+            {
+                if (prevName != row[diagram.NameColumn].ToString() && !String.IsNullOrEmpty(prevName))
+                {
+                    result.Add(new SeriesDto
+                    {
+                        Name = prevName,
+                        Series = values.ToArray()
+                    });
+                    values.Clear();
+                }
+                prevName = row[diagram.NameColumn].ToString();
+                values.Add(new SeriesValueDto
+                {
+                    Name = row[diagram.SeriesNameColumn].ToString(),
+                    Value = double.Parse(row[diagram.ValueColumn].ToString())
+                });
+            }
+            //add last ones
+            result.Add(new SeriesDto
+            {
+                Name = prevName,
+                Series = values.ToArray()
+            });
+            return result.ToArray();
+        }
     }
 }
