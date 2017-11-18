@@ -11,7 +11,7 @@ namespace szakdoga.Models
 
         [Required]
         public string Password { get; set; }
-
+        [Required]
         public string EmailAddress { get; set; }
     }
 }

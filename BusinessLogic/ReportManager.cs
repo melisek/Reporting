@@ -97,11 +97,31 @@ namespace szakdoga.BusinessLogic
             return _reportRepository.Remove(reportGUID);
         }
 
-        public AllReportDto GetAllReport()
+        public AllReportDto GetAllReport(GetAllFilterDto filter)
         {
+            IEnumerable<Report> reports = reports = _reportRepository.GetAll()
+                             .Where(x => (String.IsNullOrEmpty(filter.Filter) || x.Name.Contains(filter.Filter) || x.LastModifier.Name.Contains(filter.Filter)
+                             || x.Query.Name.Contains(filter.Filter))).ToList();
+
+            int count = reports.Count();
+
+            if (filter.Sort.Direction == Direction.Asc)
+                reports = reports
+                     .OrderBy(z => typeof(Report).GetProperty(filter.Sort.ColumnName).GetValue(z, null))
+                     .Take(filter.Rows)
+                     .Skip(filter.Page > 1 ? (filter.Page - 1) * filter.Rows : 0).ToList();
+            else
+                reports = reports
+                 .OrderByDescending(z => typeof(Report).GetProperty(filter.Sort.ColumnName).GetValue(z, null))
+                 .Take(filter.Rows)
+                 .Skip(filter.Page > 1 ? (filter.Page - 1) * filter.Rows : 0).ToList();
+
+
+
             return new AllReportDto
             {
-                Reports = Mapper.Map<IEnumerable<ReportForAllDto>>(_reportRepository.GetAll()).ToList()
+                Reports = Mapper.Map<IEnumerable<ReportForAllDto>>(reports).ToList(),
+                TotalCount = count
             };
         }
 

@@ -11,9 +11,10 @@ using szakdoga.Data;
 namespace szakdoga.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171118111910_Modify3_Required_EmailAddres")]
+    partial class Modify3_Required_EmailAddres
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

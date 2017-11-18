@@ -130,14 +130,14 @@ namespace szakdoga.Controllers
         }
 
         [HttpPost("GetAll")]
-        public IActionResult GetAll([FromBody] GetAllDto filter)
+        public IActionResult GetAll([FromBody] GetAllFilterDto filter)
         {
             try
             {
                 if (filter == null) throw new BasicException("Wrong structure!");
                 if (!ModelState.IsValid) BadRequest(ModelState);
 
-                return Ok(_manager.GetAllReport());
+                return Ok(_manager.GetAllReport(filter));
             }
             catch (BasicException ex)
             {
