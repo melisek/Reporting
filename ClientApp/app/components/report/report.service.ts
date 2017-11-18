@@ -22,6 +22,7 @@ export class ReportService {
     constructor(private _http: Http) { }
 
     getReports(filter: IListFilter): Observable<IReportList> {
+        console.log(filter);
         return this._http.post(this._listUrl, filter)
             .map(response => response.json() as IReportList)
             .do(data => console.log("Reports: " + JSON.stringify(data)))
@@ -37,6 +38,7 @@ export class ReportService {
     }
 
     getReport(reportGUID: string): Observable<IReportCreate> {
+        console.log(reportGUID);
         return this._http.get(this._getUrl + reportGUID)
             .map(response => response.json() as IReportCreate)
             .do(data => console.log("Report: " + JSON.stringify(data)))
@@ -51,7 +53,7 @@ export class ReportService {
     }
 
     deleteReport(reportGUID: string): Observable<boolean> {
-        return this._http.delete(this._deleteUrl + null)
+        return this._http.delete(this._deleteUrl + reportGUID)
             //.map(response => response.ok)
             .do(data => console.log("Delete report: " + JSON.stringify(data)))
             .catch(this.handleError);

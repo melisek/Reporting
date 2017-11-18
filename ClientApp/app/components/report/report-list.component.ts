@@ -25,7 +25,7 @@ import { IResponseResult, IEntityWithIdName, IListFilter } from '../shared/share
     styleUrls: [ './report-list.component.css' ]
 })
 export class ReportListComponent implements OnInit {
-    displayedColumns = [/*'reportGUID',*/ 'name', 'query', 'author', 'creationDate', 'lastModifier', 'modifyDate', 'actions'];
+    displayedColumns = [/*'reportGUID',*/ 'Name', 'Query', 'Author', 'CreationDate', 'LastModifier', 'ModifyDate', 'Actions'];
     service: ReportService | null;
     dataSource: ExampleDataSource | null;
 
@@ -71,11 +71,11 @@ export class ReportListComponent implements OnInit {
     openShareDialog(id: number, name: string): void {
         this.sharePermissions = [
             {
-                id: 1,
+                id: "1",
                 name: "Szerkesztés és megosztás"
             },
             {
-                id: 2,
+                id: "2",
                 name: "Szerkesztés"
             }];
 

@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
+﻿import { Component, OnInit, ElementRef, ViewChild, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { DataSource } from '@angular/cdk/collections';
 import { MatSort, MatPaginator, MatDialog, MatSelectionList, MatSnackBar } from '@angular/material';
@@ -24,7 +24,7 @@ import { ActivatedRoute, Router } from '@angular/router';
     templateUrl: './report-edit.component.html',
     styleUrls: [ './report-edit.component.css', '../shared/shared-styles.css' ]
 })
-export class ReportEditComponent implements OnInit {
+export class ReportEditComponent implements OnInit, AfterViewInit {
 
     report: IReportCreate;
 
@@ -61,11 +61,27 @@ export class ReportEditComponent implements OnInit {
 
 
     ngOnInit() {
+        this.reportService = new ReportService(this.http);
+        this.report = {
+            name: "",
+            queryGUID: "",
+            columns: [],
+            filter: "",
+            rows: 10,
+            sort: {
+                columnName: "", direction: "asc"
+            }
+        };
         let reportGUID = this._route.snapshot.paramMap.get('reportGUID');
         if (reportGUID != null) {
             if (this.reportService != null)
                 this.reportService.getReport(reportGUID)
-                    .subscribe(report => this.report = report);
+                    .subscribe(report => {
+                        this.report = report;
+                        this.queryChange();
+                        
+                    },
+                    err => console.log(err));
              
         }
         else {
@@ -75,10 +91,9 @@ export class ReportEditComponent implements OnInit {
                 columns: [],
                 filter: "",
                 rows: 10,
-                sort: "abc"
-                /*Sort: {
-                    Column: "", Direction: ""
-                }*/
+                sort: {
+                    columnName: "", direction: "asc"
+                }
             };
         }
         console.log(reportGUID);
@@ -89,7 +104,7 @@ export class ReportEditComponent implements OnInit {
             .subscribe(queries => this.queries = queries);
 
         this.showDataTable = false;
-        this.reportService = new ReportService(this.http);
+        
         //this.dataSource = new ExampleDataSource(this.queryService!, this.sort, this.paginator);
         this._cdr.detectChanges();
         /*this.queryService.getQueryColumns(Number(this.selectedValue))
@@ -108,29 +123,41 @@ export class ReportEditComponent implements OnInit {
             });*/
     }
 
+    ngAfterViewInit() {
+        //var zz = this.columns.options.find(x => x.value == "Table_95_Field_3");
+        //this.columns.selectedOptions.select(zz!);
+    }
+
     queryChange(): void {
         if (this.queryService != null)
-            this.queryService.getQueryColumns(this.selectedValue)
-                .subscribe(data => this.queryColumns = data);
+            this.queryService.getQueryColumns(this.report.queryGUID)
+                .subscribe(data => {
+                    this.queryColumns = data;
+                    
+                });
         
     }
 
     onUpdateClick(): void {
-        this.dataSource = new ExampleDataSource(this.queryService!, this.sort, this.paginator);
+        var zz = this.columns.options.find(x => x.value == "Table_95_Field_3")!.toggle();
+        console.log(zz);
+        //this.columns.options.first.;
+
+        //this.dataSource = new ExampleDataSource(this.queryService!, this.sort, this.paginator);
 
 
-        this.columnNames = [];
-        this.columns.selectedOptions.selected.forEach(x => {
-            this.columnNames.push({ columnDef: x.value, header: x.value, cell: (row: IReport) => `${(<any>row)[x.value]}` });
-        });
+        //this.columnNames = [];
+        //this.columns.selectedOptions.selected.forEach(x => {
+        //    this.columnNames.push({ columnDef: x.value, header: x.value, cell: (row: IReport) => `${(<any>row)[x.value]}` });
+        //});
 
-        this.displayedColumns = this.columnNames.map(x => x.columnDef);
+        //this.displayedColumns = this.columnNames.map(x => x.columnDef);
 
-        if (this.queryService != null) {
-            var z = this.queryService.getQuerySourceData({ queryGUID: this.selectedValue, x: 3, y: 2 }).subscribe();
+        //if (this.queryService != null) {
+        //    var z = this.queryService.getQuerySourceData({ queryGUID: this.selectedValue, x: 3, y: 2 }).subscribe();
 
-            console.log(z);
-        }
+        //    console.log(z);
+        //}
             
 
         this.showDataTable = true;
@@ -140,7 +167,7 @@ export class ReportEditComponent implements OnInit {
     onSaveClick(): void {
 
         this.report.queryGUID = this.selectedValue;
-        this.report.sort = "abc";//{ Column: "abc", Direction: "asc" };
+        this.report.sort = { columnName: "abc", direction: "asc" };
         this.report.rows = 20;
         this.report.columns = this.columns.selectedOptions.selected.map(x => x.value);
 
