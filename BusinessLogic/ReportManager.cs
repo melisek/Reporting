@@ -43,7 +43,7 @@ namespace szakdoga.BusinessLogic
                 Columns = StringArrayDeserializer(report.Columns),
                 Filter = report.Filter,
                 Rows = report.Rows,
-                Sort = String.IsNullOrEmpty(report.Sort)? null: JsonConvert.DeserializeObject<SortDto>(report.Sort)
+                Sort = String.IsNullOrEmpty(report.Sort) ? null : JsonConvert.DeserializeObject<SortDto>(report.Sort)
             };
         }
 
@@ -146,8 +146,17 @@ namespace szakdoga.BusinessLogic
 
         public object GetQuerySource(ReportSourceFilterDto filter)
         {
-            var riport = _reportRepository.Get(filter.ReportGUID);
-            return _queryManager.GetQuerySource(new Models.Dtos.QueryDtos.QuerySourceFilterDto { QueryGUID = riport.Query.QueryGUID, Rows = filter.X, Page = filter.Y });
+            var report = _reportRepository.Get(filter.ReportGUID);
+            return _queryManager.GetQuerySource(
+                new Models.Dtos.QueryDtos.QuerySourceFilterDto
+                {
+                    QueryGUID = report.Query.QueryGUID,
+                    Rows = filter.X,
+                    Page = filter.Y,
+                    Columns = report.Columns.Split(':'),
+                    Filter = report.Filter,
+                    Sort = JsonConvert.DeserializeObject<SortDto>(report.Sort)
+                });
         }
     }
 }
