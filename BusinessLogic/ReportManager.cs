@@ -91,7 +91,7 @@ namespace szakdoga.BusinessLogic
 
         public bool UpdateReport(UpdateReportDto report, string reportGUID)
         {
-            var origReport = _reportRepository.Get(reportGUID);//TODO:origreportot kéne az update-nek adni, akk megoldott lenne a style fv módosítás
+            var origReport = _reportRepository.Get(reportGUID);
             if (origReport == null)
                 throw new NotFoundException("Invalid reportGUID.");
 
@@ -157,6 +157,17 @@ namespace szakdoga.BusinessLogic
                     Filter = report.Filter,
                     Sort = JsonConvert.DeserializeObject<SortDto>(report.Sort)
                 });
+        }
+
+        public void UpdateStyle(UpdateReportStyle report)
+        {
+            var origReport = _reportRepository.Get(report.ReportGUID);
+            if (origReport == null)
+                throw new NotFoundException("Invalid reportGUID.");
+
+            origReport.Style = report.Style;
+
+            _reportRepository.Update(origReport);
         }
     }
 }

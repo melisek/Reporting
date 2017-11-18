@@ -207,5 +207,34 @@ namespace szakdoga.Controllers
                 return BadRequest();
             }
         }
+        [HttpPost("UpdateStyle")]
+        public IActionResult UpdateStyle([FromBody] UpdateReportStyle report)
+        {
+            try
+            {
+                if (report == null) throw new BasicException("Invalud input format!");
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+
+                _manager.UpdateStyle(report);
+                return Ok();
+            }
+            catch (BasicException ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogError(ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest();
+            }
+        }
+
+
     }
 }
