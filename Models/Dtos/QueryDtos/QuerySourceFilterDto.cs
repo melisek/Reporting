@@ -8,12 +8,17 @@ namespace szakdoga.Models.Dtos.QueryDtos
         [MaxLength(50, ErrorMessage = "Maximum GUID length is 50 characters.")]
         public string QueryGUID { get; set; }
 
-        [Required(ErrorMessage = "X is required!")]
-        [Range(1, int.MaxValue, ErrorMessage = "Minimum values is 1.")]
-        public int X { get; set; }
+        [Required(ErrorMessage = "Rows are required!")]
+        [Range(1, int.MaxValue, ErrorMessage = "Minimum value is 1.")]
+        public int Rows { get; set; }
 
-        [Required(ErrorMessage = "Y is required!")]
-        [Range(1, int.MaxValue, ErrorMessage = "Minimum values is 1.")]
-        public int Y { get; set; }
+        [Required(ErrorMessage = "Page is required!")]
+        [Range(1, int.MaxValue, ErrorMessage = "Minimum value is 1.")]
+        public int Page { get; set; }
+        public SortDto Sort { get; set; }
+        [Required(ErrorMessage = "Filter is required.")]
+        public string Filter { get; set; }
+        [Required(ErrorMessage = "Columns are required")]
+        public string[] Columns { get; set; }
     }
 }

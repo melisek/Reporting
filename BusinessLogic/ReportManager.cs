@@ -147,7 +147,7 @@ namespace szakdoga.BusinessLogic
         public object GetQuerySource(ReportSourceFilterDto filter)
         {
             var riport = _reportRepository.Get(filter.ReportGUID);
-            return _queryManager.GetQuerySource(new Models.Dtos.QueryDtos.QuerySourceFilterDto { QueryGUID = riport.Query.QueryGUID, X = filter.X, Y = filter.Y });
+            return _queryManager.GetQuerySource(new Models.Dtos.QueryDtos.QuerySourceFilterDto { QueryGUID = riport.Query.QueryGUID, Rows = filter.X, Page = filter.Y });
         }
     }
 }
