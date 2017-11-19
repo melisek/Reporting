@@ -54,16 +54,19 @@ namespace szakdoga.BusinessLogic
             var AllColumns = GetAllColumns(filter.QueryGUID);
 
             DataTable data = new DataTable();
-
+            DataTable count = new DataTable();
             string sourceConn = _cfg.GetConnectionString("DefaultConnection");
             using (SqlConnection conn = new SqlConnection(sourceConn))
             {
                 SqlCommand cmd = new SqlCommand(GetCommandText(AllColumns, filter, query.ResultTableName), conn);
                 conn.Open();
                 data.Load(cmd.ExecuteReader());
+                SqlCommand countCmd = new SqlCommand(GetCountCommandText(AllColumns, filter, query.ResultTableName), conn);
+                count.Load(countCmd.ExecuteReader());
             }
 
-            string json = "{\"Data\" : [";
+            string countstring = $"\"TotalCount\":{count.Rows[0]["Count"].ToString()}";
+            string json = "{" + countstring + ",\"Data\" : [";
 
             StringBuilder sb = new StringBuilder(json);
 
@@ -128,17 +131,32 @@ namespace szakdoga.BusinessLogic
                 }
             }
 
-
             string order_by = filter.Sort.ColumnName + " " + filter.Sort.Direction.ToString();
-
-
-
 
             string skip = String.Empty;
             if (filter.Page > 1)
                 skip += $" {allColumns.PrimeryKeyColumn} not in (select top {filter.Rows * (filter.Page - 1)} {allColumns.PrimeryKeyColumn} from {table} ) and ";
 
             string cmd = $"select top {filter.Rows} {columns} from {table}  where {skip} ({where}) order by {order_by}";
+            return cmd;
+        }
+
+        private string GetCountCommandText(AllColumns allColumns, QuerySourceFilterDto filter, string table)
+        {
+            string where = String.Empty;
+
+            foreach (var col in filter.Columns)
+            {
+                if (String.IsNullOrEmpty(where))
+                {
+                    where += col + $" like '%{filter.Filter}%'";
+                }
+                else
+                {
+                    where += "or " + col + $" like '%{filter.Filter}%'";
+                }
+            }
+            string cmd = $"select count ({allColumns.PrimeryKeyColumn}) as Count from {table}  where  ({where})";
             return cmd;
         }
 
