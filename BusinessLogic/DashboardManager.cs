@@ -137,7 +137,7 @@ namespace szakdoga.BusinessLogic
         {
 
             IEnumerable<Dashboard> dashboards = dashboards = _dashboardRepository.GetAll()
-                             .Where(x => (String.IsNullOrEmpty(filter.Filter) || x.Name.Contains(filter.Filter))).ToList();
+                             .Where(x => (String.IsNullOrEmpty(filter.Filter) || x.Name.ToLower().Contains(filter.Filter.ToLower()))).ToList();
 
             int count = dashboards.Count();
 
