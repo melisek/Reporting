@@ -43,15 +43,15 @@ export class ReportListComponent implements OnInit {
     ngOnInit() {
         this.service = new ReportService(this.http);
         this.dataSource = new ExampleDataSource(this.service!, this.sort, this.paginator);
-        /*Observable.fromEvent(this.filter.nativeElement, 'keyup')
+        Observable.fromEvent(this.filter.nativeElement, 'keydown')
             .debounceTime(150)
             .distinctUntilChanged()
-            .subscribe(() => {
+            .subscribe((k: any) => {
                 if (!this.dataSource) { return; }
-                this.dataSource.filter = this.filter.nativeElement.value;
-            });*/
+                if (k.which === 13)
+                    this.dataSource.filter = this.filter.nativeElement.value;
+            });
     }
-
 
     deleteReport(guid: string): void {
         if (this.service != null) {
@@ -149,31 +149,4 @@ export class ExampleDataSource extends DataSource<any> {
     }
 
     disconnect() { }
-
-    /** Returns a sorted copy of the database data. */
-    /*getSortedData(): IReport[] {
-        const data = this._reportService.getReports.slice().filter((item: IReport) => {
-            let searchStr = item.name.toLowerCase();
-            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
-        });
-
-        if (!this._sort.active || this._sort.direction == '') { return data; }
-
-        return data.sort((a, b) => {
-            let propertyA: number | string = '';
-            let propertyB: number | string = '';
-
-            switch (this._sort.active) {
-                case 'id': [propertyA, propertyB] = [a.id, b.id]; break;
-                case 'name': [propertyA, propertyB] = [a.name, b.name]; break;
-               // case 'progress': [propertyA, propertyB] = [a.progress, b.progress]; break;
-               // case 'color': [propertyA, propertyB] = [a.color, b.color]; break;
-            }
-
-            let valueA = isNaN(+propertyA) ? propertyA : +propertyA;
-            let valueB = isNaN(+propertyB) ? propertyB : +propertyB;
-
-            return (valueA < valueB ? -1 : 1) * (this._sort.direction == 'asc' ? 1 : -1);
-        });
-    }*/
 }

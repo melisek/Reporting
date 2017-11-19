@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, ElementRef, ViewChild, ChangeDetectorRef, AfterViewInit } from '@angular/core';
+﻿import { Component, OnInit, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Http } from '@angular/http';
 import { DataSource } from '@angular/cdk/collections';
 import { MatSort, MatPaginator, MatDialog, MatSelectionList, MatSnackBar } from '@angular/material';
@@ -24,7 +24,7 @@ import { ActivatedRoute, Router } from '@angular/router';
     templateUrl: './report-edit.component.html',
     styleUrls: [ './report-edit.component.css', '../shared/shared-styles.css' ]
 })
-export class ReportEditComponent implements OnInit, AfterViewInit {
+export class ReportEditComponent implements OnInit {
 
     report: IReportCreate;
 
@@ -121,26 +121,29 @@ export class ReportEditComponent implements OnInit, AfterViewInit {
             .subscribe(() => {
                 this.dataSource.filter = this.querySelect.nativeElement.value;
             });*/
+
+        //this.columns.options.subscribe(
+        //    res => {
+        //        this.columns.options.find(x => x.value == "Table_95_Field_3")!.toggle();
+        //    });
+
+
+        
     }
 
-    ngAfterViewInit() {
-        //var zz = this.columns.options.find(x => x.value == "Table_95_Field_3");
-        //this.columns.selectedOptions.select(zz!);
-    }
 
     queryChange(): void {
         if (this.queryService != null)
             this.queryService.getQueryColumns(this.report.queryGUID)
                 .subscribe(data => {
                     this.queryColumns = data;
-                    
                 });
         
     }
 
     onUpdateClick(): void {
-        var zz = this.columns.options.find(x => x.value == "Table_95_Field_3")!.toggle();
-        console.log(zz);
+                   // this.columns.options.find(x => x.value == "Table_95_Field_3")!.toggle();
+
         //this.columns.options.first.;
 
         //this.dataSource = new ExampleDataSource(this.queryService!, this.sort, this.paginator);
@@ -160,13 +163,13 @@ export class ReportEditComponent implements OnInit, AfterViewInit {
         //}
             
 
-        this.showDataTable = true;
+        //this.showDataTable = true;
         
     }
 
     onSaveClick(): void {
 
-        this.report.queryGUID = this.selectedValue;
+        this.report.queryGUID = this.report.queryGUID;
         this.report.sort = { columnName: "abc", direction: "asc" };
         this.report.rows = 20;
         this.report.columns = this.columns.selectedOptions.selected.map(x => x.value);
