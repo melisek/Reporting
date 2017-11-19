@@ -8,7 +8,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 
 import { IReportList, IReport, IReportCreate } from "./report";
-import { IResponseResult, IListFilter } from "../shared/shared-interfaces";
+import { IResponseResult, IListFilter, INameValue, IChartDiscreteDataOptions } from "../shared/shared-interfaces";
 
 @Injectable()
 export class ReportService {
@@ -17,7 +17,7 @@ export class ReportService {
     private _getUrl = './api/reports/Get/';
     private _deleteUrl = './api/reports/Delete/';
     private _getStyleUrl = './api/reports/GetStyle';
-
+    private _getDiscreteDataUrl = './api/reports/GetDiscreetRiportDiagram';
 
     constructor(private _http: Http) { }
 
@@ -56,6 +56,21 @@ export class ReportService {
         return this._http.delete(this._deleteUrl + reportGUID)
             //.map(response => response.ok)
             .do(data => console.log("Delete report: " + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+
+    getDiscreteDiagramData(dataOptions: IChartDiscreteDataOptions): Observable<INameValue[]> {
+        /*let param = {
+            reportGUID: "d75dbdb7-498c-46c2-a18a-9a90519e3a31",
+            nameColumn: "Table_95_Field_67",
+            valueColumn: "Table_95_Field_119",
+            aggregation: 4
+        };*/
+        console.log(dataOptions);
+        return this._http.post(this._getDiscreteDataUrl, dataOptions)
+            .map(response => response.json() as INameValue[])
+            .do(data => console.log("get diagram data: " + JSON.stringify(data)))
             .catch(this.handleError);
     }
 

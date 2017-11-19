@@ -1,4 +1,6 @@
 ﻿import { Injectable, Type } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Http } from '@angular/http';
 
 import { HorizontalBarChartComponent } from './types/chart-horizontal-bar.component';
 import { VerticalBarChartComponent } from './types/chart-vertical-bar.component';
@@ -9,11 +11,21 @@ import { ChartItem } from './chart-item';
 import { colorSets } from '@swimlane/ngx-charts/release/utils'
 import { IChartOption } from './chart';
 import { INameValue, ISeriesNameValue } from '../shared/shared-interfaces';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/map';
 
 
 
 @Injectable()
 export class ChartService {
+
+    private _saveUrl = './api/reports/UpdateStyle';
+
+    constructor(private _http: Http) { }
+
     colorSets: any;
     types: Type<any>[] = [
         HorizontalBarChartComponent,
@@ -43,7 +55,7 @@ export class ChartService {
         { name: "xAxisLabel", text: "X-axis label", type: "string", value: "x" },
         { name: "yAxisLabel", text: "Y-axis label", type: "string", value: "y" },
         { name: "schemeType", text: "Scheme type", type: "string", value: "ordinal" },
-        { name: "axisMax", text: "Axis maximum", type: "number", value: 100 },
+        { name: "axisMax", text: "Axis maximum", type: "number", value: 10 },
     ];
 
     pieOptions: IChartOption[] = [
@@ -60,7 +72,7 @@ export class ChartService {
     ];
 
     arrdata: INameValue[] = [
-        {
+        /*{
             "name": "Germany",
             "value": 8940000
         },
@@ -71,7 +83,7 @@ export class ChartService {
         {
             "name": "France",
             "value": 7200000
-        }
+        }*/
     ];
 
     seriesarrdata: ISeriesNameValue[] = [
@@ -208,4 +220,22 @@ export class ChartService {
         return new ChartItem(this.types[selected], this.chartTypeOptions[selected], selected < 3 ? this.arrdata : this.seriesarrdata); 
     }
 
+    //saveChart(chartItem: ChartItem): Observable<INameValue[]> {
+    //    let style = {
+    //        reportGUID: "abc",
+    //        style: {
+    //            component: chartItem.component,
+    //            ...chartItem.options
+    //            }
+    //    };
+    //    return this._http.post(this._saveUrl, style)
+    //        .map(response => response.json() as INameValue[])
+    //        .do(data => console.log("get diagram data: " + JSON.stringify(data)))
+    //        .catch(this.handleError);
+    //}
+
+    private handleError(err: HttpErrorResponse) {
+        console.log(err);
+        return Observable.throw(err.statusText);
+    }
 }

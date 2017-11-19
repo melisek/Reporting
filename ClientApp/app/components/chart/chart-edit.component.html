@@ -2,7 +2,7 @@
     <div class="col-md-3 padding-left-3">
         <mat-card class="margin-bottom-20">
             <mat-card-header>
-                <mat-card-title>Edit Chart</mat-card-title>
+                <mat-card-title>Chart data source</mat-card-title>
             </mat-card-header>
             <mat-card-content>
                 <form>
@@ -11,20 +11,24 @@
                             {{chart.name}}
                         </mat-option>
                     </mat-select>
-                    <mat-select placeholder="Name" [(ngModel)]="selectedNameColumn" (ngModelChange)="chartNameColumnChange()" name="nameColumn" class="margin-top-20 fit-container">
-                        <mat-option *ngFor="let chart of chartTypes" [value]="chart.value">
-                            {{chart.name}}
+                    <mat-select placeholder="Name" [(ngModel)]="discreteDataOptions.nameColumn" (ngModelChange)="chartDataOptionChange()" name="nameColumn" class="margin-top-20 fit-container">
+                        <mat-option *ngFor="let column of queryStringColumns" [value]="column.name">
+                            {{column.text}}
                         </mat-option>
                     </mat-select>
-                    <mat-select placeholder="Value" [(ngModel)]="selectedValueColumn" (ngModelChange)="chartValueColumnChange()" name="valueColumn" class="margin-top-20 fit-container">
-                        <mat-option *ngFor="let chart of chartTypes" [value]="chart.value">
-                            {{chart.name}}
+                    <mat-select placeholder="Value" [(ngModel)]="discreteDataOptions.valueColumn" (ngModelChange)="chartDataOptionChange()" name="valueColumn" class="margin-top-20 fit-container">
+                        <mat-option *ngFor="let column of queryNumberColumns" [value]="column.name">
+                            {{column.text}}
                         </mat-option>
                     </mat-select>
+                    <p class="margin-top-20">Aggregation</p>
+                    <mat-radio-group [(ngModel)]="discreteDataOptions.aggregation" (ngModelChange)="chartDataOptionChange()" name="aggregation" class="margin-top-20 fit-container">
+                        <mat-radio-button *ngFor="let aggregation of aggregationTypes" [value]="aggregation.value">{{aggregation.name}}</mat-radio-button>
+                    </mat-radio-group>
                 </form>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-raised-button color="primary">Save</button>
+                <button mat-raised-button color="primary" (click)="onChartSave()">Save</button>
                 <button mat-raised-button>Back</button>
             </mat-card-actions>
         </mat-card>

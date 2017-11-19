@@ -1,4 +1,4 @@
-﻿import { IEntityWithIdName } from "../shared/shared-interfaces";
+﻿import { IEntityWithIdName, IColumnSort } from "../shared/shared-interfaces";
 
 export interface IReportList {
     totalCount: number;
@@ -24,11 +24,6 @@ export interface IReportCreate {
     rows: number;
     sort: IColumnSort;
     //Style: string;
-}
-
-export interface IColumnSort {
-    columnName: string;
-    direction: string;
 }
 
 //export class Report implements IReport {

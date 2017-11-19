@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, Input, ViewChild, ComponentFactoryResolver, OnInit, OnDestroy, ChangeDetectorRef, ElementRef, QueryList, ViewChildren } from '@angular/core';
+import { Component, AfterViewInit, Input, ViewChild, ComponentFactoryResolver, OnInit, OnDestroy, ChangeDetectorRef, ElementRef, QueryList, ViewChildren, Output, EventEmitter } from '@angular/core';
 import { ChartDirective } from './chart.directive';
 import { ChartItem } from './chart-item';
 import { IChart, IChartOption } from './chart';
@@ -9,6 +9,8 @@ import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
+import { INameValue, IChartDiscreteDataOptions } from '../shared/shared-interfaces';
+import { IQueryColumns, IQueryColumn } from '../query/query';
 
 
 @Component({
@@ -18,8 +20,37 @@ import 'rxjs/add/observable/fromEvent';
 })
 export class ChartEditComponent implements AfterViewInit {
     @Input() chartItem: ChartItem;
+    @Input()
+    set chartData(chartData: any) {
+        this._chartData = chartData;
+
+        if (this._chartData)
+            this.loadComponent();
+    }
+    private _queryColumns: IQueryColumns;
+    @Input() 
+    set queryColumns(queryColumns: IQueryColumns) {
+        this._queryColumns = queryColumns;
+
+        if (this._queryColumns) {
+            this.queryStringColumns = this._queryColumns.columns.filter(x => x.type === "string");
+            console.log(this.queryStringColumns);
+            this.queryNumberColumns = this._queryColumns.columns.filter(x => x.type === "number");
+            console.log(this.queryNumberColumns);
+        }
+            
+    }
+
+    @Output() chartDataOptionsChange:
+        EventEmitter<IChartDiscreteDataOptions> = new EventEmitter<IChartDiscreteDataOptions>();
+
     @ViewChild(ChartDirective) chartHost: ChartDirective;
     @ViewChildren('stringOpts') stringOpts: QueryList<ElementRef>;
+
+    private _chartData: any;
+    get chartData(): any {
+        return this._chartData;
+    }
 
     chartTypes: any[];
     selectedChartType: number = 0;
@@ -28,8 +59,11 @@ export class ChartEditComponent implements AfterViewInit {
     boolOptions: any[];
     stringOptions: any[];
 
+    queryStringColumns: IQueryColumn[];
+    queryNumberColumns: IQueryColumn[];
     
-   
+    aggregationTypes: INameValue[];
+    discreteDataOptions: IChartDiscreteDataOptions;
 
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,
@@ -55,6 +89,20 @@ export class ChartEditComponent implements AfterViewInit {
                 name: "Line Chart",
                 value: 3
             }];
+
+        this.aggregationTypes = [
+            { name: "Sum", value: 0 },
+            { name: "Average", value: 1 },
+            { name: "Minimum", value: 2 },
+            { name: "Maximum", value: 3 },
+            { name: "Count", value: 4 },
+        ];
+        this.discreteDataOptions = {
+            reportGUID: "d75dbdb7-498c-46c2-a18a-9a90519e3a31",
+            nameColumn: "Table_95_Field_67",
+            valueColumn: "Table_95_Field_45",
+            aggregation: 0
+        };
         this.chartItem = this.chartService.getChart(this.selectedChartType);
 
         //this.stringOptions = this.chartItem.options.filter(x => x.type === "string");
@@ -64,7 +112,7 @@ export class ChartEditComponent implements AfterViewInit {
     }
 
     ngAfterViewInit() {
-        this.loadComponent();
+        //this.loadComponent();
         //this.stringOpts.forEach(option => {
         //    Observable.fromEvent(option.nativeElement, 'keyup')
         //        .debounceTime(150)
@@ -79,11 +127,17 @@ export class ChartEditComponent implements AfterViewInit {
     chartTypeChange(): void {
         if (this.chartService != null) {
             this.chartItem = this.chartService.getChart(this.selectedChartType);
+            
             this.stringOptions = this.chartItem.options.filter(x => x.type === "string");
-
+            
             this.boolOptions = this.chartItem.options.filter(x => x.type === "boolean");
             this.loadComponent();
         }
+    }
+
+    chartDataOptionChange() {
+        this.chartDataOptionsChange.emit(this.discreteDataOptions);
+        this.loadComponent();
     }
 
     loadComponent() {
@@ -95,8 +149,16 @@ export class ChartEditComponent implements AfterViewInit {
 
         let componentRef = viewContainerRef.createComponent(componentFactory);
         (<IChart>componentRef.instance).options = this.chartItem.options;
-        (<IChart>componentRef.instance).data = this.chartItem.data;
+        console.log('loadcomp:' + this.chartData);
+        (<IChart>componentRef.instance).data = this.chartData;
         this._cdr.detectChanges();
+    }
+
+    onChartSave() {
+        if (this.chartService != null) {
+            //this.chartService.saveChart(this.chartItem);
+            
+        }
     }
 
 }

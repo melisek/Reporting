@@ -21,7 +21,8 @@ import {
     MatToolbarModule,
     MatTabsModule,
     MatIconModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatRadioModule
 } from '@angular/material';
 
 import { MATERIAL_COMPATIBILITY_MODE, MAT_PLACEHOLDER_GLOBAL_OPTIONS } from '@angular/material';
@@ -50,7 +51,8 @@ import { MATERIAL_COMPATIBILITY_MODE, MAT_PLACEHOLDER_GLOBAL_OPTIONS } from '@an
         MatToolbarModule,
         MatExpansionModule,
         MatTabsModule,
-        MatIconModule
+        MatIconModule,
+        MatRadioModule
     ],
     exports: [
         MatProgressSpinnerModule,
@@ -72,7 +74,8 @@ import { MATERIAL_COMPATIBILITY_MODE, MAT_PLACEHOLDER_GLOBAL_OPTIONS } from '@an
         MatToolbarModule,
         MatExpansionModule,
         MatTabsModule,
-        MatIconModule
+        MatIconModule,
+        MatRadioModule
     ],
     providers: [
         { provide: MATERIAL_COMPATIBILITY_MODE, useValue: true },

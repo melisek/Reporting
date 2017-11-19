@@ -9,9 +9,6 @@ import 'rxjs/add/observable/merge';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
-/*import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/observable/fromEvent';*/
 
 import { ReportService } from "./report.service";
 import { IReport } from "./report";
@@ -22,10 +19,10 @@ import { IResponseResult, IEntityWithIdName, IListFilter } from '../shared/share
 @Component({
     selector: 'report',
     templateUrl: './report-list.component.html',
-    styleUrls: [ './report-list.component.css' ]
+    styleUrls: ['./report-list.component.css', '../shared/shared-styles.css' ]
 })
 export class ReportListComponent implements OnInit {
-    displayedColumns = [/*'reportGUID',*/ 'Name', 'Query', 'Author', 'CreationDate', 'LastModifier', 'ModifyDate', 'Actions'];
+    displayedColumns = ['Name', 'Query', 'Author', 'CreationDate', 'LastModifier', 'ModifyDate', 'Actions'];
     service: ReportService | null;
     dataSource: ExampleDataSource | null;
 
@@ -96,13 +93,6 @@ export class ReportListComponent implements OnInit {
     }
 }
 
-/**
- * Data source to provide what data should be rendered in the table. Note that the data source
- * can retrieve its data in any way. In this case, the data source is provided a reference
- * to a common data base, ExampleDatabase. It is not the data source's responsibility to manage
- * the underlying data. Instead, it only needs to take the data and send the table exactly what
- * should be rendered.
- */
 export class ExampleDataSource extends DataSource<any> {
     totalCount = 0;
     isLoadingResults = false;
@@ -115,12 +105,12 @@ export class ExampleDataSource extends DataSource<any> {
         super();
     }
 
-    /** Connect function called by the table to retrieve one stream containing the data to render. */
     connect(): Observable<IReport[]> {
         const displayDataChanges = [
             this._sort.sortChange,
             this._filterChange,
             this._paginator.page,
+            this._paginator.pageSize
         ];
 
         this._sort.sortChange.subscribe(() => this._paginator.pageIndex = 0);
@@ -131,9 +121,9 @@ export class ExampleDataSource extends DataSource<any> {
                 this.isLoadingResults = true;
                 let filterObject: IListFilter = {
                     filter: this.filter,
-                    page: this._paginator.pageIndex,
+                    page: this._paginator.pageIndex + 1,
                     sort: { columnName: this._sort.active, direction: this._sort.direction },
-                    rows: 10,
+                    rows: this._paginator.pageSize,
                 }
                 return this._reportService.getReports(filterObject);
             })

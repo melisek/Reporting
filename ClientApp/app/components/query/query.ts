@@ -1,4 +1,6 @@
-﻿export interface IQueryColumns {
+﻿import { IColumnSort } from "../shared/shared-interfaces";
+
+export interface IQueryColumns {
     queryGUID: string;
     columns: IQueryColumn[];
 }
@@ -16,10 +18,14 @@ export interface IQueryColumn {
 
 export interface IQuerySourceDataFilter {
     queryGUID: string;
-    y: number;
-    x: number;
+    rows: number;
+    page: number;
+    filter: string;
+    columns: string[];
+    sort: IColumnSort;
 }
 
 export interface IQuerySourceData {
-    data: any[];
+    TotalCount: number;
+    Data: any[];
 }

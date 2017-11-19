@@ -1,14 +1,18 @@
-
+<div class="clearfix pull-right margin-top-20">
+    <button mat-raised-button color="primary" (click)="onSaveClick()" [disabled]="query && columns && columns.selectedOptions.selected.length == 0">Save</button>
+    <button mat-raised-button [routerLink]="['/reports']">Cancel</button>
+</div>
 <div class="clearfix">
     <mat-form-field floatPlaceholder="never">
         <input matInput #name [(ngModel)]="report.name" id="name" placeholder="Report name">
     </mat-form-field>
 </div>
 
+
 <mat-tab-group>
     <mat-tab>
         <ng-template mat-tab-label>
-            <mat-icon class="md-18">view_headline</mat-icon> Data source
+            <mat-icon class="md-18">view_headline</mat-icon> Data table
         </ng-template>
 
         <div class="margin-top-20">
@@ -41,36 +45,33 @@
             <div class="col-md-9">
                 <div class="clearfix" [hidden]="!showDataTable">
                     <mat-form-field floatPlaceholder="never">
-                        <input matInput #filter placeholder="Filter reports">
+                        <input matInput #filter placeholder="Filter data">
                     </mat-form-field>
                 </div>
+                <mat-table *ngIf="showDataTable" #table [dataSource]="dataSource" matSort matSortDisableClear matSortDirection="asc">
+                    <ng-container *ngFor="let column of columnNames" [matColumnDef]="column.columnDef">
+                        <mat-header-cell *matHeaderCellDef>{{ column.header }}</mat-header-cell>
+                        <mat-cell *matCellDef="let row">{{ column.cell(row) }}</mat-cell>
+                    </ng-container>
 
-                <div *ngIf="showDataTable">
-                    <mat-table #table [dataSource]="dataSource" matSort matSortActive="id" matSortDisableClear matSortDirection="asc">
-                        <ng-container *ngFor="let column of columnNames" [matColumnDef]="column.columnDef">
-                            <mat-header-cell *matHeaderCellDef>{{ column.header }}</mat-header-cell>
-                            <mat-cell *matCellDef="let row">{{ column.cell(row) }}</mat-cell>
-                        </ng-container>
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
-                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                </mat-table>
 
-                    </mat-table>
-
-                    <mat-paginator #paginator
-                                   [length]="dataSource.totalCount"
-                                   [pageSize]="2">
-                    </mat-paginator>
-                </div>
+                <mat-paginator #paginator
+                               [length]="9"
+                               [pageSize]="5">
+                </mat-paginator>
 
             </div>
         </div>
     </mat-tab>
-    <mat-tab>
+    <mat-tab [disabled]="disableChartTab">
         <ng-template mat-tab-label>
             <mat-icon class="md-18">pie_chart</mat-icon> Chart
         </ng-template>
 
-        <chart-editor></chart-editor>
+        <chart-editor [chartData]="chartData" [queryColumns]="queryColumns" (chartDataOptionsChange)="onChartDataOptionChange($event)"></chart-editor>
     </mat-tab>
 </mat-tab-group>

@@ -43,7 +43,7 @@ export class QueryService {
     }
 
     private handleError(err: HttpErrorResponse) {
-        console.log(err.message);
-        return Observable.throw(err.message);
+        console.log(err.statusText);
+        return Observable.throw(err.statusText);
     }
 }

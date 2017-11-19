@@ -4,7 +4,7 @@ namespace szakdoga.Models.Dtos
 {
     public class GetAllFilterDto
     {
-        [Required(ErrorMessage = "Filter is required.")]
+        //[Required(ErrorMessage = "Filter is required.")]
         public string Filter { get; set; }
         [Required(ErrorMessage = "Page is required.")]
         public int Page { get; set; }
