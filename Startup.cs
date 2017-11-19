@@ -67,16 +67,16 @@ namespace szakdoga
                                 ValidateLifetime = true,
                                 ValidateIssuerSigningKey = true,
 
-                                ValidIssuer = "ToDoListServer",
-                                ValidAudience = "ToDoListServer",
+                                ValidIssuer = _configurationRoot["Tokens:Issuer"],
+                                ValidAudience = _configurationRoot["Tokens:Audience"],
                                 IssuerSigningKey =
-                                 JwtSecurityKey.Create("zhenwang123!.123")
+                                 JwtSecurityKey.Create(_configurationRoot["Tokens:Key"])
                             };
                        options.Events = new JwtBearerEvents
                        {
                            OnAuthenticationFailed = context =>
                            {
-                               Debug.WriteLine("OnAuthenticationFailed: asdasdasd " +
+                               Debug.WriteLine("OnAuthenticationFailed: " +
                                    context.Exception.Message);
                                return Task.CompletedTask;
                            },

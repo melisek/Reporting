@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Linq;
 using szakdoga.Models;
@@ -15,12 +16,14 @@ namespace szakdoga.Controllers
     {
         private readonly IUserRepository _userRepository;
         private readonly IUserJwtMapRepository _userJwtMapRepository;
+        private readonly IConfigurationRoot _cfg;
         private readonly int expiryMinutes = 10;
 
-        public AuthController(IUserRepository userRepository, IUserJwtMapRepository userJwtMapRepository)
+        public AuthController(IUserRepository userRepository, IUserJwtMapRepository userJwtMapRepository, IConfigurationRoot cfg)
         {
             _userRepository = userRepository;
             _userJwtMapRepository = userJwtMapRepository;
+            _cfg = cfg;
         }
 
         [HttpPost("login")]
@@ -32,7 +35,7 @@ namespace szakdoga.Controllers
             if (!ModelState.IsValid)
                 BadRequest(ModelState);
 
-            User user = _userRepository.GetAll().FirstOrDefault(x => x.Name.Equals(credDto.Name));
+            User user = _userRepository.GetAll().FirstOrDefault(x => x.EmailAddress.Equals(credDto.EmailAddress));
             if (user == null)
             {
                 return Unauthorized();
@@ -44,11 +47,11 @@ namespace szakdoga.Controllers
             }
 
             var token = new JwtTokenBuilder()
-                                .AddSecurityKey(JwtSecurityKey.Create("zhenwang123!.123"))
-                                .AddSubject("ToDoListServerUser")
-                                .AddIssuer("ToDoListServer")
-                                .AddAudience("ToDoListServer")
-                                .AddClaim("User", "ToDoListServerUser")
+                                .AddSecurityKey(JwtSecurityKey.Create(_cfg["Tokens:Key"]))
+                                .AddSubject(_cfg["Tokens:Subject"])
+                                .AddIssuer(_cfg["Tokens:Issuer"])
+                                .AddAudience(_cfg["Tokens:Audience"])
+                                .AddClaim("reportGUID","canmodify")
                                 .AddExpiry(expiryMinutes)
                                 .Build();
 

@@ -9,7 +9,7 @@ namespace szakdoga.Others
 {
     public sealed class JwtTokenBuilder
     {
-        //TODO: majd vmi infót a userről kéne beletenni
+
         private SecurityKey securityKey = null;
 
         private string subject = "";
@@ -83,7 +83,7 @@ namespace szakdoga.Others
             return new JwtToken(token);
         }
 
-        #region " private "
+
 
         private void EnsureArguments()
         {
@@ -99,7 +99,5 @@ namespace szakdoga.Others
             if (string.IsNullOrEmpty(this.audience))
                 throw new ArgumentNullException("Audience");
         }
-
-        #endregion " private "
     }
 }

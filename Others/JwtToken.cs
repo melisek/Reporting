@@ -7,7 +7,7 @@ namespace szakdoga.Others
     {
         private JwtSecurityToken token;
 
-        internal JwtToken(JwtSecurityToken token)
+        public JwtToken(JwtSecurityToken token)
         {
             this.token = token;
         }
