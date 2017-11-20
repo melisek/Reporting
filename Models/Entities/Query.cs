@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace szakdoga.Models
 {
-    public class Query : BaseEntity
+    public class Query : BaseEntity, IComparable
     {
         public string SQL { get; set; }
 
@@ -35,6 +35,16 @@ namespace szakdoga.Models
             {
                 UpdatePeriod = TimeSpan.FromTicks(value);
             }
+        }
+
+        public int CompareTo(object obj)
+        {
+            Query query = obj as Query;
+            if (query != null)
+            {
+                return this.Name.CompareTo(query.Name);
+            }
+            return 0;
         }
     }
 }

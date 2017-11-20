@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace szakdoga.Models
 {
-    public class Report : BaseEntity
+    public class Report : BaseEntity, IComparable
     {
         [Required]
         [StringLength(50)]
@@ -25,5 +26,15 @@ namespace szakdoga.Models
         public int Rows { get; set; }
         public User LastModifier { get; set; }
         public User Author { get; set; }
+
+        public int CompareTo(object obj)
+        {
+            Report report = obj as Report;
+            if (report!=null)
+            {
+                return this.Name.CompareTo(report.Name);
+            }
+            return 0;
+        }
     }
 }

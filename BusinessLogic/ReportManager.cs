@@ -124,7 +124,8 @@ namespace szakdoga.BusinessLogic
         public AllReportDto GetAllReport(GetAllFilterDto filter)
         {
             IEnumerable<Report> reports = _reportRepository.GetAll()
-                             .Where(x => (String.IsNullOrEmpty(filter.Filter) || x.Name.ToLower().Contains(filter.Filter.ToLower()) || x.LastModifier.Name.ToLower().Contains(filter.Filter.ToLower())
+                             .Where(x => !x.Deleted && (String.IsNullOrEmpty(filter.Filter) || x.Name.ToLower().Contains(filter.Filter.ToLower()) || (x.LastModifier != null && x.LastModifier.Name.ToLower().Contains(filter.Filter.ToLower()))
+                             || (x.Author != null && x.Author.Name.ToLower().Contains(filter.Filter.ToLower()))
                              || x.Query.Name.ToLower().Contains(filter.Filter.ToLower()))).ToList();
 
             int count = reports.Count();
