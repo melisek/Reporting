@@ -9,20 +9,21 @@ import { LineChartComponent } from './types/chart-line.component';
 
 import { ChartItem } from './chart-item';
 import { colorSets } from '@swimlane/ngx-charts/release/utils'
+import { chartTypeOptions } from './chart-constants'
+
 import { IChartOption, IChartStyle } from './chart';
-import { INameValue, ISeriesNameValue, IResponseResult } from '../shared/shared-interfaces';
+import { INameValue, ISeriesNameValue, IResponseResult, IChartDiscreteDataOptions } from '../shared/shared-interfaces';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 
-
-
 @Injectable()
 export class ChartService {
 
     private _saveUrl = './api/reports/UpdateStyle';
+    private _getStyleUrl = './api/reports/GetStyle/';
 
     constructor(private _http: Http) { }
 
@@ -34,57 +35,9 @@ export class ChartService {
         LineChartComponent
     ];
 
-    
-    // view?
-    baseOptions: IChartOption[] = [
-        { name: "animations", text: "Enable animations", type: "boolean", value: true },
-        { name: "showLegend", text: "Show legend", type: "boolean", value: true },
-        { name: "legendTitle", text: "Legend title", type: "string", value: "Legend" },
-        { name: "gradient", text: "Gradient", type: "boolean", value: true },
-        { name: "tooltipDisabled", text: "Disable tooltip", type: "boolean", value: false }
-        //scheme: { domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'] }
-    ];
+    chartTypeOptions: IChartOption[][] = chartTypeOptions;
 
-    barOptions: IChartOption[] = [
-        { name: "showXAxis", text: "Show X-axis", type: "boolean", value: true },
-        { name: "showYAxis", text: "Show Y-axis", type: "boolean", value: true },
-        { name: "showGridLines", text: "Show grid lines", type: "boolean", value: true },
-        { name: "roundDomains", text: "Round domains", type: "boolean", value: true },
-        { name: "showXAxisLabel", text: "Show X-axis label", type: "boolean", value: true },
-        { name: "showYAxisLabel", text: "Show Y-axis label", type: "boolean", value: true },
-        { name: "xAxisLabel", text: "X-axis label", type: "string", value: "x" },
-        { name: "yAxisLabel", text: "Y-axis label", type: "string", value: "y" },
-        { name: "schemeType", text: "Scheme type", type: "string", value: "ordinal" },
-        { name: "axisMax", text: "Axis maximum", type: "number", value: 10 },
-    ];
-
-    pieOptions: IChartOption[] = [
-        { name: "explodeSlices", text: "Explode slices", type: "boolean", value: false },
-        { name: "doughnut", text: "Doughnut", type: "boolean", value: false },
-        { name: "labels", text: "Show labels", type: "boolean", value: true }
-    ];
-
-    chartTypeOptions: IChartOption[][] = [
-        [...this.barOptions, ...this.baseOptions],
-        [...this.barOptions, ...this.baseOptions],
-        [...this.pieOptions, ...this.baseOptions],
-        [...this.barOptions, ...this.baseOptions],
-    ];
-
-    arrdata: INameValue[] = [
-        /*{
-            "name": "Germany",
-            "value": 8940000
-        },
-        {
-            "name": "USA",
-            "value": 5000000
-        },
-        {
-            "name": "France",
-            "value": 7200000
-        }*/
-    ];
+    arrdata: INameValue[] = [ ];
 
     seriesarrdata: ISeriesNameValue[] = [
         {
@@ -220,10 +173,18 @@ export class ChartService {
         return new ChartItem(this.types[selected], this.chartTypeOptions[selected], selected < 3 ? this.arrdata : this.seriesarrdata); 
     }
 
-    saveChart(chartItem: ChartItem, reportGUID: string): Observable<boolean> {
+    getChartOptions(reportGUID: string): Observable<IChartStyle> {
+        return this._http.get(this._getStyleUrl + reportGUID)
+            .map(response => response.json() as IChartStyle)
+            .do(data => console.log("get style: " + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    saveChart(chartItem: ChartItem, chartType: number, discreteDataOptions: IChartDiscreteDataOptions, reportGUID: string): Observable<boolean> {
         let opt = {
-            //component: chartItem.component,
-            options: chartItem.options
+            chartType: chartType,
+            dataOptions: discreteDataOptions,
+            displayOptions: chartItem.options
         };
         let style: IChartStyle = {
             reportGUID: reportGUID,

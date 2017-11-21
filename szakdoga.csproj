@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\components\chart\chart-constants.ts" />
     <None Remove="ClientApp\app\components\chart\chart-horizontal-bar.component.ts" />
     <None Remove="ClientApp\app\components\chart\chart-item.ts" />
     <None Remove="ClientApp\app\components\chart\chart.directive.ts" />
@@ -39,6 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\chart\chart-constants.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\chart\types\chart-line.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\chart\types\chart-pie.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\chart\types\chart-vertical-bar.component.ts" />

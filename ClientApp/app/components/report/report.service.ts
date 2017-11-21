@@ -16,7 +16,6 @@ export class ReportService {
     private _addUrl = './api/reports/Create';
     private _getUrl = './api/reports/Get/';
     private _deleteUrl = './api/reports/Delete/';
-    private _getStyleUrl = './api/reports/GetStyle';
     private _getDiscreteDataUrl = './api/reports/GetDiscreetRiportDiagram';
 
     constructor(private _http: Http) { }
@@ -45,12 +44,7 @@ export class ReportService {
             .catch(this.handleError);
     }
 
-    getStyle(): Observable<IResponseResult> {
-        return this._http.get(this._getStyleUrl + "/a4f53c6a-21f8-4fe6-a45c-fb0ceec919e6")
-            .map(response => response.json() as IResponseResult)
-            .do(data => console.log("get style: " + JSON.stringify(data)))
-            .catch(this.handleError);
-    }
+    
 
     deleteReport(reportGUID: string): Observable<boolean> {
         return this._http.delete(this._deleteUrl + reportGUID)
@@ -61,12 +55,6 @@ export class ReportService {
 
 
     getDiscreteDiagramData(dataOptions: IChartDiscreteDataOptions): Observable<INameValue[]> {
-        /*let param = {
-            reportGUID: "d75dbdb7-498c-46c2-a18a-9a90519e3a31",
-            nameColumn: "Table_95_Field_67",
-            valueColumn: "Table_95_Field_119",
-            aggregation: 4
-        };*/
         console.log(dataOptions);
         return this._http.post(this._getDiscreteDataUrl, dataOptions)
             .map(response => response.json() as INameValue[])

@@ -89,20 +89,22 @@ export class ReportEditComponent implements OnInit {
                     },
                     err => console.log(err));
 
-                let discreteDataOptions: IChartDiscreteDataOptions = {
-                    reportGUID: this.reportGUID,
-                    nameColumn: "Table_95_Field_67",
-                    valueColumn: "Table_95_Field_41",
-                    aggregation: 0
-                };
-                this.reportService.getDiscreteDiagramData(discreteDataOptions)
-                    .subscribe(data => {
-                        this.chartData = data;
-                    },
-                    err => console.log(err));
-            }
+                this.chartComponent.initChartOptions(this.reportGUID).subscribe(result => {
+                    /*let discreteDataOptions: IChartDiscreteDataOptions = {
+                        reportGUID: this.reportGUID,
+                        nameColumn: "Table_95_Field_67",
+                        valueColumn: "Table_95_Field_41",
+                        aggregation: 0
+                    };*/
+                    this.reportService!.getDiscreteDiagramData(result)
+                        .subscribe(data => {
+                            this.chartData = data;
+                        },
+                        err => console.log(err));
+                });
+
                 
-             
+            }
         }
         else {
             this.report = {

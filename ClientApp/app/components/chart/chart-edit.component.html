@@ -37,7 +37,7 @@
         <ng-template chart-host class="margin-top-20"></ng-template>
     </div>
     <div class="col-md-2 padding-right-3">
-        <mat-expansion-panel expanded="true">
+        <mat-expansion-panel *ngIf="chartItem" expanded="true">
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     Display options
@@ -47,7 +47,7 @@
                 <mat-checkbox *ngIf="option.type == 'boolean'" [(ngModel)]="chartItem.options[i].value">{{option.text}}</mat-checkbox>
             </div>
         </mat-expansion-panel>
-        <mat-expansion-panel expanded="true">
+        <mat-expansion-panel *ngIf="chartItem" expanded="true">
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     Labels
