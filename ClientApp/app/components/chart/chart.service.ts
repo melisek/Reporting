@@ -9,8 +9,8 @@ import { LineChartComponent } from './types/chart-line.component';
 
 import { ChartItem } from './chart-item';
 import { colorSets } from '@swimlane/ngx-charts/release/utils'
-import { IChartOption } from './chart';
-import { INameValue, ISeriesNameValue } from '../shared/shared-interfaces';
+import { IChartOption, IChartStyle } from './chart';
+import { INameValue, ISeriesNameValue, IResponseResult } from '../shared/shared-interfaces';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
@@ -220,19 +220,21 @@ export class ChartService {
         return new ChartItem(this.types[selected], this.chartTypeOptions[selected], selected < 3 ? this.arrdata : this.seriesarrdata); 
     }
 
-    //saveChart(chartItem: ChartItem): Observable<INameValue[]> {
-    //    let style = {
-    //        reportGUID: "abc",
-    //        style: {
-    //            component: chartItem.component,
-    //            ...chartItem.options
-    //            }
-    //    };
-    //    return this._http.post(this._saveUrl, style)
-    //        .map(response => response.json() as INameValue[])
-    //        .do(data => console.log("get diagram data: " + JSON.stringify(data)))
-    //        .catch(this.handleError);
-    //}
+    saveChart(chartItem: ChartItem, reportGUID: string): Observable<boolean> {
+        let opt = {
+            //component: chartItem.component,
+            options: chartItem.options
+        };
+        let style: IChartStyle = {
+            reportGUID: reportGUID,
+            style: JSON.stringify(opt)
+        };
+        console.log('save chart init ' + JSON.stringify(style));
+        return this._http.post(this._saveUrl, style)
+            //.map(response => response.json() as IResponseResult)
+            .do(data => console.log("save chart: " + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
 
     private handleError(err: HttpErrorResponse) {
         console.log(err);

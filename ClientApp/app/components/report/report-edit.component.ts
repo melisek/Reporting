@@ -14,6 +14,7 @@ import 'rxjs/add/observable/fromEvent';
 import { QueryService } from "../query/query.service";
 import { IReport, IReportCreate } from "./report";
 import { ShareDialogComponent } from '../shared/share-dialog.component';
+import { ChartEditComponent } from '../chart/chart-edit.component';
 import { IResponseResult, IEntityWithIdName, IListFilter, IChartDiscreteDataOptions } from '../shared/shared-interfaces';
 import { ReportService } from './report.service';
 import { IQueryColumns, IQuery, IQuerySourceData, IQueryColumn } from '../query/query';
@@ -27,7 +28,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ReportEditComponent implements OnInit {
 
     report: IReportCreate;
-
+    reportGUID: string | null;
 
     columnNames = [
         { columnDef: 'id', header: 'ID', cell: (row: IReport) => `${row.query}` },
@@ -61,6 +62,8 @@ export class ReportEditComponent implements OnInit {
     @ViewChild('paginator') paginator: MatPaginator;
     @ViewChild('filter') filter: ElementRef;
     @ViewChild('columns') columns: MatSelectionList;
+    @ViewChild(ChartEditComponent)
+    chartComponent: ChartEditComponent;
 
 
     ngOnInit() {
@@ -75,10 +78,10 @@ export class ReportEditComponent implements OnInit {
                 columnName: "", direction: "asc"
             }
         };
-        let reportGUID = this._route.snapshot.paramMap.get('reportGUID');
-        if (reportGUID != null) {
+        this.reportGUID = this._route.snapshot.paramMap.get('reportGUID');
+        if (this.reportGUID != null) {
             if (this.reportService != null) {
-                this.reportService.getReport(reportGUID)
+                this.reportService.getReport(this.reportGUID)
                     .subscribe(report => {
                         this.report = report;
                         this.queryChange();
@@ -87,7 +90,7 @@ export class ReportEditComponent implements OnInit {
                     err => console.log(err));
 
                 let discreteDataOptions: IChartDiscreteDataOptions = {
-                    reportGUID: reportGUID,
+                    reportGUID: this.reportGUID,
                     nameColumn: "Table_95_Field_67",
                     valueColumn: "Table_95_Field_41",
                     aggregation: 0
@@ -113,7 +116,7 @@ export class ReportEditComponent implements OnInit {
                 }
             };
         }
-        console.log(reportGUID);
+        console.log(this.reportGUID);
         
 
         this.queryService = new QueryService(this.http);
@@ -200,6 +203,10 @@ export class ReportEditComponent implements OnInit {
         this._cdr.detectChanges();
     }
 
+    onChartSave(): void {
+        this.chartComponent.onChartSave(this.reportGUID!);
+    }
+
     onSaveClick(): void {
 
         this.report.queryGUID = this.report.queryGUID;
@@ -229,12 +236,15 @@ export class ReportEditComponent implements OnInit {
     }
 
     onChartDataOptionChange(chartDataOptions: IChartDiscreteDataOptions): void {
-        if (this.reportService != null)
+        if (this.reportService != null) {
+            chartDataOptions.reportGUID = this.reportGUID!;
             this.reportService.getDiscreteDiagramData(chartDataOptions)
                 .subscribe(data => {
                     this.chartData = data;
                 },
                 err => console.log(err));
+        }
+            
     }
 
     deleteReport(id: number): boolean {

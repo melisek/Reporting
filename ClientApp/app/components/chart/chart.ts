@@ -10,6 +10,11 @@ export interface IChartOption {
     value: any;
     type: string;
 }
+
+export interface IChartStyle {
+    reportGUID: string;
+    style: string;
+}
 //export interface IBaseChartOptions {
 //    //view: [700, 400],
 //    animations: IChartOption;

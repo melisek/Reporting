@@ -98,7 +98,7 @@ export class ChartEditComponent implements AfterViewInit {
             { name: "Count", value: 4 },
         ];
         this.discreteDataOptions = {
-            reportGUID: "d75dbdb7-498c-46c2-a18a-9a90519e3a31",
+            reportGUID: "",
             nameColumn: "Table_95_Field_67",
             valueColumn: "Table_95_Field_45",
             aggregation: 0
@@ -154,10 +154,9 @@ export class ChartEditComponent implements AfterViewInit {
         this._cdr.detectChanges();
     }
 
-    onChartSave() {
+    onChartSave(reportGUID: string) {
         if (this.chartService != null) {
-            //this.chartService.saveChart(this.chartItem);
-            
+            this.chartService.saveChart(this.chartItem, reportGUID).subscribe();  
         }
     }
 
