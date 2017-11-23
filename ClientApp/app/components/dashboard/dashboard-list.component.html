@@ -1,0 +1,54 @@
+<div class="clearfix pull-right margin-top-20">
+    <button [routerLink]="['/reports/create']" mat-raised-button color="primary">New report</button>
+</div>
+
+<h1>Dashboards</h1>
+
+<div class="add-button-fixed">
+    <button [routerLink]="['/reports/create']" mat-fab color="primary" matTooltip="New report" matTooltipPosition="left"><mat-icon class="md-18">add</mat-icon></button>
+</div>
+
+<div class="clearfix">
+    <mat-form-field class="pull-right" floatPlaceholder="never">
+        <input matInput #filter placeholder="Filter reports">
+    </mat-form-field>
+</div>
+
+<mat-table #table [dataSource]="dataSource" matSort matSortActive="Name" matSortDisableClear matSortDirection="asc">
+    <ng-container matColumnDef="Name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Author">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Created by </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ row.author ? row.author.name : '-' }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="CreationDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Created </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.creationDate | date:'yyyy. MM. d. HH:mm' }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="LastModifier">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Modified by </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ row.lastModifier ? row.lastModifier.name : '-' }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="ModifyDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Modified </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.modifyDate | date:'yyyy. MM. d. HH:mm' }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Actions">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <button [routerLink]="['/dashboards/edit', row.dashboardGUID]" mat-icon-button matTooltip="Edit dashboard" matTooltipPosition="above" ><mat-icon class="md-18">mode_edit</mat-icon></button>
+            <button mat-icon-button matTooltip="Delete dashboard" matTooltipPosition="above" (click)="deleteDashboard(row.dashboardGUID)"><mat-icon class="md-18">delete</mat-icon></button>
+            <button mat-icon-button matTooltip="Share report" matTooltipPosition="above" (click)="openShareDialog(row.reportGUID, row.name)"><mat-icon class="md-18">share</mat-icon></button>
+        </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+<mat-paginator #paginator
+              [length]="dataSource.totalCount"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 20]">
+</mat-paginator>

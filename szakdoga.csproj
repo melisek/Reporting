@@ -52,6 +52,11 @@
     <TypeScriptCompile Include="ClientApp\app\components\material\material-imports.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\query\query.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\query\query.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboard\report-edit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboard\dashboard-list.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboard\dashboard.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboard\dashboard.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboard\dashboard.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\report\report-edit.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\report\report-list.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\report\report.module.ts" />

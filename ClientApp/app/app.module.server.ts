@@ -10,6 +10,7 @@ import { AppComponent } from './components/app/app.component';
 
 import { MatSidenavContainer } from '@angular/material'
 import { ReportModule } from './components/report/report.module';
+import { DashboardModule } from './components/dashboard/dashboard.module';
 import { RouterModule } from '@angular/router';
 //import { ReportModule } from './components/report/report.module';
 
@@ -52,6 +53,7 @@ export const SERVER_RENDER_PROVIDERS = [
         RouterModule,
         //AppModuleShared,
         ReportModule,
+        DashboardModule
         //AppRoutingModule
     ],
     providers: [

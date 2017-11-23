@@ -14,6 +14,7 @@ import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { MatSidenavContainer, MatSidenavModule } from '@angular/material'
 import { MaterialModule } from './components/material/material-imports.module';
 import { ChartModule } from './components/chart/chart.module';
+import { DashboardModule } from './components/dashboard/dashboard.module';
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -46,7 +47,7 @@ import { ChartModule } from './components/chart/chart.module';
         MaterialModule,
         ChartModule,
         ReportModule,
-        
+        DashboardModule
     ],
     declarations: [AppComponent, HomeComponent, NavMenuComponent],
    // entryComponents: [HorizontalBarChartComponent],
