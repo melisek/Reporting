@@ -1,17 +1,19 @@
 import { Component, AfterViewInit, Input, ViewChild, ComponentFactoryResolver, OnInit, OnDestroy, ChangeDetectorRef, ElementRef, QueryList, ViewChildren, Output, EventEmitter } from '@angular/core';
 import { ChartDirective } from './chart.directive';
 import { ChartItem } from './chart-item';
-import { IChart, IChartOption } from './chart';
+import { IChart, IChartOption, IChartStyle } from './chart';
 import { ChartService } from './chart.service';
 
 import { MatSelectionList } from '@angular/material'; 
 import { Observable } from 'rxjs/Observable';
-
+import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
+
 import { INameValue, IChartDiscreteDataOptions } from '../shared/shared-interfaces';
 import { IQueryColumns, IQueryColumn } from '../query/query';
 
+import { chartTypes, aggregationTypes } from './chart-constants'
 
 @Component({
     selector: 'chart-editor',
@@ -24,7 +26,7 @@ export class ChartEditComponent implements AfterViewInit {
     set chartData(chartData: any) {
         this._chartData = chartData;
 
-        if (this._chartData)
+        if (this._chartData && this.selectedChartType != null)
             this.loadComponent();
     }
     private _queryColumns: IQueryColumns;
@@ -52,8 +54,11 @@ export class ChartEditComponent implements AfterViewInit {
         return this._chartData;
     }
 
-    chartTypes: any[];
-    selectedChartType: number = 0;
+    chartTypes: INameValue[];
+    selectedChartType: number;
+
+    discreteDataOptions: IChartDiscreteDataOptions;
+    aggregationTypes: INameValue[];
 
     options: IChartOption[];
     boolOptions: any[];
@@ -62,9 +67,6 @@ export class ChartEditComponent implements AfterViewInit {
     queryStringColumns: IQueryColumn[];
     queryNumberColumns: IQueryColumn[];
     
-    aggregationTypes: INameValue[];
-    discreteDataOptions: IChartDiscreteDataOptions;
-
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,
         private chartService: ChartService,
@@ -72,38 +74,16 @@ export class ChartEditComponent implements AfterViewInit {
     }
 
     ngOnInit() {
-        this.chartTypes =
-            [{
-                name: "Horizontal Bar Chart",
-                value: 0,
-            },
-            {
-                name: "Vertical Bar Chart",
-                value: 1
-            },
-            {
-                name: "Pie Chart",
-                value: 2
-            },
-            {
-                name: "Line Chart",
-                value: 3
-            }];
+        this.chartTypes = chartTypes;
+        this.aggregationTypes = aggregationTypes;
 
-        this.aggregationTypes = [
-            { name: "Sum", value: 0 },
-            { name: "Average", value: 1 },
-            { name: "Minimum", value: 2 },
-            { name: "Maximum", value: 3 },
-            { name: "Count", value: 4 },
-        ];
         this.discreteDataOptions = {
-            reportGUID: "d75dbdb7-498c-46c2-a18a-9a90519e3a31",
+            reportGUID: "",
             nameColumn: "Table_95_Field_67",
             valueColumn: "Table_95_Field_45",
             aggregation: 0
         };
-        this.chartItem = this.chartService.getChart(this.selectedChartType);
+        //this.chartItem = this.chartService.getChart(this.selectedChartType);
 
         //this.stringOptions = this.chartItem.options.filter(x => x.type === "string");
         
@@ -122,6 +102,25 @@ export class ChartEditComponent implements AfterViewInit {
         //            //this.chartItem.options[option.nativeElement.name] = option.nativeElement.value;
         //        });
         //}); 
+    }
+
+    initChartOptions(reportGUID: string): Observable<IChartDiscreteDataOptions> {
+
+        return this.chartService.getChartOptions(reportGUID).map(data => {
+            let style = JSON.parse(data.style);
+            if (style != null) {
+                console.log('style' + style.chartType);
+                this.selectedChartType = style.chartType;
+                this.discreteDataOptions = style.dataOptions;
+                this.chartItem = this.chartService.getChart(this.selectedChartType);
+                this.chartItem.options = style.displayOptions;
+            }
+            
+            //this.chartDataOptionChange();
+            //this.loadComponent();
+            return this.discreteDataOptions;
+        });
+
     }
 
     chartTypeChange(): void {
@@ -154,10 +153,9 @@ export class ChartEditComponent implements AfterViewInit {
         this._cdr.detectChanges();
     }
 
-    onChartSave() {
+    onChartSave(reportGUID: string) {
         if (this.chartService != null) {
-            //this.chartService.saveChart(this.chartItem);
-            
+            this.chartService.saveChart(this.chartItem, this.selectedChartType, this.discreteDataOptions, reportGUID).subscribe();  
         }
     }
 
