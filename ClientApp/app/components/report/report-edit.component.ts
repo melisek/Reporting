@@ -179,8 +179,8 @@ export class ReportEditComponent implements OnInit {
                    // this.columns.options.find(x => x.value == "Table_95_Field_3")!.toggle();
 
         //this.columns.options.first.;
-
-        this.dataSource = new QueryDataSource(this.queryService!, this.paginator);//, this.sort, this.paginator);
+        console.log(this.sort);
+        this.dataSource = new QueryDataSource(this.queryService!, this.sort, this.paginator);
         this.dataSource.queryGUID = this.report.queryGUID;
 
         this.columnNames = [];
@@ -298,7 +298,7 @@ export class QueryDataSource extends DataSource<any[]> {
     get queryGUID(): string { return this._queryChange.value; }
     set queryGUID(queryGUID: string) { this._queryChange.next(queryGUID); }
 
-    constructor(private _queryService: QueryService, private _paginator: MatPaginator) {
+    constructor(private _queryService: QueryService, private _sort: MatSort, private _paginator: MatPaginator) {
         //private _sort: MatSort, ) {
         super();
     }
@@ -306,7 +306,7 @@ export class QueryDataSource extends DataSource<any[]> {
     /** Connect function called by the table to retrieve one stream containing the data to render. */
     connect(): Observable<any[]> {
         const displayDataChanges = [
-            //this._sort.sortChange,
+            this._sort.sortChange,
             this._filterChange,
             this._selectedColumnsChange,
             this._queryChange,
@@ -320,13 +320,15 @@ export class QueryDataSource extends DataSource<any[]> {
             .switchMap(() => {
                 this.isLoadingResults = true;
 
+                console.log('selcol' + this.selectedColumns);
+                console.log('selact' + this._sort.active);
                 return this._queryService.getQuerySourceData(
                     {
                         queryGUID: this.queryGUID,
                         page: this._paginator.pageIndex + 1,
                         rows: 5,
                         filter: this.filter,
-                        sort: { columnName: "Table_95_Field_1", direction: "asc" },
+                        sort: { columnName: this._sort.active == null ? this.selectedColumns[0] : this._sort.active, direction: this._sort.direction },
                         columns: this.selectedColumns
                     });
             })

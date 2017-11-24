@@ -32,7 +32,7 @@
     </ng-container>
     <ng-container matColumnDef="CreationDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Created </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.creationDate | date:'yyyy. MM. d. HH:mm' }} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.creationDate | date:'yyyy. MM. dd. HH:mm' }} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="LastModifier">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Modified by </mat-header-cell>
@@ -40,7 +40,7 @@
     </ng-container>
     <ng-container matColumnDef="ModifyDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Modified </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.modifyDate | date:'yyyy. MM. d. HH:mm' }} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.modifyDate | date:'yyyy. MM. dd. HH:mm' }} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="Actions">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>

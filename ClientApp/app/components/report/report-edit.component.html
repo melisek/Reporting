@@ -48,7 +48,7 @@
                         <input matInput #filter placeholder="Filter data">
                     </mat-form-field>
                 </div>
-                <mat-table *ngIf="showDataTable" #table [dataSource]="dataSource" matSort matSortDisableClear matSortDirection="asc">
+                <mat-table [hidden]="!showDataTable" #table [dataSource]="dataSource" matSort matSortActive="Name" matSortDisableClear matSortDirection="asc">
                     <ng-container *ngFor="let column of columnNames" [matColumnDef]="column.columnDef">
                         <mat-header-cell *matHeaderCellDef>{{ column.header }}</mat-header-cell>
                         <mat-cell *matCellDef="let row">{{ column.cell(row) }}</mat-cell>

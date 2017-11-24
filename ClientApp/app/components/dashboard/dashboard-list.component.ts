@@ -124,6 +124,7 @@ export class DashboardDataSource extends DataSource<any> {
         ];
 
         this._sort.sortChange.subscribe(() => this._paginator.pageIndex = 0);
+        this._filterChange.subscribe(() => this._paginator.pageIndex = 0);
 
         return Observable.merge(...displayDataChanges)
             .startWith(null)
