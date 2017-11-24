@@ -22,3 +22,12 @@
     height:18px;
     margin-right: 5px;
 }
+.mat-paginator-page-size-select {
+    padding-top: 0px!important;
+}
+
+.add-button-fixed {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+}

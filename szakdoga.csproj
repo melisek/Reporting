@@ -37,6 +37,13 @@
     <None Remove="ClientApp\app\components\report\report.service.ts" />
     <None Remove="ClientApp\app\components\shared\share-dialog.component.ts" />
     <None Remove="ClientApp\app\components\shared\shared-interfaces.ts" />
+    <None Remove="ClientApp\app\components\user\auth-guard.service.ts" />
+    <None Remove="ClientApp\app\components\user\auth.module.ts" />
+    <None Remove="ClientApp\app\components\user\password-validator.ts" />
+    <None Remove="ClientApp\app\components\user\user-login.component.ts" />
+    <None Remove="ClientApp\app\components\user\user.module.ts" />
+    <None Remove="ClientApp\app\components\user\user.service.ts" />
+    <None Remove="ClientApp\app\components\user\user.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -66,6 +73,13 @@
     <TypeScriptCompile Include="ClientApp\app\components\report\report.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shared\share-dialog.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shared\shared-interfaces.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\user\auth-guard.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\user\auth.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\user\password-validator.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\user\user-login.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\user\user.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\user\user.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\user\user.ts" />
   </ItemGroup>
 
   <ItemGroup>

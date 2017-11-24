@@ -1,75 +1,29 @@
-<!--<button md-button [mdMenuTriggerFor]="menu">Menu</button>
-<md-menu #menu="mdMenu">
-    <button md-menu-item>Item 1</button>
-    <button md-menu-item>Item 2</button>
-</md-menu>
-
-    <h1>Hello, world!</h1>
-    <form class="example-form">
-        <md-form-field class="example-full-width">
-            <input mdInput placeholder="Favorite food" value="Sushi">
-        </md-form-field>
-    </form>
-    <md-checkbox></md-checkbox>
-
-<md-sidenav-container class="example-container">
-    <md-sidenav #sidenav class="example-sidenav">
-        Jolly good!
-    </md-sidenav>
-
-    <div class="example-sidenav-content">
-        <button type="button" md-button (click)="sidenav.open()">
-            Open sidenav
-        </button>
-    </div>
-
-</md-sidenav-container>-->
-
-<!--<md-form-field floatPlaceholder="never">
-    <input mdInput #filter placeholder="Filter users">
-</md-form-field>
-
-<md-table #table [dataSource]="dataSource" mdSort>
-    <ng-container mdColumnDef="userId">
-        <md-header-cell *mdHeaderCellDef md-sort-header> ID </md-header-cell>
-        <md-cell *mdCellDef="let row"> {{row.id}} </md-cell>
-    </ng-container>
-    <ng-container mdColumnDef="progress">
-        <md-header-cell *mdHeaderCellDef md-sort-header> Progress </md-header-cell>
-        <md-cell *mdCellDef="let row"> {{row.progress}}% </md-cell>
-    </ng-container>
-    <ng-container mdColumnDef="userName">
-        <md-header-cell *mdHeaderCellDef md-sort-header> Name </md-header-cell>
-        <md-cell *mdCellDef="let row"> {{row.name}} </md-cell>
-    </ng-container>
-    <ng-container mdColumnDef="color">
-        <md-header-cell *mdHeaderCellDef md-sort-header> Color </md-header-cell>
-        <md-cell *mdCellDef="let row" [style.color]="row.color"> {{row.color}} </md-cell>
-    </ng-container>
-    <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
-    <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
-</md-table>
-
-<md-paginator #paginator
-              [length]="exampleDatabase.data.length"
-              [pageIndex]="0"
-              [pageSize]="25"
-              [pageSizeOptions]="[5, 10, 25, 100]">
-</md-paginator>-->
-
-<!--<ngx-charts-bar-vertical [view]="view"
-                         [scheme]="colorScheme"
-                         [results]="single"
-                         [gradient]="gradient"
-                         [xAxis]="showXAxis"
-                         [yAxis]="showYAxis"
-                         [legend]="showLegend"
-                         [showXAxisLabel]="showXAxisLabel"
-                         [showYAxisLabel]="showYAxisLabel"
-                         [xAxisLabel]="xAxisLabel"
-                         [yAxisLabel]="yAxisLabel"
-                         >
-</ngx-charts-bar-vertical>
-
-
--->
+<h1>Welcome</h1>
+<div class="col-md-offset-2 col-md-4">
+    <mat-card>
+        <mat-card-header>
+            <div mat-card-avatar><mat-icon>dashboard</mat-icon></div>
+            <mat-card-title>Manage dashboards</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="margin-top-20">
+            <button mat-raised-button color="primary" [routerLink]="['/dashboards/create']">
+                Create dashboard
+            </button>
+            <button mat-raised-button [routerLink]="['/dashboards']">See all</button>
+        </mat-card-content>
+    </mat-card>
+</div>
+<div class="col-md-4">
+    <mat-card>
+        <mat-card-header>
+            <div mat-card-avatar><mat-icon>insert_chart</mat-icon></div>
+            <mat-card-title>Manage reports</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="margin-top-20">
+            <button mat-raised-button color="primary" [routerLink]="['/reports/create']">
+                Create report
+            </button>
+            <button mat-raised-button [routerLink]="['/reports']">See all</button>
+        </mat-card-content>
+    </mat-card>
+</div>

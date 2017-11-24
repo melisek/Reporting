@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map';
 
 import { IReportList, IReport, IReportCreate } from "./report";
 import { IResponseResult, IListFilter, INameValue, IChartDiscreteDataOptions } from "../shared/shared-interfaces";
+import { AuthHttp } from "angular2-jwt";
 
 @Injectable()
 export class ReportService {
@@ -18,7 +19,7 @@ export class ReportService {
     private _deleteUrl = './api/reports/Delete/';
     private _getDiscreteDataUrl = './api/reports/GetDiscreetRiportDiagram';
 
-    constructor(private _http: Http) { }
+    constructor(private _http: AuthHttp) { }
 
     getReports(filter: IListFilter): Observable<IReportList> {
         console.log(filter);

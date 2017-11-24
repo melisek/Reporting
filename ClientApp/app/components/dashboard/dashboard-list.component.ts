@@ -14,6 +14,8 @@ import { DashboardService } from './dashboard.service';
 import { IDashboard } from "./dashboard";
 import { ShareDialogComponent } from '../shared/share-dialog.component';
 import { IResponseResult, IEntityWithIdName, IListFilter } from '../shared/shared-interfaces';
+import { Title } from '@angular/platform-browser';
+import { AuthHttp } from 'angular2-jwt';
 
 
 
@@ -29,9 +31,10 @@ export class DashboardListComponent implements OnInit {
 
     sharePermissions: IEntityWithIdName[];
 
-    constructor(private http: Http,
+    constructor(private http: AuthHttp,
         private dialog: MatDialog,
-        private _snackbar: MatSnackBar) { }
+        private _snackbar: MatSnackBar,
+        private titleService: Title) { }
 
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -39,6 +42,7 @@ export class DashboardListComponent implements OnInit {
 
 
     ngOnInit() {
+        this.titleService.setTitle("Dashboards");
         this.service = new DashboardService(this.http);
         this.dataSource = new DashboardDataSource(this.service!, this.sort, this.paginator);
         Observable.fromEvent(this.filter.nativeElement, 'keydown')
@@ -91,6 +95,11 @@ export class DashboardListComponent implements OnInit {
                 });
             }
         });
+    }
+
+    clearFilter(): void {
+        this.filter.nativeElement.value = '';
+        this.dataSource!.filter = '';
     }
 }
 

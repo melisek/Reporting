@@ -7,6 +7,7 @@ import { ChartModule } from '../chart/chart.module';
 import { ReportListComponent } from './report-list.component';
 import { ReportEditComponent } from './report-edit.component';
 import { ReportService } from './report.service';
+import { AuthGuard } from '../user/auth-guard.service';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ReportService } from './report.service';
         RouterModule.forChild([
             {
                 path: 'reports',
-                component: ReportListComponent
+                component: ReportListComponent,
+                canActivate: [AuthGuard]
             },/*
             {
                 path: ':id',
@@ -24,12 +26,14 @@ import { ReportService } from './report.service';
             {
                 path: 'reports/create',
                 component: ReportEditComponent,
+                canActivate: [AuthGuard]
                 //canDeactivate: [ProductEditGuard],
                 //resolve: { product: ProductResolver },
             },
             {
                 path: 'reports/edit/:reportGUID',
                 component: ReportEditComponent,
+                canActivate: [AuthGuard]
                 //canDeactivate: [ProductEditGuard],
                 //resolve: { product: ProductResolver },
             }

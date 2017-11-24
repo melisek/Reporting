@@ -12,6 +12,9 @@ import { MatSidenavContainer } from '@angular/material'
 import { ReportModule } from './components/report/report.module';
 import { DashboardModule } from './components/dashboard/dashboard.module';
 import { RouterModule } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { UserModule } from './components/user/user.module';
+import { AuthModule } from './components/user/auth.module';
 //import { ReportModule } from './components/report/report.module';
 
 // declarations
@@ -53,11 +56,14 @@ export const SERVER_RENDER_PROVIDERS = [
         RouterModule,
         //AppModuleShared,
         ReportModule,
-        DashboardModule
+        DashboardModule,
+        UserModule,
+        AuthModule
         //AppRoutingModule
     ],
     providers: [
-        SERVER_RENDER_PROVIDERS
+        SERVER_RENDER_PROVIDERS,
+        Title
     ]
 })
 export class AppModule {

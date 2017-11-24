@@ -19,6 +19,8 @@ import { IResponseResult, IEntityWithIdName, IListFilter, IChartDiscreteDataOpti
 import { ReportService } from './report.service';
 import { IQueryColumns, IQuery, IQuerySourceData, IQueryColumn } from '../query/query';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { AuthHttp } from 'angular2-jwt';
 
 
 @Component({
@@ -51,12 +53,13 @@ export class ReportEditComponent implements OnInit {
 
     chartData: any;
 
-    constructor(private http: Http,
+    constructor(private http: AuthHttp,
         private dialog: MatDialog,
         private _snackbar: MatSnackBar,
         private _cdr: ChangeDetectorRef,
         private _router: Router,
-        private _route: ActivatedRoute) { }
+        private _route: ActivatedRoute,
+        private titleService: Title) { }
 
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild('paginator') paginator: MatPaginator;
@@ -86,6 +89,7 @@ export class ReportEditComponent implements OnInit {
                         this.report = report;
                         this.queryChange();
                         this.disableChartTab = false;
+                        this.titleService.setTitle(report.name + " - Edit Report");
                     },
                     err => console.log(err));
 
@@ -117,6 +121,7 @@ export class ReportEditComponent implements OnInit {
                     columnName: "", direction: "asc"
                 }
             };
+            this.titleService.setTitle("Create Report");
         }
         console.log(this.reportGUID);
         

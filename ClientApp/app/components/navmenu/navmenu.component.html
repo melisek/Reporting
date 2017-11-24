@@ -85,22 +85,27 @@
 
 <mat-toolbar color="primary">
 
-    <i class="glyphicon glyphicon-signal logo" aria-hidden="true"></i>
+    <a [routerLink]="['./']">
+        <i class="glyphicon glyphicon-signal logo" aria-hidden="true"></i>
+    </a>
 
-        
-        <!--<button class="app-icon-button" (click)="sidenav.toggle()">
-        menu
-    </button>-->
-        &nbsp;
-        <a [routerLink]="['/reports']">
+
+        <a class="navlink" [routerLink]="['/dashboards']">
+            Dashboards
+        </a>
+        <a class="navlink" [routerLink]="['/reports']">
             Reports
         </a>
 
         <span class="app-toolbar-filler"></span>
 
-        <a [routerLink]="['/reports']">
-            Username
-        </a>
-    
+        <button mat-button *ngIf="_userService.loggedIn()" (click)="logout()">
+            Log out
+        </button>
+
+        <button mat-button *ngIf="!_userService.loggedIn()" [routerLink]="['/user/login']">
+            Log in
+        </button>
+
 </mat-toolbar>
 

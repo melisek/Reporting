@@ -12,6 +12,10 @@ mat-toolbar a {
     font-size: 15px
 }
 
+.navlink {
+    margin-right:30px;
+}
+
 /*li .glyphicon {
     margin-right: 10px;
 }

@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map';
 
 import { IDashboard, IDashboardCreate, IDashboardList } from "./dashboard";
 import { IResponseResult, IListFilter, INameValue, IChartDiscreteDataOptions } from "../shared/shared-interfaces";
+import { AuthHttp } from "angular2-jwt";
 
 @Injectable()
 export class DashboardService {
@@ -19,7 +20,7 @@ export class DashboardService {
     private _getStyleUrl = './api/dashboards/GetStyle';
     private _getDiscreteDataUrl = './api/dashboards/GetDiscreetRiportDiagram';
 
-    constructor(private _http: Http) { }
+    constructor(private _http: AuthHttp) { }
 
     getDashboards(filter: IListFilter): Observable<IDashboardList> {
         console.log(filter);
