@@ -18,13 +18,15 @@ namespace szakdoga.BusinessLogic
         private readonly IReportDashboardRelRepository _reportDashboardRel;
         private readonly QueryManager _queryManager;
         private readonly IConfigurationRoot _cfg;
+        private readonly IUserRepository _userRepository;
 
-        public ReportManager(IReportRepository reportRepository, IReportDashboardRelRepository repDashRel, QueryManager queryman, IConfigurationRoot cfg)
+        public ReportManager(IReportRepository reportRepository, IReportDashboardRelRepository repDashRel, QueryManager queryman, IConfigurationRoot cfg, IUserRepository userRepository)
         {
             _reportRepository = reportRepository;
             _reportDashboardRel = repDashRel;
             _queryManager = queryman;
             _cfg = cfg;
+            _userRepository = userRepository;
         }
 
         public ReportDto GetReportStyle(string reportGUID)

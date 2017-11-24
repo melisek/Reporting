@@ -102,7 +102,7 @@ namespace szakdoga
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, DbInitializer dbInitializer)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, DbInitializer dbInitializer, AppDbContext context)
         {
             app.UseCors("CorsPolicy");
             if (env.IsDevelopment())
@@ -119,6 +119,13 @@ namespace szakdoga
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            //ensuredcreate will not update the tables with modifies!!!
+            //EF_History not inclueded!!!
+            if (context.Database.EnsureCreated() && bool.Parse(_configurationRoot["PoppulateWithDemoData"]) == true)
+            {
+                dbInitializer.Seed();
+            }
+
             app.UseAuthentication();
 
             app.UseStaticFiles();
@@ -133,8 +140,6 @@ namespace szakdoga
                          name: "spa-fallback",
                          defaults: new { controller = "Home", action = "Index" });
                  });
-            //új db-migration elõtt kikapcsolni, mivel futtatásnál már próbál beírni a nem létezõ táblákba
-            //dbInitializer.Seed();
 
             AutoMapper.Mapper.Initialize(cfg =>
             {
