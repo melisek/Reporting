@@ -1,16 +1,19 @@
 <div class="clearfix pull-right margin-top-20">
-    <button [routerLink]="['/reports/create']" mat-raised-button color="primary">New report</button>
+    <button [routerLink]="['/reports/create']" mat-raised-button color="primary">New dashboard</button>
 </div>
 
-<h1>Dashboards</h1>
+<h1><mat-icon>dashboard</mat-icon> Dashboards</h1>
 
 <div class="add-button-fixed">
-    <button [routerLink]="['/reports/create']" mat-fab color="primary" matTooltip="New report" matTooltipPosition="left"><mat-icon class="md-18">add</mat-icon></button>
+    <button [routerLink]="['/reports/create']" mat-fab color="primary" matTooltip="New dashboard" matTooltipPosition="left"><mat-icon>add</mat-icon></button>
 </div>
 
 <div class="clearfix">
     <mat-form-field class="pull-right" floatPlaceholder="never">
-        <input matInput #filter placeholder="Filter reports">
+        <input matInput #filter placeholder="Filter dashboards">
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter()">
+            <mat-icon>close</mat-icon>
+        </button>
     </mat-form-field>
 </div>
 

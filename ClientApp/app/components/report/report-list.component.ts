@@ -14,6 +14,8 @@ import { ReportService } from "./report.service";
 import { IReport } from "./report";
 import { ShareDialogComponent } from '../shared/share-dialog.component';
 import { IResponseResult, IEntityWithIdName, IListFilter } from '../shared/shared-interfaces';
+import { Title } from '@angular/platform-browser';
+import { AuthHttp } from 'angular2-jwt';
 
 
 @Component({
@@ -28,9 +30,10 @@ export class ReportListComponent implements OnInit {
 
     sharePermissions: IEntityWithIdName[];
 
-    constructor(private http: Http,
+    constructor(private http: AuthHttp,
         private dialog: MatDialog,
-        private _snackbar: MatSnackBar) { }
+        private _snackbar: MatSnackBar,
+        private titleService: Title) { }
 
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -38,6 +41,7 @@ export class ReportListComponent implements OnInit {
 
 
     ngOnInit() {
+        this.titleService.setTitle("Reports");
         this.service = new ReportService(this.http);
         this.dataSource = new ExampleDataSource(this.service!, this.sort, this.paginator);
         Observable.fromEvent(this.filter.nativeElement, 'keydown')
@@ -90,6 +94,11 @@ export class ReportListComponent implements OnInit {
                 });
             }
         });
+    }
+
+    clearFilter(): void {
+        this.filter.nativeElement.value = '';
+        this.dataSource!.filter = '';
     }
 }
 

@@ -136,19 +136,19 @@ namespace szakdoga.BusinessLogic
         public object GetAllDashboard(GetAllFilterDto filter)
         {
 
-            IEnumerable<Dashboard> dashboards = dashboards = _dashboardRepository.GetAll()
-                             .Where(x => (String.IsNullOrEmpty(filter.Filter) || x.Name.ToLower().Contains(filter.Filter.ToLower()))).ToList();
-
+            IEnumerable<Dashboard> dashboards = _dashboardRepository.GetAll()
+                .Where(x => !x.Deleted && (String.IsNullOrEmpty(filter.Filter) || x.Name.ToLower().Contains(filter.Filter.ToLower()) || (x.LastModifier != null && x.LastModifier.Name.ToLower().Contains(filter.Filter.ToLower()))
+                             || (x.Author != null && x.Author.Name.ToLower().Contains(filter.Filter.ToLower())))).ToList();
             int count = dashboards.Count();
 
             if (filter.Sort.Direction == Direction.Asc)
                 dashboards = dashboards
-                     .OrderBy(z => typeof(Report).GetProperty(filter.Sort.ColumnName).GetValue(z, null))
+                     .OrderBy(z => typeof(Dashboard).GetProperty(filter.Sort.ColumnName).GetValue(z, null))
                      .Skip(filter.Page > 1 ? (filter.Page - 1) * filter.Rows : 0)
                      .Take(filter.Rows).ToList();
             else
                 dashboards = dashboards
-                 .OrderByDescending(z => typeof(Report).GetProperty(filter.Sort.ColumnName).GetValue(z, null))
+                 .OrderByDescending(z => typeof(Dashboard).GetProperty(filter.Sort.ColumnName).GetValue(z, null))
                  .Skip(filter.Page > 1 ? (filter.Page - 1) * filter.Rows : 0)
                  .Take(filter.Rows).ToList();
 

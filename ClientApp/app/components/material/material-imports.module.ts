@@ -22,7 +22,8 @@ import {
     MatTabsModule,
     MatIconModule,
     MatExpansionModule,
-    MatRadioModule
+    MatRadioModule,
+    MatFormFieldControl
 } from '@angular/material';
 
 import { MATERIAL_COMPATIBILITY_MODE, MAT_PLACEHOLDER_GLOBAL_OPTIONS } from '@angular/material';

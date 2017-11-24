@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map';
 
 import { IResponseResult, IEntityWithIdName } from '../shared/shared-interfaces';
 import { IQueryColumns, IQuery, IQuerySourceDataFilter, IQuerySourceData } from "./query";
+import { AuthHttp } from "angular2-jwt";
 
 @Injectable()
 export class QueryService {
@@ -17,7 +18,7 @@ export class QueryService {
     private _sourceDataUrl = './api/queries/GetQuerySource';
     
 
-    constructor(private _http: Http) { }
+    constructor(private _http: AuthHttp) { }
 
     getQueriesIdName(): Observable<IQuery[]> {
         return this._http.get(this._idNameUrl)

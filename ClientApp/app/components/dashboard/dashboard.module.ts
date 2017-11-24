@@ -4,13 +4,15 @@ import { RouterModule } from '@angular/router';
 import { AppModuleShared } from '../../app.module.shared';
 import { DashboardListComponent } from './dashboard-list.component';
 import { DashboardService } from './dashboard.service';
+import { AuthGuard } from '../user/auth-guard.service';
 
 @NgModule({
     imports: [
         RouterModule.forChild([
             {
                 path: 'dashboards',
-                component: DashboardListComponent
+                component: DashboardListComponent,
+                canActivate: [AuthGuard]
             },
             //{
             //    path: 'reports/create',
