@@ -8,7 +8,7 @@ using szakdoga.Models.Dtos.ReportDtos;
 
 namespace szakdoga.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/reports")]
     public class ReportController : Controller
     {
