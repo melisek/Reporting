@@ -50,9 +50,11 @@ namespace szakdoga.Controllers
                                     .AddSubject(user.UserGUID)
                                     .AddIssuer(_cfg["Tokens:Issuer"])
                                     .AddAudience(_cfg["Tokens:Audience"])
-                                    .AddClaim("reportGUID", "canmodify")
+                                    .AddClaim("EmailAddress", user.EmailAddress)
                                     .AddExpiry(expiryMinutes)
                                     .Build();
+
+                
 
                 //clean expried json
                 DateTime curruntTime = DateTime.Now;

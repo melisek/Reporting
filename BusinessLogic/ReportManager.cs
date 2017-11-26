@@ -9,6 +9,7 @@ using System.Linq;
 using szakdoga.Models;
 using szakdoga.Models.Dtos;
 using szakdoga.Models.Dtos.ReportDtos;
+using szakdoga.Others;
 
 namespace szakdoga.BusinessLogic
 {
@@ -19,30 +20,41 @@ namespace szakdoga.BusinessLogic
         private readonly QueryManager _queryManager;
         private readonly IConfigurationRoot _cfg;
         private readonly IUserRepository _userRepository;
+        private readonly IReportUserRelRepository _userReportRel;
 
-        public ReportManager(IReportRepository reportRepository, IReportDashboardRelRepository repDashRel, QueryManager queryman, IConfigurationRoot cfg, IUserRepository userRepository)
+        public ReportManager(IReportRepository reportRepository, IReportDashboardRelRepository repDashRel, QueryManager queryman, IConfigurationRoot cfg, IUserRepository userRepository, IReportUserRelRepository userReportRel)
         {
             _reportRepository = reportRepository;
             _reportDashboardRel = repDashRel;
             _queryManager = queryman;
             _cfg = cfg;
             _userRepository = userRepository;
+            _userReportRel = userReportRel;
         }
 
-        public ReportDto GetReportStyle(string reportGUID)
+        public ReportDto GetReportStyle(string reportGUID, User user)
         {
             var report = _reportRepository.GetAll().FirstOrDefault(x => x.ReportGUID == reportGUID);
 
             if (report == null)
                 throw new NotFoundException("Invalid reportGUID.");
 
+            var rel = _userReportRel.Get(report.Id, user.Id);
+            if (rel == null || !(rel.AuthoryLayer == (int)ReportUserPermissions.CanModify || rel.AuthoryLayer == (int)ReportUserPermissions.CanWatch))
+                throw new PermissionException("Don't have permission.");
+
             return Mapper.Map<ReportDto>(report);
         }
 
-        public GetReportDto GetReport(string reportGUID)
+        public GetReportDto GetReport(string reportGUID, User user)
         {
             var report = _reportRepository.Get(reportGUID);
             if (report == null) throw new NotFoundException("Query not found.");
+
+            var rel = _userReportRel.Get(report.Id, user.Id);
+            if (rel == null || !(rel.AuthoryLayer == (int)ReportUserPermissions.CanModify || rel.AuthoryLayer == (int)ReportUserPermissions.CanWatch))
+                throw new PermissionException("Don't have permission.");
+
             return new GetReportDto
             {
                 Name = report.Name,
@@ -96,11 +108,15 @@ namespace szakdoga.BusinessLogic
             return result;
         }
 
-        public bool UpdateReport(UpdateReportDto report, string reportGUID)
+        public bool UpdateReport(UpdateReportDto report, string reportGUID, User user)
         {
             var origReport = _reportRepository.Get(reportGUID);
             if (origReport == null)
                 throw new NotFoundException("Invalid reportGUID.");
+
+            var rel = _userReportRel.Get(origReport.Id, user.Id);
+            if (rel == null || rel.AuthoryLayer != (int)ReportUserPermissions.CanModify)
+                throw new PermissionException("Don't have permission.");
 
             origReport.Name = report.Name;
             origReport.ReportGUID = report.ReportGUID;
@@ -114,8 +130,13 @@ namespace szakdoga.BusinessLogic
             return true;
         }
 
-        public bool DeleteReport(string reportGUID)
+        public bool DeleteReport(string reportGUID, User user)
         {
+            var origReport = _reportRepository.Get(reportGUID);
+            var relUser = _userReportRel.Get(origReport.Id, user.Id);
+            if (relUser == null || relUser.AuthoryLayer != (int)ReportUserPermissions.CanModify)
+                throw new PermissionException("Don't have permission.");
+
             foreach (var rel in _reportDashboardRel.GetReportDashboards(_reportRepository.Get(reportGUID).Id))
             {
                 _reportDashboardRel.Remove(rel.Id);
@@ -123,10 +144,16 @@ namespace szakdoga.BusinessLogic
             return _reportRepository.Remove(reportGUID);
         }
 
-        public AllReportDto GetAllReport(GetAllFilterDto filter)
+        public AllReportDto GetAllReport(GetAllFilterDto filter, User user)
         {
+            IEnumerable<int> rels = _userReportRel.GetAll().Where(x => x.User == user).Select(y => y.Report.Id).ToList();
+
             IEnumerable<Report> reports = _reportRepository.GetAll()
-                             .Where(x => !x.Deleted && (String.IsNullOrEmpty(filter.Filter) || x.Name.ToLower().Contains(filter.Filter.ToLower()) || (x.LastModifier != null && x.LastModifier.Name.ToLower().Contains(filter.Filter.ToLower()))
+                             .Where(x => !x.Deleted
+                             && rels.Contains(x.Id)
+                             && (String.IsNullOrEmpty(filter.Filter)
+                             || x.Name.ToLower().Contains(filter.Filter.ToLower())
+                             || (x.LastModifier != null && x.LastModifier.Name.ToLower().Contains(filter.Filter.ToLower()))
                              || (x.Author != null && x.Author.Name.ToLower().Contains(filter.Filter.ToLower()))
                              || x.Query.Name.ToLower().Contains(filter.Filter.ToLower()))).ToList();
 
@@ -152,9 +179,13 @@ namespace szakdoga.BusinessLogic
             };
         }
 
-        public object GetQuerySource(ReportSourceFilterDto filter)
+        public object GetQuerySource(ReportSourceFilterDto filter, User user)
         {
             var report = _reportRepository.Get(filter.ReportGUID);
+            var relUser = _userReportRel.Get(report.Id, user.Id);
+            if (relUser == null || relUser.AuthoryLayer != (int)ReportUserPermissions.CanModify)
+                throw new PermissionException("Don't have permission.");
+
             return _queryManager.GetQuerySource(
                 new Models.Dtos.QueryDtos.QuerySourceFilterDto
                 {

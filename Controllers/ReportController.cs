@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Linq;
 using szakdoga.BusinessLogic;
+using szakdoga.Models;
 using szakdoga.Models.Dtos;
 using szakdoga.Models.Dtos.ReportDtos;
 
@@ -14,11 +16,13 @@ namespace szakdoga.Controllers
     {
         private readonly ReportManager _manager;
         private readonly ILogger<ReportController> _logger;
+        private readonly IUserRepository _userRep;
 
-        public ReportController(ReportManager manager, ILogger<ReportController> logger)
+        public ReportController(ReportManager manager, ILogger<ReportController> logger, IUserRepository userrep)
         {
             _manager = manager;
             _logger = logger;
+            _userRep = userrep;
         }
         [HttpGet("Get/{reportGUID}")]
         public IActionResult Get(string reportGUID)
@@ -26,7 +30,8 @@ namespace szakdoga.Controllers
             try
             {
                 if (string.IsNullOrEmpty(reportGUID)) throw new BasicException("Empty GUID!");
-                var report = _manager.GetReport(reportGUID);
+                User user = _userRep.GetByEmailAdd(this.User.Claims.SingleOrDefault(x => x.Type == "EmailAddress").Value);
+                var report = _manager.GetReport(reportGUID, user);
                 return Ok(report);
             }
             catch (BasicException ex)
@@ -52,7 +57,8 @@ namespace szakdoga.Controllers
             try
             {
                 if (string.IsNullOrEmpty(reportGUID)) throw new BasicException("Empty GUID!");
-                var report = _manager.GetReportStyle(reportGUID);
+                User user = _userRep.GetByEmailAdd(this.User.Claims.SingleOrDefault(x => x.Type == "EmailAddress").Value);
+                var report = _manager.GetReportStyle(reportGUID, user);
 
                 return Ok(report);
             }
@@ -108,8 +114,9 @@ namespace szakdoga.Controllers
             {
                 if (report == null) throw new BasicException("Invalid input format!");
                 if (!ModelState.IsValid) return BadRequest(ModelState);
+                User user = _userRep.GetByEmailAdd(this.User.Claims.SingleOrDefault(x => x.Type == "EmailAddress").Value);
 
-                _manager.UpdateReport(report, reportGUID);
+                _manager.UpdateReport(report, reportGUID, user);
                 return NoContent();
             }
             catch (BasicException ex)
@@ -135,8 +142,8 @@ namespace szakdoga.Controllers
             try
             {
                 if (string.IsNullOrEmpty(reportGUID)) throw new BasicException("Empty GUID!");
-
-                _manager.DeleteReport(reportGUID);
+                User user = _userRep.GetByEmailAdd(this.User.Claims.SingleOrDefault(x => x.Type == "EmailAddress").Value);
+                _manager.DeleteReport(reportGUID, user);
                 return NoContent();
             }
             catch (BasicException ex)
@@ -163,8 +170,8 @@ namespace szakdoga.Controllers
             {
                 if (filter == null) throw new BasicException("Wrong structure!");
                 if (!ModelState.IsValid) BadRequest(ModelState);
-
-                return Ok(_manager.GetAllReport(filter));
+                User user = _userRep.GetByEmailAdd(this.User.Claims.SingleOrDefault(x => x.Type == "EmailAddress").Value);
+                return Ok(_manager.GetAllReport(filter, user));
             }
             catch (BasicException ex)
             {
@@ -190,8 +197,8 @@ namespace szakdoga.Controllers
             {
                 if (filter == null) throw new BasicException("Wrong structure!");
                 if (!ModelState.IsValid) BadRequest(ModelState);
-
-                return Ok(_manager.GetQuerySource(filter));
+                User user = _userRep.GetByEmailAdd(this.User.Claims.SingleOrDefault(x => x.Type == "EmailAddress").Value);
+                return Ok(_manager.GetQuerySource(filter, user));
             }
             catch (BasicException ex)
             {

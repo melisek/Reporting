@@ -35,6 +35,7 @@ namespace szakdoga.Data
             modelBuilder.Entity<Query>().HasAlternateKey(x => x.QueryGUID).HasName("AlternateKey_Query_GUID");
             modelBuilder.Entity<Report>().HasAlternateKey(x => x.ReportGUID).HasName("AlternateKey_Report_GUID");
             modelBuilder.Entity<User>().HasAlternateKey(x => x.UserGUID).HasName("AlternateKey_User_GUID");
+            modelBuilder.Entity<User>().HasAlternateKey(x => x.EmailAddress).HasName("AlternateKey_User_EmailAddress");
         }
 
         public DbSet<Dashboard> Dashboards { get; set; }

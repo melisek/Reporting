@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using szakdoga.BusinessLogic;
@@ -6,6 +7,7 @@ using szakdoga.Models.Dtos.RelDtos.RepUserDtos;
 
 namespace szakdoga.Controllers
 {
+    [Authorize]
     [Route("api/reportuserrels")]
     public class ReportUserRelController : Controller
     {

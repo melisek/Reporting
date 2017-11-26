@@ -35,7 +35,7 @@ namespace szakdoga.Models.Repositories
 
         public IEnumerable<UserDashboardRel> GetAll()
         {
-            return _context.UserDashboardRel.ToList();
+            return _context.UserDashboardRel.Include(x => x.User).Include(y => y.Dashboard).ToList();
         }
 
         public IEnumerable<UserDashboardRel> GetDashboardUsers(int dashboardID)

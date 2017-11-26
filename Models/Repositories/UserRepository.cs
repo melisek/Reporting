@@ -37,6 +37,11 @@ namespace szakdoga.Models.Repositories
             return _context.User.ToList();
         }
 
+        public User GetByEmailAdd(string emailAdd)
+        {
+            return _context.User.SingleOrDefault(x => x.EmailAddress.Equals(emailAdd));
+        }
+
         public bool Remove(int id)
         {
             var entity = Get(id);

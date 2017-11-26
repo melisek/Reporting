@@ -1,24 +1,29 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using szakdoga.BusinessLogic;
+using szakdoga.Models;
 using szakdoga.Models.Dtos;
 using szakdoga.Models.Dtos.DashboardDtos;
 
 namespace szakdoga.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/dashboards")]
     public class DashboardController : Controller
     {
         private readonly DashboardManager _manager;
         private readonly ILogger<DashboardController> _logger;
+        private readonly IUserRepository _userRep;
 
-        public DashboardController(DashboardManager manager, ILogger<DashboardController> logger)
+        public DashboardController(DashboardManager manager, ILogger<DashboardController> logger, IUserRepository userrep)
         {
             _manager = manager;
             _logger = logger;
+            _userRep = userrep;
         }
 
         [HttpGet("GetStyle/{dashboardGUID}")]
@@ -27,8 +32,9 @@ namespace szakdoga.Controllers
             try
             {
                 if (string.IsNullOrEmpty(dashboardGUID)) throw new BasicException("Empty GUID!");
+                User user = _userRep.GetByEmailAdd(this.User.Claims.SingleOrDefault(x => x.Type == "EmailAddress").Value);
 
-                var dashboardDto = _manager.GetDashBoardStyle(dashboardGUID);
+                var dashboardDto = _manager.GetDashBoardStyle(dashboardGUID, user);
                 return Ok(dashboardDto);
             }
             catch (BasicException ex)
@@ -55,8 +61,8 @@ namespace szakdoga.Controllers
             {
                 if (dbDto == null) throw new BasicException("Invalid Dto");
                 if (!ModelState.IsValid) return BadRequest(ModelState);
-
-                var guid = _manager.CreateDashboard(dbDto);
+                User user = _userRep.GetByEmailAdd(this.User.Claims.SingleOrDefault(x => x.Type == "EmailAddress").Value);
+                var guid = _manager.CreateDashboard(dbDto, user);
                 return Created(string.Empty, guid);
             }
             catch (BasicException ex)
@@ -83,8 +89,8 @@ namespace szakdoga.Controllers
             {
                 if (dashboard == null) throw new BasicException("Invalid Dto");
                 if (!ModelState.IsValid) return BadRequest(ModelState);
-
-                _manager.UpdateDashboard(dashboard, dashboardGUID);
+                User user = _userRep.GetByEmailAdd(this.User.Claims.SingleOrDefault(x => x.Type == "EmailAddress").Value);
+                _manager.UpdateDashboard(dashboard, dashboardGUID, user);
                 return NoContent();
             }
             catch (BasicException ex)
@@ -110,8 +116,8 @@ namespace szakdoga.Controllers
             try
             {
                 if (string.IsNullOrEmpty(dashboardGUID)) throw new BasicException("Empty GUID!");
-
-                _manager.DeleteDashboard(dashboardGUID);
+                User user = _userRep.GetByEmailAdd(this.User.Claims.SingleOrDefault(x => x.Type == "EmailAddress").Value);
+                _manager.DeleteDashboard(dashboardGUID, user);
                 return NoContent();
             }
             catch (BasicException ex)
@@ -137,8 +143,8 @@ namespace szakdoga.Controllers
             try
             {
                 if (string.IsNullOrEmpty(dashboardGUID)) throw new BasicException("Empty GUID");
-
-                IEnumerable<ReportDto> repots = _manager.GetReportNames(dashboardGUID);
+                User user = _userRep.GetByEmailAdd(this.User.Claims.SingleOrDefault(x => x.Type == "EmailAddress").Value);
+                IEnumerable<ReportDto> repots = _manager.GetReportNames(dashboardGUID, user);
                 return Ok(repots);
             }
             catch (BasicException ex)
@@ -164,8 +170,8 @@ namespace szakdoga.Controllers
             try
             {
                 if (string.IsNullOrEmpty(dashboardGUID)) throw new BasicException("Empty GUID");
-
-                var reports = _manager.GetDashboardReports(dashboardGUID);
+                User user = _userRep.GetByEmailAdd(this.User.Claims.SingleOrDefault(x => x.Type == "EmailAddress").Value);
+                var reports = _manager.GetDashboardReports(dashboardGUID, user);
                 return Ok(reports);
             }
             catch (BasicException ex)
@@ -221,8 +227,8 @@ namespace szakdoga.Controllers
             {
                 if (filter == null) throw new BasicException("Wrong structure!");
                 if (!ModelState.IsValid) BadRequest(ModelState);
-
-                return Ok(_manager.GetAllDashboard(filter));
+                User user = _userRep.GetByEmailAdd(this.User.Claims.SingleOrDefault(x => x.Type == "EmailAddress").Value);
+                return Ok(_manager.GetAllDashboard(filter, user));
             }
             catch (BasicException ex)
             {

@@ -6,6 +6,7 @@ using szakdoga.Models;
 using szakdoga.Models.Dtos;
 using szakdoga.Models.Dtos.DashboardDtos;
 using szakdoga.Models.Dtos.ReportDtos;
+using szakdoga.Others;
 
 namespace szakdoga.BusinessLogic
 {
@@ -14,24 +15,31 @@ namespace szakdoga.BusinessLogic
         private readonly IDashboardRepository _dashboardRepository;
         private readonly IReportDashboardRelRepository _reportDashboardRel;
         private readonly IReportRepository _reportRepository;
+        private readonly IUserDashboardRelRepository _userDashRelRepository;
 
-        public DashboardManager(IDashboardRepository dashboardRepository, IReportDashboardRelRepository repDashRel, IReportRepository reportRepository)
+        public DashboardManager(IDashboardRepository dashboardRepository, IReportDashboardRelRepository repDashRel, IReportRepository reportRepository, IUserDashboardRelRepository userDashRelRepository)
         {
             _dashboardRepository = dashboardRepository;
             _reportDashboardRel = repDashRel;
             _reportRepository = reportRepository;
+            _userDashRelRepository = userDashRelRepository;
         }
 
-        public DashboardDto GetDashBoardStyle(string dashboardGUID)
+        public DashboardDto GetDashBoardStyle(string dashboardGUID, User user)
         {
             var db = _dashboardRepository.Get(dashboardGUID);
             if (db == null)
                 return null;
             else
+            {
+                var rel = _userDashRelRepository.Get(db.Id, user.Id);
+                if (rel == null || !(rel.AuthoryLayer == (int)DashboardUserPermissions.CanModify || rel.AuthoryLayer == (int)DashboardUserPermissions.CanWatch))
+                    throw new PermissionException("Don't have permission.");
                 return Mapper.Map<DashboardDto>(db);
+            }
         }
 
-        public string CreateDashboard(CreateDashboardDto dbDto)
+        public string CreateDashboard(CreateDashboardDto dbDto, User user)
         {
             Dashboard dashEnt = new Dashboard
             {
@@ -39,6 +47,7 @@ namespace szakdoga.BusinessLogic
                 Name = dbDto.Name
             };
             _dashboardRepository.Add(dashEnt);//add után már benne van a Id érték
+            _userDashRelRepository.Add(new UserDashboardRel { User = user, AuthoryLayer = (int)DashboardUserPermissions.CanModify, Dashboard = dashEnt });
 
             foreach (var rel in dbDto.Reports)
             {
@@ -50,11 +59,17 @@ namespace szakdoga.BusinessLogic
             return dashEnt.DashBoardGUID;
         }
 
-        public bool UpdateDashboard(UpdateDashboardDto dashboard, string dashboardGUID)
+        public bool UpdateDashboard(UpdateDashboardDto dashboard, string dashboardGUID, User user)
         {
             var origDashboard = _dashboardRepository.Get(dashboardGUID);
             if (origDashboard == null)
                 throw new NotFoundException("Invalid dashboardGUID");
+
+            var perrel = _userDashRelRepository.Get(origDashboard.Id, user.Id);
+            if (perrel == null || perrel.AuthoryLayer != (int)DashboardUserPermissions.CanModify)
+                throw new PermissionException("Don't have permission.");
+
+
             var dashboardEntity = new Dashboard
             {
                 Name = dashboard.Name,
@@ -78,20 +93,32 @@ namespace szakdoga.BusinessLogic
             return true;
         }
 
-        public bool DeleteDashboard(string dashboardGUID)
+        public bool DeleteDashboard(string dashboardGUID, User user)
         {
-            foreach (var rel in _reportDashboardRel.GetDashboardReports(_dashboardRepository.Get(dashboardGUID).Id))
+            var db = _dashboardRepository.Get(dashboardGUID);
+            if (db == null)
+                throw new NotFoundException("Invalid dashboardGUID");
+
+            var perrel = _userDashRelRepository.Get(db.Id, user.Id);
+            if (perrel == null || perrel.AuthoryLayer != (int)DashboardUserPermissions.CanModify)
+                throw new PermissionException("Don't have permission.");
+
+            foreach (var rel in _reportDashboardRel.GetDashboardReports(db.Id))
             {
                 _reportDashboardRel.Remove(rel.Id);
             }
             return _dashboardRepository.Remove(dashboardGUID);
         }
 
-        public IEnumerable<ReportDto> GetReportNames(string dashboardGUID)
+        public IEnumerable<ReportDto> GetReportNames(string dashboardGUID, User user)
         {
             var dash = _dashboardRepository.Get(dashboardGUID);
             if (dash == null)
                 throw new NotFoundException("Invalid dashboardGUID");
+
+            var perrel = _userDashRelRepository.Get(dash.Id, user.Id);
+            if (perrel == null || !(perrel.AuthoryLayer == (int)DashboardUserPermissions.CanModify || perrel.AuthoryLayer == (int)DashboardUserPermissions.CanWatch))
+                throw new PermissionException("Don't have permission.");
 
             return Mapper.Map<IEnumerable<ReportDto>>(
                 _reportDashboardRel.GetDashboardReports(dash.Id).
@@ -109,11 +136,15 @@ namespace szakdoga.BusinessLogic
             return rels.FirstOrDefault().Position;
         }
 
-        public DashboardReportDto GetDashboardReports(string dashboardGUID)
+        public DashboardReportDto GetDashboardReports(string dashboardGUID, User user)
         {
             var dash = _dashboardRepository.Get(dashboardGUID);
             if (dash == null)
                 throw new NotFoundException("Invalid dashboardGUID");
+
+            var perrel = _userDashRelRepository.Get(dash.Id, user.Id);
+            if (perrel == null || !(perrel.AuthoryLayer == (int)DashboardUserPermissions.CanModify || perrel.AuthoryLayer == (int)DashboardUserPermissions.CanWatch))
+                throw new PermissionException("Don't have permission.");
 
             var rels = _reportDashboardRel.GetDashboardReports(dash.Id);
 
@@ -133,12 +164,17 @@ namespace szakdoga.BusinessLogic
             return dashboardReportDto;
         }
 
-        public object GetAllDashboard(GetAllFilterDto filter)
+        public object GetAllDashboard(GetAllFilterDto filter, User user)
         {
+            IEnumerable<int> rels = _userDashRelRepository.GetAll().Where(x => x.User == user).Select(y => y.Dashboard.Id).ToList();
 
             IEnumerable<Dashboard> dashboards = _dashboardRepository.GetAll()
-                .Where(x => !x.Deleted && (String.IsNullOrEmpty(filter.Filter) || x.Name.ToLower().Contains(filter.Filter.ToLower()) || (x.LastModifier != null && x.LastModifier.Name.ToLower().Contains(filter.Filter.ToLower()))
-                             || (x.Author != null && x.Author.Name.ToLower().Contains(filter.Filter.ToLower())))).ToList();
+                .Where(x => !x.Deleted &&
+                            rels.Contains(x.Id)
+                            && (String.IsNullOrEmpty(filter.Filter)
+                            || x.Name.ToLower().Contains(filter.Filter.ToLower())
+                            || (x.LastModifier != null && x.LastModifier.Name.ToLower().Contains(filter.Filter.ToLower()))
+                            || (x.Author != null && x.Author.Name.ToLower().Contains(filter.Filter.ToLower())))).ToList();
             int count = dashboards.Count();
 
             if (filter.Sort.Direction == Direction.Asc)

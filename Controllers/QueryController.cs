@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -6,6 +7,7 @@ using szakdoga.Models.Dtos.QueryDtos;
 
 namespace szakdoga.Controllers
 {
+    [Authorize]
     [Route("api/queries")]
     public class QueryController : Controller
     {

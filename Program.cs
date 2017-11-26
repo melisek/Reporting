@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Logging;
 using NLog.Web;
+using System;
 
 namespace szakdoga
 {
@@ -30,7 +27,7 @@ namespace szakdoga
         public static IWebHost BuildWebHost(string[] args) =>
      WebHost.CreateDefaultBuilder(args)
          .UseStartup<Startup>()
-         .UseNLog() // NLog: setup NLog for Dependency injection
+         .UseNLog() // NLog: setup NLog for Dependency Injection
          .Build();
     }
 }
