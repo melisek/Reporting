@@ -13,7 +13,6 @@ using szakdoga.Others;
 
 namespace szakdoga.Controllers
 {
-    [AllowAnonymous]
     [Route("api/auth")]
     public class AuthController : Controller
     {
@@ -30,7 +29,7 @@ namespace szakdoga.Controllers
             _cfg = cfg;
             _logger = logger;
         }
-
+        [AllowAnonymous]
         [HttpPost("login")]
         public IActionResult Login([FromBody]CredentialDto credDto)
         {
@@ -54,7 +53,7 @@ namespace szakdoga.Controllers
                                     .AddExpiry(expiryMinutes)
                                     .Build();
 
-                
+
 
                 //clean expried json
                 DateTime curruntTime = DateTime.Now;
@@ -86,7 +85,7 @@ namespace szakdoga.Controllers
             }
 
         }
-
+        [AllowAnonymous]
         [HttpPost("register")]
         public IActionResult Register([FromBody]RegisterDto register)
         {
@@ -127,6 +126,31 @@ namespace szakdoga.Controllers
             }
 
 
+        }
+        [Authorize]
+        [HttpGet("GetUserName")]
+        public IActionResult GetUserName()
+        {
+            try
+            {
+                User user = _userRepository.GetByEmailAdd(this.User.Claims.SingleOrDefault(x => x.Type == "EmailAddress").Value);
+                return Ok(user.Name);
+            }
+            catch (BasicException ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogError(ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest();
+            }
         }
         private string CalculateHash(string clearTextPassword)
         {

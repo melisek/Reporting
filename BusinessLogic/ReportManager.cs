@@ -125,6 +125,7 @@ namespace szakdoga.BusinessLogic
             origReport.Filter = report.Filter;
             origReport.Sort = JsonConvert.SerializeObject(report.Sort, Formatting.None);
             origReport.Rows = report.Rows;
+            origReport.LastModifier = user;
 
             _reportRepository.Update(origReport);
             return true;

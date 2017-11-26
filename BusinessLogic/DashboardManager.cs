@@ -70,13 +70,10 @@ namespace szakdoga.BusinessLogic
                 throw new PermissionException("Don't have permission.");
 
 
-            var dashboardEntity = new Dashboard
-            {
-                Name = dashboard.Name,
-                DashBoardGUID = dashboard.DashboardGUID,
-            };
+            origDashboard.Name = dashboard.Name;
+            origDashboard.LastModifier = user;
 
-            _dashboardRepository.Update(dashboardEntity);
+            _dashboardRepository.Update(origDashboard);
 
             foreach (var rel in _reportDashboardRel.GetDashboardReports(origDashboard.Id))
             {

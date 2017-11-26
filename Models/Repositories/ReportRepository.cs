@@ -61,8 +61,8 @@ namespace szakdoga.Models.Repositories
                 origReport.Query = entity.Query;
                 origReport.Sort = entity.Sort;
                 origReport.Rows = entity.Rows;
-                //origReport.Style = origReport.Style;--külön szerkesztjük--patch kéne rá és külön fv?!
                 origReport.ModifyDate = System.DateTime.Now;
+                origReport.LastModifier = entity.LastModifier;
 
                 _context.Report.Update(origReport);
                 _context.SaveChanges();

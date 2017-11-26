@@ -63,6 +63,7 @@ namespace szakdoga.Models.Repositories
                 var origDash = Get(entity.DashBoardGUID);
                 origDash.Name = entity.Name;
                 origDash.ModifyDate = System.DateTime.Now;
+                origDash.LastModifier = entity.LastModifier;
 
                 _context.Dashboards.Update(origDash);
                 _context.SaveChanges();
