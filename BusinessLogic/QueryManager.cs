@@ -102,6 +102,32 @@ namespace szakdoga.BusinessLogic
             return sb.ToString();
         }
 
+        public DataTable GetQuerySourceInDatatable(QuerySourceFilterDto filter, out string columnNames)
+        {
+            var query = _queryRepository.Get(filter.QueryGUID);
+
+            if (query == null)
+                throw new NotFoundException("Invalid QueryGUID.");
+
+            var AllColumns = GetAllColumns(filter.QueryGUID);
+
+            DataTable data = new DataTable();
+            string sourceConn = _cfg.GetConnectionString("DefaultConnection");
+            using (SqlConnection conn = new SqlConnection(sourceConn))
+            {
+                SqlCommand cmd = new SqlCommand(GetCommandText(AllColumns, filter, query.ResultTableName), conn);
+                conn.Open();
+                data.Load(cmd.ExecuteReader());
+            }
+            columnNames = String.Empty;
+            foreach (Column col in AllColumns.Columns.Where(x=>filter.Columns.Contains(x.Name)).ToList())
+            {
+                if (String.IsNullOrEmpty(columnNames)) columnNames += col.Text;
+                else columnNames += ";"+col.Text;
+            }
+            return data;
+        }
+
         public QueryColumnCountDto GetQueryColumnCount(string queryGUID)
         {
             var AllColumns = GetAllColumns(queryGUID);
@@ -137,7 +163,10 @@ namespace szakdoga.BusinessLogic
             if (filter.Page > 1)
                 skip += $" {allColumns.PrimeryKeyColumn} not in (select top {filter.Rows * (filter.Page - 1)} {allColumns.PrimeryKeyColumn} from {table} ) and ";
 
-            string cmd = $"select top {filter.Rows} {columns} from {table}  where {skip} ({where}) order by {order_by}";
+            string top = String.Empty;
+            if (filter.Rows > 0)
+                top = $"top { filter.Rows}";
+            string cmd = $"select {top} {columns} from {table}  where {skip} ({where}) order by {order_by}";
             return cmd;
         }
 

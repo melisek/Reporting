@@ -299,6 +299,16 @@ namespace szakdoga.Controllers
             }
 
         }
+        [HttpGet("Import/{reportGUID}")]
+        public FileResult Import(string reportGUID)
+        {
+            string fileName =String.Empty;
+            User user = _userRep.GetByEmailAdd(this.User.Claims.SingleOrDefault(x => x.Type == "EmailAddress").Value);
+            byte[] fileBytes = _manager.GetReportExportFile(reportGUID, null,out fileName);
+            fileName = $"{fileName}.csv";
+            return File(fileBytes, "text/csv", fileName);
+
+        }
 
     }
 }

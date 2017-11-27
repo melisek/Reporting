@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using szakdoga.Models;
 using szakdoga.Models.Dtos;
 using szakdoga.Models.Dtos.ReportDtos;
@@ -280,6 +281,38 @@ namespace szakdoga.BusinessLogic
                 Series = values.ToArray()
             });
             return result.ToArray();
+        }
+        public byte[] GetReportExportFile(string reportGUID, User user, out string fileName)
+        {
+            var report = _reportRepository.Get(reportGUID);
+            if (report == null)
+                throw new NotFoundException("Invalid GUID");
+
+            var relUser = _userReportRel.Get(report.Id, user.Id);
+            if (relUser == null || relUser.AuthoryLayer != (int)ReportUserPermissions.CanModify)
+                throw new PermissionException("Don't have permission.");
+
+            fileName = report.Name;
+            string columnNames;
+            DataTable data = _queryManager.GetQuerySourceInDatatable(
+                new Models.Dtos.QueryDtos.QuerySourceFilterDto
+                {
+                    QueryGUID = report.Query.QueryGUID,
+                    Columns = report.Columns.Split(':'),
+                    Filter = report.Filter,
+                    Sort = JsonConvert.DeserializeObject<SortDto>(report.Sort)
+                }, out columnNames);
+
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine(columnNames);
+
+            foreach (DataRow row in data.Rows)
+            {
+                IEnumerable<string> fields = row.ItemArray.Select(field => field.ToString());
+                sb.AppendLine(string.Join(";", fields));
+            }
+            return Encoding.UTF32.GetBytes(sb.ToString());
         }
     }
 }
