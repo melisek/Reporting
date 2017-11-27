@@ -25,9 +25,13 @@ export class ChartEditComponent implements AfterViewInit {
     @Input()
     set chartData(chartData: any) {
         this._chartData = chartData;
-
-        if (this._chartData && this.selectedChartType != null)
-            this.loadComponent();
+        console.log('chartdataset.start');
+        if (this._chartData)//&& this.selectedChartType != null) {
+        //this.loadComponent();
+        {
+            console.log('chartdataset.if');
+            this.chartTypeChange();
+        }
     }
     private _queryColumns: IQueryColumns;
     @Input() 
@@ -55,7 +59,7 @@ export class ChartEditComponent implements AfterViewInit {
     }
 
     chartTypes: INameValue[];
-    selectedChartType: number;
+    selectedChartType: number = 0;
 
     discreteDataOptions: IChartDiscreteDataOptions;
     aggregationTypes: INameValue[];
@@ -79,8 +83,8 @@ export class ChartEditComponent implements AfterViewInit {
 
         this.discreteDataOptions = {
             reportGUID: "",
-            nameColumn: "Table_95_Field_67",
-            valueColumn: "Table_95_Field_45",
+            nameColumn: "",
+            valueColumn: "",
             aggregation: 0
         };
         //this.chartItem = this.chartService.getChart(this.selectedChartType);
@@ -105,15 +109,17 @@ export class ChartEditComponent implements AfterViewInit {
     }
 
     initChartOptions(reportGUID: string): Observable<IChartDiscreteDataOptions> {
-
+        console.log('reportguid:chart-edit' + reportGUID);
         return this.chartService.getChartOptions(reportGUID).map(data => {
             let style = JSON.parse(data.style);
             if (style != null) {
                 console.log('style' + style.chartType);
                 this.selectedChartType = style.chartType;
                 this.discreteDataOptions = style.dataOptions;
+                this.discreteDataOptions.reportGUID = reportGUID;
                 this.chartItem = this.chartService.getChart(this.selectedChartType);
                 this.chartItem.options = style.displayOptions;
+                
             }
             
             //this.chartDataOptionChange();
@@ -124,9 +130,11 @@ export class ChartEditComponent implements AfterViewInit {
     }
 
     chartTypeChange(): void {
-        if (this.chartService != null) {
+        console.log('charttypechange.start');
+        if (this.chartService != null && this.discreteDataOptions.nameColumn != '' &&
+            this.discreteDataOptions.valueColumn != '' && this._chartData /*&& this.selectedChartType != null*/) {
             this.chartItem = this.chartService.getChart(this.selectedChartType);
-            
+            console.log('charttypechange.if');
             this.stringOptions = this.chartItem.options.filter(x => x.type === "string");
             
             this.boolOptions = this.chartItem.options.filter(x => x.type === "boolean");
@@ -135,8 +143,26 @@ export class ChartEditComponent implements AfterViewInit {
     }
 
     chartDataOptionChange() {
-        this.chartDataOptionsChange.emit(this.discreteDataOptions);
-        this.loadComponent();
+
+        console.log('chartdataoptionchange.start');
+        if (this.discreteDataOptions.nameColumn != '' &&
+            this.discreteDataOptions.valueColumn != '' &&
+            this.selectedChartType != null
+        ) {
+            console.log('chartdataoptionchange.emit');
+            this.chartDataOptionsChange.emit(this.discreteDataOptions);
+            
+            if (this.chartItem != null) {
+                console.log('chartdataoptionchange.if');
+                this.loadComponent();
+            }
+
+            else {
+                console.log('chartdataoptionchange.else');
+                this.chartTypeChange();
+            }
+                
+        }
     }
 
     loadComponent() {

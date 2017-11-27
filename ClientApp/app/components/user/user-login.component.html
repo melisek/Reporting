@@ -8,6 +8,9 @@
 
                 <mat-card-content class="margin-top-20">
                     <form [formGroup]="loginform">
+                        <mat-error *ngIf="loginError">
+                            <p>Entered email or password is incorrect.</p>
+                        </mat-error>
                         <div>
                             <mat-form-field class="margin-bottom-20">
                                 <input matInput placeholder="Email" formControlName="email" [formGroup]="loginform">
@@ -27,7 +30,7 @@
                                 </mat-error>
                             </mat-form-field>
                         </div>
-                        <button type="submit" mat-raised-button color="primary" (click)="onLoginClick()">Login</button>
+                        <button type="submit" mat-raised-button color="primary" [disabled]="loginFormHasErrors()" (click)="onLoginClick()">Login</button>
                     </form>
                 </mat-card-content>
             </mat-tab>
@@ -38,6 +41,18 @@
 
                 <mat-card-content>
                     <form [formGroup]="registerform">
+                        <mat-error *ngIf="registerError">
+                            <p>Registration was not successful.</p>
+                        </mat-error>
+                        <div>
+                            <mat-form-field class="margin-top-20">
+                                <input matInput placeholder="Name" formControlName="name" [formGroup]="registerform">
+                                <mat-error *ngIf="registerform.controls.name.hasError('required')">
+                                    Name is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
                         <div>
                             <mat-form-field class="margin-top-20">
                                 <input matInput placeholder="Email" formControlName="email" [formGroup]="registerform">
@@ -65,12 +80,12 @@
                                 <mat-error *ngIf="registerform.controls.confirmPassword.hasError('required')">
                                     Password is <strong>required</strong>
                                 </mat-error>
-                                <mat-error *ngIf="registerform.controls.confirmPassword.errors?.MutchPassword">
+                                <mat-error *ngIf="registerform.controls.confirmPassword.errors?.MatchPassword">
                                     Passwords must match
                                 </mat-error>
                             </mat-form-field>
                         </div>
-                        <button type="submit" mat-raised-button color="primary">Register</button>
+                        <button type="submit" mat-raised-button [disabled]="registerFormHasErrors()" color="primary" (click)="onRegisterClick()" class="margin-top-20">Register</button>
                     </form>
                 </mat-card-content>
             </mat-tab>

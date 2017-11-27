@@ -58,7 +58,7 @@ export const SERVER_RENDER_PROVIDERS = [
         ReportModule,
         DashboardModule,
         UserModule,
-        AuthModule
+        //AuthModule
         //AppRoutingModule
     ],
     providers: [

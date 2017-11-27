@@ -40,8 +40,8 @@ export class ReportEditComponent implements OnInit {
     /** Column definitions in order */
     displayedColumns = this.columnNames.map(x => x.columnDef);
     //displayedColumns = ['id', 'name', 'query', 'createdBy', 'createdAt', 'modifiedBy', 'modifiedAt', 'actions'];
-    queryService: QueryService | null;
-    reportService: ReportService | null;
+    //queryService: QueryService | null;
+    //reportService: ReportService | null;
     dataSource: QueryDataSource | null;
     selectedValue: string;
     showDataTable: boolean;
@@ -53,7 +53,9 @@ export class ReportEditComponent implements OnInit {
 
     chartData: any;
 
-    constructor(private http: AuthHttp,
+    constructor(//private http: AuthHttp,
+        private reportService: ReportService,
+        private queryService: QueryService,
         private dialog: MatDialog,
         private _snackbar: MatSnackBar,
         private _cdr: ChangeDetectorRef,
@@ -70,7 +72,7 @@ export class ReportEditComponent implements OnInit {
 
 
     ngOnInit() {
-        this.reportService = new ReportService(this.http);
+        //this.reportService = new ReportService(this.http);
         this.report = {
             name: "",
             queryGUID: "",
@@ -82,6 +84,7 @@ export class ReportEditComponent implements OnInit {
             }
         };
         this.reportGUID = this._route.snapshot.paramMap.get('reportGUID');
+        console.log('reportguid:' + this.reportGUID);
         if (this.reportGUID != null) {
             if (this.reportService != null) {
                 this.reportService.getReport(this.reportGUID)
@@ -94,17 +97,20 @@ export class ReportEditComponent implements OnInit {
                     err => console.log(err));
 
                 this.chartComponent.initChartOptions(this.reportGUID).subscribe(result => {
-                    /*let discreteDataOptions: IChartDiscreteDataOptions = {
-                        reportGUID: this.reportGUID,
-                        nameColumn: "Table_95_Field_67",
-                        valueColumn: "Table_95_Field_41",
-                        aggregation: 0
-                    };*/
-                    this.reportService!.getDiscreteDiagramData(result)
-                        .subscribe(data => {
-                            this.chartData = data;
-                        },
-                        err => console.log(err));
+                    if (result.reportGUID != '') {
+                        let discreteDataOptions: IChartDiscreteDataOptions = {
+                            reportGUID: this.reportGUID!,
+                            nameColumn: result.nameColumn,
+                            valueColumn: result.valueColumn,
+                            aggregation: result.aggregation
+                        };
+                        console.log('repot-edit.oninit-initchart-result:' + discreteDataOptions);
+                        this.reportService!.getDiscreteDiagramData(discreteDataOptions)
+                            .subscribe(data => {
+                                this.chartData = data;
+                            },
+                            err => console.log(err));
+                    }
                 });
 
                 
@@ -126,7 +132,7 @@ export class ReportEditComponent implements OnInit {
         console.log(this.reportGUID);
         
 
-        this.queryService = new QueryService(this.http);
+        //this.queryService = new QueryService(this.http);
         this.queryService.getQueriesIdName()
             .subscribe(queries => this.queries = queries);
 
@@ -165,6 +171,8 @@ export class ReportEditComponent implements OnInit {
                 .subscribe(data => {
                     this.queryColumns = data;
                     this._cdr.detectChanges();
+                    if (this.dataSource)
+                        this.dataSource.clearSort();
                 });
         
     }
@@ -183,7 +191,11 @@ export class ReportEditComponent implements OnInit {
         this.dataSource = new QueryDataSource(this.queryService!, this.sort, this.paginator);
         this.dataSource.queryGUID = this.report.queryGUID;
 
+        console.log('colbefore '+this.columnNames);
         this.columnNames = [];
+        console.log('colafter ' + this.columnNames);
+
+
         this.columns.selectedOptions.selected.forEach(x => {
             this.columnNames.push({ columnDef: x.value, header: "", cell: (row: any) => `${(<any>row)[x.value]}` });
         });
@@ -191,6 +203,7 @@ export class ReportEditComponent implements OnInit {
             x.header = this.getColumnText(x.columnDef);
         });
 
+        this.displayedColumns = [];
         this.displayedColumns = this.columnNames.map(x => x.columnDef);
         this.dataSource.selectedColumns = this.displayedColumns;
 
@@ -217,8 +230,9 @@ export class ReportEditComponent implements OnInit {
     onSaveClick(): void {
 
         this.report.queryGUID = this.report.queryGUID;
-        this.report.sort = { columnName: "abc", direction: "asc" };
-        this.report.rows = 20;
+        this.report.sort = { columnName: this.sort.active, direction: this.sort.direction };
+        this.report.rows = this.paginator.pageSize;
+        this.report.filter = this.filter.nativeElement.value;
         this.report.columns = this.columns.selectedOptions.selected.map(x => x.value);
 
         if (this.reportService != null) {
@@ -254,18 +268,6 @@ export class ReportEditComponent implements OnInit {
             
     }
 
-    deleteReport(id: number): boolean {
-        console.log("okker:"+ id);
-        return false;
-        //return this.service!.deleteReport(id)
-        //    .map(data => {
-        //        return data.result;
-        //    })
-        //    .catch(() => {
-        //        return Observable.of([]);
-        //    });
-    }
-
     openShareDialog(id: number, name: string): void {
         let dialogRef = this.dialog.open(ShareDialogComponent, {
             width: '250px',
@@ -299,8 +301,12 @@ export class QueryDataSource extends DataSource<any[]> {
     set queryGUID(queryGUID: string) { this._queryChange.next(queryGUID); }
 
     constructor(private _queryService: QueryService, private _sort: MatSort, private _paginator: MatPaginator) {
-        //private _sort: MatSort, ) {
         super();
+    }
+
+    clearSort(): void {
+        this._sort.active = '';
+        this.selectedColumns = [];
     }
 
     /** Connect function called by the table to retrieve one stream containing the data to render. */
@@ -313,22 +319,28 @@ export class QueryDataSource extends DataSource<any[]> {
             this._paginator.page,
         ];
 
-        //this._sort.sortChange.subscribe(() => this._paginator.pageIndex = 0);
+        this._sort.sortChange.subscribe(() => this._paginator.pageIndex = 0);
 
         return Observable.merge(...displayDataChanges)
             .startWith(null)
             .switchMap(() => {
                 this.isLoadingResults = true;
 
-                console.log('selcol' + this.selectedColumns);
-                console.log('selact' + this._sort.active);
+                console.log('selcol ' + this.selectedColumns);
+                console.log('selact ' + this._sort.active);
+
+                if (this._sort.active == null || this._sort.active == '')
+                    this._sort.active = this.selectedColumns[0];
+
+                console.log('selact2 ' + this._sort.active);
+
                 return this._queryService.getQuerySourceData(
                     {
                         queryGUID: this.queryGUID,
                         page: this._paginator.pageIndex + 1,
-                        rows: 5,
+                        rows: this._paginator.pageSize,
                         filter: this.filter,
-                        sort: { columnName: this._sort.active == null ? this.selectedColumns[0] : this._sort.active, direction: this._sort.direction },
+                        sort: { columnName: this._sort.active, direction: this._sort.direction },
                         columns: this.selectedColumns
                     });
             })

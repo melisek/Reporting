@@ -8,6 +8,7 @@ import { ReportListComponent } from './report-list.component';
 import { ReportEditComponent } from './report-edit.component';
 import { ReportService } from './report.service';
 import { AuthGuard } from '../user/auth-guard.service';
+import { QueryService } from '../query/query.service';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { AuthGuard } from '../user/auth-guard.service';
         
     ],
     providers: [
-        ReportService
+        ReportService,
+        QueryService
     ]
 })
 export class ReportModule { }

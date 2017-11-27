@@ -18,6 +18,7 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
+import { AuthHttp } from 'angular2-jwt';
 
 @Injectable()
 export class ChartService {
@@ -25,7 +26,7 @@ export class ChartService {
     private _saveUrl = './api/reports/UpdateStyle';
     private _getStyleUrl = './api/reports/GetStyle/';
 
-    constructor(private _http: Http) { }
+    constructor(private _http: AuthHttp) { }
 
     colorSets: any;
     types: Type<any>[] = [
@@ -187,7 +188,7 @@ export class ChartService {
             displayOptions: chartItem.options
         };
         let style: IChartStyle = {
-            reportGUID: reportGUID,
+            reportGUID: discreteDataOptions.reportGUID,
             style: JSON.stringify(opt)
         };
         console.log('save chart init ' + JSON.stringify(style));

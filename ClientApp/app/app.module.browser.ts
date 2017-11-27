@@ -27,7 +27,7 @@ import { AuthGuard } from './components/user/auth-guard.service';
         //CommonModule,
         //FormsModule,
         HttpModule,
-        HttpClientModule,
+        //HttpClientModule,
         
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },

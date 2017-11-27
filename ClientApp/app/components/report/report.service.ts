@@ -7,9 +7,9 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 
-import { IReportList, IReport, IReportCreate } from "./report";
-import { IResponseResult, IListFilter, INameValue, IChartDiscreteDataOptions } from "../shared/shared-interfaces";
-import { AuthHttp } from "angular2-jwt";
+import { IReportList, IReport, IReportCreate } from './report';
+import { IResponseResult, IListFilter, INameValue, IChartDiscreteDataOptions } from '../shared/shared-interfaces';
+import { AuthHttp } from 'angular2-jwt';
 
 @Injectable()
 export class ReportService {
@@ -56,7 +56,7 @@ export class ReportService {
 
 
     getDiscreteDiagramData(dataOptions: IChartDiscreteDataOptions): Observable<INameValue[]> {
-        console.log(dataOptions);
+        console.log('disrete' + dataOptions.reportGUID);
         return this._http.post(this._getDiscreteDataUrl, dataOptions)
             .map(response => response.json() as INameValue[])
             .do(data => console.log("get diagram data: " + JSON.stringify(data)))
