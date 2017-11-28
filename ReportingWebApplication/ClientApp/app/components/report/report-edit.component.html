@@ -46,6 +46,9 @@
                 <div class="clearfix" [hidden]="!showDataTable">
                     <mat-form-field floatPlaceholder="never">
                         <input matInput #filter placeholder="Filter data">
+                        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter()">
+                            <mat-icon>close</mat-icon>
+                        </button>
                     </mat-form-field>
                 </div>
                 <mat-table [hidden]="!showDataTable" #table [dataSource]="dataSource" matSort matSortDisableClear matSortDirection="asc">
