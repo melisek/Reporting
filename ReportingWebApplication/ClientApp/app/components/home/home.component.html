@@ -1,0 +1,29 @@
+<h1>Welcome</h1>
+<div class="col-md-offset-2 col-md-4">
+    <mat-card>
+        <mat-card-header>
+            <div mat-card-avatar><mat-icon>dashboard</mat-icon></div>
+            <mat-card-title>Manage dashboards</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="margin-top-20">
+            <button mat-raised-button color="primary" [routerLink]="['/dashboards/create']">
+                Create dashboard
+            </button>
+            <button mat-raised-button [routerLink]="['/dashboards']">See all</button>
+        </mat-card-content>
+    </mat-card>
+</div>
+<div class="col-md-4">
+    <mat-card>
+        <mat-card-header>
+            <div mat-card-avatar><mat-icon>insert_chart</mat-icon></div>
+            <mat-card-title>Manage reports</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="margin-top-20">
+            <button mat-raised-button color="primary" [routerLink]="['/reports/create']">
+                Create report
+            </button>
+            <button mat-raised-button [routerLink]="['/reports']">See all</button>
+        </mat-card-content>
+    </mat-card>
+</div>

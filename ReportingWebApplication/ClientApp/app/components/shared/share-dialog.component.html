@@ -1,0 +1,17 @@
+﻿<h1 mat-dialog-title>Share: {{data.name}}</h1>
+<div mat-dialog-content>
+    <mat-form-field floatPlaceholder="never">
+        <input matInput placeholder="Email" [(ngModel)]="data.email">
+    </mat-form-field>
+    <form>
+        <mat-select placeholder="Permission" [(ngModel)]="selectedPermission" name="permission">
+            <mat-option *ngFor="let permission of data.permissions" [value]="permission.id">
+                {{permission.name}}
+            </mat-option>
+        </mat-select>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="onShareClick()" tabindex="2">Share</button>
+    <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+</div>
