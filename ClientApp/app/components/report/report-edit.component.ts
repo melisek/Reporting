@@ -176,6 +176,11 @@ export class ReportEditComponent implements OnInit {
                 });
         
     }
+    clearFilter(): void {
+        this.filter.nativeElement.value = '';
+        this.dataSource!.filter = '';
+    }
+
     getColumnText(name: string): string {
         let col = this.queryColumns.columns.find(x => x.name === name);
         if (col != undefined)

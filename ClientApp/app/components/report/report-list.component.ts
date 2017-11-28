@@ -1,5 +1,4 @@
 ﻿import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { Http } from '@angular/http';
 import { DataSource } from '@angular/cdk/collections';
 import { MatSort, MatPaginator, MatDialog, MatSnackBar } from '@angular/material';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -15,7 +14,6 @@ import { IReport } from "./report";
 import { ShareDialogComponent } from '../shared/share-dialog.component';
 import { IResponseResult, IEntityWithIdName, IListFilter } from '../shared/shared-interfaces';
 import { Title } from '@angular/platform-browser';
-import { AuthHttp } from 'angular2-jwt';
 
 
 @Component({
@@ -25,12 +23,12 @@ import { AuthHttp } from 'angular2-jwt';
 })
 export class ReportListComponent implements OnInit {
     displayedColumns = ['Name', 'Query', 'Author', 'CreationDate', 'LastModifier', 'ModifyDate', 'Actions'];
-    service: ReportService | null;
-    dataSource: ExampleDataSource | null;
+    dataSource: ReportListDataSource | null;
 
-    sharePermissions: IEntityWithIdName[];
+    //sharePermissions: IEntityWithIdName[];
 
-    constructor(private http: AuthHttp,
+    constructor(
+        private service: ReportService,
         private dialog: MatDialog,
         private _snackbar: MatSnackBar,
         private titleService: Title) { }
@@ -39,11 +37,9 @@ export class ReportListComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild('filter') filter: ElementRef;
 
-
     ngOnInit() {
         this.titleService.setTitle("Reports");
-        this.service = new ReportService(this.http);
-        this.dataSource = new ExampleDataSource(this.service!, this.sort, this.paginator);
+        this.dataSource = new ReportListDataSource(this.service, this.sort, this.paginator);
         Observable.fromEvent(this.filter.nativeElement, 'keydown')
             .debounceTime(150)
             .distinctUntilChanged()
@@ -55,46 +51,45 @@ export class ReportListComponent implements OnInit {
     }
 
     deleteReport(guid: string): void {
-        if (this.service != null) {
-            this.service.deleteReport(guid)
-                .subscribe(res => {
-                    this._snackbar.open(`Report deleted.`, 'x', {
-                        duration: 5000
-                    });
-                }, err => {
-                    this._snackbar.open(`Error: ${<any>err}`, 'x', {
-                        duration: 5000
-                    });
-                });
-        }
-    }
-
-    openShareDialog(id: number, name: string): void {
-        this.sharePermissions = [
-            {
-                id: "1",
-                name: "Szerkesztés és megosztás"
-            },
-            {
-                id: "2",
-                name: "Szerkesztés"
-            }];
-
-        let dialogRef = this.dialog.open(ShareDialogComponent, {
-            width: '400px',
-            data: { reportId: id, name: name, email: null, permissions: this.sharePermissions }
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed');
-            if (result != undefined) {
-                console.log(`email:${result.email};permission:${result.permission}`);
-                this._snackbar.open(`${result.reportName} shared with ${result.email}.`, 'OK', {
+        this.service.deleteReport(guid)
+            .subscribe(res => {
+                this.dataSource!.filter = this.filter.nativeElement.value;
+                this._snackbar.open(`Report deleted.`, 'x', {
                     duration: 5000
                 });
-            }
-        });
+            }, err => {
+                this._snackbar.open(`Error: ${<any>err}`, 'x', {
+                    duration: 5000
+                });
+            });
     }
+
+    //openShareDialog(id: number, name: string): void {
+    //    this.sharePermissions = [
+    //        {
+    //            id: "1",
+    //            name: "Szerkesztés és megosztás"
+    //        },
+    //        {
+    //            id: "2",
+    //            name: "Szerkesztés"
+    //        }];
+
+    //    let dialogRef = this.dialog.open(ShareDialogComponent, {
+    //        width: '400px',
+    //        data: { reportId: id, name: name, email: null, permissions: this.sharePermissions }
+    //    });
+
+    //    dialogRef.afterClosed().subscribe(result => {
+    //        console.log('The dialog was closed');
+    //        if (result != undefined) {
+    //            console.log(`email:${result.email};permission:${result.permission}`);
+    //            this._snackbar.open(`${result.reportName} shared with ${result.email}.`, 'OK', {
+    //                duration: 5000
+    //            });
+    //        }
+    //    });
+    //}
 
     clearFilter(): void {
         this.filter.nativeElement.value = '';
@@ -102,7 +97,7 @@ export class ReportListComponent implements OnInit {
     }
 }
 
-export class ExampleDataSource extends DataSource<any> {
+export class ReportListDataSource extends DataSource<any> {
     totalCount = 0;
     isLoadingResults = false;
 
