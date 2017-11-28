@@ -3,9 +3,9 @@
 namespace test_szakdoga
 {
     [TestFixture]
-    public class Class1
+    public class ClassTests
     {
-        [TestCase]
+        [Test]
         public void SubtractTest()
         {
             Assert.AreEqual(true, true);

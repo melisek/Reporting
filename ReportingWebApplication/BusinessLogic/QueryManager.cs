@@ -161,7 +161,7 @@ namespace szakdoga.BusinessLogic
 
             string skip = String.Empty;
             if (filter.Page > 1)
-                skip += $" {allColumns.PrimeryKeyColumn} not in (select top {filter.Rows * (filter.Page - 1)} {allColumns.PrimeryKeyColumn} from {table} ) and ";
+                skip += $" {allColumns.PrimeryKeyColumn} not in (select top {filter.Rows * (filter.Page - 1)} {allColumns.PrimeryKeyColumn} from {table}  order by {order_by}) and ";
 
             string top = String.Empty;
             if (filter.Rows > 0)

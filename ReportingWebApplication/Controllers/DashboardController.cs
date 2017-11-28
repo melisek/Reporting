@@ -8,6 +8,7 @@ using szakdoga.BusinessLogic;
 using szakdoga.Models;
 using szakdoga.Models.Dtos;
 using szakdoga.Models.Dtos.DashboardDtos;
+using szakdoga.Others;
 
 namespace szakdoga.Controllers
 {
@@ -47,6 +48,11 @@ namespace szakdoga.Controllers
                 _logger.LogError(ex.Message);
                 return NotFound(ex.Message);
             }
+            catch (PermissionException ex)
+            {
+                _logger.LogError(ex.Message);
+                return Unauthorized();
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
@@ -74,6 +80,11 @@ namespace szakdoga.Controllers
             {
                 _logger.LogError(ex.Message);
                 return NotFound(ex.Message);
+            }
+            catch (PermissionException ex)
+            {
+                _logger.LogError(ex.Message);
+                return Unauthorized();
             }
             catch (Exception ex)
             {
@@ -103,6 +114,11 @@ namespace szakdoga.Controllers
                 _logger.LogError(ex.Message);
                 return NotFound(ex.Message);
             }
+            catch (PermissionException ex)
+            {
+                _logger.LogError(ex.Message);
+                return Unauthorized();
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
@@ -129,6 +145,11 @@ namespace szakdoga.Controllers
             {
                 _logger.LogError(ex.Message);
                 return NotFound(ex.Message);
+            }
+            catch (PermissionException ex)
+            {
+                _logger.LogError(ex.Message);
+                return Unauthorized();
             }
             catch (Exception ex)
             {
@@ -157,6 +178,11 @@ namespace szakdoga.Controllers
                 _logger.LogError(ex.Message);
                 return NotFound(ex.Message);
             }
+            catch (PermissionException ex)
+            {
+                _logger.LogError(ex.Message);
+                return Unauthorized();
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
@@ -183,6 +209,11 @@ namespace szakdoga.Controllers
             {
                 _logger.LogError(ex.Message);
                 return NotFound(ex.Message);
+            }
+            catch (PermissionException ex)
+            {
+                _logger.LogError(ex.Message);
+                return Unauthorized();
             }
             catch (Exception ex)
             {
@@ -213,6 +244,11 @@ namespace szakdoga.Controllers
                 _logger.LogError(ex.Message);
                 return NotFound(ex.Message);
             }
+            catch (PermissionException ex)
+            {
+                _logger.LogError(ex.Message);
+                return Unauthorized();
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
@@ -239,6 +275,11 @@ namespace szakdoga.Controllers
             {
                 _logger.LogError(ex.Message);
                 return NotFound(ex.Message);
+            }
+            catch (PermissionException ex)
+            {
+                _logger.LogError(ex.Message);
+                return Unauthorized();
             }
             catch (Exception ex)
             {

@@ -7,6 +7,7 @@ using szakdoga.BusinessLogic;
 using szakdoga.Models;
 using szakdoga.Models.Dtos;
 using szakdoga.Models.Dtos.ReportDtos;
+using szakdoga.Others;
 
 namespace szakdoga.Controllers
 {
@@ -44,6 +45,11 @@ namespace szakdoga.Controllers
                 _logger.LogError(ex.Message);
                 return NotFound(ex.Message);
             }
+            catch (PermissionException ex)
+            {
+                _logger.LogError(ex.Message);
+                return Unauthorized();
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
@@ -72,6 +78,11 @@ namespace szakdoga.Controllers
                 _logger.LogError(ex.Message);
                 return NotFound(ex.Message);
             }
+            catch (PermissionException ex)
+            {
+                _logger.LogError(ex.Message);
+                return Unauthorized();
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
@@ -99,6 +110,11 @@ namespace szakdoga.Controllers
             {
                 _logger.LogError(ex.Message);
                 return NotFound(ex.Message);
+            }
+            catch (PermissionException ex)
+            {
+                _logger.LogError(ex.Message);
+                return Unauthorized();
             }
             catch (Exception ex)
             {
@@ -129,6 +145,11 @@ namespace szakdoga.Controllers
                 _logger.LogError(ex.Message);
                 return NotFound(ex.Message);
             }
+            catch (PermissionException ex)
+            {
+                _logger.LogError(ex.Message);
+                return Unauthorized();
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
@@ -155,6 +176,11 @@ namespace szakdoga.Controllers
             {
                 _logger.LogError(ex.Message);
                 return NotFound(ex.Message);
+            }
+            catch (PermissionException ex)
+            {
+                _logger.LogError(ex.Message);
+                return Unauthorized();
             }
             catch (Exception ex)
             {
@@ -183,6 +209,11 @@ namespace szakdoga.Controllers
                 _logger.LogError(ex.Message);
                 return NotFound(ex.Message);
             }
+            catch (PermissionException ex)
+            {
+                _logger.LogError(ex.Message);
+                return Unauthorized();
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
@@ -209,6 +240,11 @@ namespace szakdoga.Controllers
             {
                 _logger.LogError(ex.Message);
                 return NotFound(ex.Message);
+            }
+            catch (PermissionException ex)
+            {
+                _logger.LogError(ex.Message);
+                return Unauthorized();
             }
             catch (Exception ex)
             {
@@ -237,6 +273,11 @@ namespace szakdoga.Controllers
                 _logger.LogError(ex.Message);
                 return NotFound(ex.Message);
             }
+            catch (PermissionException ex)
+            {
+                _logger.LogError(ex.Message);
+                return Unauthorized();
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
@@ -263,6 +304,11 @@ namespace szakdoga.Controllers
             {
                 _logger.LogError(ex.Message);
                 return NotFound(ex.Message);
+            }
+            catch (PermissionException ex)
+            {
+                _logger.LogError(ex.Message);
+                return Unauthorized();
             }
             catch (Exception ex)
             {
@@ -292,6 +338,11 @@ namespace szakdoga.Controllers
                 _logger.LogError(ex.Message);
                 return NotFound(ex.Message);
             }
+            catch (PermissionException ex)
+            {
+                _logger.LogError(ex.Message);
+                return Unauthorized();
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
@@ -302,9 +353,9 @@ namespace szakdoga.Controllers
         [HttpGet("Import/{reportGUID}")]
         public FileResult Import(string reportGUID)
         {
-            string fileName =String.Empty;
+            string fileName = String.Empty;
             User user = _userRep.GetByEmailAdd(this.User.Claims.SingleOrDefault(x => x.Type == "EmailAddress").Value);
-            byte[] fileBytes = _manager.GetReportExportFile(reportGUID, null,out fileName);
+            byte[] fileBytes = _manager.GetReportExportFile(reportGUID, null, out fileName);
             fileName = $"{fileName}.csv";
             return File(fileBytes, "text/csv", fileName);
 
