@@ -65,7 +65,13 @@ export class ReportListComponent implements OnInit {
     }
 
     exportReport(reportGUID: string) {
-        this.service.exportReport(reportGUID).subscribe();
+        this.service.exportReport(reportGUID).subscribe(data => this.downloadFile(data));
+    }
+
+    downloadFile(data: Response) {
+        var blob = new Blob([data], { type: 'text/csv' });
+        var url = window.URL.createObjectURL(blob);
+        window.open(url);
     }
 
     //openShareDialog(id: number, name: string): void {
