@@ -30,7 +30,7 @@
                                 </mat-error>
                             </mat-form-field>
                         </div>
-                        <button type="submit" mat-raised-button color="primary" [disabled]="loginFormHasErrors()" (click)="onLoginClick()">Login</button>
+                        <button type="submit" mat-raised-button color="primary" [disabled]="loginFormHasErrors()" (click)="onLoginClick()" id="loginButton">Login</button>
                     </form>
                 </mat-card-content>
             </mat-tab>
@@ -85,7 +85,7 @@
                                 </mat-error>
                             </mat-form-field>
                         </div>
-                        <button type="submit" mat-raised-button [disabled]="registerFormHasErrors()" color="primary" (click)="onRegisterClick()" class="margin-top-20">Register</button>
+                        <button type="submit" mat-raised-button [disabled]="registerFormHasErrors()" color="primary" (click)="onRegisterClick()" class="margin-top-20" id="registerButton">Register</button>
                     </form>
                 </mat-card-content>
             </mat-tab>

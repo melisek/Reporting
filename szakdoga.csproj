@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\components\app\forst.spec.ts" />
     <None Remove="ClientApp\app\components\chart\chart-constants.ts" />
     <None Remove="ClientApp\app\components\chart\chart-horizontal-bar.component.ts" />
     <None Remove="ClientApp\app\components\chart\chart-item.ts" />
@@ -40,6 +41,7 @@
     <None Remove="ClientApp\app\components\user\auth-guard.service.ts" />
     <None Remove="ClientApp\app\components\user\auth.module.ts" />
     <None Remove="ClientApp\app\components\user\password-validator.ts" />
+    <None Remove="ClientApp\app\components\user\user-login.component.spec.ts" />
     <None Remove="ClientApp\app\components\user\user-login.component.ts" />
     <None Remove="ClientApp\app\components\user\user.module.ts" />
     <None Remove="ClientApp\app\components\user\user.service.ts" />
@@ -47,6 +49,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\app\forst.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\chart\chart-constants.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\chart\types\chart-line.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\chart\types\chart-pie.component.ts" />
@@ -76,6 +79,7 @@
     <TypeScriptCompile Include="ClientApp\app\components\user\auth-guard.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\user\auth.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\user\password-validator.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\user\user-login.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\user\user-login.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\user\user.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\user\user.service.ts" />
