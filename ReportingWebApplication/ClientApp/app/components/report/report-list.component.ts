@@ -64,6 +64,10 @@ export class ReportListComponent implements OnInit {
             });
     }
 
+    exportReport(reportGUID: string) {
+        this.service.exportReport(reportGUID).subscribe();
+    }
+
     //openShareDialog(id: number, name: string): void {
     //    this.sharePermissions = [
     //        {

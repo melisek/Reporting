@@ -86,35 +86,31 @@ export class ReportEditComponent implements OnInit {
         this.reportGUID = this._route.snapshot.paramMap.get('reportGUID');
         console.log('reportguid:' + this.reportGUID);
         if (this.reportGUID != null) {
-            if (this.reportService != null) {
-                this.reportService.getReport(this.reportGUID)
-                    .subscribe(report => {
-                        this.report = report;
-                        this.queryChange();
-                        this.disableChartTab = false;
-                        this.titleService.setTitle(report.name + " - Edit Report");
-                    },
-                    err => console.log(err));
+            this.reportService.getReport(this.reportGUID)
+                .subscribe(report => {
+                    this.report = report;
+                    this.queryChange();
+                    this.disableChartTab = false;
+                    this.titleService.setTitle(report.name + " - Edit Report");
+                },
+                err => console.log(err));
 
-                this.chartComponent.initChartOptions(this.reportGUID).subscribe(result => {
-                    if (result.reportGUID != '') {
-                        let discreteDataOptions: IChartDiscreteDataOptions = {
-                            reportGUID: this.reportGUID!,
-                            nameColumn: result.nameColumn,
-                            valueColumn: result.valueColumn,
-                            aggregation: result.aggregation
-                        };
-                        console.log('repot-edit.oninit-initchart-result:' + discreteDataOptions);
-                        this.reportService!.getDiscreteDiagramData(discreteDataOptions)
-                            .subscribe(data => {
-                                this.chartData = data;
-                            },
-                            err => console.log(err));
-                    }
-                });
-
-                
-            }
+            this.chartComponent.initChartOptions(this.reportGUID).subscribe(result => {
+                if (result.reportGUID != '') {
+                    let discreteDataOptions: IChartDiscreteDataOptions = {
+                        reportGUID: this.reportGUID!,
+                        nameColumn: result.nameColumn,
+                        valueColumn: result.valueColumn,
+                        aggregation: result.aggregation
+                    };
+                    console.log('repot-edit.oninit-initchart-result:' + discreteDataOptions);
+                    this.reportService!.getDiscreteDiagramData(discreteDataOptions)
+                        .subscribe(data => {
+                            this.chartData = data;
+                        },
+                        err => console.log(err));
+                }
+            });
         }
         else {
             this.report = {
@@ -166,16 +162,17 @@ export class ReportEditComponent implements OnInit {
 
 
     queryChange(): void {
-        if (this.queryService != null)
-            this.queryService.getQueryColumns(this.report.queryGUID)
-                .subscribe(data => {
-                    this.queryColumns = data;
-                    this._cdr.detectChanges();
-                    if (this.dataSource)
-                        this.dataSource.clearSort();
-                });
-        
+        this.queryService.getQueryColumns(this.report.queryGUID)
+            .subscribe(data => {
+                this.queryColumns = data;
+                if (this.columns != null)
+                    this.columns.selectedOptions.clear();
+                this._cdr.detectChanges();
+                //if (this.dataSource)
+                //    this.dataSource.clearSort();
+            });
     }
+
     clearFilter(): void {
         this.filter.nativeElement.value = '';
         this.dataSource!.filter = '';
@@ -199,16 +196,18 @@ export class ReportEditComponent implements OnInit {
         console.log('colbefore '+this.columnNames);
         this.columnNames = [];
         console.log('colafter ' + this.columnNames);
+        console.log('displaybeforeinit:' + this.displayedColumns);
 
-
+        
         this.columns.selectedOptions.selected.forEach(x => {
+            console.log(x);
             this.columnNames.push({ columnDef: x.value, header: "", cell: (row: any) => `${(<any>row)[x.value]}` });
         });
         this.columnNames.forEach(x => {
             x.header = this.getColumnText(x.columnDef);
         });
 
-        this.displayedColumns = [];
+        console.log('displayafterinit: ' + this.displayedColumns);
         this.displayedColumns = this.columnNames.map(x => x.columnDef);
         this.dataSource.selectedColumns = this.displayedColumns;
 
@@ -240,21 +239,20 @@ export class ReportEditComponent implements OnInit {
         this.report.filter = this.filter.nativeElement.value;
         this.report.columns = this.columns.selectedOptions.selected.map(x => x.value);
 
-        if (this.reportService != null) {
-            this.reportService.addReport(this.report)
-                .subscribe(res => {
-                    console.log('res:' + res._body);
-                    this._snackbar.open(`Report created.`, 'x', {
-                        duration: 5000
-                    });
-                    this._router.navigate(['./reports/edit/' + res._body,]);
-                }, err => {
-                    this._snackbar.open(`Error: ${<any>err}`, 'x', {
-                        duration: 5000
-                    });
-                }); 
-        }
-            
+        this.reportService.addReport(this.report)
+            .subscribe(res => {
+                console.log('res:' + res._body);
+                this._snackbar.open(`Report created.`, 'x', {
+                    duration: 5000
+                });
+                this._router.navigate(['./reports/edit/' + res._body,]);
+            }, err => {
+                this._snackbar.open(`Error: ${<any>err}`, 'x', {
+                    duration: 5000
+                });
+            });
+
+
 
         //if (this.reportService != null)
         //    this.reportService.getStyle()
@@ -262,15 +260,12 @@ export class ReportEditComponent implements OnInit {
     }
 
     onChartDataOptionChange(chartDataOptions: IChartDiscreteDataOptions): void {
-        if (this.reportService != null) {
-            chartDataOptions.reportGUID = this.reportGUID!;
-            this.reportService.getDiscreteDiagramData(chartDataOptions)
-                .subscribe(data => {
-                    this.chartData = data;
-                },
-                err => console.log(err));
-        }
-            
+        chartDataOptions.reportGUID = this.reportGUID!;
+        this.reportService.getDiscreteDiagramData(chartDataOptions)
+            .subscribe(data => {
+                this.chartData = data;
+            },
+            err => console.log(err));
     }
 
     openShareDialog(id: number, name: string): void {
