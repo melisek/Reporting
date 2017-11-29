@@ -56,9 +56,9 @@ export class ReportService {
     }
 
 
-    exportReport(reportGUID: string): Observable<boolean> {
+    exportReport(reportGUID: string): Observable<Response> {
         return this._http.get(this._exportUrl + reportGUID)
-            //.map(response => response.ok)
+            .map(response => response.arrayBuffer())
             .do(data => console.log("Export report: " + JSON.stringify(data)))
             .catch(this.handleError);
     }
