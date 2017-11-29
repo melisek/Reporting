@@ -1,0 +1,73 @@
+<div class="clearfix pull-right margin-top-20">
+    <button mat-raised-button color="primary" (click)="onSaveClick()" [disabled]="false">Save</button>
+    <button mat-raised-button [routerLink]="['/dashboards']">Cancel</button>
+</div>
+<div class="clearfix">
+    <mat-form-field floatPlaceholder="never">
+        <input matInput #name [(ngModel)]="dashboard.name" id="name" placeholder="Dashboard name">
+    </mat-form-field>
+</div>
+
+
+
+
+        <div class="margin-top-20">
+    <div class="col-md-3 padding-left-3">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title><span class="abc">Select Data source</span></mat-card-title>
+            </mat-card-header>
+            <mat-card-content style="height: 300px; overflow-y: auto">
+
+                <ngx-dnd-container [model]="sourceItems"
+                                   [copy]="true"
+                                   [dropZones]="['multiple-target-a', 'multiple-target-b']"
+                                   [droppableItemClass]="item"
+                                   id="dnd-container"
+
+                                   >
+
+                    </ngx-dnd-container>
+                    <!--<mat-list #reports *ngIf="reportList" class="margin-top-20"  ngxDroppable>
+                        <mat-list-item *ngFor="let report of reportList.reports" ngxDraggable="['example-target']">
+                            {{report.name}}
+                        </mat-list-item>
+                    </mat-list>-->
+
+</mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" (click)="onSaveClick()" [disabled]="false" class="margintop20">Save</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    <div class="col-md-9">
+
+        <mat-grid-list cols="2" rowHeight="2:1">
+            <mat-grid-tile>
+                <ngx-dnd-container [model]="targetItemsA"
+                                   dropZone="multiple-target-a"
+                                   [droppableItemClass]="abc"
+                                   [removeOnSpill]="true"
+                                    (drop)="log($event)"
+                                    (remove)="log($event)"
+                                   >
+                </ngx-dnd-container>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <ngx-dnd-container [model]="targetItemsB"
+                                   dropZone="multiple-target-b"
+                                   [droppableItemClass]="abc"
+                                   [removeOnSpill]="true">
+                </ngx-dnd-container>
+            </mat-grid-tile>
+            <mat-grid-tile>3</mat-grid-tile>
+            <mat-grid-tile>4</mat-grid-tile>
+        </mat-grid-list>
+
+
+
+        
+        
+
+    </div>
+</div>

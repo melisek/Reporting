@@ -5,6 +5,9 @@ import { AppModuleShared } from '../../app.module.shared';
 import { DashboardListComponent } from './dashboard-list.component';
 import { DashboardService } from './dashboard.service';
 import { AuthGuard } from '../user/auth-guard.service';
+import { DashboardEditComponent } from './dashboard-edit.component';
+
+import { NgxDnDModule } from '@swimlane/ngx-dnd'
 
 @NgModule({
     imports: [
@@ -14,20 +17,21 @@ import { AuthGuard } from '../user/auth-guard.service';
                 component: DashboardListComponent,
                 canActivate: [AuthGuard]
             },
-            //{
-            //    path: 'reports/create',
-            //    component: ReportEditComponent,
-            //},
-            //{
-            //    path: 'reports/edit/:reportGUID',
-            //    component: ReportEditComponent,
-            //}
+            {
+                path: 'dashboards/create',
+                component: DashboardEditComponent,
+            },
+            {
+                path: 'dashboards/edit/:reportGUID',
+                component: DashboardEditComponent,
+            }
         ]),
-        AppModuleShared
+        AppModuleShared,
+        NgxDnDModule
     ],
     declarations: [
         DashboardListComponent,
-        //ReportEditComponent,
+        DashboardEditComponent
         
     ],
     providers: [

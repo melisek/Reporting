@@ -23,7 +23,8 @@ import {
     MatIconModule,
     MatExpansionModule,
     MatRadioModule,
-    MatFormFieldControl
+    MatFormFieldControl,
+    MatGridListModule
 } from '@angular/material';
 
 import { MATERIAL_COMPATIBILITY_MODE, MAT_PLACEHOLDER_GLOBAL_OPTIONS } from '@angular/material';
@@ -53,7 +54,8 @@ import { MATERIAL_COMPATIBILITY_MODE, MAT_PLACEHOLDER_GLOBAL_OPTIONS } from '@an
         MatExpansionModule,
         MatTabsModule,
         MatIconModule,
-        MatRadioModule
+        MatRadioModule,
+        MatGridListModule
     ],
     exports: [
         MatProgressSpinnerModule,
@@ -76,7 +78,8 @@ import { MATERIAL_COMPATIBILITY_MODE, MAT_PLACEHOLDER_GLOBAL_OPTIONS } from '@an
         MatExpansionModule,
         MatTabsModule,
         MatIconModule,
-        MatRadioModule
+        MatRadioModule,
+        MatGridListModule
     ],
     providers: [
         { provide: MATERIAL_COMPATIBILITY_MODE, useValue: true },

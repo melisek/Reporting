@@ -17,10 +17,11 @@ export interface IDashboard {
 
 export interface IDashboardCreate {
     name: string;
-    queryGUID: string;
-    columns: string[];
-    filter: string;
-    rows: number;
-    sort: IColumnSort;
-    //Style: string;
+    dashboardGUID: string;
+    reports: IDashboardReport[];
+}
+
+export interface IDashboardReport {
+    reportId: number;
+    position: number;
 }
