@@ -318,7 +318,7 @@ namespace szakdoga.Controllers
 
         }
         [HttpPost("GetSeriesRiportDiagram")]
-        public IActionResult GetDiscreetRiportDiagram([FromBody]ReportDiagramSerDto diagram)
+        public IActionResult GetSeriesRiportDiagram([FromBody]ReportDiagramSerDto diagram)
         {
             try
             {

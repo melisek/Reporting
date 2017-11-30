@@ -72,7 +72,7 @@ namespace test_szakdoga
             DashboardManager manager = new DashboardManager(dashboardRep.Object, null, null, userDashRelRep.Object);
             var testStyle = manager.GetDashBoardStyle("Valid", _users[0]).Style;
             // Assert
-            Assert.AreEqual(true, testStyle.Contains("StyleTest"));
+            StringAssert.Contains("StyleTest", testStyle);
         }
         [Test]
         public void Test_GetDashBoardStyle_ShouldThrowPermissionException_When_NoRigthToWatch()
@@ -87,7 +87,7 @@ namespace test_szakdoga
             DashboardManager manager = new DashboardManager(dashboardRep.Object, null, null, userDashRelRep.Object);
 
             // Assert
-            Assert.Throws(typeof(PermissionException), delegate { manager.GetDashBoardStyle("Valid", _users[2]); });
+            Assert.Throws(typeof(PermissionException), () => manager.GetDashBoardStyle("Valid", _users[2]));
         }
 
     }

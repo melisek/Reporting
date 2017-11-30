@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using szakdoga.BusinessLogic;
@@ -146,7 +147,7 @@ namespace szakdoga
                 cfg.CreateMap<Dashboard, DashboardDto>();
                 cfg.CreateMap<Dashboard, DashboardForAllDto>();
                 cfg.CreateMap<Report, ReportDto>();
-                cfg.CreateMap<Report, ReportForAllDto>();
+                cfg.CreateMap<Report, ReportForAllDto>().ForMember(dest => dest.HasStyle, opt => opt.MapFrom(src => !String.IsNullOrEmpty(src.Style)));
                 cfg.CreateMap<User, UserDto>();
                 cfg.CreateMap<Query, QueryDto>();
             });
