@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Szakdoga", "ReportingWebApplication\Szakdoga.csproj", "{279E5516-9F4C-4E8C-B925-2DB0CB736E0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Szakdoga.Tests", "Test_ReportingWebApplication\Szakdoga.Tests.csproj", "{A95EDCEB-7FD6-4EC0-960F-A614DF5E2432}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Szakdoga.UnitTests", "Test_ReportingWebApplication\Szakdoga.UnitTests.csproj", "{A95EDCEB-7FD6-4EC0-960F-A614DF5E2432}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
