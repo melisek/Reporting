@@ -17,6 +17,7 @@ namespace szakdoga.Models.Dtos.ReportDtos
         public DateTime ModifyDate { get; set; }
         public UserDto LastModifier { get; set; }
         public UserDto Author { get; set; }
+
         //ez mutatja meg, hogy tartozik-e hozzá diagramm, ha nem akkor nem rakható fel dashboardra
         public bool HasStyle { get; set; }
     }

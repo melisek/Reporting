@@ -4,5 +4,6 @@ namespace test_szakdoga
 {
     [TestFixture]
     public class QueryManagerTests
-    { }
+    {
+    }
 }

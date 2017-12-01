@@ -30,7 +30,7 @@ namespace szakdoga.Models
         public int CompareTo(object obj)
         {
             Report report = obj as Report;
-            if (report!=null)
+            if (report != null)
             {
                 return this.Name.CompareTo(report.Name);
             }

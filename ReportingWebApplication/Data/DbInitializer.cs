@@ -33,7 +33,6 @@ namespace szakdoga.Data
             }
         }
 
-
         private void CleanAllTables(AppDbContext context)
         {
             context.ReportDashboardRel.RemoveRange(context.ReportDashboardRel.ToList());

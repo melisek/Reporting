@@ -44,11 +44,9 @@ namespace szakdoga.BusinessLogic
 
         public bool Create(CreateReportUserDto reportUserRel)
         {
-            if (!IsExistUserAndReport(out User user, out Report report, reportUserRel.UserGUID, reportUserRel.ReportGUID))
-                return false;
-
-            if (IsExistRel(user.Id, report.Id) != null)//létezik a jogosultság
-                return false;
+            IsExistUserAndReport(out User user, out Report report, reportUserRel.UserGUID, reportUserRel.ReportGUID);
+            if (IsExistRel(user.Id, report.Id) != null)
+                throw new BasicException("Already exists value with this paramterers.");
 
             _reportUserRelRepository.Add(new ReportUserRel { Report = report, User = user, AuthoryLayer = reportUserRel.Permission });
             return true;

@@ -172,8 +172,6 @@ namespace szakdoga.BusinessLogic
                  .Skip(filter.Page > 1 ? (filter.Page - 1) * filter.Rows : 0)
                  .Take(filter.Rows).ToList();
 
-
-
             return new AllReportDto
             {
                 Reports = Mapper.Map<IEnumerable<ReportForAllDto>>(reports).ToList(),
@@ -282,6 +280,7 @@ namespace szakdoga.BusinessLogic
             });
             return result.ToArray();
         }
+
         public byte[] GetReportExportFile(string reportGUID, User user, out string fileName)
         {
             var report = _reportRepository.Get(reportGUID);

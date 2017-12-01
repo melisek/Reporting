@@ -69,7 +69,6 @@ namespace szakdoga.BusinessLogic
             if (perrel == null || perrel.AuthoryLayer != (int)DashboardUserPermissions.CanModify)
                 throw new PermissionException("Don't have permission.");
 
-
             origDashboard.Name = dashboard.Name;
             origDashboard.LastModifier = user;
 
@@ -184,8 +183,6 @@ namespace szakdoga.BusinessLogic
                  .OrderByDescending(z => typeof(Dashboard).GetProperty(filter.Sort.ColumnName).GetValue(z, null))
                  .Skip(filter.Page > 1 ? (filter.Page - 1) * filter.Rows : 0)
                  .Take(filter.Rows).ToList();
-
-
 
             return new AllDashboardDto
             {

@@ -19,6 +19,7 @@
         Asc = 0,
         Desc = 1
     }
+
     public enum Aggregation
     {
         SUM = 0,

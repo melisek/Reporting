@@ -25,6 +25,7 @@ namespace szakdoga.Controllers
             _logger = logger;
             _userRep = userrep;
         }
+
         [HttpGet("Get/{reportGUID}")]
         public IActionResult Get(string reportGUID)
         {
@@ -252,6 +253,7 @@ namespace szakdoga.Controllers
                 return BadRequest();
             }
         }
+
         [HttpPost("UpdateStyle")]
         public IActionResult UpdateStyle([FromBody] UpdateReportStyle report)
         {
@@ -284,6 +286,7 @@ namespace szakdoga.Controllers
                 return BadRequest();
             }
         }
+
         [HttpPost("GetDiscreetRiportDiagram")]
         public IActionResult GetDiscreetRiportDiagram([FromBody]ReportDiagramDiscDto diagram)
         {
@@ -315,8 +318,8 @@ namespace szakdoga.Controllers
                 _logger.LogError(ex.Message);
                 return BadRequest();
             }
-
         }
+
         [HttpPost("GetSeriesRiportDiagram")]
         public IActionResult GetSeriesRiportDiagram([FromBody]ReportDiagramSerDto diagram)
         {
@@ -348,8 +351,8 @@ namespace szakdoga.Controllers
                 _logger.LogError(ex.Message);
                 return BadRequest();
             }
-
         }
+
         [HttpGet("Import/{reportGUID}")]
         public FileResult Import(string reportGUID)
         {
@@ -358,8 +361,6 @@ namespace szakdoga.Controllers
             byte[] fileBytes = _manager.GetReportExportFile(reportGUID, null, out fileName);
             fileName = $"{fileName}.csv";
             return File(fileBytes, "text/csv", fileName);
-
         }
-
     }
 }

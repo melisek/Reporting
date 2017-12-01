@@ -29,6 +29,7 @@ namespace szakdoga.Controllers
             _cfg = cfg;
             _logger = logger;
         }
+
         [AllowAnonymous]
         [HttpPost("login")]
         public IActionResult Login([FromBody]CredentialDto credDto)
@@ -52,8 +53,6 @@ namespace szakdoga.Controllers
                                     .AddClaim("EmailAddress", user.EmailAddress)
                                     .AddExpiry(expiryMinutes)
                                     .Build();
-
-
 
                 //clean expried json
                 DateTime curruntTime = DateTime.Now;
@@ -88,13 +87,12 @@ namespace szakdoga.Controllers
                 _logger.LogError(ex.Message);
                 return BadRequest();
             }
-
         }
+
         [AllowAnonymous]
         [HttpPost("register")]
         public IActionResult Register([FromBody]RegisterDto register)
         {
-
             try
             {
                 if (register == null) throw new BasicException("Wrong data syntax.");
@@ -134,9 +132,8 @@ namespace szakdoga.Controllers
                 _logger.LogError(ex.Message);
                 return BadRequest();
             }
-
-
         }
+
         [Authorize]
         [HttpGet("GetUserName")]
         public IActionResult GetUserName()
@@ -167,6 +164,7 @@ namespace szakdoga.Controllers
                 return BadRequest();
             }
         }
+
         private string CalculateHash(string clearTextPassword)
         {
             byte[] saltedHashBytes = Encoding.UTF8.GetBytes(clearTextPassword);

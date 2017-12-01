@@ -9,7 +9,6 @@ namespace szakdoga.Others
 {
     public sealed class JwtTokenBuilder
     {
-
         private SecurityKey securityKey = null;
 
         private string subject = "";
@@ -82,8 +81,6 @@ namespace szakdoga.Others
 
             return new JwtToken(token);
         }
-
-
 
         private void EnsureArguments()
         {

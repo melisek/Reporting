@@ -15,9 +15,9 @@ namespace test_szakdoga
     [TestFixture]
     public class DashboardManagerTests
     {
-        List<User> _users;
-        List<Dashboard> _dashboards;
-        List<UserDashboardRel> _dashUserRel;
+        private List<User> _users;
+        private List<Dashboard> _dashboards;
+        private List<UserDashboardRel> _dashUserRel;
 
         [SetUp]
         public void InitData()
@@ -59,6 +59,7 @@ namespace test_szakdoga
             _dashUserRel = null;
             AutoMapper.Mapper.Reset();
         }
+
         [Test]
         public void Test_GetDashBoardStyle_Should_GiveBackRigthStyle_When_AddedValidGUID()
         {
@@ -74,6 +75,7 @@ namespace test_szakdoga
             // Assert
             StringAssert.Contains("StyleTest", testStyle);
         }
+
         [Test]
         public void Test_GetDashBoardStyle_ShouldThrowPermissionException_When_NoRigthToWatch()
         {
@@ -89,6 +91,5 @@ namespace test_szakdoga
             // Assert
             Assert.Throws(typeof(PermissionException), () => manager.GetDashBoardStyle("Valid", _users[2]));
         }
-
     }
 }

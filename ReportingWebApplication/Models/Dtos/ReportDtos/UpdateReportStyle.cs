@@ -6,6 +6,7 @@ namespace szakdoga.Models.Dtos.ReportDtos
     {
         [Required(ErrorMessage = "ReportGUID is required.")]
         public string ReportGUID { get; set; }
+
         [Required(ErrorMessage = "Style is required.")]
         public string Style { get; set; }
     }

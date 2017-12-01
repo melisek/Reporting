@@ -120,10 +120,10 @@ namespace szakdoga.BusinessLogic
                 data.Load(cmd.ExecuteReader());
             }
             columnNames = String.Empty;
-            foreach (Column col in AllColumns.Columns.Where(x=>filter.Columns.Contains(x.Name)).ToList())
+            foreach (Column col in AllColumns.Columns.Where(x => filter.Columns.Contains(x.Name)).ToList())
             {
                 if (String.IsNullOrEmpty(columnNames)) columnNames += col.Text;
-                else columnNames += ";"+col.Text;
+                else columnNames += ";" + col.Text;
             }
             return data;
         }
