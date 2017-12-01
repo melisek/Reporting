@@ -22,7 +22,7 @@ import { Title } from '@angular/platform-browser';
     styleUrls: ['./report-list.component.css', '../shared/shared-styles.css' ]
 })
 export class ReportListComponent implements OnInit {
-    displayedColumns = ['Name', 'Query', 'Author', 'CreationDate', 'LastModifier', 'ModifyDate', 'Actions'];
+    displayedColumns = ['Chart','Name', 'Query', 'Author', 'CreationDate', 'LastModifier', 'ModifyDate', 'Actions'];
     dataSource: ReportListDataSource | null;
 
     //sharePermissions: IEntityWithIdName[];

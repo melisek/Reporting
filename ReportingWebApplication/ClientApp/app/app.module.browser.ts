@@ -18,6 +18,7 @@ import { DashboardModule } from './components/dashboard/dashboard.module';
 import { UserModule } from './components/user/user.module';
 import { AuthModule } from './components/user/auth.module';
 import { AuthGuard } from './components/user/auth-guard.service';
+import { ChartDirective } from './components/chart/chart.directive';
 
 @NgModule({
     bootstrap: [AppComponent],

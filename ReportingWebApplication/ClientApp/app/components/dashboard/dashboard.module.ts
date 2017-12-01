@@ -8,6 +8,8 @@ import { AuthGuard } from '../user/auth-guard.service';
 import { DashboardEditComponent } from './dashboard-edit.component';
 
 import { NgxDnDModule } from '@swimlane/ngx-dnd'
+import { ChartService } from '../chart/chart.service';
+import { ChartDirective } from '../chart/chart.directive';
 
 @NgModule({
     imports: [
@@ -27,15 +29,16 @@ import { NgxDnDModule } from '@swimlane/ngx-dnd'
             }
         ]),
         AppModuleShared,
-        NgxDnDModule
+        NgxDnDModule,
+
     ],
     declarations: [
         DashboardListComponent,
         DashboardEditComponent
-        
     ],
     providers: [
-        DashboardService
+        DashboardService,
+        ChartService
     ]
 })
 export class DashboardModule { }

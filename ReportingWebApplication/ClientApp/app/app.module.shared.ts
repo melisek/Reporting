@@ -6,11 +6,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShareDialogComponent } from './components/shared/share-dialog.component';
 import { MaterialModule } from './components/material/material-imports.module';
 import { AuthGuard } from './components/user/auth-guard.service';
+import { ChartDirective } from './components/chart/chart.directive';
 
 
 @NgModule({
     declarations: [
         ShareDialogComponent,
+        ChartDirective
     ],
     entryComponents: [ShareDialogComponent],
     imports: [
@@ -24,7 +26,8 @@ import { AuthGuard } from './components/user/auth-guard.service';
         FormsModule,
         ReactiveFormsModule,
         MaterialModule,
-        ShareDialogComponent
+        ShareDialogComponent,
+        ChartDirective
     ],
     providers: [
         AuthGuard

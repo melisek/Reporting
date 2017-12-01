@@ -19,8 +19,7 @@ import { LineChartComponent } from './types/chart-line.component';
         HorizontalBarChartComponent,
         VerticalBarChartComponent,
         PieChartComponent,
-        LineChartComponent,
-        ChartDirective
+        LineChartComponent
     ],
     entryComponents: [HorizontalBarChartComponent, VerticalBarChartComponent, PieChartComponent, LineChartComponent],
     imports: [

@@ -13,7 +13,7 @@ export interface IReport {
     author: IEntityWithIdName;
     modifyDate: Date;
     lastModifier: IEntityWithIdName;
-    //style: string;
+    hasStyle: boolean;
 }
 
 export interface IReportCreate {

@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+﻿import { Component, OnInit, ViewChild, ViewEncapsulation, ComponentFactoryResolver, ChangeDetectorRef, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSort, MatPaginator, MatDialog, MatSelectionList, MatSnackBar, MatList } from '@angular/material';
 
@@ -7,6 +7,10 @@ import { ReportService } from '../report/report.service';
 import { IDashboardCreate } from './dashboard';
 import { IListFilter } from '../shared/shared-interfaces';
 import { IReportList } from '../report/report';
+import { ChartService } from '../chart/chart.service';
+import { ChartItem } from '../chart/chart-item';
+import { ChartDirective } from '../chart/chart.directive';
+import { IChart } from '../chart/chart';
 
 @Component({
     styleUrls: ['./dashboard-edit.component.css', '../shared/shared-styles.css'],
@@ -16,6 +20,9 @@ import { IReportList } from '../report/report';
 export class DashboardEditComponent implements OnInit {
 
     @ViewChild('reports') columns: MatList;
+    @ViewChildren(ChartDirective) chartHost: QueryList<ChartDirective>;
+
+    chartItem: ChartItem;
 
     dashboard: IDashboardCreate;
     //reportList: IReportList;
@@ -29,11 +36,13 @@ export class DashboardEditComponent implements OnInit {
     constructor(
         private _reportService: ReportService,
         //private _reportService: ReportService,
-
+        private _chartService: ChartService,
+        private componentFactoryResolver: ComponentFactoryResolver,
         private dialog: MatDialog,
         private _snackbar: MatSnackBar,
         private _router: Router,
-        private _route: ActivatedRoute) { }
+        private _route: ActivatedRoute,
+        private _cdr: ChangeDetectorRef) { }
 
 
     ngOnInit() {
@@ -46,73 +55,78 @@ export class DashboardEditComponent implements OnInit {
         let filter: IListFilter = {
             filter: "",
             page: 0,
-            rows: 99,
+            rows: 99999,
             sort: {
-                columnName: "ModifyDate", direction: "Asc"
+                columnName: "Name", direction: "Asc"
             }
         };
         this._reportService.getReports(filter).subscribe(
             result => {
-                result.reports.forEach(x => {
-                    this.sourceItems.push({ "label": x.name })
+                result.reports.filter(x => x.hasStyle).forEach(x => {
+                    this.sourceItems.push({ "label": x.name, "reportGUID": x.reportGUID })
                 })
             }
         );
 
-        //this.report = {
-        //    name: "",
-        //    queryGUID: "",
-        //    columns: [],
-        //    filter: "",
-        //    rows: 10,
-        //    sort: {
-        //        columnName: "", direction: "asc"
-        //    }
-        //};
-        //let reportGUID = this._route.snapshot.paramMap.get('reportGUID');
-        //if (reportGUID != null) {
-        //    if (this.reportService != null) {
-        //        this.reportService.getReport(reportGUID)
-        //            .subscribe(report => {
-        //                this.report = report;
-        //                this.queryChange();
-        //                this.disableChartTab = false;
-        //            },
-        //            err => console.log(err));
+        //this.getChart("");
+    }
 
-        //        let discreteDataOptions: IChartDiscreteDataOptions = {
-        //            reportGUID: reportGUID,
-        //            nameColumn: "Table_95_Field_67",
-        //            valueColumn: "Table_95_Field_41",
-        //            aggregation: 0
-        //        };
-        //        this.reportService.getDiscreteDiagramData(discreteDataOptions)
-        //            .subscribe(data => {
-        //                this.chartData = data;
-        //            },
-        //            err => console.log(err));
-        //    }
-                
-             
-        //}
-        //else {
-        //    this.report = {
-        //        name: "",
-        //        queryGUID: "",
-        //        columns: [],
-        //        filter: "",
-        //        rows: 10,
-        //        sort: {
-        //            columnName: "", direction: "asc"
-        //        }
-        //    };
-        //}
-        //console.log(reportGUID);
+    chartData: any;
+
+    onDrop(e: any, id: number) {
+        console.log(e.type, e);
+        console.log('dropid'+id);
+
+        this.getChart(e.value.reportGUID, id);
 
     }
 
-    log(e: any) {
+    onRemove(e: any, id: number) {
         console.log(e.type, e);
+        this.removeChart(id);
+    }
+
+    getChart(reportGUID: string, id: number) {
+        this._reportService.getReport(reportGUID).subscribe(report => {
+            this._chartService.getChartOptions(reportGUID).subscribe(data => {
+                let style = JSON.parse(data.style);
+                if (style != null) {
+                    console.log(style);
+                    this.chartItem = this._chartService.getChart(<number>style.chartType);
+                    this.chartItem.options = style.displayOptions;
+                    console.log(this.chartItem);
+                    style.dataOptions.reportGUID = reportGUID;
+                    this._reportService.getDiscreteDiagramData(style.dataOptions)
+                        .subscribe(data2 => {
+                            this.chartData = data2;
+                            this.loadChart(data2,id);
+                        },
+                        err => console.log(err));
+                }
+
+            });
+        });
+    }
+
+    
+
+    loadChart(chartData: any, id: number) {
+
+        let componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.chartItem.component);
+        let viewContainerRef = id == 0 ? this.chartHost.first.viewContainerRef : this.chartHost.last.viewContainerRef;
+        viewContainerRef.clear();
+
+        let componentRef = viewContainerRef.createComponent(componentFactory);
+        (<IChart>componentRef.instance).options = this.chartItem.options;
+        console.log('loadcomp:' + chartData);
+        (<IChart>componentRef.instance).data = chartData;
+        this._cdr.detectChanges();
+
+    }
+
+    removeChart(id: number) {
+        let viewContainerRef = id == 0 ? this.chartHost.first.viewContainerRef : this.chartHost.last.viewContainerRef;
+        viewContainerRef.clear();
     }
 
     queryChange(): void {

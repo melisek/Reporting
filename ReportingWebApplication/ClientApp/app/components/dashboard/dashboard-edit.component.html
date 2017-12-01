@@ -12,10 +12,10 @@
 
 
         <div class="margin-top-20">
-    <div class="col-md-3 padding-left-3">
+    <div class="col-md-2 padding-left-3">
         <mat-card>
             <mat-card-header>
-                <mat-card-title><span class="abc">Select Data source</span></mat-card-title>
+                <mat-card-title>Add reports to the dashboard</mat-card-title>
             </mat-card-header>
             <mat-card-content style="height: 300px; overflow-y: auto">
 
@@ -40,25 +40,31 @@
             </mat-card-actions>
         </mat-card>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-10">
 
-        <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-list cols="2">
             <mat-grid-tile>
                 <ngx-dnd-container [model]="targetItemsA"
                                    dropZone="multiple-target-a"
-                                   [droppableItemClass]="abc"
+                                   [droppableItemClass]="droppableItem"
                                    [removeOnSpill]="true"
-                                    (drop)="log($event)"
-                                    (remove)="log($event)"
+                                    (drop)="onDrop($event,0)"
+                                    (remove)="onRemove($event,0)"
+                                   id="1"
                                    >
                 </ngx-dnd-container>
+                <ng-template chart-host class="margin-top-20"></ng-template>
             </mat-grid-tile>
             <mat-grid-tile>
                 <ngx-dnd-container [model]="targetItemsB"
                                    dropZone="multiple-target-b"
-                                   [droppableItemClass]="abc"
-                                   [removeOnSpill]="true">
+                                   [droppableItemClass]="droppableItem"
+                                   [removeOnSpill]="true"
+                                   (drop)="onDrop($event)"
+                                    (remove)="onRemove($event,1)"
+                                   id="2">
                 </ngx-dnd-container>
+                <ng-template chart-host class="margin-top-20"></ng-template>
             </mat-grid-tile>
             <mat-grid-tile>3</mat-grid-tile>
             <mat-grid-tile>4</mat-grid-tile>
