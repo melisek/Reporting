@@ -17,7 +17,7 @@ export class ReportService {
     private _addUrl = './api/reports/Create';
     private _getUrl = './api/reports/Get/';
     private _deleteUrl = './api/reports/Delete/';
-    private _exportUrl = './api/reports/Import/';
+    private _exportUrl = './api/reports/Export/';
     private _getDiscreteDataUrl = './api/reports/GetDiscreetRiportDiagram';
 
     constructor(private _http: AuthHttp) { }
@@ -58,7 +58,7 @@ export class ReportService {
 
     exportReport(reportGUID: string): Observable<Response> {
         return this._http.get(this._exportUrl + reportGUID)
-            .map(response => response.arrayBuffer())
+            //.map(response => response)
             .do(data => console.log("Export report: " + JSON.stringify(data)))
             .catch(this.handleError);
     }

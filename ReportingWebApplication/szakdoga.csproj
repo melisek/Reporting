@@ -49,7 +49,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\app\components\app\forst.spec.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\chart\chart-constants.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\chart\types\chart-line.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\chart\types\chart-pie.component.ts" />

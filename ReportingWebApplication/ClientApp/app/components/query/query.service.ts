@@ -8,7 +8,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 
 import { IResponseResult, IEntityWithIdName } from '../shared/shared-interfaces';
-import { IQueryColumns, IQuery, IQuerySourceDataFilter, IQuerySourceData } from "./query";
+import { IQueryColumns, IQuery, IQuerySourceDataFilter, IQuerySourceData, IQueryColumn } from "./query";
 import { AuthHttp } from "angular2-jwt";
 
 @Injectable()
@@ -27,10 +27,13 @@ export class QueryService {
             .catch(this.handleError);
     }
 
-    getQueryColumns(guid: string): Observable<IQueryColumns> {
+    getQueryColumns(guid: string): Observable<IQueryColumn[]> {
         console.log(guid);
         return this._http.get(this._columnUrl + guid)
-            .map(response => response.json() as IQueryColumns)
+            .map(response => {
+                let queryColumns = response.json() as IQueryColumns;
+                return queryColumns.columns;
+            })
             .do(data => console.log(`Query: ${guid} ${JSON.stringify(data)}`))
             .catch(this.handleError);
     }

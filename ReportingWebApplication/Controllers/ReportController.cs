@@ -353,8 +353,8 @@ namespace szakdoga.Controllers
             }
         }
 
-        [HttpGet("Import/{reportGUID}")]
-        public FileResult Import(string reportGUID)
+        [HttpGet("Export/{reportGUID}")]
+        public FileResult Export(string reportGUID)
         {
             string fileName = String.Empty;
             User user = _userRep.GetByEmailAdd(this.User.Claims.SingleOrDefault(x => x.Type == "EmailAddress").Value);

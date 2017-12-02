@@ -1,115 +1,29 @@
-<!--<div class='main-nav'>
-    <div class='navbar navbar-inverse'>
-        <div class='navbar-header'>
-            <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
-                <span class='sr-only'>Toggle navigation</span>
-                <span class='icon-bar'></span>
-                <span class='icon-bar'></span>
-                <span class='icon-bar'></span>
-            </button>
-            <a class='navbar-brand' [routerLink]="['/home']">szakdoga</a>
-        </div>
-        <div class='clearfix'></div>
-        <div class='navbar-collapse collapse'>
-            <ul class='nav navbar-nav'>
-                <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/home']">
-                        <span class='glyphicon glyphicon-home'></span> Home
-                    </a>
-                </li>
-                <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/counter']">
-                        <span class='glyphicon glyphicon-education'></span> Counter
-                    </a>
-                </li>
-                <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/fetch-data']">
-                        <span class='glyphicon glyphicon-th-list'></span> Fetch data
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>-->
-
-<!--<nav class="navbar navbar-default navbar-static-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#" style="background:#3670c1;color:#fff"><i class="glyphicon glyphicon-signal" aria-hidden="true"></i></a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class='nav navbar-nav'>
-                <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/reports']">
-                        Reports
-                    </a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Username <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Settings</a></li>
-                        <li><a href="#">Log out</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>-->
-
-
-<mat-sidenav #sidenav mode="push" class="app-sidenav">
-    <mat-toolbar color="primary">
-        <!--future svg to go here-->
-        <span class="toolbar-filler"></span>
-        <button mat-icon-button (click)="sidenav.toggle()" class="md-icon-button sidenav-toggle-button" [hidden]="!sidenav.opened">
-            x
-        </button>
-    </mat-toolbar>
-    <mat-nav-list>
-        <a mat-list-item class="sidenav-link" [routerLink]="['/reports']" (click)="sidenav.toggle()">
-            <span class="title" mat-line>Reports</span>
-        </a>
-        <a mat-list-item class="sidenav-link" [routerLink]="['/reports']" (click)="sidenav.toggle()">
-            <span class="title" mat-line>Dashboard</span>
-        </a>
-    </mat-nav-list>
-</mat-sidenav>
-
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" *ngIf="_userService.loggedIn()">
 
     <a [routerLink]="['./']">
         <i class="glyphicon glyphicon-signal logo" aria-hidden="true"></i>
     </a>
 
+    <a class="navlink" [routerLink]="['/dashboards']">
+        Dashboards
+    </a>
+    <a class="navlink" [routerLink]="['/reports']">
+        Reports
+    </a>
 
-        <a class="navlink" [routerLink]="['/dashboards']">
-            Dashboards
-        </a>
-        <a class="navlink" [routerLink]="['/reports']">
-            Reports
-        </a>
+    <span class="app-toolbar-filler"></span>
 
-        <span class="app-toolbar-filler"></span>
+    <span *ngIf="_userService.loggedIn()">
+        {{_userService.username}}
+    </span>
+    &nbsp;
+    <button mat-button *ngIf="_userService.loggedIn()" (click)="logout()">
+        Log out
+    </button>
 
-        <span *ngIf="_userService.loggedIn()">
-            {{_userService.username}}
-        </span>
-        &nbsp;
-        <button mat-button *ngIf="_userService.loggedIn()" (click)="logout()">
-            Log out
-        </button>
-
-        <button mat-button *ngIf="!_userService.loggedIn()" [routerLink]="['/user/login']">
-            Log in
-        </button>
+    <button mat-button *ngIf="!_userService.loggedIn()" [routerLink]="['/user/login']">
+        Log in
+    </button>
 
 </mat-toolbar>
 

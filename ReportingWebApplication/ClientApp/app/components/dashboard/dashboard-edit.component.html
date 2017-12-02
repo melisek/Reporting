@@ -44,16 +44,23 @@
 
         <mat-grid-list cols="2">
             <mat-grid-tile>
-                <ngx-dnd-container [model]="targetItemsA"
-                                   dropZone="multiple-target-a"
-                                   [droppableItemClass]="droppableItem"
-                                   [removeOnSpill]="true"
-                                    (drop)="onDrop($event,0)"
-                                    (remove)="onRemove($event,0)"
-                                   id="1"
-                                   >
-                </ngx-dnd-container>
-                <ng-template chart-host class="margin-top-20"></ng-template>
+                <mat-card>
+                    <mat-card-header>
+                        <ngx-dnd-container [model]="targetItemsA"
+                                           dropZone="multiple-target-a"
+                                           [droppableItemClass]="droppableItem"
+                                           [removeOnSpill]="true"
+                                           (drop)="onDrop($event,0)"
+                                           (remove)="onRemove($event,0)"
+                                           id="1">
+                        </ngx-dnd-container>
+                    </mat-card-header>
+                    <mat-card-content>
+
+                        <ng-template chart-host class="margin-top-20"></ng-template>
+
+                    </mat-card-content>
+                </mat-card>
             </mat-grid-tile>
             <mat-grid-tile>
                 <ngx-dnd-container [model]="targetItemsB"

@@ -22,7 +22,7 @@
 
 .ngx-dnd-container {
     background: transparent !important;
-    border: 2px dashed #bbb !important;
+    border: 2px dashed #f1f1f1 !important;
 }
 
 #dnd-container .ngx-dnd-container {

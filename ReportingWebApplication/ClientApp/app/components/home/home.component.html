@@ -1,11 +1,17 @@
-<h1>Welcome</h1>
-<div class="col-md-offset-2 col-md-4">
+<p>&nbsp;</p>
+<div class="col-md-offset-2 col-md-4 margin-top-20">
     <mat-card>
         <mat-card-header>
             <div mat-card-avatar><mat-icon>dashboard</mat-icon></div>
             <mat-card-title>Manage dashboards</mat-card-title>
         </mat-card-header>
-        <mat-card-content class="margin-top-20">
+        <mat-card-content>
+            <mat-progress-spinner *ngIf="isLoadingDashboards" color="primary" mode="indeterminate"></mat-progress-spinner>
+            <mat-list>
+                <mat-list-item *ngFor="let dash of dashboards">
+                    <h4 mat-line><a [routerLink]="['/dashboards/edit/'+dash.dashboardGUID]">{{dash.name}}</a> <small class="pull-right">{{dash.modifyDate | date:'yyyy. MM. dd.'}}</small></h4>
+                </mat-list-item>
+            </mat-list>
             <button mat-raised-button color="primary" [routerLink]="['/dashboards/create']">
                 Create dashboard
             </button>
@@ -13,13 +19,19 @@
         </mat-card-content>
     </mat-card>
 </div>
-<div class="col-md-4">
+<div class="col-md-4 margin-top-20">
     <mat-card>
         <mat-card-header>
             <div mat-card-avatar><mat-icon>insert_chart</mat-icon></div>
             <mat-card-title>Manage reports</mat-card-title>
         </mat-card-header>
-        <mat-card-content class="margin-top-20">
+        <mat-card-content>
+            <mat-progress-spinner *ngIf="isLoadingReports" color="primary" mode="indeterminate"></mat-progress-spinner>
+            <mat-list>
+                <mat-list-item *ngFor="let report of reports">
+                    <h4 mat-line><a [routerLink]="['/reports/edit/'+report.reportGUID]">{{report.name}}</a> <small class="pull-right">{{report.modifyDate | date:'yyyy. MM. dd.'}}</small></h4>
+                </mat-list-item>
+            </mat-list>
             <button mat-raised-button color="primary" [routerLink]="['/reports/create']">
                 Create report
             </button>

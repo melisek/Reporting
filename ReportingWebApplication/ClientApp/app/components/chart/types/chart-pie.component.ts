@@ -6,7 +6,7 @@ import { ChartBaseComponent } from '../chart-base.component';
     template: `
      <ngx-charts-pie-chart
         [results]="data"
-        [view]="[800,400]"
+        
         [explodeSlices]="options[0].value"
         [doughnut]="options[1].value"
         [labels]="options[2].value"
@@ -18,4 +18,4 @@ import { ChartBaseComponent } from '../chart-base.component';
     </ngx-charts-pie-chart>
   `
 })
-export class PieChartComponent extends ChartBaseComponent { }
+export class PieChartComponent extends ChartBaseComponent { } //[view]="[800,400]"

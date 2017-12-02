@@ -30,11 +30,13 @@
                             </mat-select>
                         </form>
 
-                        <mat-selection-list #columns *ngIf="queryColumns" class="margin-top-20" style="height: 300px; overflow-y: auto">
-                            <mat-list-option *ngFor="let column of queryColumns.columns" value="{{column.name}}">
+                        <mat-selection-list #columns class="margin-top-20" style="height: 300px; overflow-y: auto">
+                            <mat-list-option *ngFor="let column of queryColumns" value="{{column.name}}" [selected]="isColumnSelected(column.name)">
                                 {{column.text}}
                             </mat-list-option>
                         </mat-selection-list>
+                       
+                        
                     </mat-card-content>
                     <mat-card-actions>
                         <button mat-raised-button color="primary" (click)="onSaveClick()" [disabled]="query && columns && columns.selectedOptions.selected.length == 0" class="margintop20">Save</button>
@@ -50,6 +52,7 @@
                             <mat-icon>close</mat-icon>
                         </button>
                     </mat-form-field>
+                    <button mat-raised-button color="accent" (click)="onExportClick()" [disabled]="query && columns && columns.selectedOptions.selected.length == 0" class="margintop20 pull-right">Export</button>
                 </div>
                 <mat-table [hidden]="!showDataTable" #table [dataSource]="dataSource" matSort matSortDisableClear matSortDirection="asc">
                     <ng-container *ngFor="let column of columnNames" [matColumnDef]="column.columnDef">

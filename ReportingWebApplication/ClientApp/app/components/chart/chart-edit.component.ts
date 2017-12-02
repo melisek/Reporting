@@ -33,15 +33,15 @@ export class ChartEditComponent implements AfterViewInit {
             this.chartTypeChange();
         }
     }
-    private _queryColumns: IQueryColumns;
+    private _queryColumns: IQueryColumn[];
     @Input() 
-    set queryColumns(queryColumns: IQueryColumns) {
+    set queryColumns(queryColumns: IQueryColumn[]) {
         this._queryColumns = queryColumns;
 
         if (this._queryColumns) {
-            this.queryStringColumns = this._queryColumns.columns.filter(x => x.type === "string");
+            this.queryStringColumns = this._queryColumns.filter(x => x.type === "string");
             console.log(this.queryStringColumns);
-            this.queryNumberColumns = this._queryColumns.columns.filter(x => x.type === "number");
+            this.queryNumberColumns = this._queryColumns.filter(x => x.type === "number");
             console.log(this.queryNumberColumns);
         }
             

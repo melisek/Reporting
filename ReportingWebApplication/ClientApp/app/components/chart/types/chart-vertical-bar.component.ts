@@ -7,7 +7,6 @@ import { ChartBaseComponent } from '../chart-base.component';
         <ngx-charts-bar-vertical
         class="chart-container"
         [results] = "data"
-        [view]=[800,400]
         [xAxis] = "options[0].value"
         [yAxis] = "options[1].value"
         [showGridLines] = "options[2].value"
@@ -28,4 +27,4 @@ import { ChartBaseComponent } from '../chart-base.component';
       </ngx-charts-bar-vertical>
   `
 })
-export class VerticalBarChartComponent extends ChartBaseComponent { }
+export class VerticalBarChartComponent extends ChartBaseComponent { } //        [view]=[800,400]

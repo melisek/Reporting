@@ -8,6 +8,7 @@ import 'rxjs/add/observable/merge';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/toPromise';
 
 import { ReportService } from "./report.service";
 import { IReport } from "./report";
@@ -15,6 +16,7 @@ import { ShareDialogComponent } from '../shared/share-dialog.component';
 import { IResponseResult, IEntityWithIdName, IListFilter } from '../shared/shared-interfaces';
 import { Title } from '@angular/platform-browser';
 
+import { saveAs } from 'file-saver';
 
 @Component({
     selector: 'report',
@@ -65,14 +67,28 @@ export class ReportListComponent implements OnInit {
     }
 
     exportReport(reportGUID: string) {
-        this.service.exportReport(reportGUID).subscribe(data => this.downloadFile(data));
+        this.service.exportReport(reportGUID)
+            .toPromise()
+            .then(response => this.downloadFile(response));
     }
 
-    downloadFile(data: Response) {
-        var blob = new Blob([data], { type: 'text/csv' });
-        var url = window.URL.createObjectURL(blob);
-        window.open(url);
+    downloadFile(response: Response) {
+        let contentDispositionHeader: string = response.headers.get('Content-Disposition')!;
+        const parts: string[] = contentDispositionHeader.split(';');
+        const filename = parts[1].split('=')[1];
+        const blob = new Blob([(<any>response)._body], { type: 'text/csv' });
+        saveAs(blob, filename);
     }
+
+    //exportReport(reportGUID: string) {
+    //    this.service.exportReport(reportGUID).subscribe(data => this.downloadFile(data));
+    //}
+
+    //downloadFile(data: Response) {
+    //    var blob = new Blob([data], { type: 'text/csv' });
+    //    var url = window.URL.createObjectURL(blob);
+    //    window.open(url);
+    //}
 
     //openShareDialog(id: number, name: string): void {
     //    this.sharePermissions = [

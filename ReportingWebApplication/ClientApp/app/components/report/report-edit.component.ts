@@ -9,6 +9,7 @@ import 'rxjs/add/observable/merge';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/observable/fromEvent';
 
 import { QueryService } from "../query/query.service";
@@ -21,6 +22,8 @@ import { IQueryColumns, IQuery, IQuerySourceData, IQueryColumn } from '../query/
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { AuthHttp } from 'angular2-jwt';
+
+import { saveAs } from 'file-saver';
 
 
 @Component({
@@ -39,9 +42,7 @@ export class ReportEditComponent implements OnInit {
 
     /** Column definitions in order */
     displayedColumns = this.columnNames.map(x => x.columnDef);
-    //displayedColumns = ['id', 'name', 'query', 'createdBy', 'createdAt', 'modifiedBy', 'modifiedAt', 'actions'];
-    //queryService: QueryService | null;
-    //reportService: ReportService | null;
+
     dataSource: QueryDataSource | null;
     selectedValue: string;
     showDataTable: boolean;
@@ -49,7 +50,7 @@ export class ReportEditComponent implements OnInit {
     disableChartTab: boolean = true;
 
     queries: IQuery[];
-    queryColumns: IQueryColumns;
+    queryColumns: IQueryColumn[];
 
     chartData: any;
 
@@ -72,7 +73,6 @@ export class ReportEditComponent implements OnInit {
 
 
     ngOnInit() {
-        //this.reportService = new ReportService(this.http);
         this.report = {
             name: "",
             queryGUID: "",
@@ -126,25 +126,27 @@ export class ReportEditComponent implements OnInit {
             this.titleService.setTitle("Create Report");
         }
         console.log(this.reportGUID);
-        
+
 
         //this.queryService = new QueryService(this.http);
         this.queryService.getQueriesIdName()
-            .subscribe(queries => this.queries = queries);
+            .subscribe(queries => {
+                this.queries = queries
+            });
 
         this.showDataTable = false;
-        
+
         //this.dataSource = new ExampleDataSource(this.queryService!, this.sort, this.paginator);
         this._cdr.detectChanges();
         /*this.queryService.getQueryColumns(Number(this.selectedValue))
             .subscribe(data => this.queryColumns = data);*/
-            /*.map(data => {
-                return data;
-            })
-            .catch(() => {
-                return Observable.of([]);
-            });*/
-        
+        /*.map(data => {
+            return data;
+        })
+        .catch(() => {
+            return Observable.of([]);
+        });*/
+
         /*Observable.fromEvent(this.querySelect.nativeElement, 'change')
             .distinctUntilChanged()
             .subscribe(() => {
@@ -157,20 +159,34 @@ export class ReportEditComponent implements OnInit {
         //    });
 
 
-        
-    }
 
+    }
 
     queryChange(): void {
         this.queryService.getQueryColumns(this.report.queryGUID)
             .subscribe(data => {
                 this.queryColumns = data;
-                if (this.columns != null)
-                    this.columns.selectedOptions.clear();
+                
+                //if (this.columns != null)
+                //    this.columns.selectedOptions.clear();
                 this._cdr.detectChanges();
-                //if (this.dataSource)
-                //    this.dataSource.clearSort();
+                this.selectColumns();
+                if (!this.dataSource)
+                    this.onUpdateClick();
             });
+    }
+
+    isColumnSelected(columnName: string): boolean {
+        return this.report.columns.find(x => x === columnName) != undefined;
+    }
+
+    selectColumns(): void {
+        this.columns.selectedOptions.clear();
+        this.columns.options.forEach(x => {
+            if (this.report.columns.find(y => y == x.value) != undefined) {
+                this.columns.selectedOptions.select(x);
+            }
+        });
     }
 
     clearFilter(): void {
@@ -179,18 +195,16 @@ export class ReportEditComponent implements OnInit {
     }
 
     getColumnText(name: string): string {
-        let col = this.queryColumns.columns.find(x => x.name === name);
+        let col = this.queryColumns.find(x => x.name === name);
         if (col != undefined)
             return col.text;
         else
             return name;
     }
     onUpdateClick(): void {
-                   // this.columns.options.find(x => x.value == "Table_95_Field_3")!.toggle();
 
-        //this.columns.options.first.;
         console.log(this.sort);
-        this.dataSource = new QueryDataSource(this.queryService!, this.sort, this.paginator);
+        this.dataSource = new QueryDataSource(this.queryService, this.sort, this.paginator);
         this.dataSource.queryGUID = this.report.queryGUID;
 
         console.log('colbefore '+this.columnNames);
@@ -259,6 +273,20 @@ export class ReportEditComponent implements OnInit {
         //        .subscribe();
     }
 
+    onExportClick() {
+        this.reportService.exportReport(this.reportGUID!)
+            .toPromise()
+            .then(response => this.downloadFile(response));
+    }
+
+    downloadFile(response: Response) {
+        let contentDispositionHeader: string = response.headers.get('Content-Disposition')!;
+        const parts: string[] = contentDispositionHeader.split(';');
+        const filename = parts[1].split('=')[1];
+        const blob = new Blob([(<any>response)._body], { type: 'text/csv' });
+        saveAs(blob, filename);
+    }
+
     onChartDataOptionChange(chartDataOptions: IChartDiscreteDataOptions): void {
         chartDataOptions.reportGUID = this.reportGUID!;
         this.reportService.getDiscreteDiagramData(chartDataOptions)
@@ -309,7 +337,6 @@ export class QueryDataSource extends DataSource<any[]> {
         this.selectedColumns = [];
     }
 
-    /** Connect function called by the table to retrieve one stream containing the data to render. */
     connect(): Observable<any[]> {
         const displayDataChanges = [
             this._sort.sortChange,
@@ -320,6 +347,7 @@ export class QueryDataSource extends DataSource<any[]> {
         ];
 
         this._sort.sortChange.subscribe(() => this._paginator.pageIndex = 0);
+        this._filterChange.subscribe(() => this._paginator.pageIndex = 0);
 
         return Observable.merge(...displayDataChanges)
             .startWith(null)
