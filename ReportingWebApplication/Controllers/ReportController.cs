@@ -98,8 +98,9 @@ namespace szakdoga.Controllers
             {
                 if (report == null) throw new BasicException("Invalud input format!");
                 if (!ModelState.IsValid) return BadRequest(ModelState);
+                User user = _userRep.GetByEmailAdd(this.User.Claims.SingleOrDefault(x => x.Type == "EmailAddress").Value);
 
-                var guid = _manager.CreateReport(report);
+                var guid = _manager.CreateReport(report, user);
                 return Created(string.Empty, guid);
             }
             catch (BasicException ex)

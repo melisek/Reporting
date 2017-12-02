@@ -67,7 +67,7 @@ namespace szakdoga.BusinessLogic
             };
         }
 
-        public string CreateReport(CreateReportDto report)
+        public string CreateReport(CreateReportDto report, User user)
         {
             var dbReport = new Report
             {
@@ -77,9 +77,17 @@ namespace szakdoga.BusinessLogic
                 Columns = StringArraySerializer(report.Columns),
                 Filter = report.Filter,
                 Sort = JsonConvert.SerializeObject(report.Sort, Formatting.None),
-                Rows = report.Rows
+                Rows = report.Rows,
+                Author = user
             };
             _reportRepository.Add(dbReport);
+
+            _userReportRel.Add(new ReportUserRel
+            {
+                Report = dbReport,
+                User = user,
+                AuthoryLayer = (int)ReportUserPermissions.CanModify
+            });
 
             return dbReport.ReportGUID;
         }
@@ -291,7 +299,7 @@ namespace szakdoga.BusinessLogic
             if (relUser == null || relUser.AuthoryLayer != (int)ReportUserPermissions.CanModify)
                 throw new PermissionException("Don't have permission.");
 
-            fileName = report.Name;
+            fileName = report.Name.Replace(" ", "_");
             string columnNames;
             DataTable data = _queryManager.GetQuerySourceInDatatable(
                 new Models.Dtos.QueryDtos.QuerySourceFilterDto
@@ -311,7 +319,7 @@ namespace szakdoga.BusinessLogic
                 IEnumerable<string> fields = row.ItemArray.Select(field => field.ToString());
                 sb.AppendLine(string.Join(";", fields));
             }
-            return Encoding.UTF32.GetBytes(sb.ToString());
+            return Encoding.UTF8.GetBytes(sb.ToString());
         }
     }
 }
