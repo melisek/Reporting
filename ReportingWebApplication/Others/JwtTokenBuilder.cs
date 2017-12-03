@@ -7,7 +7,7 @@ using System.Security.Claims;
 
 namespace szakdoga.Others
 {
-    public sealed class JwtTokenBuilder
+    public class JWTCreator
     {
         private SecurityKey securityKey = null;
 
@@ -15,86 +15,46 @@ namespace szakdoga.Others
         private string issuer = "";
         private string audience = "";
         private Dictionary<string, string> claims = new Dictionary<string, string>();
-        private int expiryInMinutes = 60;
+        private int expiryInMinutes = 15;
 
-        public JwtTokenBuilder AddSecurityKey(SecurityKey securityKey)
-        {
-            this.securityKey = securityKey;
-            return this;
-        }
+        public string Subject { get => subject; set => subject = value; }
+        public string Issuer { get => issuer; set => issuer = value; }
+        public string Audience { get => audience; set => audience = value; }
+        public int ExpiryInMinutes { get => expiryInMinutes; set => expiryInMinutes = value; }
+        public SecurityKey SecurityKey { get => securityKey; set => securityKey = value; }
 
-        public JwtTokenBuilder AddSubject(string subject)
-        {
-            this.subject = subject;
-            return this;
-        }
 
-        public JwtTokenBuilder AddIssuer(string issuer)
-        {
-            this.issuer = issuer;
-            return this;
-        }
-
-        public JwtTokenBuilder AddAudience(string audience)
-        {
-            this.audience = audience;
-            return this;
-        }
-
-        public JwtTokenBuilder AddClaim(string type, string value)
+        public JWTCreator AddClaim(string type, string value)
         {
             this.claims.Add(type, value);
             return this;
         }
 
-        public JwtTokenBuilder AddClaims(Dictionary<string, string> claims)
+        public JWTCreator AddClaims(Dictionary<string, string> claims)
         {
             this.claims.Union(claims);
             return this;
         }
 
-        public JwtTokenBuilder AddExpiry(int expiryInMinutes)
+        public JWT Build()
         {
-            this.expiryInMinutes = expiryInMinutes;
-            return this;
-        }
-
-        public JwtToken Build()
-        {
-            EnsureArguments();
-
+            CheckTokenElements();
             var claims = new List<Claim>
             {
-              new Claim(JwtRegisteredClaimNames.Sub, this.subject),
+              new Claim(JwtRegisteredClaimNames.Sub, this.Subject),
               new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             }
             .Union(this.claims.Select(item => new Claim(item.Key, item.Value)));
-
-            var token = new JwtSecurityToken(
-                              issuer: this.issuer,
-                              audience: this.audience,
-                              claims: claims,
-                              expires: DateTime.UtcNow.AddMinutes(expiryInMinutes),
-                              signingCredentials: new SigningCredentials(
-                                                        this.securityKey,
-                                                        SecurityAlgorithms.HmacSha256));
-
-            return new JwtToken(token);
+            var token = new JwtSecurityToken(Issuer, Audience, claims, null, DateTime.UtcNow.AddMinutes(ExpiryInMinutes), new SigningCredentials(SecurityKey, SecurityAlgorithms.HmacSha256));
+            return new JWT(token);
         }
 
-        private void EnsureArguments()
+        private void CheckTokenElements()
         {
-            if (this.securityKey == null)
-                throw new ArgumentNullException("Security Key");
-
-            if (string.IsNullOrEmpty(this.subject))
-                throw new ArgumentNullException("Subject");
-
-            if (string.IsNullOrEmpty(this.issuer))
-                throw new ArgumentNullException("Issuer");
-
-            if (string.IsNullOrEmpty(this.audience))
-                throw new ArgumentNullException("Audience");
+            if (this.SecurityKey == null) throw new BasicException("Empty Security Key");
+            if (string.IsNullOrEmpty(this.Subject)) throw new BasicException("Empty Subject");
+            if (string.IsNullOrEmpty(this.Issuer)) throw new BasicException("Empty Issuer");
+            if (string.IsNullOrEmpty(this.Audience)) throw new BasicException("Empty Audience");
         }
     }
 }

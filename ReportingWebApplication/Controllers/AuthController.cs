@@ -40,26 +40,24 @@ namespace szakdoga.Controllers
                 if (!ModelState.IsValid) BadRequest(ModelState);
 
                 User user = _userRepository.GetAll().FirstOrDefault(x => x.EmailAddress.Equals(credDto.EmailAddress));
-                if (user == null || !user.Password.Equals(CalculateHash(credDto.Password)))
+                if (user == null || !user.Password.Equals(GetHashedPaswd(credDto.Password)))
                 {
                     return Unauthorized();
                 }
 
-                var token = new JwtTokenBuilder()
-                                    .AddSecurityKey(JwtSecurityKey.Create(_cfg["Tokens:Key"]))
-                                    .AddSubject(user.UserGUID)
-                                    .AddIssuer(_cfg["Tokens:Issuer"])
-                                    .AddAudience(_cfg["Tokens:Audience"])
-                                    .AddClaim("EmailAddress", user.EmailAddress)
-                                    .AddExpiry(expiryMinutes)
-                                    .Build();
+                var token = new JWTCreator()
+                {
+                    Audience = _cfg["Tokens:Audience"],
+                    Issuer = _cfg["Tokens:Issuer"],
+                    ExpiryInMinutes = expiryMinutes,
+                    SecurityKey = JwtSecurityKey.Create(_cfg["Tokens:Key"]),
+                    Subject = user.UserGUID
+                }.AddClaim("EmailAddress", user.EmailAddress)
+                .Build();
 
-                //clean expried json
                 DateTime curruntTime = DateTime.Now;
-                _userJwtMapRepository.RemoveRecordBefore(curruntTime);
-
-                //store jwt and userid in userjwtmap
-                _userJwtMapRepository.AddUserJwtMapRecord(token.Value, user, curruntTime.AddMinutes(expiryMinutes));
+                _userJwtMapRepository.Delete(curruntTime);
+                _userJwtMapRepository.Add(token.Value, user, curruntTime.AddMinutes(expiryMinutes));
 
                 return Ok(Json(new
                 {
@@ -107,7 +105,7 @@ namespace szakdoga.Controllers
                         Name = register.Name,
                         UserGUID = CreateGUID.GetGUID(),
                         EmailAddress = register.EmailAddress,
-                        Password = CalculateHash(register.Password)
+                        Password = GetHashedPaswd(register.Password)
                     });
 
                 return Login(new CredentialDto { EmailAddress = register.EmailAddress, Password = register.Password });
@@ -165,10 +163,10 @@ namespace szakdoga.Controllers
             }
         }
 
-        private string CalculateHash(string clearTextPassword)
+        private string GetHashedPaswd(string pswd)
         {
-            byte[] saltedHashBytes = Encoding.UTF8.GetBytes(clearTextPassword);
-            byte[] hash = new SHA256Managed().ComputeHash(saltedHashBytes);
+            byte[] inBytes = Encoding.UTF8.GetBytes(pswd);
+            byte[] hash = new SHA256Managed().ComputeHash(inBytes);
             return Convert.ToBase64String(hash);
         }
     }

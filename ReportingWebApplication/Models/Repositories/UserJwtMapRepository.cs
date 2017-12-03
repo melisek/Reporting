@@ -16,7 +16,7 @@ namespace szakdoga.Models.Repositories
             _context = context;
         }
 
-        public void AddUserJwtMapRecord(string jwt, User user, DateTime expireTime)
+        public void Add(string jwt, User user, DateTime expireTime)
         {
             //delete all records with same jwt(probably will not happen, just in case)
             List<UserJwtMap> mapRecords = _context.UserJwtMap.Where(record => record.Jwt == jwt).ToList();
@@ -42,7 +42,7 @@ namespace szakdoga.Models.Repositories
             return _context.UserJwtMap.FirstOrDefault(record => record.Jwt == jwt);
         }
 
-        public void RemoveRecordBefore(DateTime time)
+        public void Delete(DateTime time)
         {
             List<UserJwtMap> listToRemove = _context.UserJwtMap.Where(record => record.ExpireTime < time).ToList();
             foreach (UserJwtMap record in listToRemove)

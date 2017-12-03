@@ -3,11 +3,11 @@ using System.IdentityModel.Tokens.Jwt;
 
 namespace szakdoga.Others
 {
-    public sealed class JwtToken
+    public class JWT
     {
         private JwtSecurityToken token;
 
-        public JwtToken(JwtSecurityToken token)
+        public JWT(JwtSecurityToken token)
         {
             this.token = token;
         }
