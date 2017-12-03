@@ -15,6 +15,7 @@ import { AuthHttp } from 'angular2-jwt';
 export class ReportService {
     private _listUrl = './api/reports/GetAll';
     private _addUrl = './api/reports/Create';
+    private _updateUrl = './api/reports/Update/';
     private _getUrl = './api/reports/Get/';
     private _deleteUrl = './api/reports/Delete/';
     private _exportUrl = './api/reports/Export/';
@@ -33,6 +34,16 @@ export class ReportService {
     addReport(report: IReportCreate): Observable<IResponseResult> {
         console.log(report);
         return this._http.post(this._addUrl, report)
+            //.map(response => response.json() as IResponseResult)
+            //.do(data => console.log("Add report: " + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    updateReport(reportGUID: string, report: IReportCreate): Observable<IResponseResult> {
+        
+        let a = { "reportGUID": reportGUID, ...report };
+        console.log('updatereport:' + JSON.stringify(a));
+        return this._http.put(this._updateUrl + reportGUID, a)
             //.map(response => response.json() as IResponseResult)
             //.do(data => console.log("Add report: " + JSON.stringify(data)))
             .catch(this.handleError);

@@ -24,7 +24,7 @@
     </ng-container>
     <ng-container matColumnDef="Name">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+        <mat-cell *matCellDef="let row"> <a [routerLink]="['/reports/edit/' + row.reportGUID]">{{row.name}}</a> </mat-cell>
     </ng-container>
     <ng-container matColumnDef="Query">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Query </mat-header-cell>

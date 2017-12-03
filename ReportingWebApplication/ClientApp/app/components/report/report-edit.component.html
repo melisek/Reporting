@@ -1,5 +1,5 @@
 <div class="clearfix pull-right margin-top-20">
-    <button mat-raised-button color="primary" (click)="onChartSave()" [disabled]="query && columns && columns.selectedOptions.selected.length == 0">Save</button>
+    <button mat-raised-button color="primary" (click)="onSaveClick()" [disabled]="query && columns && columns.selectedOptions.selected.length == 0">Save</button>
     <button mat-raised-button [routerLink]="['/reports']">Cancel</button>
 </div>
 <div class="clearfix">
@@ -47,7 +47,7 @@
             <div class="col-md-9">
                 <div class="clearfix" [hidden]="!showDataTable">
                     <mat-form-field floatPlaceholder="never">
-                        <input matInput #filter placeholder="Filter data">
+                        <input matInput #filter [(ngModel)]="report.filter" placeholder="Filter data">
                         <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter()">
                             <mat-icon>close</mat-icon>
                         </button>

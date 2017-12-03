@@ -55,7 +55,7 @@
             </mat-expansion-panel-header>
             <div *ngFor="let option of chartItem.options; let i = index">
                 <mat-form-field *ngIf="option.type == 'string'">
-                    <input #stringOpts matInput [(ngModel)]="chartItem.options[i].value" name="{{option.name}}" placeholder="{{option.text}}" class="fit-container">
+                    <input #stringOpts matInput [(ngModel)]="chartItem.options[i].value" [name]="option.name" placeholder="{{option.text}}" class="fit-container">
                 </mat-form-field>
             </div>
         </mat-expansion-panel>

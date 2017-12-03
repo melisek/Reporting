@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Http } from '@angular/http';
 import { DataSource } from '@angular/cdk/collections';
-import { MatSort, MatPaginator, MatDialog, MatSelectionList, MatSnackBar } from '@angular/material';
+import { MatSort, MatPaginator, MatDialog, MatSelectionList, MatSnackBar, SortDirection } from '@angular/material';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
@@ -12,8 +12,8 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/observable/fromEvent';
 
-import { QueryService } from "../query/query.service";
-import { IReport, IReportCreate } from "./report";
+import { QueryService } from '../query/query.service';
+import { IReport, IReportCreate } from './report';
 import { ShareDialogComponent } from '../shared/share-dialog.component';
 import { ChartEditComponent } from '../chart/chart-edit.component';
 import { IResponseResult, IEntityWithIdName, IListFilter, IChartDiscreteDataOptions } from '../shared/shared-interfaces';
@@ -204,7 +204,11 @@ export class ReportEditComponent implements OnInit {
     onUpdateClick(): void {
 
         console.log(this.sort);
-        this.dataSource = new QueryDataSource(this.queryService, this.sort, this.paginator);
+        this.paginator.pageSize = this.report.rows;
+        this.sort.active = this.report.sort.columnName;
+        this.sort.direction = this.report.sort.direction == "Asc" ? "asc" : "desc";
+
+        this.dataSource = new QueryDataSource(this.queryService, this.sort, this.paginator, this.report.filter);
         this.dataSource.queryGUID = this.report.queryGUID;
 
         console.log('colbefore '+this.columnNames);
@@ -253,18 +257,33 @@ export class ReportEditComponent implements OnInit {
         this.report.filter = this.filter.nativeElement.value;
         this.report.columns = this.columns.selectedOptions.selected.map(x => x.value);
 
-        this.reportService.addReport(this.report)
-            .subscribe(res => {
-                console.log('res:' + res._body);
-                this._snackbar.open(`Report created.`, 'x', {
-                    duration: 5000
+        if (this.reportGUID) {
+            this.reportService.updateReport(this.reportGUID, this.report)
+                .subscribe(res => {
+                    this._snackbar.open(`Report updated.`, 'x', {
+                        duration: 5000
+                    });
+                    this._router.navigate(['./reports/']);
+                }, err => {
+                    this._snackbar.open(`Error: ${<any>err}`, 'x', {
+                        duration: 5000
+                    });
                 });
-                this._router.navigate(['./reports/edit/' + res._body,]);
-            }, err => {
-                this._snackbar.open(`Error: ${<any>err}`, 'x', {
-                    duration: 5000
+        }
+        else {
+            this.reportService.addReport(this.report)
+                .subscribe(res => {
+                    this._snackbar.open(`Report created.`, 'x', {
+                        duration: 5000
+                    });
+                    this._router.navigate(['./reports/edit/' + res._body,]);
+                }, err => {
+                    this._snackbar.open(`Error: ${<any>err}`, 'x', {
+                        duration: 5000
+                    });
                 });
-            });
+        }
+        
 
 
 
@@ -328,8 +347,9 @@ export class QueryDataSource extends DataSource<any[]> {
     get queryGUID(): string { return this._queryChange.value; }
     set queryGUID(queryGUID: string) { this._queryChange.next(queryGUID); }
 
-    constructor(private _queryService: QueryService, private _sort: MatSort, private _paginator: MatPaginator) {
+    constructor(private _queryService: QueryService, private _sort: MatSort, private _paginator: MatPaginator, private _filter: string) {
         super();
+        this.filter = _filter;
     }
 
     clearSort(): void {

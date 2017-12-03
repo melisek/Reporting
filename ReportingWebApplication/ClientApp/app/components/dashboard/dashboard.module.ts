@@ -22,15 +22,16 @@ import { ChartDirective } from '../chart/chart.directive';
             {
                 path: 'dashboards/create',
                 component: DashboardEditComponent,
+                canActivate: [AuthGuard]
             },
             {
-                path: 'dashboards/edit/:reportGUID',
+                path: 'dashboards/edit/:dashboardGUID',
                 component: DashboardEditComponent,
+                canActivate: [AuthGuard]
             }
         ]),
         AppModuleShared,
         NgxDnDModule,
-
     ],
     declarations: [
         DashboardListComponent,

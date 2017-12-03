@@ -95,7 +95,11 @@ export class ChartEditComponent implements AfterViewInit {
         console.log(this.chartItem);
     }
 
+    //xAxisLabel: ElementRef;
+    //yAxisLabel: ElementRef;
+
     ngAfterViewInit() {
+       
         //this.loadComponent();
         //this.stringOpts.forEach(option => {
         //    Observable.fromEvent(option.nativeElement, 'keyup')
@@ -144,6 +148,8 @@ export class ChartEditComponent implements AfterViewInit {
 
     chartDataOptionChange() {
 
+        
+
         console.log('chartdataoptionchange.start');
         if (this.discreteDataOptions.nameColumn != '' &&
             this.discreteDataOptions.valueColumn != '' &&
@@ -154,6 +160,14 @@ export class ChartEditComponent implements AfterViewInit {
             
             if (this.chartItem != null) {
                 console.log('chartdataoptionchange.if');
+                //this.xAxisLabel = this.stringOpts.find(x => x.nativeElement.name == 'xAxisLabel')!;
+                //this.yAxisLabel = this.stringOpts.find(x => x.nativeElement.name == 'yAxisLabel')!;
+
+                //this.stringOpts.forEach(x => console.log(x));
+                //console.log('xAxisLabel' + this.xAxisLabel);
+
+                //this.discreteDataOptions.nameColumn != '' ? this.xAxisLabel.nativeElement.value = this.queryStringColumns.find(x => x.name === this.discreteDataOptions.nameColumn)!.text : '';
+                //this.discreteDataOptions.valueColumn != '' ? this.yAxisLabel.nativeElement.value = this.queryStringColumns.find(x => x.name === this.discreteDataOptions.valueColumn)!.text : '';
                 this.loadComponent();
             }
 
