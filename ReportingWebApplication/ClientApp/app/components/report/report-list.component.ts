@@ -139,8 +139,7 @@ export class ReportListDataSource extends DataSource<any> {
         const displayDataChanges = [
             this._sort.sortChange,
             this._filterChange,
-            this._paginator.page,
-            this._paginator.pageSize
+            this._paginator.page
         ];
 
         this._sort.sortChange.subscribe(() => this._paginator.pageIndex = 0);

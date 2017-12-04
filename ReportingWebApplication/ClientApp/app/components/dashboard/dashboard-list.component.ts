@@ -17,8 +17,6 @@ import { IResponseResult, IEntityWithIdName, IListFilter } from '../shared/share
 import { Title } from '@angular/platform-browser';
 import { AuthHttp } from 'angular2-jwt';
 
-
-
 @Component({
     selector: 'dashboard',
     templateUrl: './dashboard-list.component.html',
@@ -119,8 +117,7 @@ export class DashboardDataSource extends DataSource<any> {
         const displayDataChanges = [
             this._sort.sortChange,
             this._filterChange,
-            this._paginator.page,
-            this._paginator.pageSize
+            this._paginator.page
         ];
 
         this._sort.sortChange.subscribe(() => this._paginator.pageIndex = 0);

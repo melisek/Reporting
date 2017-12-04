@@ -16,7 +16,9 @@ export class UserService {
     private _registerUrl = './api/auth/register';
     private _usernameUrl = './api/auth/GetUserName';
 
-    public username: string;
+    public get username(): string {
+        return localStorage.getItem('username') || '';
+    };
 
     constructor(private _http: Http, private _authHttp: AuthHttp) { }
 
@@ -29,7 +31,7 @@ export class UserService {
                     localStorage.setItem('token', token);
                     this._authHttp.get(this._usernameUrl)
                         .map(response => {
-                            this.username = response.text();
+                            localStorage.setItem('username', response.text());
                         }).subscribe();
                     return true;
                 } else {
@@ -48,7 +50,7 @@ export class UserService {
                     localStorage.setItem('token', token);
                     this._authHttp.get(this._usernameUrl)
                         .map(response => {
-                            this.username = response.text();
+                            localStorage.setItem('username', response.text());
                         }).subscribe();
                     return true;
                 } else {
@@ -60,6 +62,7 @@ export class UserService {
 
     logout(): void {
         localStorage.removeItem('token');
+        localStorage.removeItem('username');
     }
 
     loggedIn() {

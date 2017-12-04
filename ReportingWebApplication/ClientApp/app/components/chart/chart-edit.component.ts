@@ -142,7 +142,7 @@ export class ChartEditComponent implements AfterViewInit {
             this.stringOptions = this.chartItem.options.filter(x => x.type === "string");
             
             this.boolOptions = this.chartItem.options.filter(x => x.type === "boolean");
-            this.loadComponent();
+            this.loadChart();
         }
     }
 
@@ -168,7 +168,7 @@ export class ChartEditComponent implements AfterViewInit {
 
                 //this.discreteDataOptions.nameColumn != '' ? this.xAxisLabel.nativeElement.value = this.queryStringColumns.find(x => x.name === this.discreteDataOptions.nameColumn)!.text : '';
                 //this.discreteDataOptions.valueColumn != '' ? this.yAxisLabel.nativeElement.value = this.queryStringColumns.find(x => x.name === this.discreteDataOptions.valueColumn)!.text : '';
-                this.loadComponent();
+                this.loadChart();
             }
 
             else {
@@ -179,7 +179,7 @@ export class ChartEditComponent implements AfterViewInit {
         }
     }
 
-    loadComponent() {
+    loadChart() {
 
         let componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.chartItem.component);
 
@@ -188,7 +188,6 @@ export class ChartEditComponent implements AfterViewInit {
 
         let componentRef = viewContainerRef.createComponent(componentFactory);
         (<IChart>componentRef.instance).options = this.chartItem.options;
-        console.log('loadcomp:' + this.chartData);
         (<IChart>componentRef.instance).data = this.chartData;
         this._cdr.detectChanges();
     }
