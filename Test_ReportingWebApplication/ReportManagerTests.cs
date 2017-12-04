@@ -20,6 +20,8 @@ namespace test_szakdoga
         private List<UserDashboardRel> _dashUserRel;
         private List<Report> _reports;
         private List<ReportUserRel> _reportUserRel;
+        private List<Query> _queries;
+        private List<ReportDashboardRel> _reportDashRel;
 
         [SetUp]
         public void InitData()
@@ -55,6 +57,13 @@ namespace test_szakdoga
                 new ReportUserRel{ Id=3, User=_users[2], Report=_reports[0], AuthoryLayer=(int)ReportUserPermissions.Invalid}
             };
 
+            _queries = new List<Query>
+            {
+                new Query{  Id=1, Name="Test_Query",QueryGUID="Valid", SQL="sql" }
+            };
+
+            _reportDashRel = new List<ReportDashboardRel>();
+
             AutoMapper.Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<Dashboard, DashboardDto>();
@@ -72,6 +81,8 @@ namespace test_szakdoga
             _users = null;
             _dashboards = null;
             _dashUserRel = null;
+            _queries = null;
+            _reportDashRel = null;
             AutoMapper.Mapper.Reset();
         }
 
@@ -127,6 +138,127 @@ namespace test_szakdoga
             ReportManager manager = new ReportManager(reportRep.Object, null, null, null, null, reportUserRelRep.Object);
             // Assert
             Assert.Throws(typeof(PermissionException), () => manager.GetReportStyle("Valid", _users[2]));
+        }
+
+        [Test]
+        public void Test_CreateReport_Should_Create_When_ValidDataAdded()
+        {
+            // Arrange
+            Mock<IReportRepository> reportRep = new Mock<IReportRepository>();
+            reportRep.Setup(x => x.Add(It.IsAny<Report>())).Callback<Report>((x) => _reports.Add(x));
+            reportRep.Setup(x => x.GetQuery(It.IsAny<string>())).Returns<string>((x) => _queries.FirstOrDefault(z => z.QueryGUID.Equals("Valid")));
+            Mock<IReportUserRelRepository> reportUserRelRep = new Mock<IReportUserRelRepository>();
+            reportUserRelRep.Setup(x => x.Add(It.IsAny<ReportUserRel>())).Callback<ReportUserRel>((x) => _reportUserRel.Add(x));
+            // Act
+            ReportManager manager = new ReportManager(reportRep.Object, null, null, null, null, reportUserRelRep.Object);
+            manager.CreateReport(new CreateReportDto { QueryGUID = "Valid", Columns = new string[] { "1", "2" }, Filter = string.Empty, Name = "Test", Rows = 2, Sort = new SortDto { ColumnName = "Voucher", Direction = Direction.Asc } }, _users[0]);
+
+            // Assert
+            Assert.AreEqual(true, _reports.FirstOrDefault(x => x.Name == "Test") != null);
+        }
+
+        [Test]
+        public void Test_UpdateReport_Should_Update_When_ValidDataAdded()
+        {
+            // Arrange
+            Mock<IReportRepository> reportRep = new Mock<IReportRepository>();
+            reportRep.Setup(x => x.Add(It.IsAny<Report>())).Callback<Report>((x) => _reports.Add(x));
+            reportRep.Setup(x => x.GetQuery(It.IsAny<string>())).Returns<string>((x) => _queries.FirstOrDefault(z => z.QueryGUID.Equals("Valid")));
+            reportRep.Setup(x => x.Get(It.IsAny<string>())).Returns<string>((z) => _reports.SingleOrDefault(x => x.ReportGUID.Equals(z)));
+            reportRep.Setup(x => x.Update(It.IsAny<Report>())).Callback<Report>((z) => { var origrep = _reports.SingleOrDefault(x => x.ReportGUID.Equals(z.ReportGUID)); origrep = z; });
+            Mock<IReportUserRelRepository> reportUserRelRep = new Mock<IReportUserRelRepository>();
+            reportUserRelRep.Setup(x => x.Add(It.IsAny<ReportUserRel>())).Callback<ReportUserRel>((x) => _reportUserRel.Add(x));
+            reportUserRelRep.Setup(x => x.Get(It.IsAny<int>(), It.IsAny<int>())).Returns<int, int>((repId, userId) => _reportUserRel.SingleOrDefault(x => x.User.Id == userId && x.Report.Id == repId));
+            // Act
+            ReportManager manager = new ReportManager(reportRep.Object, null, null, null, null, reportUserRelRep.Object);
+            bool result = manager.UpdateReport(new UpdateReportDto { ReportGUID = "Valid", QueryGUID = "Valid", Columns = new string[] { "1", "2" }, Filter = string.Empty, Name = "Test", Rows = 2, Sort = new SortDto { ColumnName = "Voucher", Direction = Direction.Asc } }, "Valid", _users[0]);
+            result = result && _reports[0].Name.Equals("Test");
+            // Assert
+            Assert.AreEqual(true, result);
+        }
+
+        [Test]
+        public void Test_UpdateReport_Should_ThrowNotFoundException_When_InValidReportGUIDAdded()
+        {
+            // Arrange
+            Mock<IReportRepository> reportRep = new Mock<IReportRepository>();
+            reportRep.Setup(x => x.Add(It.IsAny<Report>())).Callback<Report>((x) => _reports.Add(x));
+            reportRep.Setup(x => x.GetQuery(It.IsAny<string>())).Returns<string>((x) => _queries.FirstOrDefault(z => z.QueryGUID.Equals("Valid")));
+            reportRep.Setup(x => x.Get(It.IsAny<string>())).Returns<string>((z) => _reports.SingleOrDefault(x => x.ReportGUID.Equals(z)));
+            reportRep.Setup(x => x.Update(It.IsAny<Report>())).Callback<Report>((z) => { var origrep = _reports.SingleOrDefault(x => x.ReportGUID.Equals(z.ReportGUID)); origrep = z; });
+            Mock<IReportUserRelRepository> reportUserRelRep = new Mock<IReportUserRelRepository>();
+            reportUserRelRep.Setup(x => x.Add(It.IsAny<ReportUserRel>())).Callback<ReportUserRel>((x) => _reportUserRel.Add(x));
+            reportUserRelRep.Setup(x => x.Get(It.IsAny<int>(), It.IsAny<int>())).Returns<int, int>((repId, userId) => _reportUserRel.SingleOrDefault(x => x.User.Id == userId && x.Report.Id == repId));
+            // Act
+            ReportManager manager = new ReportManager(reportRep.Object, null, null, null, null, reportUserRelRep.Object);
+
+            // Assert
+            Assert.Throws(typeof(NotFoundException), () => manager.UpdateReport(new UpdateReportDto { ReportGUID = "Valid", QueryGUID = "Valid", Columns = new string[] { "1", "2" }, Filter = string.Empty, Name = "Test", Rows = 2, Sort = new SortDto { ColumnName = "Voucher", Direction = Direction.Asc } }, "Valid1", _users[0]));
+        }
+
+        [Test]
+        public void Test_UpdateReport_Should_ThrowPermissionException_When_UnAuthorizedUserAdded()
+        {
+            // Arrange
+            Mock<IReportRepository> reportRep = new Mock<IReportRepository>();
+            reportRep.Setup(x => x.Add(It.IsAny<Report>())).Callback<Report>((x) => _reports.Add(x));
+            reportRep.Setup(x => x.GetQuery(It.IsAny<string>())).Returns<string>((x) => _queries.FirstOrDefault(z => z.QueryGUID.Equals("Valid")));
+            reportRep.Setup(x => x.Get(It.IsAny<string>())).Returns<string>((z) => _reports.SingleOrDefault(x => x.ReportGUID.Equals(z)));
+            reportRep.Setup(x => x.Update(It.IsAny<Report>())).Callback<Report>((z) => { var origrep = _reports.SingleOrDefault(x => x.ReportGUID.Equals(z.ReportGUID)); origrep = z; });
+            Mock<IReportUserRelRepository> reportUserRelRep = new Mock<IReportUserRelRepository>();
+            reportUserRelRep.Setup(x => x.Add(It.IsAny<ReportUserRel>())).Callback<ReportUserRel>((x) => _reportUserRel.Add(x));
+            reportUserRelRep.Setup(x => x.Get(It.IsAny<int>(), It.IsAny<int>())).Returns<int, int>((repId, userId) => _reportUserRel.SingleOrDefault(x => x.User.Id == userId && x.Report.Id == repId));
+            // Act
+            ReportManager manager = new ReportManager(reportRep.Object, null, null, null, null, reportUserRelRep.Object);
+
+            // Assert
+            Assert.Throws(typeof(PermissionException), () => manager.UpdateReport(new UpdateReportDto { ReportGUID = "Valid", QueryGUID = "Valid", Columns = new string[] { "1", "2" }, Filter = string.Empty, Name = "Test", Rows = 2, Sort = new SortDto { ColumnName = "Voucher", Direction = Direction.Asc } }, "Valid", _users[1]));
+        }
+
+        [Test]
+        public void Test_DeleteReport_Should_Delete_When_ValidDataAdded()
+        {
+            // Arrange
+            Mock<IReportRepository> reportRep = new Mock<IReportRepository>();
+            reportRep.Setup(x => x.Add(It.IsAny<Report>())).Callback<Report>((x) => _reports.Add(x));
+            reportRep.Setup(x => x.GetQuery(It.IsAny<string>())).Returns<string>((x) => _queries.FirstOrDefault(z => z.QueryGUID.Equals("Valid")));
+            reportRep.Setup(x => x.Get(It.IsAny<string>())).Returns<string>((z) => _reports.SingleOrDefault(x => x.ReportGUID.Equals(z)));
+            reportRep.Setup(x => x.Update(It.IsAny<Report>())).Callback<Report>((z) => { var origrep = _reports.SingleOrDefault(x => x.ReportGUID.Equals(z.ReportGUID)); origrep = z; });
+            reportRep.Setup(x => x.Remove(It.IsAny<string>())).Returns<string>((z) => _reports.RemoveAll(x => x.ReportGUID == z) > 0);
+            Mock<IReportUserRelRepository> reportUserRelRep = new Mock<IReportUserRelRepository>();
+            reportUserRelRep.Setup(x => x.Add(It.IsAny<ReportUserRel>())).Callback<ReportUserRel>((x) => _reportUserRel.Add(x));
+            reportUserRelRep.Setup(x => x.Get(It.IsAny<int>(), It.IsAny<int>())).Returns<int, int>((repId, userId) => _reportUserRel.SingleOrDefault(x => x.User.Id == userId && x.Report.Id == repId));
+            Mock<IReportDashboardRelRepository> repDashRel = new Mock<IReportDashboardRelRepository>();
+            repDashRel.Setup(x => x.GetReportDashboards(It.IsAny<int>())).Returns<int>(z => _reportDashRel.Where(x => x.Report.Id == z).ToList());
+            repDashRel.Setup(x => x.Remove(It.IsAny<int>())).Callback<int>(z => _reportDashRel.RemoveAll(x => x.Id == z));
+            // Act
+            ReportManager manager = new ReportManager(reportRep.Object, repDashRel.Object, null, null, null, reportUserRelRep.Object);
+
+            // Assert
+            Assert.AreEqual(true, manager.DeleteReport("Valid", _users[0]));
+        }
+
+        [Test]
+        public void Test_DeleteReport_Should_PermissionException_When_UnAuthorizedUserAdded()
+        {
+            // Arrange
+            Mock<IReportRepository> reportRep = new Mock<IReportRepository>();
+            reportRep.Setup(x => x.Add(It.IsAny<Report>())).Callback<Report>((x) => _reports.Add(x));
+            reportRep.Setup(x => x.GetQuery(It.IsAny<string>())).Returns<string>((x) => _queries.FirstOrDefault(z => z.QueryGUID.Equals("Valid")));
+            reportRep.Setup(x => x.Get(It.IsAny<string>())).Returns<string>((z) => _reports.SingleOrDefault(x => x.ReportGUID.Equals(z)));
+            reportRep.Setup(x => x.Update(It.IsAny<Report>())).Callback<Report>((z) => { var origrep = _reports.SingleOrDefault(x => x.ReportGUID.Equals(z.ReportGUID)); origrep = z; });
+            reportRep.Setup(x => x.Remove(It.IsAny<string>())).Returns<string>((z) => _reports.RemoveAll(x => x.ReportGUID == z) > 0);
+            Mock<IReportUserRelRepository> reportUserRelRep = new Mock<IReportUserRelRepository>();
+            reportUserRelRep.Setup(x => x.Add(It.IsAny<ReportUserRel>())).Callback<ReportUserRel>((x) => _reportUserRel.Add(x));
+            reportUserRelRep.Setup(x => x.Get(It.IsAny<int>(), It.IsAny<int>())).Returns<int, int>((repId, userId) => _reportUserRel.SingleOrDefault(x => x.User.Id == userId && x.Report.Id == repId));
+            Mock<IReportDashboardRelRepository> repDashRel = new Mock<IReportDashboardRelRepository>();
+            repDashRel.Setup(x => x.GetReportDashboards(It.IsAny<int>())).Returns<int>(z => _reportDashRel.Where(x => x.Report.Id == z).ToList());
+            repDashRel.Setup(x => x.Remove(It.IsAny<int>())).Callback<int>(z => _reportDashRel.RemoveAll(x => x.Id == z));
+            // Act
+            ReportManager manager = new ReportManager(reportRep.Object, repDashRel.Object, null, null, null, reportUserRelRep.Object);
+
+            // Assert
+            Assert.Throws(typeof(PermissionException), () => manager.DeleteReport("Valid", _users[1]));
         }
     }
 }

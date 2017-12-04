@@ -129,6 +129,7 @@ namespace test_szakdoga
             // Assert
             Assert.AreEqual(true, report != null);
         }
+
         [Test]
         public void Test_UpdateDashboard_Should_Update_When_ValidDataAdded()
         {
@@ -159,7 +160,6 @@ namespace test_szakdoga
                 , "Valid", _users[0]);
 
             result = result && _dashboards[0].Name.Equals("Valid2");
-
 
             // Assert
             Assert.AreEqual(true, result);
@@ -196,6 +196,7 @@ namespace test_szakdoga
                  }
                  , "Valid2", _users[0]));
         }
+
         [Test]
         public void Test_UpdateDashboard_Should_PermissionException_When_UnAuthorizedUserAdded()
         {
@@ -227,6 +228,7 @@ namespace test_szakdoga
                  }
                  , "Valid", _users[1]));
         }
+
         [Test]
         public void Test_RemoveDashboard_Should_Remove_When_AuthorizedUserAdded()
         {
