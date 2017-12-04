@@ -23,19 +23,15 @@
                                    [copy]="true"
                                    [dropZones]="['multiple-target-a', 'multiple-target-b']"
                                    [droppableItemClass]="item"
-                                   id="dnd-container"
+                                   id="dnd-container">
 
-                                   >
+                </ngx-dnd-container>
 
-                    </ngx-dnd-container>
-                    <!--<mat-list #reports *ngIf="reportList" class="margin-top-20"  ngxDroppable>
-                        <mat-list-item *ngFor="let report of reportList.reports" ngxDraggable="['example-target']">
-                            {{report.name}}
-                        </mat-list-item>
-                    </mat-list>-->
-
-</mat-card-content>
+                
+                
+            </mat-card-content>
             <mat-card-actions>
+                <div><label>Grid</label><mat-slider min="1" max="10" step="1" [(ngModel)]="gridCount"></mat-slider> {{gridCount}}</div>
                 <button mat-raised-button color="primary" (click)="onSaveClick()" [disabled]="false" class="margintop20">Save</button>
             </mat-card-actions>
         </mat-card>
@@ -43,16 +39,16 @@
     <div class="col-md-10">
 
         <mat-grid-list cols="2">
-            <mat-grid-tile>
+            <mat-grid-tile *ngFor="let i of numbers">
                 <mat-card>
                     <mat-card-header>
-                        <ngx-dnd-container [model]="targetItemsA"
+                        <ngx-dnd-container [model]="targetItemsA[i]"
                                            dropZone="multiple-target-a"
                                            [droppableItemClass]="droppableItem"
                                            [removeOnSpill]="true"
-                                           (drop)="onDrop($event,0)"
-                                           (remove)="onRemove($event,0)"
-                                           id="1">
+                                           (drop)="onDrop($event,i)"
+                                           (remove)="onRemove($event,i)"
+                                           [id]="i">
                         </ngx-dnd-container>
                     </mat-card-header>
                     <mat-card-content>
@@ -62,25 +58,6 @@
                     </mat-card-content>
                 </mat-card>
             </mat-grid-tile>
-            <mat-grid-tile>
-                <ngx-dnd-container [model]="targetItemsB"
-                                   dropZone="multiple-target-b"
-                                   [droppableItemClass]="droppableItem"
-                                   [removeOnSpill]="true"
-                                   (drop)="onDrop($event)"
-                                    (remove)="onRemove($event,1)"
-                                   id="2">
-                </ngx-dnd-container>
-                <ng-template chart-host class="margin-top-20"></ng-template>
-            </mat-grid-tile>
-            <mat-grid-tile>3</mat-grid-tile>
-            <mat-grid-tile>4</mat-grid-tile>
         </mat-grid-list>
-
-
-
-        
-        
-
     </div>
 </div>

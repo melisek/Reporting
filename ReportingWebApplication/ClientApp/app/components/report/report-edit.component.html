@@ -56,7 +56,9 @@
                 </div>
                 <mat-table [hidden]="!showDataTable" #table [dataSource]="dataSource" matSort matSortDisableClear matSortDirection="asc">
                     <ng-container *ngFor="let column of columnNames" [matColumnDef]="column.columnDef">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ column.header }}</mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>
+                            {{ column.header }}
+                        </mat-header-cell>
                         <mat-cell *matCellDef="let row">{{ column.cell(row) }}</mat-cell>
                     </ng-container>
 

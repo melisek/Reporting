@@ -167,8 +167,8 @@ export class ReportEditComponent implements OnInit {
             .subscribe(data => {
                 this.queryColumns = data;
                 
-                //if (this.columns != null)
-                //    this.columns.selectedOptions.clear();
+                if (this.columns != null)
+                    this.columns.selectedOptions.clear();
                 this._cdr.detectChanges();
                 this.selectColumns();
                 if (!this.dataSource)
@@ -218,11 +218,11 @@ export class ReportEditComponent implements OnInit {
 
         
         this.columns.selectedOptions.selected.forEach(x => {
-            console.log(x);
-            this.columnNames.push({ columnDef: x.value, header: "", cell: (row: any) => `${(<any>row)[x.value]}` });
-        });
-        this.columnNames.forEach(x => {
-            x.header = this.getColumnText(x.columnDef);
+            let header: string = this.getColumnText(x.value);
+            this.columnNames.push({
+                columnDef: x.value, header: header,
+                cell: (row: any) => `${(<any>row)[x.value]}`
+            });
         });
 
         console.log('displayafterinit: ' + this.displayedColumns);
@@ -377,7 +377,8 @@ export class QueryDataSource extends DataSource<any[]> {
                 console.log('selcol ' + this.selectedColumns);
                 console.log('selact ' + this._sort.active);
 
-                if (this._sort.active == null || this._sort.active == '')
+                if (this._sort.active == null || this._sort.active == '' ||
+                    (this._sort.active != null && this.selectedColumns.findIndex(x => x === this._sort.active) == -1))
                     this._sort.active = this.selectedColumns[0];
 
                 console.log('selact2 ' + this._sort.active);

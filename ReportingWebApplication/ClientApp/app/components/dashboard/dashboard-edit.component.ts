@@ -27,10 +27,13 @@ export class DashboardEditComponent implements OnInit {
     dashboard: IDashboardCreate;
     //reportList: IReportList;
 
+    gridCount: number = 2;
+    numbers = Array(2).fill(0);
+
     sourceItems: any[] = [
     ];
     targetItems: any[] = [];
-    targetItemsA: any[] = [];
+    targetItemsA: any[][] = [];
     targetItemsB: any[] = [];
 
     constructor(
