@@ -18,7 +18,6 @@ namespace szakdoga.Models.Repositories
 
         public void Add(string jwt, User user, DateTime expireTime)
         {
-            //delete all records with same jwt(probably will not happen, just in case)
             List<UserJwtMap> mapRecords = _context.UserJwtMap.Where(record => record.Jwt == jwt).ToList();
             foreach (UserJwtMap record in mapRecords)
             {
@@ -26,14 +25,13 @@ namespace szakdoga.Models.Repositories
                 _context.UserJwtMap.Remove(record);
             }
 
-            // add the new record
-            UserJwtMap newTask = new UserJwtMap
+            UserJwtMap userToken = new UserJwtMap
             {
                 Jwt = jwt,
                 User = user,
                 ExpireTime = expireTime
             };
-            _context.Add(newTask);
+            _context.Add(userToken);
             _context.SaveChanges();
         }
 
@@ -44,8 +42,7 @@ namespace szakdoga.Models.Repositories
 
         public void Delete(DateTime time)
         {
-            List<UserJwtMap> listToRemove = _context.UserJwtMap.Where(record => record.ExpireTime < time).ToList();
-            foreach (UserJwtMap record in listToRemove)
+            foreach (UserJwtMap record in _context.UserJwtMap.Where(record => record.ExpireTime < time).ToList())
             {
                 _context.UserJwtMap.Remove(record);
             }
