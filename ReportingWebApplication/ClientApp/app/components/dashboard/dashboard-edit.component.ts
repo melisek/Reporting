@@ -27,8 +27,8 @@ export class DashboardEditComponent implements OnInit {
     dashboard: IDashboardCreate;
     //reportList: IReportList;
 
-    gridCount: number = 2;
-    numbers = Array(2).fill(0);
+    gridCount: number = 4;
+    numbers = Array(4);
 
     sourceItems: any[] = [
     ];
@@ -45,7 +45,9 @@ export class DashboardEditComponent implements OnInit {
         private _snackbar: MatSnackBar,
         private _router: Router,
         private _route: ActivatedRoute,
-        private _cdr: ChangeDetectorRef) { }
+        private _cdr: ChangeDetectorRef) {
+        this.numbers = Array(this.gridCount).fill(0);
+    }
 
 
     ngOnInit() {
@@ -84,6 +86,10 @@ export class DashboardEditComponent implements OnInit {
 
     }
 
+    sliderChange() {
+        console.log('slider onchange');
+        this.numbers = Array(this.gridCount).fill(0);
+    }
     onRemove(e: any, id: number) {
         console.log(e.type, e);
         this.removeChart(id);
