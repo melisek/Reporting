@@ -29,6 +29,7 @@ export class DashboardEditComponent implements OnInit {
 
     gridCount: number = 4;
     numbers = Array(4);
+    dropzones: string[] = [];
 
     sourceItems: any[] = [
     ];
@@ -73,6 +74,12 @@ export class DashboardEditComponent implements OnInit {
             }
         );
 
+        let i = 0;
+        this.numbers.forEach(x => {
+            this.dropzones.push('target-' + i);
+            i++;
+        });
+        
         //this.getChart("");
     }
 
@@ -80,7 +87,8 @@ export class DashboardEditComponent implements OnInit {
 
     onDrop(e: any, id: number) {
         console.log(e.type, e);
-        console.log('dropid'+id);
+        console.log('dropid' + id);
+        console.log('target'+this.targetItemsA);
 
         this.getChart(e.value.reportGUID, id);
 
@@ -89,6 +97,11 @@ export class DashboardEditComponent implements OnInit {
     sliderChange() {
         console.log('slider onchange');
         this.numbers = Array(this.gridCount).fill(0);
+        let i = 0;
+        this.numbers.forEach(x => {
+            this.dropzones.push('target-' + i);
+            i++;
+        });
     }
     onRemove(e: any, id: number) {
         console.log(e.type, e);

@@ -21,7 +21,7 @@
 
                 <ngx-dnd-container [model]="sourceItems"
                                    [copy]="true"
-                                   [dropZones]="['multiple-target-a']"
+                                   [dropZones]="dropzones"
                                    [droppableItemClass]="item"
                                    id="dnd-container">
 
@@ -43,7 +43,7 @@
                 <mat-card>
                     <mat-card-header>
                         <ngx-dnd-container [model]="targetItemsA[i]"
-                                           dropZone="multiple-target-a"
+                                           dropZone="target-{{i}}"
                                            [droppableItemClass]="droppableItem"
                                            [removeOnSpill]="true"
                                            (drop)="onDrop($event,i)"
