@@ -8,7 +8,6 @@
     </mat-form-field>
 </div>
 
-
 <mat-tab-group>
     <mat-tab>
         <ng-template mat-tab-label>
@@ -52,7 +51,7 @@
                             <mat-icon>close</mat-icon>
                         </button>
                     </mat-form-field>
-                    <button mat-raised-button color="accent" (click)="onExportClick()" [disabled]="query && columns && columns.selectedOptions.selected.length == 0" class="margintop20 pull-right">Export</button>
+                    <button mat-raised-button color="accent" (click)="onExportClick()" [disabled]="reportGUID == null && query && columns && columns.selectedOptions.selected.length == 0" class="margintop20 pull-right">Export</button>
                 </div>
                 <mat-table [hidden]="!showDataTable" #table [dataSource]="dataSource" matSort matSortDisableClear matSortDirection="asc">
                     <ng-container *ngFor="let column of columnNames" [matColumnDef]="column.columnDef">

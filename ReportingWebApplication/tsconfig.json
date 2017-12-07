@@ -10,7 +10,10 @@
     "skipLibCheck": true, // Workaround for https://github.com/angular/angular/issues/17863. Remove this if you upgrade to a fixed version of Angular.
     "strict": true,
     "lib": [ "es6", "dom" ],
-    "types": [ "webpack-env", "jasmine", "file-saver" ]
+    "typeRoots": [
+      "node_modules/@types"
+    ]
+    //"types": [ "webpack-env", "jasmine", "file-saver" ]
   },
   "exclude": [ "bin", "node_modules" ],
   "atom": { "rewriteTsconfig": false }

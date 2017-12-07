@@ -27,8 +27,6 @@ export class ReportListComponent implements OnInit {
     displayedColumns = ['Chart','Name', 'Query', 'Author', 'CreationDate', 'LastModifier', 'ModifyDate', 'Actions'];
     dataSource: ReportListDataSource | null;
 
-    //sharePermissions: IEntityWithIdName[];
-
     constructor(
         private service: ReportService,
         private dialog: MatDialog,
@@ -79,43 +77,6 @@ export class ReportListComponent implements OnInit {
         const blob = new Blob([(<any>response)._body], { type: 'text/csv' });
         saveAs(blob, filename);
     }
-
-    //exportReport(reportGUID: string) {
-    //    this.service.exportReport(reportGUID).subscribe(data => this.downloadFile(data));
-    //}
-
-    //downloadFile(data: Response) {
-    //    var blob = new Blob([data], { type: 'text/csv' });
-    //    var url = window.URL.createObjectURL(blob);
-    //    window.open(url);
-    //}
-
-    //openShareDialog(id: number, name: string): void {
-    //    this.sharePermissions = [
-    //        {
-    //            id: "1",
-    //            name: "Szerkesztés és megosztás"
-    //        },
-    //        {
-    //            id: "2",
-    //            name: "Szerkesztés"
-    //        }];
-
-    //    let dialogRef = this.dialog.open(ShareDialogComponent, {
-    //        width: '400px',
-    //        data: { reportId: id, name: name, email: null, permissions: this.sharePermissions }
-    //    });
-
-    //    dialogRef.afterClosed().subscribe(result => {
-    //        console.log('The dialog was closed');
-    //        if (result != undefined) {
-    //            console.log(`email:${result.email};permission:${result.permission}`);
-    //            this._snackbar.open(`${result.reportName} shared with ${result.email}.`, 'OK', {
-    //                duration: 5000
-    //            });
-    //        }
-    //    });
-    //}
 
     clearFilter(): void {
         this.filter.nativeElement.value = '';

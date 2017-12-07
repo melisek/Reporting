@@ -40,7 +40,6 @@ export class ReportEditComponent implements OnInit {
         { columnDef: 'name', header: 'Name', cell: (row: IReport) => `${row.modifyDate}` }
     ];
 
-    /** Column definitions in order */
     displayedColumns = this.columnNames.map(x => x.columnDef);
 
     dataSource: QueryDataSource | null;
@@ -54,7 +53,7 @@ export class ReportEditComponent implements OnInit {
 
     chartData: any;
 
-    constructor(//private http: AuthHttp,
+    constructor(
         private reportService: ReportService,
         private queryService: QueryService,
         private dialog: MatDialog,
@@ -127,8 +126,6 @@ export class ReportEditComponent implements OnInit {
         }
         console.log(this.reportGUID);
 
-
-        //this.queryService = new QueryService(this.http);
         this.queryService.getQueriesIdName()
             .subscribe(queries => {
                 this.queries = queries
@@ -283,13 +280,6 @@ export class ReportEditComponent implements OnInit {
                     });
                 });
         }
-        
-
-
-
-        //if (this.reportService != null)
-        //    this.reportService.getStyle()
-        //        .subscribe();
     }
 
     onExportClick() {
@@ -313,20 +303,6 @@ export class ReportEditComponent implements OnInit {
                 this.chartData = data;
             },
             err => console.log(err));
-    }
-
-    openShareDialog(id: number, name: string): void {
-        let dialogRef = this.dialog.open(ShareDialogComponent, {
-            width: '250px',
-            data: { reportId: id, name: name, email: null }
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed');
-            if (result != undefined) {
-                console.log('result:' + result);
-            }
-        });
     }
 }
 

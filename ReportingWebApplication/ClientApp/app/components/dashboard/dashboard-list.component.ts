@@ -24,12 +24,10 @@ import { AuthHttp } from 'angular2-jwt';
 })
 export class DashboardListComponent implements OnInit {
     displayedColumns = ['Name', 'Author', 'CreationDate', 'LastModifier', 'ModifyDate', 'Actions'];
-    service: DashboardService | null;
     dataSource: DashboardDataSource | null;
 
-    sharePermissions: IEntityWithIdName[];
-
     constructor(private http: AuthHttp,
+        private service: DashboardService,
         private dialog: MatDialog,
         private _snackbar: MatSnackBar,
         private titleService: Title) { }
@@ -38,11 +36,9 @@ export class DashboardListComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild('filter') filter: ElementRef;
 
-
     ngOnInit() {
         this.titleService.setTitle("Dashboards");
-        this.service = new DashboardService(this.http);
-        this.dataSource = new DashboardDataSource(this.service!, this.sort, this.paginator);
+        this.dataSource = new DashboardDataSource(this.service, this.sort, this.paginator);
         Observable.fromEvent(this.filter.nativeElement, 'keydown')
             .debounceTime(150)
             .distinctUntilChanged()
@@ -57,6 +53,7 @@ export class DashboardListComponent implements OnInit {
         if (this.service != null) {
             this.service.deleteDashboard(guid)
                 .subscribe(res => {
+                    this.dataSource!.filter = this.filter.nativeElement.value;
                     this._snackbar.open(`Dashboard deleted.`, 'x', {
                         duration: 5000
                     });
@@ -66,33 +63,6 @@ export class DashboardListComponent implements OnInit {
                     });
                 });
         }
-    }
-
-    openShareDialog(id: number, name: string): void {
-        this.sharePermissions = [
-            {
-                id: "1",
-                name: "Szerkesztés és megosztás"
-            },
-            {
-                id: "2",
-                name: "Szerkesztés"
-            }];
-
-        let dialogRef = this.dialog.open(ShareDialogComponent, {
-            width: '400px',
-            data: { reportId: id, name: name, email: null, permissions: this.sharePermissions }
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed');
-            if (result != undefined) {
-                console.log(`email:${result.email};permission:${result.permission}`);
-                this._snackbar.open(`${result.reportName} shared with ${result.email}.`, 'OK', {
-                    duration: 5000
-                });
-            }
-        });
     }
 
     clearFilter(): void {

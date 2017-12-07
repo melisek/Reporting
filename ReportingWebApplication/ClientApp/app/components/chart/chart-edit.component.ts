@@ -13,7 +13,8 @@ import 'rxjs/add/observable/fromEvent';
 import { INameValue, IChartDiscreteDataOptions } from '../shared/shared-interfaces';
 import { IQueryColumns, IQueryColumn } from '../query/query';
 
-import { chartTypes, aggregationTypes } from './chart-constants'
+import { chartTypes, aggregationTypes } from './chart-constants';
+var svgSaver = require("svgSaver");
 
 @Component({
     selector: 'chart-editor',
@@ -70,16 +71,19 @@ export class ChartEditComponent implements AfterViewInit {
 
     queryStringColumns: IQueryColumn[];
     queryNumberColumns: IQueryColumn[];
-    
+
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,
         private chartService: ChartService,
         private _cdr: ChangeDetectorRef) {
     }
 
+    
+
     ngOnInit() {
         this.chartTypes = chartTypes;
         this.aggregationTypes = aggregationTypes;
+        
 
         this.discreteDataOptions = {
             reportGUID: "",

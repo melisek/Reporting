@@ -42,7 +42,7 @@
             <mat-grid-tile *ngFor="let num of numbers; let i = index">
                 <mat-card>
                     <mat-card-header>
-                        <ngx-dnd-container [model]="targetItemsA[i]"
+                        <ngx-dnd-container [model]="targetItemsA"
                                            dropZone="target-{{i}}"
                                            [droppableItemClass]="droppableItem"
                                            [removeOnSpill]="true"

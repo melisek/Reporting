@@ -34,7 +34,7 @@ export class DashboardEditComponent implements OnInit {
     sourceItems: any[] = [
     ];
     targetItems: any[] = [];
-    targetItemsA: any[][] = [];
+    targetItemsA: any[] = [];
     targetItemsB: any[] = [];
 
     constructor(
