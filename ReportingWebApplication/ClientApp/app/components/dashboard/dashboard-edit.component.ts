@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, ViewChild, ViewEncapsulation, ComponentFactoryResolver, ChangeDetectorRef, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
+﻿import { Component, OnInit, ViewChild, ViewEncapsulation, ComponentFactoryResolver, ChangeDetectorRef, AfterViewInit, ViewChildren, QueryList, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSort, MatPaginator, MatDialog, MatSelectionList, MatSnackBar, MatList } from '@angular/material';
 
@@ -25,21 +25,18 @@ export class DashboardEditComponent implements OnInit {
     chartItem: ChartItem;
 
     dashboard: IDashboardCreate;
-    //reportList: IReportList;
 
     gridCount: number = 4;
     numbers = Array(4);
     dropzones: string[] = [];
 
-    sourceItems: any[] = [
-    ];
-    targetItems: any[] = [];
-    targetItemsA: any[][] = [];
-    targetItemsB: any[] = [];
+    sourceItems: any[] = [];
+    get targetItems(): any[][] { return this._targetItems; }
+    set targetItems(value: any[][]) { console.log('lefutott'); this._targetItems = value; }
+    _targetItems: any[][] = [];
 
     constructor(
         private _reportService: ReportService,
-        //private _reportService: ReportService,
         private _chartService: ChartService,
         private componentFactoryResolver: ComponentFactoryResolver,
         private dialog: MatDialog,
@@ -74,12 +71,12 @@ export class DashboardEditComponent implements OnInit {
             }
         );
 
-        let i = 0;
-        this.numbers.forEach(x => {
+        this.numbers.forEach((x,i) => {
             this.dropzones.push('target-' + i);
-            i++;
         });
-        
+        this.numbers.forEach((x, i) => {
+            this.targetItems.push([]);
+        });
         //this.getChart("");
     }
 
@@ -88,8 +85,10 @@ export class DashboardEditComponent implements OnInit {
     onDrop(e: any, id: number) {
         console.log(e.type, e);
         console.log('dropid' + id);
-        console.log('target'+this.targetItemsA);
-
+        console.log('dropz' + this.dropzones);
+        console.log('target' + JSON.stringify(this.targetItems));
+        
+        //this.targetItemsA[id];
         this.getChart(e.value.reportGUID, id);
 
     }
@@ -135,7 +134,7 @@ export class DashboardEditComponent implements OnInit {
     loadChart(chartData: any, id: number) {
 
         let componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.chartItem.component);
-        let viewContainerRef = id == 0 ? this.chartHost.first.viewContainerRef : this.chartHost.last.viewContainerRef;
+        let viewContainerRef = this.getViewContainerRef(id)!;
         viewContainerRef.clear();
 
         let componentRef = viewContainerRef.createComponent(componentFactory);
@@ -147,8 +146,17 @@ export class DashboardEditComponent implements OnInit {
     }
 
     removeChart(id: number) {
-        let viewContainerRef = id == 0 ? this.chartHost.first.viewContainerRef : this.chartHost.last.viewContainerRef;
+        let viewContainerRef = this.getViewContainerRef(id)!;
         viewContainerRef.clear();
+    }
+
+    getViewContainerRef(id: number): ViewContainerRef | null {
+        let chartDirective = this.chartHost.find((x, i) => i === id);
+
+        if (chartDirective != null)
+            return chartDirective.viewContainerRef;
+        else
+            return null;
     }
 
     queryChange(): void {
