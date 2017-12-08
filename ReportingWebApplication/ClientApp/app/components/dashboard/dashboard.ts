@@ -22,6 +22,7 @@ export interface IDashboardCreate {
 }
 
 export interface IDashboardReport {
-    reportId: number;
+    name: string;
+    reportGUID: string;
     position: number;
 }

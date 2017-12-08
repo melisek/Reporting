@@ -15,10 +15,8 @@ import { AuthHttp } from "angular2-jwt";
 export class DashboardService {
     private _listUrl = './api/dashboards/GetAll';
     private _addUrl = './api/dashboards/Create';
-    private _getUrl = './api/dashboards/Get/';
+    private _getUrl = './api/dashboards/GetDashboardReports/';
     private _deleteUrl = './api/dashboards/Delete/';
-    private _getStyleUrl = './api/dashboards/GetStyle';
-    private _getDiscreteDataUrl = './api/dashboards/GetDiscreetRiportDiagram';
 
     constructor(private _http: AuthHttp) { }
 
@@ -50,21 +48,6 @@ export class DashboardService {
         return this._http.delete(this._deleteUrl + dashboardGUID)
             //.map(response => response.ok)
             .do(data => console.log("Delete report: " + JSON.stringify(data)))
-            .catch(this.handleError);
-    }
-
-
-    getDiscreteDiagramData(dataOptions: IChartDiscreteDataOptions): Observable<INameValue[]> {
-        /*let param = {
-            reportGUID: "d75dbdb7-498c-46c2-a18a-9a90519e3a31",
-            nameColumn: "Table_95_Field_67",
-            valueColumn: "Table_95_Field_119",
-            aggregation: 4
-        };*/
-        console.log(dataOptions);
-        return this._http.post(this._getDiscreteDataUrl, dataOptions)
-            .map(response => response.json() as INameValue[])
-            .do(data => console.log("get diagram data: " + JSON.stringify(data)))
             .catch(this.handleError);
     }
 

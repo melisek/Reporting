@@ -11,6 +11,7 @@ import { ChartService } from '../chart/chart.service';
 import { ChartItem } from '../chart/chart-item';
 import { ChartDirective } from '../chart/chart.directive';
 import { IChart } from '../chart/chart';
+import { DashboardService } from './dashboard.service';
 
 @Component({
     styleUrls: ['./dashboard-edit.component.css', '../shared/shared-styles.css'],
@@ -25,6 +26,7 @@ export class DashboardEditComponent implements OnInit {
     chartItem: ChartItem;
 
     dashboard: IDashboardCreate;
+    dashboardGUID: string | null;
 
     gridCount: number = 4;
     numbers = Array(4);
@@ -38,6 +40,7 @@ export class DashboardEditComponent implements OnInit {
     constructor(
         private _reportService: ReportService,
         private _chartService: ChartService,
+        private _dashboardService: DashboardService,
         private componentFactoryResolver: ComponentFactoryResolver,
         private dialog: MatDialog,
         private _snackbar: MatSnackBar,
@@ -54,6 +57,27 @@ export class DashboardEditComponent implements OnInit {
             dashboardGUID: "",
             reports: []
         };
+        this.dashboardGUID = this._route.snapshot.paramMap.get('dashboardGUID');
+        console.log('dashguid:' + this.dashboardGUID);
+        if (this.dashboardGUID != null) {
+            this._dashboardService.getDashboard(this.dashboardGUID)
+                .subscribe(res => {
+                    this.dashboard = res;
+                    console.log('dashrepo'+JSON.stringify(res));
+                    this.dashboard.reports.sort(x => x.position).forEach((x, i) => {
+                        this.targetItems[x.position] = [{ label: x.name, reportGUID: x.reportGUID }];
+                        this.initCharts();
+
+                    });
+                    console.log('target1' + JSON.stringify(this.targetItems));
+
+                });
+        }
+        else {
+            this.numbers.forEach((x, i) => {
+                this.targetItems.push([]);
+            });
+        }
 
         let filter: IListFilter = {
             filter: "",
@@ -74,10 +98,17 @@ export class DashboardEditComponent implements OnInit {
         this.numbers.forEach((x,i) => {
             this.dropzones.push('target-' + i);
         });
-        this.numbers.forEach((x, i) => {
-            this.targetItems.push([]);
-        });
+        
         //this.getChart("");
+    }
+
+    initCharts() {
+        console.log('target'+JSON.stringify(this.targetItems));
+        this.targetItems.forEach((x,i) => {
+            if (x.length > 0)
+                this.getChart(x[0].reportGUID, i);
+
+        });
     }
 
     chartData: any;
@@ -164,7 +195,21 @@ export class DashboardEditComponent implements OnInit {
     }
 
     onSaveClick() {
-
+        this.dashboard.reports = [];
+        this.targetItems.filter(x => x.length > 0).forEach((x, i) => {
+            this.dashboard.reports.push({ reportGUID: x[0].reportGUID, position: i, name: x[0].label });
+        });
+        console.log('dash'+this.dashboard);
+        this._dashboardService.addDashboard(this.dashboard)
+            .subscribe(res => {
+                this._snackbar.open(`Dashboard created.`, 'x', {
+                    duration: 5000
+                });
+            }, err => {
+                this._snackbar.open(`Error: ${<any>err}`, 'x', {
+                    duration: 5000
+                });
+            });
     }
     
 }
