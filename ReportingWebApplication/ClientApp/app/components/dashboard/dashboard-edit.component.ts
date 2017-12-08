@@ -23,7 +23,7 @@ export class DashboardEditComponent implements OnInit {
     @ViewChild('reports') columns: MatList;
     @ViewChildren(ChartDirective) chartHost: QueryList<ChartDirective>;
 
-    chartItem: ChartItem;
+    chartItems: ChartItem[] = [];
 
     dashboard: IDashboardCreate;
     dashboardGUID: string | null;
@@ -66,9 +66,12 @@ export class DashboardEditComponent implements OnInit {
                     console.log('dashrepo'+JSON.stringify(res));
                     this.dashboard.reports.sort(x => x.position).forEach((x, i) => {
                         this.targetItems[x.position] = [{ label: x.name, reportGUID: x.reportGUID }];
-                        this.initCharts();
+                        
 
                     });
+                    this.gridCount = this.dashboard.reports.length;
+                    this.sliderChange();
+                    this.initCharts();
                     console.log('target1' + JSON.stringify(this.targetItems));
 
                 });
@@ -104,7 +107,8 @@ export class DashboardEditComponent implements OnInit {
 
     initCharts() {
         console.log('target'+JSON.stringify(this.targetItems));
-        this.targetItems.forEach((x,i) => {
+        this.targetItems.forEach((x, i) => {
+            console.log('x=' + JSON.stringify(x) + '/i=' + i);
             if (x.length > 0)
                 this.getChart(x[0].reportGUID, i);
 
@@ -121,6 +125,10 @@ export class DashboardEditComponent implements OnInit {
         
         //this.targetItemsA[id];
         this.getChart(e.value.reportGUID, id);
+
+    }
+
+    onOver() {
 
     }
 
@@ -144,9 +152,9 @@ export class DashboardEditComponent implements OnInit {
                 let style = JSON.parse(data.style);
                 if (style != null) {
                     console.log(style);
-                    this.chartItem = this._chartService.getChart(<number>style.chartType);
-                    this.chartItem.options = style.displayOptions;
-                    console.log(this.chartItem);
+                    this.chartItems[id] = this._chartService.getChart(<number>style.chartType);
+                    this.chartItems[id].options = style.displayOptions;
+                    console.log(this.chartItems[id]);
                     style.dataOptions.reportGUID = reportGUID;
                     this._reportService.getDiscreteDiagramData(style.dataOptions)
                         .subscribe(data2 => {
@@ -164,12 +172,12 @@ export class DashboardEditComponent implements OnInit {
 
     loadChart(chartData: any, id: number) {
 
-        let componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.chartItem.component);
+        let componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.chartItems[id].component);
         let viewContainerRef = this.getViewContainerRef(id)!;
         viewContainerRef.clear();
 
         let componentRef = viewContainerRef.createComponent(componentFactory);
-        (<IChart>componentRef.instance).options = this.chartItem.options;
+        (<IChart>componentRef.instance).options = this.chartItems[id].options;
         console.log('loadcomp:' + chartData);
         (<IChart>componentRef.instance).data = chartData;
         this._cdr.detectChanges();

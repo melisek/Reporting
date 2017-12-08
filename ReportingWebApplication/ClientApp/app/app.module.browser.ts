@@ -43,7 +43,6 @@ import { ChartDirective } from './components/chart/chart.directive';
         AuthModule
     ],
     declarations: [AppComponent, HomeComponent, NavMenuComponent],
-   // entryComponents: [HorizontalBarChartComponent],
     providers: [
         { provide: 'BASE_URL', useFactory: getBaseUrl },
         Title

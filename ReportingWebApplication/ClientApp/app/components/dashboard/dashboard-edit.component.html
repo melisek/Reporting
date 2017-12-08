@@ -48,6 +48,8 @@
                                            [removeOnSpill]="true"
                                            (drop)="onDrop($event,i)"
                                            (remove)="onRemove($event,i)"
+                                           (over)="onOver()"
+                                           (out)="onOut()"
                                            [id]="i">
                         </ngx-dnd-container>
                     </mat-card-header>
