@@ -6,6 +6,7 @@ namespace szakdoga.Models.Dtos.DashboardDtos
     public class DashboardReportDto
     {
         public string DashboardGUID { get; set; }
+        public string Name { get; set; }
         public List<ReportFullDto> Reports { get; set; } = new List<ReportFullDto>();
     }
 }

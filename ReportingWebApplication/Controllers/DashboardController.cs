@@ -94,7 +94,7 @@ namespace szakdoga.Controllers
         }
 
         [HttpPut("Update/{dashboardGUID}")]
-        public IActionResult UpdateReport([FromBody] UpdateDashboardDto dashboard, string dashboardGUID)
+        public IActionResult UpdateDashboard([FromBody] UpdateDashboardDto dashboard, string dashboardGUID)
         {
             try
             {

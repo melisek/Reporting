@@ -96,7 +96,7 @@ namespace szakdoga.Controllers
         {
             try
             {
-                if (report == null) throw new BasicException("Invalud input format!");
+                if (report == null) throw new BasicException("Invalid input format!");
                 if (!ModelState.IsValid) return BadRequest(ModelState);
                 User user = _userRep.GetByEmailAdd(this.User.Claims.SingleOrDefault(x => x.Type == "EmailAddress").Value);
 
@@ -260,7 +260,7 @@ namespace szakdoga.Controllers
         {
             try
             {
-                if (report == null) throw new BasicException("Invalud input format!");
+                if (report == null) throw new BasicException("Invalid input format!");
                 if (!ModelState.IsValid) return BadRequest(ModelState);
 
                 _manager.UpdateStyle(report);
@@ -289,11 +289,11 @@ namespace szakdoga.Controllers
         }
 
         [HttpPost("GetDiscreetRiportDiagram")]
-        public IActionResult GetDiscreetRiportDiagram([FromBody]ReportDiagramDiscDto diagram)
+        public IActionResult GetDiscreteReportDiagram([FromBody]ReportDiagramDiscDto diagram)
         {
             try
             {
-                if (diagram == null) throw new BasicException("Invalud input format!");
+                if (diagram == null) throw new BasicException("Invalid input format!");
                 if (!ModelState.IsValid) return BadRequest(ModelState);
 
                 var result = _manager.GetDiscreetRiportDiagram(diagram);
@@ -322,7 +322,7 @@ namespace szakdoga.Controllers
         }
 
         [HttpPost("GetSeriesRiportDiagram")]
-        public IActionResult GetSeriesRiportDiagram([FromBody]ReportDiagramSerDto diagram)
+        public IActionResult GetSeriesReportDiagram([FromBody]ReportDiagramSerDto diagram)
         {
             try
             {

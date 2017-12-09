@@ -12,7 +12,7 @@ namespace szakdoga.Models.Dtos.ReportDtos
         public string Name { get; set; }
 
         public string Style { get; set; }
-        public string Postition { get; set; }
+        public string Position { get; set; }
         public string QueryGUID { get; set; }
     }
 }

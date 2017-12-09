@@ -147,13 +147,14 @@ namespace szakdoga.BusinessLogic
 
             var dashboardReportDto = new DashboardReportDto();
             dashboardReportDto.DashboardGUID = dashboardGUID;
+            dashboardReportDto.Name = dash.Name;
             foreach (var rel in rels)
             {
                 dashboardReportDto.Reports.Add(new ReportFullDto
                 {
                     Name = rel.Report.Name,
                     ReportGUID = rel.Report.ReportGUID,
-                    Postition = rel.Position,
+                    Position = rel.Position,
                     Style = rel.Report.Style,
                     QueryGUID = rel.Report.Query.QueryGUID
                 });

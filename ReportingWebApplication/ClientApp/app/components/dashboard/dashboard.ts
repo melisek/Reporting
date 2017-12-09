@@ -17,11 +17,12 @@ export interface IDashboard {
 
 export interface IDashboardCreate {
     name: string;
-    dashboardGUID: string;
+    //dashboardGUID: string;
     reports: IDashboardReport[];
 }
 
 export interface IDashboardReport {
-    reportId: number;
+    name: string;
+    reportGUID: string;
     position: number;
 }

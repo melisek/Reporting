@@ -15,10 +15,9 @@ import { AuthHttp } from "angular2-jwt";
 export class DashboardService {
     private _listUrl = './api/dashboards/GetAll';
     private _addUrl = './api/dashboards/Create';
-    private _getUrl = './api/dashboards/Get/';
+    private _updateUrl = './api/dashboards/Update/';
+    private _getUrl = './api/dashboards/GetDashboardReports/';
     private _deleteUrl = './api/dashboards/Delete/';
-    private _getStyleUrl = './api/dashboards/GetStyle';
-    private _getDiscreteDataUrl = './api/dashboards/GetDiscreetRiportDiagram';
 
     constructor(private _http: AuthHttp) { }
 
@@ -38,6 +37,15 @@ export class DashboardService {
             .catch(this.handleError);
     }
 
+    updateDashboard(dashboardGUID: string, dashboard: IDashboardCreate): Observable<IResponseResult> {
+        let data = { "dashboardGUID": dashboardGUID, ...dashboard };
+        console.log('updatedash:' + JSON.stringify(data));
+        return this._http.put(this._updateUrl + dashboardGUID, data)
+            //.map(response => response.json() as IResponseResult)
+            //.do(data => console.log("Add report: " + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
     getDashboard(dashboardGUID: string): Observable<IDashboardCreate> {
         console.log(dashboardGUID);
         return this._http.get(this._getUrl + dashboardGUID)
@@ -50,21 +58,6 @@ export class DashboardService {
         return this._http.delete(this._deleteUrl + dashboardGUID)
             //.map(response => response.ok)
             .do(data => console.log("Delete report: " + JSON.stringify(data)))
-            .catch(this.handleError);
-    }
-
-
-    getDiscreteDiagramData(dataOptions: IChartDiscreteDataOptions): Observable<INameValue[]> {
-        /*let param = {
-            reportGUID: "d75dbdb7-498c-46c2-a18a-9a90519e3a31",
-            nameColumn: "Table_95_Field_67",
-            valueColumn: "Table_95_Field_119",
-            aggregation: 4
-        };*/
-        console.log(dataOptions);
-        return this._http.post(this._getDiscreteDataUrl, dataOptions)
-            .map(response => response.json() as INameValue[])
-            .do(data => console.log("get diagram data: " + JSON.stringify(data)))
             .catch(this.handleError);
     }
 

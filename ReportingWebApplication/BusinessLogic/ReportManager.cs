@@ -50,7 +50,7 @@ namespace szakdoga.BusinessLogic
         public GetReportDto GetReport(string reportGUID, User user)
         {
             var report = _reportRepository.Get(reportGUID);
-            if (report == null) throw new NotFoundException("Query not found.");
+            if (report == null) throw new NotFoundException("Report not found.");
 
             var rel = _userReportRel.Get(report.Id, user.Id);
             if (rel == null || !(rel.AuthoryLayer == (int)ReportUserPermissions.CanModify || rel.AuthoryLayer == (int)ReportUserPermissions.CanWatch))
