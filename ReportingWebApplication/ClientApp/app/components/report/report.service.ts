@@ -41,9 +41,9 @@ export class ReportService {
 
     updateReport(reportGUID: string, report: IReportCreate): Observable<IResponseResult> {
         
-        let a = { "reportGUID": reportGUID, ...report };
-        console.log('updatereport:' + JSON.stringify(a));
-        return this._http.put(this._updateUrl + reportGUID, a)
+        let data = { "reportGUID": reportGUID, ...report };
+        console.log('updatereport:' + JSON.stringify(data));
+        return this._http.put(this._updateUrl + reportGUID, data)
             //.map(response => response.json() as IResponseResult)
             //.do(data => console.log("Add report: " + JSON.stringify(data)))
             .catch(this.handleError);

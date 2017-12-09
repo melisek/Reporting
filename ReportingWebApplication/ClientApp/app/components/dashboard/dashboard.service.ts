@@ -15,6 +15,7 @@ import { AuthHttp } from "angular2-jwt";
 export class DashboardService {
     private _listUrl = './api/dashboards/GetAll';
     private _addUrl = './api/dashboards/Create';
+    private _updateUrl = './api/dashboards/Update/';
     private _getUrl = './api/dashboards/GetDashboardReports/';
     private _deleteUrl = './api/dashboards/Delete/';
 
@@ -31,6 +32,15 @@ export class DashboardService {
     addDashboard(dashboard: IDashboardCreate): Observable<IResponseResult> {
         console.log(dashboard);
         return this._http.post(this._addUrl, dashboard)
+            //.map(response => response.json() as IResponseResult)
+            //.do(data => console.log("Add report: " + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    updateDashboard(dashboardGUID: string, dashboard: IDashboardCreate): Observable<IResponseResult> {
+        let data = { "dashboardGUID": dashboardGUID, ...dashboard };
+        console.log('updatedash:' + JSON.stringify(data));
+        return this._http.put(this._updateUrl + dashboardGUID, data)
             //.map(response => response.json() as IResponseResult)
             //.do(data => console.log("Add report: " + JSON.stringify(data)))
             .catch(this.handleError);

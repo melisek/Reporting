@@ -1,85 +1,93 @@
-<div class="clearfix pull-right margin-top-20">
-    <button mat-raised-button color="primary" (click)="onSaveClick()" [disabled]="query && columns && columns.selectedOptions.selected.length == 0">Save</button>
-    <button mat-raised-button [routerLink]="['/reports']">Cancel</button>
-</div>
-<div class="clearfix">
-    <mat-form-field floatPlaceholder="never">
-        <input matInput #name [(ngModel)]="report.name" id="name" placeholder="Report name">
-    </mat-form-field>
-</div>
 
-<mat-tab-group>
-    <mat-tab>
-        <ng-template mat-tab-label>
-            <mat-icon class="md-18">view_headline</mat-icon> Data table
-        </ng-template>
 
-        <div class="margin-top-20">
-            <div class="col-md-3 padding-left-3">
-                <mat-card>
-                    <mat-card-header>
-                        <mat-card-title>Select Data source</mat-card-title>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <form>
-                            <mat-select placeholder="Query" #query [(ngModel)]="report.queryGUID" (ngModelChange)="queryChange()" name="query" class="margin-top-20 fit-container">
-                                <mat-option *ngFor="let query of queries" [value]="query.queryGUID">
-                                    {{query.name}}
-                                </mat-option>
-                            </mat-select>
-                        </form>
+    <div class="clearfix pull-right margin-top-20">
+        <button mat-raised-button color="primary" (click)="onSaveClick()" [disabled]="formHasErrors && query && columns && columns.selectedOptions.selected.length == 0">Save</button>
+        <button mat-raised-button [routerLink]="['/reports']">Cancel</button>
+    </div>
+    <div class="clearfix">
+    <form [formGroup]="form">
+        <mat-form-field floatPlaceholder="never">
+            <input matInput #name [(ngModel)]="report.name" id="name" placeholder="Report name" formControlName="name" [formGroup]="form">
+            <mat-error *ngIf="form.controls.name.hasError('required')">
+                Name is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+    </form>
+    </div>
 
-                        <mat-selection-list #columns class="margin-top-20" style="height: 300px; overflow-y: auto">
-                            <mat-list-option *ngFor="let column of queryColumns" value="{{column.name}}" [selected]="isColumnSelected(column.name)">
-                                {{column.text}}
-                            </mat-list-option>
-                        </mat-selection-list>
-                       
-                        
-                    </mat-card-content>
-                    <mat-card-actions>
-                        <button mat-raised-button color="primary" (click)="onSaveClick()" [disabled]="query && columns && columns.selectedOptions.selected.length == 0" class="margintop20">Save</button>
-                        <button mat-raised-button color="accent" (click)="onUpdateClick()" [disabled]="query && columns && columns.selectedOptions.selected.length == 0" class="margintop20">Update</button>
-                    </mat-card-actions>
-                </mat-card>
-            </div>
-            <div class="col-md-9">
-                <div class="clearfix" [hidden]="!showDataTable">
-                    <mat-form-field floatPlaceholder="never">
-                        <input matInput #filter [(ngModel)]="report.filter" placeholder="Filter data">
-                        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter()">
-                            <mat-icon>close</mat-icon>
-                        </button>
-                    </mat-form-field>
-                    <button mat-raised-button color="accent" (click)="onExportClick()" [disabled]="reportGUID == null && query && columns && columns.selectedOptions.selected.length == 0" class="margintop20 pull-right">Export</button>
+    <mat-tab-group>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon class="md-18">view_headline</mat-icon> Data table
+            </ng-template>
+
+            <div class="margin-top-20">
+                <div class="col-md-3 padding-left-3">
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>Select Data source</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+
+                                <mat-select placeholder="Query" #query [(ngModel)]="report.queryGUID"
+                                            (ngModelChange)="queryChange()" name="query" class="margin-top-20 fit-container">
+                                    <mat-option *ngFor="let query of queries" [value]="query.queryGUID">
+                                        {{query.name}}
+                                    </mat-option>
+                                </mat-select>
+ 
+
+                            <mat-selection-list #columns class="margin-top-20" style="height: 300px; overflow-y: auto">
+                                <mat-list-option *ngFor="let column of queryColumns" value="{{column.name}}" [selected]="isColumnSelected(column.name)">
+                                    {{column.text}}
+                                </mat-list-option>
+                            </mat-selection-list>
+
+
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <button mat-raised-button color="primary" (click)="onSaveClick()" [disabled]="formHasErrors && query && columns && columns.selectedOptions.selected.length == 0" class="margintop20">Save</button>
+                            <button mat-raised-button color="accent" (click)="onUpdateClick()" [disabled]="query && columns && columns.selectedOptions.selected.length == 0" class="margintop20">Update</button>
+                        </mat-card-actions>
+                    </mat-card>
                 </div>
-                <mat-table [hidden]="!showDataTable" #table [dataSource]="dataSource" matSort matSortDisableClear matSortDirection="asc">
-                    <ng-container *ngFor="let column of columnNames" [matColumnDef]="column.columnDef">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header>
-                            {{ column.header }}
-                        </mat-header-cell>
-                        <mat-cell *matCellDef="let row">{{ column.cell(row) }}</mat-cell>
-                    </ng-container>
+                <div class="col-md-9">
+                    <div class="clearfix" [hidden]="!showDataTable">
+                        <mat-form-field floatPlaceholder="never">
+                            <input matInput #filter [(ngModel)]="report.filter" placeholder="Filter data">
+                            <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter()">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+                        <button mat-raised-button color="accent" (click)="onExportClick()" [disabled]="reportGUID == null && query && columns && columns.selectedOptions.selected.length == 0" class="margintop20 pull-right">Export</button>
+                    </div>
+                    <mat-table [hidden]="!showDataTable" #table [dataSource]="dataSource" matSort matSortDisableClear matSortDirection="asc">
+                        <ng-container *ngFor="let column of columnNames" [matColumnDef]="column.columnDef">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header>
+                                {{ column.header }}
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let row">{{ column.cell(row) }}</mat-cell>
+                        </ng-container>
 
-                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
-                </mat-table>
+                    </mat-table>
 
-                <mat-paginator #paginator
-                               [length]="dataSource ? dataSource.totalCount : 10"
-                               [pageSize]="10"
-                               [pageSizeOptions]="[10, 20, 50]">
-                </mat-paginator>
+                    <mat-paginator #paginator
+                                   [length]="dataSource ? dataSource.totalCount : 10"
+                                   [pageSize]="10"
+                                   [pageSizeOptions]="[10, 20, 50]">
+                    </mat-paginator>
 
+                </div>
             </div>
-        </div>
-    </mat-tab>
-    <mat-tab [disabled]="disableChartTab">
-        <ng-template mat-tab-label>
-            <mat-icon class="md-18">pie_chart</mat-icon> Chart
-        </ng-template>
+        </mat-tab>
+        <mat-tab [disabled]="disableChartTab">
+            <ng-template mat-tab-label>
+                <mat-icon class="md-18">pie_chart</mat-icon> Chart
+            </ng-template>
 
-        <chart-editor [chartData]="chartData" [queryColumns]="queryColumns" (chartDataOptionsChange)="onChartDataOptionChange($event)"></chart-editor>
-    </mat-tab>
-</mat-tab-group>
+            <chart-editor [chartData]="chartData" [queryColumns]="queryColumns" (chartDataOptionsChange)="onChartDataOptionChange($event)"></chart-editor>
+        </mat-tab>
+    </mat-tab-group>

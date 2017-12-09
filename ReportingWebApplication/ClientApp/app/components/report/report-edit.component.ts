@@ -2,6 +2,7 @@
 import { Http } from '@angular/http';
 import { DataSource } from '@angular/cdk/collections';
 import { MatSort, MatPaginator, MatDialog, MatSelectionList, MatSnackBar, SortDirection } from '@angular/material';
+import { FormControl, Validators, AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
@@ -53,15 +54,23 @@ export class ReportEditComponent implements OnInit {
 
     chartData: any;
 
+    form: FormGroup;
+    get formHasErrors(): boolean { return this.form.controls.name.hasError('required'); }
+
     constructor(
         private reportService: ReportService,
         private queryService: QueryService,
         private dialog: MatDialog,
         private _snackbar: MatSnackBar,
         private _cdr: ChangeDetectorRef,
+        private _formBuilder: FormBuilder,
         private _router: Router,
         private _route: ActivatedRoute,
-        private titleService: Title) { }
+        private titleService: Title) {
+        this.form = _formBuilder.group({
+            name: ['', Validators.required]
+        });
+    }
 
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild('paginator') paginator: MatPaginator;

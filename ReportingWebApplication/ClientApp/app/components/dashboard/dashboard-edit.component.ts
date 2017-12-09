@@ -1,6 +1,7 @@
 ﻿import { Component, OnInit, ViewChild, ViewEncapsulation, ComponentFactoryResolver, ChangeDetectorRef, AfterViewInit, ViewChildren, QueryList, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSort, MatPaginator, MatDialog, MatSelectionList, MatSnackBar, MatList } from '@angular/material';
+import { FormControl, Validators, AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 
 
 import { ReportService } from '../report/report.service';
@@ -12,6 +13,7 @@ import { ChartItem } from '../chart/chart-item';
 import { ChartDirective } from '../chart/chart.directive';
 import { IChart } from '../chart/chart';
 import { DashboardService } from './dashboard.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     styleUrls: ['./dashboard-edit.component.css', '../shared/shared-styles.css'],
@@ -27,6 +29,9 @@ export class DashboardEditComponent implements OnInit {
 
     dashboard: IDashboardCreate;
     dashboardGUID: string | null;
+
+    form: FormGroup;
+    get formHasErrors(): boolean { return this.form.controls.name.hasError('required'); }
 
     gridCount: number = 4;
     numbers = Array(4);
@@ -46,15 +51,20 @@ export class DashboardEditComponent implements OnInit {
         private _snackbar: MatSnackBar,
         private _router: Router,
         private _route: ActivatedRoute,
+        private _formBuilder: FormBuilder,
+        private titleService: Title,
         private _cdr: ChangeDetectorRef) {
         this.numbers = Array(this.gridCount).fill(0);
+        this.form = _formBuilder.group({
+            name: ['', Validators.required]
+        });
+        
     }
 
 
     ngOnInit() {
         this.dashboard = {
             name: "",
-            dashboardGUID: "",
             reports: []
         };
         this.dashboardGUID = this._route.snapshot.paramMap.get('dashboardGUID');
@@ -66,20 +76,20 @@ export class DashboardEditComponent implements OnInit {
                     console.log('dashrepo'+JSON.stringify(res));
                     this.dashboard.reports.sort(x => x.position).forEach((x, i) => {
                         this.targetItems[x.position] = [{ label: x.name, reportGUID: x.reportGUID }];
-                        
-
                     });
                     this.gridCount = this.dashboard.reports.length;
                     this.sliderChange();
                     this.initCharts();
                     console.log('target1' + JSON.stringify(this.targetItems));
-
+                    this.titleService.setTitle(this.dashboard.name + " - Edit Dashboard");
+                    this._cdr.detectChanges();
                 });
         }
         else {
             this.numbers.forEach((x, i) => {
                 this.targetItems.push([]);
             });
+            this.titleService.setTitle("Create Dashboard");
         }
 
         let filter: IListFilter = {
@@ -125,10 +135,6 @@ export class DashboardEditComponent implements OnInit {
         
         //this.targetItemsA[id];
         this.getChart(e.value.reportGUID, id);
-
-    }
-
-    onOver() {
 
     }
 
@@ -198,26 +204,38 @@ export class DashboardEditComponent implements OnInit {
             return null;
     }
 
-    queryChange(): void {
-        
-    }
-
     onSaveClick() {
         this.dashboard.reports = [];
         this.targetItems.filter(x => x.length > 0).forEach((x, i) => {
             this.dashboard.reports.push({ reportGUID: x[0].reportGUID, position: i, name: x[0].label });
         });
-        console.log('dash'+this.dashboard);
-        this._dashboardService.addDashboard(this.dashboard)
-            .subscribe(res => {
-                this._snackbar.open(`Dashboard created.`, 'x', {
-                    duration: 5000
+        console.log('dash' + this.dashboard);
+
+        if (this.dashboardGUID) {
+            this._dashboardService.updateDashboard(this.dashboardGUID, this.dashboard)
+                .subscribe(res => {
+                    this._snackbar.open(`Dashboard updated.`, 'x', {
+                        duration: 5000
+                    });
+                    this._router.navigate(['./dashboards/']);
+                }, err => {
+                    this._snackbar.open(`Error: ${<any>err}`, 'x', {
+                        duration: 5000
+                    });
                 });
-            }, err => {
-                this._snackbar.open(`Error: ${<any>err}`, 'x', {
-                    duration: 5000
+        }
+        else {
+            this._dashboardService.addDashboard(this.dashboard)
+                .subscribe(res => {
+                    this._snackbar.open(`Dashboard created.`, 'x', {
+                        duration: 5000
+                    });
+                }, err => {
+                    this._snackbar.open(`Error: ${<any>err}`, 'x', {
+                        duration: 5000
+                    });
                 });
-            });
+        }
     }
     
 }

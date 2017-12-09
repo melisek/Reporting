@@ -17,7 +17,7 @@ export interface IDashboard {
 
 export interface IDashboardCreate {
     name: string;
-    dashboardGUID: string;
+    //dashboardGUID: string;
     reports: IDashboardReport[];
 }
 
