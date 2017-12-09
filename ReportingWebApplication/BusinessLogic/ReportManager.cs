@@ -286,7 +286,7 @@ namespace szakdoga.BusinessLogic
                 Name = prevName,
                 Series = values.ToArray()
             });
-            return result.ToArray();
+            return result.Take(10).ToArray();
         }
 
         public byte[] GetReportExportFile(string reportGUID, User user, out string fileName)
