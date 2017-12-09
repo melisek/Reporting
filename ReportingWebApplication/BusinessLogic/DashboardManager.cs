@@ -44,7 +44,8 @@ namespace szakdoga.BusinessLogic
             Dashboard dashEnt = new Dashboard
             {
                 DashBoardGUID = CreateGUID.GetGUID(),
-                Name = dbDto.Name
+                Name = dbDto.Name,
+                Author = user
             };
             _dashboardRepository.Add(dashEnt);//add után már benne van a Id érték
             _userDashRelRepository.Add(new UserDashboardRel { User = user, AuthoryLayer = (int)DashboardUserPermissions.CanModify, Dashboard = dashEnt });

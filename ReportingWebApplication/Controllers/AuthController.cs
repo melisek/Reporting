@@ -20,7 +20,7 @@ namespace szakdoga.Controllers
         private readonly IUserJwtMapRepository _userJwtMapRepository;
         private readonly IConfigurationRoot _cfg;
         private readonly ILogger<AuthController> _logger;
-        private readonly int expiryMinutes = 10;
+        private readonly int expiryMinutes = 60;
 
         public AuthController(IUserRepository userRepository, IUserJwtMapRepository userJwtMapRepository, IConfigurationRoot cfg, ILogger<AuthController> logger)
         {

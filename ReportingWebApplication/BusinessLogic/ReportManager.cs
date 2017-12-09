@@ -250,7 +250,7 @@ namespace szakdoga.BusinessLogic
             if (report == null) throw new NotFoundException("Report not found by GUID.");
 
             DataTable data = new DataTable();
-            string sql = $"select {diagram.NameColumn}, {diagram.SeriesNameColumn}, {diagram.ValueColumn} from {report.Query.ResultTableName}";
+            string sql = $"select {diagram.NameColumn}, {diagram.SeriesNameColumn}, {diagram.ValueColumn} from {report.Query.ResultTableName} order by {diagram.NameColumn}";
             string sourceConn = _cfg.GetConnectionString("DefaultConnection");
             using (SqlConnection conn = new SqlConnection(sourceConn))
             {
