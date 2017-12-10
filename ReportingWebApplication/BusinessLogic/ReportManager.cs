@@ -277,7 +277,7 @@ namespace szakdoga.BusinessLogic
                 DateTime date = (DateTime)(row[diagram.SeriesNameColumn]);
                 values.Add(new SeriesValueDto
                 {
-                    Name = JsonConvert.SerializeObject(date, new JsonSerializerSettings() { DateFormatString = "yyyy-MM-ddThh:mm:ssZ" }),
+                    Name = date.ToString("yyyy-MM-dd"),
                     Value = double.Parse(row[diagram.ValueColumn].ToString())
                 });
             }

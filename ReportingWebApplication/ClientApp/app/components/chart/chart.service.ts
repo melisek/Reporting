@@ -12,7 +12,7 @@ import { colorSets } from '@swimlane/ngx-charts/release/utils'
 import { chartTypeOptions } from './chart-constants'
 
 import { IChartOption, IChartStyle } from './chart';
-import { INameValue, ISeriesNameValue, IResponseResult, IChartDiscreteDataOptions } from '../shared/shared-interfaces';
+import { INameValue, ISeriesNameValue, IResponseResult, IChartDiscreteDataOptions, IChartSeriesDataOptions } from '../shared/shared-interfaces';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
@@ -181,14 +181,14 @@ export class ChartService {
             .catch(this.handleError);
     }
 
-    saveChart(chartItem: ChartItem, chartType: number, discreteDataOptions: IChartDiscreteDataOptions, reportGUID: string): Observable<boolean> {
+    saveChart(chartItem: ChartItem, chartType: number, discreteDataOptions: IChartDiscreteDataOptions, seriesDataOptions: IChartSeriesDataOptions, reportGUID: string): Observable<boolean> {
         let opt = {
             chartType: chartType,
-            dataOptions: discreteDataOptions,
+            dataOptions: discreteDataOptions || seriesDataOptions,
             displayOptions: chartItem.options
         };
         let style: IChartStyle = {
-            reportGUID: discreteDataOptions.reportGUID,
+            reportGUID: discreteDataOptions.reportGUID || seriesDataOptions.reportGUID,
             style: JSON.stringify(opt)
         };
         console.log('save chart init ' + JSON.stringify(style));

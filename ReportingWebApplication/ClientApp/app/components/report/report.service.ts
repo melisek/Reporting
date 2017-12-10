@@ -92,10 +92,12 @@ export class ReportService {
             .catch(this.handleError);
     }
 
-    //private extractDate(res: Response) {
-    //    var data = res.json().data || [];
+    //private extractDate(data: ISeriesNameValue[]) {
     //    data.forEach((d) => {
-    //        d.timestamp = new Date(d.timestamp);
+    //        d.series
+    //            .forEach((s) => {
+    //                s.name = new Date(s.name);
+    //        });
     //    });
     //    return data;
     //}

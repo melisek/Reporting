@@ -4,7 +4,7 @@ import { ChartItem } from './chart-item';
 import { IChart, IChartOption, IChartStyle } from './chart';
 import { ChartService } from './chart.service';
 
-import { MatSelectionList } from '@angular/material'; 
+import { MatSelectionList, MatSnackBar } from '@angular/material'; 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/distinctUntilChanged';
@@ -14,7 +14,8 @@ import { INameValue, IChartDiscreteDataOptions, IChartSeriesDataOptions } from '
 import { IQueryColumns, IQueryColumn } from '../query/query';
 
 import { chartTypes, aggregationTypes } from './chart-constants';
-var svgSaver = require("svgSaver");
+//import * as SvgSaver from 'svgsaver/svgsaver';
+const SvgSaver = require('svgsaver');
 
 @Component({
     selector: 'chart-editor',
@@ -83,15 +84,15 @@ export class ChartEditComponent implements AfterViewInit {
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,
         private chartService: ChartService,
+        private _snackbar: MatSnackBar,
         private _cdr: ChangeDetectorRef) {
     }
 
-    
+    svgSaver = SvgSaver;
 
     ngOnInit() {
         this.chartTypes = chartTypes;
         this.aggregationTypes = aggregationTypes;
-        
 
         this.discreteDataOptions = {
             reportGUID: "",
@@ -235,7 +236,16 @@ export class ChartEditComponent implements AfterViewInit {
 
     onChartSave(reportGUID: string) {
         if (this.chartService != null) {
-            this.chartService.saveChart(this.chartItem, this.selectedChartType, this.discreteDataOptions, reportGUID).subscribe();  
+            this.chartService.saveChart(this.chartItem, this.selectedChartType,
+                this.discreteDataOptions, this.seriesDataOptions, reportGUID).subscribe(res => {
+                    this._snackbar.open(`Chart saved.`, 'x', {
+                        duration: 5000
+                    });
+                }, err => {
+                    this._snackbar.open(`Error: ${<any>err}`, 'x', {
+                        duration: 5000
+                    });
+                });  
         }
     }
 
