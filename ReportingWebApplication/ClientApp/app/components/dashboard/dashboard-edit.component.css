@@ -42,4 +42,7 @@
     background: none!important;
 }
 
-.mat-card { height:100%!important;}
+.mat-card {
+    height: 98% !important;
+    width: 98% !important;
+}

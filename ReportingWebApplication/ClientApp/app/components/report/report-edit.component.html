@@ -27,22 +27,20 @@
                         <mat-card-header>
                             <mat-card-title>Select Data source</mat-card-title>
                         </mat-card-header>
-                        <mat-card-content>
+                        <mat-card-content class="margin-top-20">
 
-                                <mat-select placeholder="Query" #query [(ngModel)]="report.queryGUID"
-                                            (ngModelChange)="queryChange()" name="query" class="margin-top-20 fit-container">
-                                    <mat-option *ngFor="let query of queries" [value]="query.queryGUID">
-                                        {{query.name}}
-                                    </mat-option>
-                                </mat-select>
- 
+                            <mat-select placeholder="Query" #query [(ngModel)]="report.queryGUID"
+                                        (ngModelChange)="queryChange()" name="query" class="margin-top-20 fit-container">
+                                <mat-option *ngFor="let query of queries" [value]="query.queryGUID">
+                                    {{query.name}}
+                                </mat-option>
+                            </mat-select>
 
                             <mat-selection-list #columns class="margin-top-20" style="height: 300px; overflow-y: auto">
                                 <mat-list-option *ngFor="let column of queryColumns" value="{{column.name}}" [selected]="isColumnSelected(column.name)">
                                     {{column.text}}
                                 </mat-list-option>
                             </mat-selection-list>
-
 
                         </mat-card-content>
                         <mat-card-actions>
@@ -59,7 +57,7 @@
                                 <mat-icon>close</mat-icon>
                             </button>
                         </mat-form-field>
-                        <button mat-raised-button color="accent" (click)="onExportClick()" [disabled]="reportGUID == null && query && columns && columns.selectedOptions.selected.length == 0" class="margintop20 pull-right">Export</button>
+                        <button mat-raised-button color="accent" (click)="onExportClick()" [disabled]="reportGUID == null || (query && columns && columns.selectedOptions.selected.length == 0)" class="margintop20 pull-right">Export</button>
                     </div>
                     <mat-table [hidden]="!showDataTable" #table [dataSource]="dataSource" matSort matSortDisableClear matSortDirection="asc">
                         <ng-container *ngFor="let column of columnNames" [matColumnDef]="column.columnDef">
@@ -88,6 +86,8 @@
                 <mat-icon class="md-18">pie_chart</mat-icon> Chart
             </ng-template>
 
-            <chart-editor [chartData]="chartData" [queryColumns]="queryColumns" (chartDataOptionsChange)="onChartDataOptionChange($event)"></chart-editor>
+            <chart-editor [chartData]="chartData" [queryColumns]="queryColumns" 
+                          (chartDiscreteDataOptionsChange)="onChartDiscreteDataOptionChange($event)"
+                          (chartSeriesDataOptionsChange)="onChartSeriesDataOptionChange($event)"></chart-editor>
         </mat-tab>
     </mat-tab-group>

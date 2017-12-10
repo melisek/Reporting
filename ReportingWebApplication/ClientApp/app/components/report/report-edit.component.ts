@@ -17,7 +17,7 @@ import { QueryService } from '../query/query.service';
 import { IReport, IReportCreate } from './report';
 import { ShareDialogComponent } from '../shared/share-dialog.component';
 import { ChartEditComponent } from '../chart/chart-edit.component';
-import { IResponseResult, IEntityWithIdName, IListFilter, IChartDiscreteDataOptions } from '../shared/shared-interfaces';
+import { IResponseResult, IEntityWithIdName, IListFilter, IChartDiscreteDataOptions, IChartSeriesDataOptions } from '../shared/shared-interfaces';
 import { ReportService } from './report.service';
 import { IQueryColumns, IQuery, IQuerySourceData, IQueryColumn } from '../query/query';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -100,6 +100,7 @@ export class ReportEditComponent implements OnInit {
                     this.queryChange();
                     this.disableChartTab = false;
                     this.titleService.setTitle(report.name + " - Edit Report");
+                    this._cdr.detectChanges();
                 },
                 err => console.log(err));
 
@@ -305,9 +306,18 @@ export class ReportEditComponent implements OnInit {
         saveAs(blob, filename);
     }
 
-    onChartDataOptionChange(chartDataOptions: IChartDiscreteDataOptions): void {
+    onChartDiscreteDataOptionChange(chartDataOptions: IChartDiscreteDataOptions): void {
         chartDataOptions.reportGUID = this.reportGUID!;
         this.reportService.getDiscreteDiagramData(chartDataOptions)
+            .subscribe(data => {
+                this.chartData = data;
+            },
+            err => console.log(err));
+    }
+
+    onChartSeriesDataOptionChange(chartDataOptions: IChartSeriesDataOptions): void {
+        chartDataOptions.reportGUID = this.reportGUID!;
+        this.reportService.getSeriesDiagramData(chartDataOptions)
             .subscribe(data => {
                 this.chartData = data;
             },

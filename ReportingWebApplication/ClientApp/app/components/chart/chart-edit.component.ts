@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
 
-import { INameValue, IChartDiscreteDataOptions } from '../shared/shared-interfaces';
+import { INameValue, IChartDiscreteDataOptions, IChartSeriesDataOptions } from '../shared/shared-interfaces';
 import { IQueryColumns, IQueryColumn } from '../query/query';
 
 import { chartTypes, aggregationTypes } from './chart-constants';
@@ -44,12 +44,17 @@ export class ChartEditComponent implements AfterViewInit {
             console.log(this.queryStringColumns);
             this.queryNumberColumns = this._queryColumns.filter(x => x.type === "number");
             console.log(this.queryNumberColumns);
+            this.queryDateColumns = this._queryColumns.filter(x => x.type === "date");
+            console.log(this.queryDateColumns);
         }
             
     }
 
-    @Output() chartDataOptionsChange:
+    @Output() chartDiscreteDataOptionsChange:
         EventEmitter<IChartDiscreteDataOptions> = new EventEmitter<IChartDiscreteDataOptions>();
+
+    @Output() chartSeriesDataOptionsChange:
+        EventEmitter<IChartSeriesDataOptions> = new EventEmitter<IChartSeriesDataOptions>();
 
     @ViewChild(ChartDirective) chartHost: ChartDirective;
     @ViewChildren('stringOpts') stringOpts: QueryList<ElementRef>;
@@ -65,12 +70,15 @@ export class ChartEditComponent implements AfterViewInit {
     discreteDataOptions: IChartDiscreteDataOptions;
     aggregationTypes: INameValue[];
 
+    seriesDataOptions: IChartSeriesDataOptions;
+
     options: IChartOption[];
     boolOptions: any[];
     stringOptions: any[];
 
     queryStringColumns: IQueryColumn[];
     queryNumberColumns: IQueryColumn[];
+    queryDateColumns: IQueryColumn[];
 
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,
@@ -90,6 +98,12 @@ export class ChartEditComponent implements AfterViewInit {
             nameColumn: "",
             valueColumn: "",
             aggregation: 0
+        };
+        this.seriesDataOptions = {
+            reportGUID: "",
+            nameColumn: "",
+            seriesNameColumn: "",
+            valueColumn: ""
         };
         //this.chartItem = this.chartService.getChart(this.selectedChartType);
 
@@ -139,29 +153,34 @@ export class ChartEditComponent implements AfterViewInit {
 
     chartTypeChange(): void {
         console.log('charttypechange.start');
-        if (this.chartService != null && this.discreteDataOptions.nameColumn != '' &&
+        if (this.chartService != null && this.selectedChartType < 3 && this.discreteDataOptions.nameColumn != '' &&
             this.discreteDataOptions.valueColumn != '' && this._chartData /*&& this.selectedChartType != null*/) {
             this.chartItem = this.chartService.getChart(this.selectedChartType);
             console.log('charttypechange.if');
             this.stringOptions = this.chartItem.options.filter(x => x.type === "string");
-            
+
             this.boolOptions = this.chartItem.options.filter(x => x.type === "boolean");
+            this.loadChart();
+        }
+        // new
+        else if (this.chartService != null && this.selectedChartType == 3 && this.seriesDataOptions.nameColumn != '' &&
+            this.seriesDataOptions.seriesNameColumn != '' &&
+            this.seriesDataOptions.valueColumn != '' && this._chartData) {
+            this.chartItem = this.chartService.getChart(this.selectedChartType);
             this.loadChart();
         }
     }
 
-    chartDataOptionChange() {
-
-        
-
+    chartDataOptionChange(dataType: number) {
         console.log('chartdataoptionchange.start');
-        if (this.discreteDataOptions.nameColumn != '' &&
+        if (dataType === 0 &&
+            this.discreteDataOptions.nameColumn != '' &&
             this.discreteDataOptions.valueColumn != '' &&
             this.selectedChartType != null
         ) {
             console.log('chartdataoptionchange.emit');
-            this.chartDataOptionsChange.emit(this.discreteDataOptions);
-            
+            this.chartDiscreteDataOptionsChange.emit(this.discreteDataOptions);
+
             if (this.chartItem != null) {
                 console.log('chartdataoptionchange.if');
                 //this.xAxisLabel = this.stringOpts.find(x => x.nativeElement.name == 'xAxisLabel')!;
@@ -179,7 +198,25 @@ export class ChartEditComponent implements AfterViewInit {
                 console.log('chartdataoptionchange.else');
                 this.chartTypeChange();
             }
-                
+        }
+        else if (dataType == 1 &&
+            this.seriesDataOptions.nameColumn != '' &&
+            this.seriesDataOptions.seriesNameColumn != '' &&
+            this.seriesDataOptions.valueColumn != '' &&
+            this.selectedChartType != null) {
+
+            console.log('chartdataoptionchange.emit');
+            this.chartSeriesDataOptionsChange.emit(this.seriesDataOptions);
+
+            if (this.chartItem != null) {
+                console.log('chartdataoptionchange.if');
+                this.loadChart();
+            }
+
+            else {
+                console.log('chartdataoptionchange.else');
+                this.chartTypeChange();
+            }
         }
     }
 

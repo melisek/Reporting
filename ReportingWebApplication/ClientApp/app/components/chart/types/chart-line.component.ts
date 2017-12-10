@@ -17,7 +17,8 @@ import { ChartBaseComponent } from '../chart-base.component';
         [yAxisLabel] = "options[7].value"
         [schemeType] = "options[8].value"
        
-        [autoScale] = "true"
+        [timeline] = "true"
+        [autoScale] = "options[9].value"
         [animations] = "options[10].value"
         [legend] = "options[11].value"
         [legendTitle] = "options[12].value"

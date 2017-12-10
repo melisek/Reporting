@@ -20,6 +20,13 @@ export interface ISeriesNameValue {
     name: string;
 }
 
+export interface IChartSeriesDataOptions {
+    reportGUID: string;
+    nameColumn: string;
+    seriesNameColumn: string;
+    valueColumn: string;
+}
+
 export interface IChartDiscreteDataOptions {
     reportGUID: string;
     nameColumn: string;

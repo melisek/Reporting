@@ -8,7 +8,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 
 import { IReportList, IReport, IReportCreate } from './report';
-import { IResponseResult, IListFilter, INameValue, IChartDiscreteDataOptions } from '../shared/shared-interfaces';
+import { IResponseResult, IListFilter, INameValue, IChartDiscreteDataOptions, IChartSeriesDataOptions, ISeriesNameValue } from '../shared/shared-interfaces';
 import { AuthHttp } from 'angular2-jwt';
 
 @Injectable()
@@ -20,6 +20,7 @@ export class ReportService {
     private _deleteUrl = './api/reports/Delete/';
     private _exportUrl = './api/reports/Export/';
     private _getDiscreteDataUrl = './api/reports/GetDiscreetRiportDiagram';
+    private _getSeriesDataUrl = './api/reports/GetSeriesRiportDiagram';
 
     constructor(private _http: AuthHttp) { }
 
@@ -82,6 +83,22 @@ export class ReportService {
             .do(data => console.log("get diagram data: " + JSON.stringify(data)))
             .catch(this.handleError);
     }
+
+    getSeriesDiagramData(dataOptions: IChartSeriesDataOptions): Observable<ISeriesNameValue[]> {
+        console.log('series' + JSON.stringify(dataOptions));
+        return this._http.post(this._getSeriesDataUrl, dataOptions)
+            .map(response => response.json() as ISeriesNameValue[])
+            .do(data => console.log("get diagram series data: " + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    //private extractDate(res: Response) {
+    //    var data = res.json().data || [];
+    //    data.forEach((d) => {
+    //        d.timestamp = new Date(d.timestamp);
+    //    });
+    //    return data;
+    //}
 
     private handleError(err: HttpErrorResponse) {
         console.log(err);

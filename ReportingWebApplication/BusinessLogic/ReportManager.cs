@@ -274,9 +274,10 @@ namespace szakdoga.BusinessLogic
                     values.Clear();
                 }
                 prevName = row[diagram.NameColumn].ToString();
+                DateTime date = (DateTime)(row[diagram.SeriesNameColumn]);
                 values.Add(new SeriesValueDto
                 {
-                    Name = row[diagram.SeriesNameColumn].ToString(),
+                    Name = JsonConvert.SerializeObject(date, new JsonSerializerSettings() { DateFormatString = "yyyy-MM-ddThh:mm:ssZ" }),
                     Value = double.Parse(row[diagram.ValueColumn].ToString())
                 });
             }
@@ -286,7 +287,7 @@ namespace szakdoga.BusinessLogic
                 Name = prevName,
                 Series = values.ToArray()
             });
-            return result.Take(10).ToArray();
+            return result.Take(5).ToArray();
         }
 
         public byte[] GetReportExportFile(string reportGUID, User user, out string fileName)

@@ -58,10 +58,23 @@ export const pieOptions: IChartOption[] = [
     { name: "labels", text: "Show labels", type: "boolean", value: true }
 ];
 
+export const lineOptions: IChartOption[] = [
+    { name: "showXAxis", text: "Show X-axis", type: "boolean", value: true },
+    { name: "showYAxis", text: "Show Y-axis", type: "boolean", value: true },
+    { name: "showGridLines", text: "Show grid lines", type: "boolean", value: true },
+    { name: "roundDomains", text: "Round domains", type: "boolean", value: true },
+    { name: "showXAxisLabel", text: "Show X-axis label", type: "boolean", value: true },
+    { name: "showYAxisLabel", text: "Show Y-axis label", type: "boolean", value: true },
+    { name: "xAxisLabel", text: "X-axis label", type: "string", value: "x" },
+    { name: "yAxisLabel", text: "Y-axis label", type: "string", value: "y" },
+    { name: "schemeType", text: "Scheme type", type: "string", value: "ordinal" },
+    { name: "autoScale", text: "Auto scale", type: "boolean", value: true }
+];
+
 
 export const chartTypeOptions: IChartOption[][] = [
     [...barOptions, ...baseOptions],
     [...barOptions, ...baseOptions],
     [...pieOptions, ...baseOptions],
-    [...barOptions, ...baseOptions],
+    [...lineOptions, ...baseOptions],
 ];
