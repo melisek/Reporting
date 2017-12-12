@@ -302,6 +302,7 @@ export class ReportEditComponent implements OnInit {
         let contentDispositionHeader: string = response.headers.get('Content-Disposition')!;
         const parts: string[] = contentDispositionHeader.split(';');
         const filename = parts[1].split('=')[1];
+        console.log((<any>response)._body);
         const blob = new Blob([(<any>response)._body], { type: 'text/csv' });
         saveAs(blob, filename);
     }
