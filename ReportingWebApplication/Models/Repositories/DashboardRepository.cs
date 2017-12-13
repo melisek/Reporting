@@ -47,7 +47,6 @@ namespace szakdoga.Models.Repositories
             var entity = Get(id);
             if (entity != null)
             {
-                //_context.Dashboards.Remove(entity);
                 entity.Deleted = true;
                 _context.Update(entity);
                 _context.SaveChanges();

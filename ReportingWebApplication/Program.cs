@@ -17,7 +17,6 @@ namespace szakdoga
             }
             catch (Exception e)
             {
-                //NLog: catch setup errors
                 logger.Error(e, "Stopped program because of exception");
                 throw;
             }

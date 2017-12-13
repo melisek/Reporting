@@ -74,17 +74,6 @@ namespace szakdoga.BusinessLogic
             {
                 sb.Append("{");
                 bool isFirst = true;
-                //foreach (Column col in AllColumns.Columns)//a filterből szedjük az oszlopokat, azért itthagyom
-                //{
-                //    if (isFirst)
-                //    {
-                //        sb.Append($"\"{col.Name}\" : \"{row[col.Name].ToString()}\"");
-                //        isFirst = false;
-                //    }
-                //    else
-                //        sb.Append($",\"{col.Name}\" : \"{row[col.Name].ToString()}\"");
-                //}
-
                 foreach (string col in filter.Columns)
                 {
                     if (isFirst)

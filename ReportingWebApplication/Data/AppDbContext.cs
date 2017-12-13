@@ -24,13 +24,12 @@ namespace szakdoga.Data
             modelBuilder.Entity<Query>().Property(b => b.CreationDate).HasDefaultValueSql("getdate()");
             modelBuilder.Entity<Query>().Property(b => b.ModifyDate).HasDefaultValueSql("getdate()");
 
-            //Sajnos ha BaseEntity-t adok meg, akkor megpróbálja létrehozni rá a táblát
             modelBuilder.Entity<Dashboard>().Property(b => b.Deleted).HasDefaultValue(false);
             modelBuilder.Entity<Query>().Property(b => b.Deleted).HasDefaultValue(false);
             modelBuilder.Entity<Report>().Property(b => b.Deleted).HasDefaultValue(false);
             modelBuilder.Entity<User>().Property(b => b.Deleted).HasDefaultValue(false);
 
-            //Így lehet csak megvalósítani a unique constrain-t
+            // unique constrain
             modelBuilder.Entity<Dashboard>().HasAlternateKey(x => x.DashBoardGUID).HasName("AlternateKey_DashBoard_GUID");
             modelBuilder.Entity<Query>().HasAlternateKey(x => x.QueryGUID).HasName("AlternateKey_Query_GUID");
             modelBuilder.Entity<Report>().HasAlternateKey(x => x.ReportGUID).HasName("AlternateKey_Report_GUID");

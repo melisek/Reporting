@@ -32,17 +32,6 @@ namespace test_szakdoga
                 new User{Id=2, Deleted=false, Name="CanWatch", UserGUID="watch" },
                 new User{Id=3, Deleted=false, Name="Invalid", UserGUID="invalid" }
             };
-            //_dashboards = new List<Dashboard>
-            //{
-            //    new Dashboard { Id=1, DashBoardGUID="Valid", Style="StyleTest",Name="Valid", Deleted=false},
-            //    new Dashboard { Id=2, DashBoardGUID="InValid", Style="InvalidStyle",Name="InValid", Deleted=false}
-            //};
-            //_dashUserRel = new List<UserDashboardRel>
-            //{
-            //    new UserDashboardRel{ User=_users[0], Dashboard=_dashboards[0], AuthoryLayer=(int)DashboardUserPermissions.CanModify},
-            //    new UserDashboardRel{ User=_users[1], Dashboard=_dashboards[0], AuthoryLayer=(int)DashboardUserPermissions.CanWatch},
-            //    new UserDashboardRel{ User=_users[2], Dashboard=_dashboards[0], AuthoryLayer=(int)DashboardUserPermissions.Invalid}
-            //};
 
             _reports = new List<Report>
             {
