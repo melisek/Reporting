@@ -30,6 +30,3 @@ import { ChartBaseComponent } from '../chart-base.component';
   `
 })
 export class HorizontalBarChartComponent extends ChartBaseComponent { }
-
-//[view]=[800,400]
-//[scheme] = "options[14].value"

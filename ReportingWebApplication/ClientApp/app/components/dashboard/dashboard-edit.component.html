@@ -33,7 +33,7 @@
                 </mat-card-content>
                 <mat-card-actions>
                     <div><label>Grid</label><mat-slider min="1" max="10" step="1" (change)="sliderChange()" [(ngModel)]="gridCount"></mat-slider> {{gridCount}}</div>
-                    <button mat-raised-button color="primary" (click)="onSaveClick()" [disabled]="formHasErrors" class="margintop20">Save</button>
+                    <button mat-raised-button color="primary" (click)="onSaveClick()" [disabled]="formHasErrors" class="margintop20 saveButton">Save</button>
                 </mat-card-actions>
             </mat-card>
         </div>

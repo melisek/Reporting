@@ -8,5 +8,4 @@ export class ChartBaseComponent implements IChart {
     options: IChartOption[];
     @Input()
     data: any[];
-    
 }

@@ -27,4 +27,4 @@ import { ChartBaseComponent } from '../chart-base.component';
       </ngx-charts-bar-vertical>
   `
 })
-export class VerticalBarChartComponent extends ChartBaseComponent { } //        [view]=[800,400]
+export class VerticalBarChartComponent extends ChartBaseComponent { }

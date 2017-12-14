@@ -52,8 +52,6 @@
             <button [routerLink]="['/reports/edit', row.reportGUID]" mat-icon-button matTooltip="Edit report" matTooltipPosition="above" ><mat-icon class="md-18">mode_edit</mat-icon></button>
             <button mat-icon-button matTooltip="Delete report" matTooltipPosition="above" (click)="deleteReport(row.reportGUID)"><mat-icon class="md-18">delete</mat-icon></button>
             <button mat-icon-button matTooltip="Export report" matTooltipPosition="above" (click)="exportReport(row.reportGUID)"><mat-icon class="md-18">save</mat-icon></button>
-            
-            <!--<button mat-icon-button matTooltip="Share report" matTooltipPosition="above" (click)="openShareDialog(row.reportGUID, row.name)"><mat-icon class="md-18">share</mat-icon></button>-->
         </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

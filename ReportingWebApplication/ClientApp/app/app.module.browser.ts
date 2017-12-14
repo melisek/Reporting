@@ -23,12 +23,8 @@ import { ChartDirective } from './components/chart/chart.directive';
 @NgModule({
     bootstrap: [AppComponent],
     imports: [
-        //BrowserModule,
         BrowserAnimationsModule,  
-        //CommonModule,
-        //FormsModule,
         HttpModule,
-        //HttpClientModule,
         
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },

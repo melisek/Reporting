@@ -25,82 +25,49 @@ export class ReportService {
     constructor(private _http: AuthHttp) { }
 
     getReports(filter: IListFilter): Observable<IReportList> {
-        console.log(filter);
         return this._http.post(this._listUrl, filter)
             .map(response => response.json() as IReportList)
-            .do(data => console.log("Reports: " + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
     addReport(report: IReportCreate): Observable<IResponseResult> {
-        console.log(report);
         return this._http.post(this._addUrl, report)
-            //.map(response => response.json() as IResponseResult)
-            //.do(data => console.log("Add report: " + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
     updateReport(reportGUID: string, report: IReportCreate): Observable<IResponseResult> {
-        
         let data = { "reportGUID": reportGUID, ...report };
-        console.log('updatereport:' + JSON.stringify(data));
         return this._http.put(this._updateUrl + reportGUID, data)
-            //.map(response => response.json() as IResponseResult)
-            //.do(data => console.log("Add report: " + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
     getReport(reportGUID: string): Observable<IReportCreate> {
-        console.log(reportGUID);
         return this._http.get(this._getUrl + reportGUID)
             .map(response => response.json() as IReportCreate)
-            .do(data => console.log("Report: " + JSON.stringify(data)))
             .catch(this.handleError);
     }
-
-    
 
     deleteReport(reportGUID: string): Observable<boolean> {
         return this._http.delete(this._deleteUrl + reportGUID)
-            //.map(response => response.ok)
-            .do(data => console.log("Delete report: " + JSON.stringify(data)))
             .catch(this.handleError);
     }
-
 
     exportReport(reportGUID: string): Observable<Response> {
         return this._http.get(this._exportUrl + reportGUID)
-            //.map(response => response)
-            .do(data => console.log("Export report: " + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
-
     getDiscreteDiagramData(dataOptions: IChartDiscreteDataOptions): Observable<INameValue[]> {
-        console.log('disrete' + dataOptions.reportGUID);
         return this._http.post(this._getDiscreteDataUrl, dataOptions)
             .map(response => response.json() as INameValue[])
-            .do(data => console.log("get diagram data: " + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
     getSeriesDiagramData(dataOptions: IChartSeriesDataOptions): Observable<ISeriesNameValue[]> {
-        console.log('series' + JSON.stringify(dataOptions));
         return this._http.post(this._getSeriesDataUrl, dataOptions)
             .map(response => response.json() as ISeriesNameValue[])
-            .do(data => console.log("get diagram series data: " + JSON.stringify(data)))
             .catch(this.handleError);
     }
-
-    //private extractDate(data: ISeriesNameValue[]) {
-    //    data.forEach((d) => {
-    //        d.series
-    //            .forEach((s) => {
-    //                s.name = new Date(s.name);
-    //        });
-    //    });
-    //    return data;
-    //}
 
     private handleError(err: HttpErrorResponse) {
         console.log(err);

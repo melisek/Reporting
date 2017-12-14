@@ -34,8 +34,6 @@ export class UserLoginComponent {
             });
 
         this.titleService.setTitle("Login - Register");
-
-        //this.loginform.errors
     }
 
     loginFormHasErrors(): boolean {

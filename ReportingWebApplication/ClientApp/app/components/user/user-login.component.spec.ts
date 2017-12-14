@@ -9,8 +9,9 @@ import { UserService } from "./user.service";
 import { HttpModule } from "@angular/http";
 import { AuthHttp } from "angular2-jwt";
 import { AuthModule } from "./auth.module";
-import { Router, RouterModule } from "@angular/router";
+import { Router, RouterModule, ActivatedRoute } from "@angular/router";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { Observable } from "rxjs/Observable";
 
 
 class RouterStub {
@@ -19,7 +20,7 @@ class RouterStub {
     }
 }
 
-describe('1st tests', () => {
+describe('UserLoginComponent tests', () => {
     let comp: UserLoginComponent;
     let fixture: ComponentFixture<UserLoginComponent>;
     let de: DebugElement;

@@ -8,13 +8,14 @@ import { HttpModule } from "@angular/http";
 import { AuthHttp } from "angular2-jwt";
 import { Router, RouterModule, ActivatedRoute, ActivatedRouteSnapshot } from "@angular/router";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { ReportEditComponent } from "./report-edit.component";
-import { ReportService } from "./report.service";
+
 import { ChartModule } from "../chart/chart.module";
 import { AuthModule } from "../user/auth.module";
 import { QueryService } from "../query/query.service";
 import { APP_BASE_HREF } from "@angular/common";
 import { Observable } from "rxjs/Observable";
+import { ChartEditComponent } from "./chart-edit.component";
+import { ChartService } from "./chart.service";
 
 
 class RouterStub {
@@ -27,73 +28,55 @@ class ActivatedRouteStub {
     snapshot: ActivatedRouteSnapshot = new ActivatedRouteSnapshot();
 }
 
-describe('ReportEditComponent tests', () => {
-    let comp: ReportEditComponent;
-    let fixture: ComponentFixture<ReportEditComponent>;
+describe('ChartEditComponent tests', () => {
+    let comp: ChartEditComponent;
+    let fixture: ComponentFixture<ChartEditComponent>;
     let de: DebugElement;
     let el: HTMLElement;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [MaterialModule, FormsModule, HttpModule, BrowserAnimationsModule, AuthModule, RouterModule, ReactiveFormsModule, ChartModule],
-            declarations: [ReportEditComponent],
-            providers: [ReportService, QueryService, FormControlDirective, FormGroupDirective,
+            declarations: [ChartEditComponent],
+            providers: [ChartService, QueryService, FormControlDirective, FormGroupDirective,
                 { provide: Router, useClass: RouterStub },
                 { provide: APP_BASE_HREF, useValue: '/' },
                 { provide: ActivatedRoute, useClass: ActivatedRouteStub }]
         });
 
-        fixture = TestBed.createComponent(ReportEditComponent);
+        fixture = TestBed.createComponent(ChartEditComponent);
 
         comp = fixture.componentInstance;
 
         fixture.detectChanges();
     });
 
-    it('name control should be invalid on the form', () => {
-        let control = comp.form.get('name');
-        control!.setValue('');
-        fixture.detectChanges();
-        expect(control!.valid).toBeFalsy();
-    });
-
-    it('name control should be valid on the form', () => {
-        let control = comp.form.get('name');
-        control!.setValue('Jelentés 1');
-        fixture.detectChanges();
-        expect(control!.valid).toBeTruthy();
-    });
-
-    it('query control should be invalid on the form', () => {
-        let control = comp.form.get('query');
-        control!.setValue('');
-        fixture.detectChanges();
-        expect(control!.valid).toBeFalsy();
-    });
-
-    it('query control should be valid on the form', () => {
-        let control = comp.form.get('query');
-        control!.setValue('Query 1');
-        fixture.detectChanges();
-        expect(control!.valid).toBeTruthy();
-    });
-
     it('save button should be disabled', () => {
-        comp.columns.deselectAll();
+        comp.discreteDataOptions = {
+            reportGUID: '',
+            nameColumn: '',
+            valueColumn: '',
+            aggregation: 0
+        };
         fixture.detectChanges();
 
-        let de = fixture.debugElement.query(By.css('.saveButton'));
+        de = fixture.debugElement.query(By.css('.saveButton'));
         expect(de.attributes['disabled']).toBeTruthy();
     });
 
     it('save button should not be disabled', () => {
-        comp.columns.selectAll();
+        comp.selectedChartType = 1;
+        comp.discreteDataOptions = {
+            reportGUID: '',
+            nameColumn: 'ProductName',
+            valueColumn: 'NetValue',
+            aggregation: 0
+        };
         fixture.detectChanges();
 
-        let de = fixture.debugElement.query(By.css('.saveButton'));
+        de = fixture.debugElement.query(By.css('.saveButton'));
         expect(de.attributes['disabled']).toBeTruthy();
     });
-
 
 });
 

@@ -23,7 +23,6 @@ export class UserService {
     constructor(private _http: Http, private _authHttp: AuthHttp) { }
 
     login(credential: ILoginCredential): Observable<boolean> {
-        console.log(credential);
         return this._http.post(this._loginUrl, credential)
             .map(response => {
                 let token = response.json() && response.json().value.jwt;
@@ -42,7 +41,6 @@ export class UserService {
     }
 
     register(credential: IRegisterCredential): Observable<boolean> {
-        console.log(credential);
         return this._http.post(this._registerUrl, credential)
             .map(response => {
                 let token = response.json() && response.json().value.jwt;
@@ -70,7 +68,6 @@ export class UserService {
     }
 
     private handleError(err: HttpErrorResponse) {
-        //console.log(err.statusText);
         return Observable.throw(err.statusText);
     }
 }

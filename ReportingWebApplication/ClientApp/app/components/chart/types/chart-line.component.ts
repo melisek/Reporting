@@ -26,5 +26,5 @@ import { ChartBaseComponent } from '../chart-base.component';
         [tooltipDisabled] = "options[14].value">
     </ngx-charts-line-chart>
   `
-}) // [yScaleMax] = "options[9].value"
+})
 export class LineChartComponent extends ChartBaseComponent { }

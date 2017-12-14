@@ -18,25 +18,16 @@ import { QueryService } from '../query/query.service';
                 path: 'reports',
                 component: ReportListComponent,
                 canActivate: [AuthGuard]
-            },/*
-            {
-                path: ':id',
-                component: ProductDetailComponent,
-                resolve: { product: ProductResolver }
-            },*/
+            },
             {
                 path: 'reports/create',
                 component: ReportEditComponent,
                 canActivate: [AuthGuard]
-                //canDeactivate: [ProductEditGuard],
-                //resolve: { product: ProductResolver },
             },
             {
                 path: 'reports/edit/:reportGUID',
                 component: ReportEditComponent,
                 canActivate: [AuthGuard]
-                //canDeactivate: [ProductEditGuard],
-                //resolve: { product: ProductResolver },
             }
         ]),
         AppModuleShared,
@@ -45,7 +36,6 @@ import { QueryService } from '../query/query.service';
     declarations: [
         ReportListComponent,
         ReportEditComponent,
-        
     ],
     providers: [
         ReportService,

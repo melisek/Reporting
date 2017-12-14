@@ -22,42 +22,30 @@ export class DashboardService {
     constructor(private _http: AuthHttp) { }
 
     getDashboards(filter: IListFilter): Observable<IDashboardList> {
-        console.log(filter);
         return this._http.post(this._listUrl, filter)
             .map(response => response.json() as IDashboardList)
-            .do(data => console.log("Dashboards: " + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
     addDashboard(dashboard: IDashboardCreate): Observable<IResponseResult> {
-        console.log(dashboard);
         return this._http.post(this._addUrl, dashboard)
-            //.map(response => response.json() as IResponseResult)
-            //.do(data => console.log("Add report: " + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
     updateDashboard(dashboardGUID: string, dashboard: IDashboardCreate): Observable<IResponseResult> {
         let data = { "dashboardGUID": dashboardGUID, ...dashboard };
-        console.log('updatedash:' + JSON.stringify(data));
         return this._http.put(this._updateUrl + dashboardGUID, data)
-            //.map(response => response.json() as IResponseResult)
-            //.do(data => console.log("Add report: " + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
     getDashboard(dashboardGUID: string): Observable<IDashboardCreate> {
-        console.log(dashboardGUID);
         return this._http.get(this._getUrl + dashboardGUID)
             .map(response => response.json() as IDashboardCreate)
-            .do(data => console.log("dashboard: " + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
     deleteDashboard(dashboardGUID: string): Observable<boolean> {
         return this._http.delete(this._deleteUrl + dashboardGUID)
-            //.map(response => response.ok)
-            .do(data => console.log("Delete report: " + JSON.stringify(data)))
             .catch(this.handleError);
     }
 

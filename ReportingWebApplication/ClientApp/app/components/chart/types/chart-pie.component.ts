@@ -18,4 +18,4 @@ import { ChartBaseComponent } from '../chart-base.component';
     </ngx-charts-pie-chart>
   `
 })
-export class PieChartComponent extends ChartBaseComponent { } //[view]="[800,400]"
+export class PieChartComponent extends ChartBaseComponent { }

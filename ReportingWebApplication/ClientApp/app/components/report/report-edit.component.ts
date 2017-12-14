@@ -92,7 +92,6 @@ export class ReportEditComponent implements OnInit {
             }
         };
         this.reportGUID = this._route.snapshot.paramMap.get('reportGUID');
-        console.log('reportguid:' + this.reportGUID);
         if (this.reportGUID != null) {
             this.reportService.getReport(this.reportGUID)
                 .subscribe(report => {
@@ -112,7 +111,6 @@ export class ReportEditComponent implements OnInit {
                         valueColumn: result.valueColumn,
                         aggregation: result.aggregation
                     };
-                    console.log('repot-edit.oninit-initchart-result:' + discreteDataOptions);
                     this.reportService!.getDiscreteDiagramData(discreteDataOptions)
                         .subscribe(data => {
                             this.chartData = data;
@@ -134,7 +132,6 @@ export class ReportEditComponent implements OnInit {
             };
             this.titleService.setTitle("Create Report");
         }
-        console.log(this.reportGUID);
 
         this.queryService.getQueriesIdName()
             .subscribe(queries => {
@@ -142,31 +139,7 @@ export class ReportEditComponent implements OnInit {
             });
 
         this.showDataTable = false;
-
-        //this.dataSource = new ExampleDataSource(this.queryService!, this.sort, this.paginator);
         this._cdr.detectChanges();
-        /*this.queryService.getQueryColumns(Number(this.selectedValue))
-            .subscribe(data => this.queryColumns = data);*/
-        /*.map(data => {
-            return data;
-        })
-        .catch(() => {
-            return Observable.of([]);
-        });*/
-
-        /*Observable.fromEvent(this.querySelect.nativeElement, 'change')
-            .distinctUntilChanged()
-            .subscribe(() => {
-                this.dataSource.filter = this.querySelect.nativeElement.value;
-            });*/
-
-        //this.columns.options.subscribe(
-        //    res => {
-        //        this.columns.options.find(x => x.value == "Table_95_Field_3")!.toggle();
-        //    });
-
-
-
     }
 
     queryChange(): void {
@@ -209,8 +182,6 @@ export class ReportEditComponent implements OnInit {
             return name;
     }
     onUpdateClick(): void {
-
-        console.log(this.sort);
         this.paginator.pageSize = this.report.rows;
         this.sort.active = this.report.sort.columnName;
         this.sort.direction = this.report.sort.direction == "Asc" ? "asc" : "desc";
@@ -218,12 +189,8 @@ export class ReportEditComponent implements OnInit {
         this.dataSource = new QueryDataSource(this.queryService, this.sort, this.paginator, this.report.filter);
         this.dataSource.queryGUID = this.report.queryGUID;
 
-        console.log('colbefore '+this.columnNames);
         this.columnNames = [];
-        console.log('colafter ' + this.columnNames);
-        console.log('displaybeforeinit:' + this.displayedColumns);
 
-        
         this.columns.selectedOptions.selected.forEach(x => {
             let header: string = this.getColumnText(x.value);
             this.columnNames.push({
@@ -232,12 +199,8 @@ export class ReportEditComponent implements OnInit {
             });
         });
 
-        console.log('displayafterinit: ' + this.displayedColumns);
         this.displayedColumns = this.columnNames.map(x => x.columnDef);
         this.dataSource.selectedColumns = this.displayedColumns;
-
-        console.log('display:'+this.displayedColumns);
-        console.log('paginator' + this.paginator);
 
         Observable.fromEvent(this.filter.nativeElement, 'keydown')
             .debounceTime(150)
@@ -302,7 +265,6 @@ export class ReportEditComponent implements OnInit {
         let contentDispositionHeader: string = response.headers.get('Content-Disposition')!;
         const parts: string[] = contentDispositionHeader.split(';');
         const filename = parts[1].split('=')[1];
-        console.log((<any>response)._body);
         const blob = new Blob([(<any>response)._body], { type: 'text/csv' });
         saveAs(blob, filename);
     }
@@ -370,14 +332,9 @@ export class QueryDataSource extends DataSource<any[]> {
             .switchMap(() => {
                 this.isLoadingResults = true;
 
-                console.log('selcol ' + this.selectedColumns);
-                console.log('selact ' + this._sort.active);
-
                 if (this._sort.active == null || this._sort.active == '' ||
                     (this._sort.active != null && this.selectedColumns.findIndex(x => x === this._sort.active) == -1))
                     this._sort.active = this.selectedColumns[0];
-
-                console.log('selact2 ' + this._sort.active);
 
                 return this._queryService.getQuerySourceData(
                     {
@@ -392,7 +349,6 @@ export class QueryDataSource extends DataSource<any[]> {
             .map(result => {
                 this.isLoadingResults = false;
                 this.totalCount = result.TotalCount;
-                console.log('ds res: ' + result.Data);
                 return result.Data;
             })
             .catch(() => {

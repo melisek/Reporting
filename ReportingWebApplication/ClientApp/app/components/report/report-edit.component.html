@@ -1,5 +1,3 @@
-
-
     <div class="clearfix pull-right margin-top-20">
         <button mat-raised-button color="primary" (click)="onSaveClick()" [disabled]="formHasErrors && query && columns && columns.selectedOptions.selected.length == 0">Save</button>
         <button mat-raised-button [routerLink]="['/reports']">Cancel</button>
@@ -44,7 +42,7 @@
 
                         </mat-card-content>
                         <mat-card-actions>
-                            <button mat-raised-button color="primary" (click)="onSaveClick()" [disabled]="formHasErrors && query && columns && columns.selectedOptions.selected.length == 0" class="margintop20">Save</button>
+                            <button mat-raised-button color="primary" (click)="onSaveClick()" [disabled]="formHasErrors && query && columns && columns.selectedOptions.selected.length == 0" class="saveButton margintop20">Save</button>
                             <button mat-raised-button color="accent" (click)="onUpdateClick()" [disabled]="query && columns && columns.selectedOptions.selected.length == 0" class="margintop20">Update</button>
                         </mat-card-actions>
                     </mat-card>

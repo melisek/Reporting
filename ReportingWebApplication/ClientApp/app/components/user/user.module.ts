@@ -5,7 +5,6 @@ import { UserLoginComponent } from './user-login.component';
 import { RouterModule } from '@angular/router';
 import { UserService } from './user.service';
 
-
 @NgModule({
     declarations: [
         UserLoginComponent
@@ -22,9 +21,6 @@ import { UserService } from './user.service';
             }
         ]),
         AppModuleShared
-    ],
-    exports: [
-       // ChartEditComponent
     ],
     providers: [
         UserService
